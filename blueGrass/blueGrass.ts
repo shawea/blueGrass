@@ -3,7 +3,6 @@
   Attribution Assurance License is @ http://github.com/shawea/blueGrass
 */
 
-
 declare var $;
 declare var hasher;//simple router
 
@@ -52,7 +51,7 @@ function open(ht, id, cb_):void {
 }//()
 
 /*
- *  cBs #id
+ *  calls back with new #id
  */
 function forward(ht, id, cb_):void {
 	$.get(viewDir + ht + '.html', function (resp_) {
@@ -60,19 +59,18 @@ function forward(ht, id, cb_):void {
 		var cur = $('#' + id)
         console.log(ht, cur.attr('id'))
         var gid = id + Math.floor(Math.random() * 9999999) //GUID 1 in 10mm
-		cur.attr('id', gid)//change to guid - we could have many
+		cur.attr('id', gid)//change id to guid - we could have many
 		if (!cur.attr('id')) throw new Error('id not found or kontainer')
 		try{
             var t:number = $('header').height()
             var b:number = $('footer').position().top
 		    cur.height(b - t)
-        } catch (err) { console.log(err)} // need more view measure functions
+        } catch (err) { console.log(err)}
 		if (cb_) cb_(gid)
 	})
 }//()
 
-
-function cleanUpViews(i):void {
+function cleanupViews(i:number):void { //GC
 	var views = $('#kontainer').children()
 	console.log(views.length)
 	while (views.length > i) {
@@ -95,21 +93,3 @@ function getGuerryString(key) {
     return match && decodeURIComponent(match[1].replace(/\+/g, " "));
 }
 
-function loadScript(src, cb){
-    var s,
-        r,
-        t;
-    r = false;
-    s = document.createElement('script');
-    s.type = 'text/javascript';
-    s.src = src;
-    s.onload = s.onreadystatechange = function() {
-        //console.log( this.readyState ); //uncomment this line to see which ready states are called.
-        if ( !r && (!this.readyState || this.readyState == 'complete') ) {
-            r = true;
-            if(cb) cb();
-        }
-    };
-    t = document.getElementsByTagName('script')[0];
-    t.parent.insertBefore(s, t);
-}

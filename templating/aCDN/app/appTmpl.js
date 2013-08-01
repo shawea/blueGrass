@@ -1,7 +1,6 @@
-console.log('v0.0');
 viewDir = '../aCDN/views/';
+console.log('v0.0');
 cloud = new CloudAPI();
-frm = new NameForm();
 
 var NameForm = (function () {
     function NameForm() {
@@ -9,39 +8,47 @@ var NameForm = (function () {
         but1.addEventListener('click', this._transition);
     }
     NameForm.prototype._transition = function (transEnum, ctx) {
-        console.log('form');
-        forward('nameForm', 'form', this.onFormLoaded);
+        forward('nameForm', 'form', frm.onFormLoaded);
     };
     NameForm.prototype.onFormLoaded = function (new_id) {
-        cleanUpViews(1);
+        console.log(new_id);
+        cleanupViews(1);
         var but1 = document.getElementById('create');
-        but1.addEventListener('click', this.doInsert);
+        but1.addEventListener('click', frm.doInsert);
     };
-
     NameForm.prototype.doInsert = function () {
         var firstname = $('#firstname').val();
         var lastname = $('#lastname').val();
         console.log('clicked ' + firstname + ', ' + lastname);
         var ename = new Object();
-        ename.firstname = firstname;
-        ename.lastname = lastname;
-        cAPI.insert('my_app', ename, this.onPK);
+        ename.first_name = firstname;
+        ename.last_name = lastname;
+        cloud.insert('my_table', ename, frm.onPK);
     };
-
     NameForm.prototype.onPK = function (data, er) {
         console.log('back ' + JSON.stringify(data) + er);
     };
     return NameForm;
 })();
+frm = new NameForm();
 
-var List = (function () {
-    function List() {
-        var but1 = document.getElementById('formId');
+var ListPg = (function () {
+    function ListPg() {
+        var but1 = document.getElementById('list');
         but1.addEventListener('click', this._transition);
     }
-    List.prototype._transition = function (transEnum, ctx) {
-        forward('nameForm', 'form', this.onFormLoaded);
+    ListPg.prototype._transition = function (transEnum, ctx) {
+        forward('list', 'listId', this.onLoaded);
     };
-    return List;
+    ListPg.prototype.onLoaded = function (nid) {
+        cleanUpViews(1);
+        cloud.select('my_table', null, this.onSelectRet);
+    };
+    ListPg.prototype.onSelectRet = function (data, er) {
+        console.log('back ' + JSON.stringify(data) + er);
+        list = new List('todo-list', map, data.array_);
+    };
+    return ListPg;
 })();
+lst = new ListPg();
 //@ sourceMappingURL=appTmpl.js.map

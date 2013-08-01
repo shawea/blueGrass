@@ -39,7 +39,7 @@ function forward(ht, id, cb_) {
     });
 }
 
-function cleanUpViews(i) {
+function cleanupViews(i) {
     var views = $('#kontainer').children();
     console.log(views.length);
     while (views.length > i) {
@@ -58,22 +58,5 @@ function getGuerryString(key) {
     key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&");
     var match = location.search.match(new RegExp("[?&]" + key + "=([^&]+)(&|$)"));
     return match && decodeURIComponent(match[1].replace(/\+/g, " "));
-}
-
-function loadScript(src, cb) {
-    var s, r, t;
-    r = false;
-    s = document.createElement('script');
-    s.type = 'text/javascript';
-    s.src = src;
-    s.onload = s.onreadystatechange = function () {
-        if (!r && (!this.readyState || this.readyState == 'complete')) {
-            r = true;
-            if (cb)
-                cb();
-        }
-    };
-    t = document.getElementsByTagName('script')[0];
-    t.parent.insertBefore(s, t);
 }
 //@ sourceMappingURL=blueGrass.js.map
