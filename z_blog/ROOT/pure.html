@@ -1,0 +1,31 @@
+<html><head></head><body>
+
+
+<div id='todo-list'>
+    <ul class='template'></ul>
+</div>
+
+
+<script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js'></script>
+<script src="../aCDN/libs/pure.js"></script>
+<script id="primusAPI" data-app_key="dduxlbvqtex" src="http://ca_1.primusapi.com/acdn/libs/cloudAPI.js" ></script>
+
+<script>
+var cloud = new CloudAPI()
+
+$(document).ready(function () {// map mouse events:
+    cloud.select('todo', null, onSelectRet)// call
+})//()
+
+
+function onSelectRet(data, errorMsg) { // we have now returned a list of rows
+    console.log('selected ')
+    //console.log( JSON.stringify(data) )
+    list=new List('todo-list', map, data.array_ ) //data bind to template
+    list.sort('_daoc', { asc: false })   // date-time as long
+}
+
+
+
+</script>
+</body></html>
