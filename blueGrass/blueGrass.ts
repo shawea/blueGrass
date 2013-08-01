@@ -1,6 +1,8 @@
 /* v0.0712 - 99% of times you should not change this file
- (c) bikeSheding  @ http://github.com/puppetMaster3/bikeSheding */
-//console.log('bS')
+ (c) blueGrass  @ http://github.com/puppetMaster3/blueGrass
+  The Attribution Assurance License @ http://github.com/puppetMaster3/blueGrass
+*/
+
 
 declare var $;
 declare var hasher;//simple router
