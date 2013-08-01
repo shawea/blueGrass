@@ -1,6 +1,6 @@
-/* v0.0712 - 99% of times you should not change this file
- (c) blueGrass  @ http://github.com/puppetMaster3/blueGrass
-  The Attribution Assurance License @ http://github.com/puppetMaster3/blueGrass
+/* v0.0812 - 99% of times you should not change this file
+ (c) blueGrass  http://github.com/shawea/blueGrass
+  Attribution Assurance License is @ http://github.com/shawea/blueGrass
 */
 
 
@@ -11,11 +11,11 @@ declare var hasher;//simple router
 /**
  * Each view should position and manage self
  */
-interface IDivPresenter {// ~ like direct mediator to manage a view(s)/template(s) and hold state
+interface IPresenter {// ~ composition, a presenter is like direct mediator to manage a view(s)/template(s) and hold state. a state is like a model
 	_transition(transEnum:number, ctx:any):void; //enum
 }
 
-interface IAppNController{ // has the app + action router, the global app
+interface IAppController{ // has the app + action router, the global app
 	_onUrlChanged(newUrl, oldUrl):void;
 	dispatch(view:string, ctx:any):bool; //returns FALSE -for buttons
 }
@@ -24,7 +24,7 @@ interface IAppNController{ // has the app + action router, the global app
  *  should be first line in app constructor
  *  @param app
  */
-function initHController(ainst) {
+function initController(ainst) {
 	console.log('hRouter ready')
  	hasher.changed.add(ainst._onUrlChanged, ainst)
 	hasher.initialized.add(ainst._onUrlChanged, ainst)

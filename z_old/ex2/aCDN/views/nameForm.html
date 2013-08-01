@@ -2,12 +2,10 @@
     <form>
         First Name<input type="text" id="firstname" class="field"><br>
         Last Name <input type="text" id="lastname"  class="field"><br>
-        <button id="lookup" onclick="return false">Look Up</button>
         <button id="create" onclick="return false">Create Name</button>
     </form>
 
 <script>
-    cAPI=new CloudAPI()
 
     var newAppBut = document.getElementById('create')
     newAppBut.addEventListener('click', function(e) {

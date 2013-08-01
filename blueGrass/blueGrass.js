@@ -1,4 +1,4 @@
-function initHController(ainst) {
+function initController(ainst) {
     console.log('hRouter ready');
     hasher.changed.add(ainst._onUrlChanged, ainst);
     hasher.initialized.add(ainst._onUrlChanged, ainst);
