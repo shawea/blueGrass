@@ -39,7 +39,7 @@ function forward(ht, id, cb_) {
     });
 }
 
-function cleanupViews(i) {
+function cleanUpViews(i) {
     var views = $('#kontainer').children();
     console.log(views.length);
     while (views.length > i) {

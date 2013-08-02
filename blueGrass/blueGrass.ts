@@ -70,7 +70,7 @@ function forward(ht, id, cb_):void {
 	})
 }//()
 
-function cleanupViews(i:number):void { //GC
+function cleanUpViews(i:number):void { //GC
 	var views = $('#kontainer').children()
 	console.log(views.length)
 	while (views.length > i) {

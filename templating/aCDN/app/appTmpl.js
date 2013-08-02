@@ -1,5 +1,5 @@
 viewDir = '../aCDN/views/';
-console.log('v0.0');
+console.log('v0.01');
 cloud = new CloudAPI();
 
 var NameForm = (function () {
@@ -12,7 +12,7 @@ var NameForm = (function () {
     };
     NameForm.prototype.onFormLoaded = function (new_id) {
         console.log(new_id);
-        cleanupViews(1);
+        cleanUpViews(1);
         var but1 = document.getElementById('create');
         but1.addEventListener('click', frm.doInsert);
     };
@@ -32,23 +32,23 @@ var NameForm = (function () {
 })();
 frm = new NameForm();
 
-var ListPg = (function () {
-    function ListPg() {
-        var but1 = document.getElementById('list');
+var Pure = (function () {
+    function Pure() {
+        var but1 = document.getElementById('pureBut');
         but1.addEventListener('click', this._transition);
     }
-    ListPg.prototype._transition = function (transEnum, ctx) {
-        forward('list', 'listId', this.onLoaded);
+    Pure.prototype._transition = function (transEnum, ctx) {
+        forward('pure', 'pure', pure.onLoaded);
     };
-    ListPg.prototype.onLoaded = function (nid) {
+    Pure.prototype.onLoaded = function (nid) {
         cleanUpViews(1);
-        cloud.select('my_table', null, this.onSelectRet);
+        cloud.select('my_table', null, pure.onSelectRet);
     };
-    ListPg.prototype.onSelectRet = function (data, er) {
-        console.log('back ' + JSON.stringify(data) + er);
-        list = new List('todo-list', map, data.array_);
+    Pure.prototype.onSelectRet = function (data, er) {
+        console.log('back2 ' + JSON.stringify(data) + er);
+        $('#pureRend').autoRender(data);
     };
-    return ListPg;
+    return Pure;
 })();
-lst = new ListPg();
+pure = new Pure();
 //@ sourceMappingURL=appTmpl.js.map

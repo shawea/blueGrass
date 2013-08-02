@@ -1,5 +1,5 @@
 viewDir = '../aCDN/views/'
-console.log('v0.0')
+console.log('v0.01')
 cloud = new CloudAPI()
 
 class NameForm implements IPresenter {
@@ -13,7 +13,7 @@ class NameForm implements IPresenter {
     }
     onFormLoaded(new_id){
         console.log(new_id)
-        cleanupViews(1)// remove other views in kontainer
+        cleanUpViews(1)// remove other views in kontainer
         var but1 = document.getElementById('create')
         but1.addEventListener('click', frm.doInsert )
     }
@@ -32,22 +32,47 @@ class NameForm implements IPresenter {
 }//class
 frm = new NameForm()
 
+class Pure implements IPresenter {
+    constructor() {
+        var but1 = document.getElementById('pureBut')
+        but1.addEventListener('click', this._transition )
+    }
+    _transition(transEnum:number, ctx:any):void {
+        forward('pure', 'pure', pure.onLoaded)
+    }
+    onLoaded(nid) {
+        cleanUpViews(1)
+        cloud.select('my_table', null, pure.onSelectRet)
+    }
+    onSelectRet(data, er) {
+        console.log('back2 ' + JSON.stringify(data) + er)
+        $('#pureRend').autoRender(data);
+        }
+}
+pure = new Pure()
+
+
+ /*
 class ListPg implements IPresenter {
     constructor() {
        var but1 = document.getElementById('list')
        but1.addEventListener('click', this._transition )
     }
     _transition(transEnum:number, ctx:any):void {
-        forward('list', 'listId', this.onLoaded)
+        forward('list', 'listId', lst.onLoaded)
     }
     onLoaded(nid) {
         cleanUpViews(1)
-        cloud.select('my_table', null, this.onSelectRet)
+        cloud.select('my_table', null, lst.onSelectRet)
     }
     onSelectRet(data, er) {
         console.log('back ' + JSON.stringify(data) + er)
-        list= new List('todo-list', map, data.array_ )
+        var options = {
+            item: 'items'
+        }
+        list= new List('my_list', options, data.array_)
     }
 }
-lst = new ListPg()
+*/
+//lst = new ListPg()
 
