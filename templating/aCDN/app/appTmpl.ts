@@ -32,6 +32,28 @@ class NameForm implements IPresenter {
 }//class
 frm = new NameForm()
 
+class Templ implements IPresenter {
+    constructor() {
+        var but1 = document.getElementById('transparencyBut')
+        but1.addEventListener('click', this._transition )
+    }
+    _transition(transEnum:number, ctx:any):void {
+        forward('trans', 'transId', templ.onLoaded)
+    }
+    onLoaded(nid) {
+        cleanUpViews(1)
+        cloud.select('my_table', null, templ.onSelectRet)
+    }
+    onSelectRet(data, er) {
+        console.log('back2 ' + JSON.stringify(data) + er)
+
+        $('#template').render(data.array_);
+
+    }
+}
+templ = new Templ()
+
+
 class Pure implements IPresenter {
     constructor() {
         var but1 = document.getElementById('pureBut')
@@ -46,13 +68,13 @@ class Pure implements IPresenter {
     }
     onSelectRet(data, er) {
         console.log('back2 ' + JSON.stringify(data) + er)
-        $('#pureRend').autoRender(data);
+
+        $('#pureRend').autoRender(data)
         }
 }
 pure = new Pure()
 
 
- /*
 class ListPg implements IPresenter {
     constructor() {
        var but1 = document.getElementById('list')
@@ -73,6 +95,5 @@ class ListPg implements IPresenter {
         list= new List('my_list', options, data.array_)
     }
 }
-*/
 //lst = new ListPg()
 

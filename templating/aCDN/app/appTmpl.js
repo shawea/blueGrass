@@ -32,6 +32,27 @@ var NameForm = (function () {
 })();
 frm = new NameForm();
 
+var Templ = (function () {
+    function Templ() {
+        var but1 = document.getElementById('transparencyBut');
+        but1.addEventListener('click', this._transition);
+    }
+    Templ.prototype._transition = function (transEnum, ctx) {
+        forward('trans', 'transId', templ.onLoaded);
+    };
+    Templ.prototype.onLoaded = function (nid) {
+        cleanUpViews(1);
+        cloud.select('my_table', null, templ.onSelectRet);
+    };
+    Templ.prototype.onSelectRet = function (data, er) {
+        console.log('back2 ' + JSON.stringify(data) + er);
+
+        $('#template').render(data.array_);
+    };
+    return Templ;
+})();
+templ = new Templ();
+
 var Pure = (function () {
     function Pure() {
         var but1 = document.getElementById('pureBut');
@@ -46,9 +67,32 @@ var Pure = (function () {
     };
     Pure.prototype.onSelectRet = function (data, er) {
         console.log('back2 ' + JSON.stringify(data) + er);
+
         $('#pureRend').autoRender(data);
     };
     return Pure;
 })();
 pure = new Pure();
+
+var ListPg = (function () {
+    function ListPg() {
+        var but1 = document.getElementById('list');
+        but1.addEventListener('click', this._transition);
+    }
+    ListPg.prototype._transition = function (transEnum, ctx) {
+        forward('list', 'listId', lst.onLoaded);
+    };
+    ListPg.prototype.onLoaded = function (nid) {
+        cleanUpViews(1);
+        cloud.select('my_table', null, lst.onSelectRet);
+    };
+    ListPg.prototype.onSelectRet = function (data, er) {
+        console.log('back ' + JSON.stringify(data) + er);
+        var options = {
+            item: 'items'
+        };
+        list = new List('my_list', options, data.array_);
+    };
+    return ListPg;
+})();
 //@ sourceMappingURL=appTmpl.js.map

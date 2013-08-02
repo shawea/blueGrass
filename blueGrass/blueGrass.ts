@@ -10,7 +10,7 @@ declare var hasher;//simple router
 /**
  * Each view should position and manage self
  */
-interface IPresenter {// ~ composition, a presenter is like direct mediator to manage a view(s)/template(s) and hold state. a state is like a model
+interface IPresenter {// ~ composition, a presenter is like direct mediator of a section to manage a view(s) (and hold state. a state is like a model)
 	_transition(transEnum:number, ctx:any):void; //enum
 }
 
