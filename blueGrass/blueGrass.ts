@@ -41,17 +41,17 @@ var viewDir:string;
  * @param id of container
  * @param cb_
  */
-function open(ht, id, cb_):void {
+function open(ht, elSel, cb_):void {
     console.log(viewDir)
 	$.get(viewDir + ht + '.html', function (resp_) {
 		console.log(ht)
-        $('#'+id).append(resp_)
+        $(elSel).append(resp_)
         if (cb_) cb_()
 	})
 }//()
 
 /*
- *  calls back with new #id
+ *  calls back with new #id   -- of course it changes the id
  */
 function forward(ht, id, cb_):void {
 	$.get(viewDir + ht + '.html', function (resp_) {

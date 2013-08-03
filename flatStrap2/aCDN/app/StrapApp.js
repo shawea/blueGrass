@@ -3,6 +3,6 @@ console.log('v0.02');
 
 loadH();
 function loadH() {
-    forward('welcomewrap', 'welcomewrap');
+    open('headerwrap', '#kontainer');
 }
 //@ sourceMappingURL=StrapApp.js.map

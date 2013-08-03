@@ -8,11 +8,11 @@ function initController(ainst) {
 
 var viewDir;
 
-function open(ht, id, cb_) {
+function open(ht, elSel, cb_) {
     console.log(viewDir);
     $.get(viewDir + ht + '.html', function (resp_) {
         console.log(ht);
-        $('#' + id).append(resp_);
+        $(elSel).append(resp_);
         if (cb_)
             cb_();
     });
