@@ -11,7 +11,6 @@ but1.addEventListener('click', showD3 )
 //};
 
 
-
 class NameForm implements IPresenter {
     constructor() {// when created via new
         var but1 = document.getElementById('formId')

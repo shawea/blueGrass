@@ -14,9 +14,9 @@ interface IPresenter {// ~ composition, a section? presenter to manage a views/s
 	_transition(transEnum:number, ctx:any):void; //enum
 }
 
-interface IAppCtr{ // has the app + router, the global app
+interface IAppCtr{ // has the app + router, the global app , does not position
 	_onUrlChanged(newUrl, oldUrl):void;
-	dispatch(view:string, ctx:any):bool; //returns FALSE -for buttons
+	dispatch(view:string, ctx:any):bool; //returns FALSE
 }
 
 /**
