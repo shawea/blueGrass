@@ -10,11 +10,11 @@ declare var hasher;//simple router
 /**
  * Each view should position and manage self
  */
-interface IPresenter {// ~ composition, a section? presenter to manage a view(s) (and hold state/model)
+interface IPresenter {// ~ composition, a section? presenter to manage a views/sections (and hold state/model ex, when view is cleanedUp)
 	_transition(transEnum:number, ctx:any):void; //enum
 }
 
-interface IAppController{ // has the app + action router, the global app
+interface IAppCtr{ // has the app + router, the global app
 	_onUrlChanged(newUrl, oldUrl):void;
 	dispatch(view:string, ctx:any):bool; //returns FALSE -for buttons
 }
