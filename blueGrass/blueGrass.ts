@@ -14,7 +14,7 @@ interface IPresenter {// ~ composition, a section? presenter to manage a views/s
 	_transition(transEnum:number, ctx:any):void; //enum
 }
 
-interface IAppCtr{ // has the app + router, the global app , does not position
+interface IApp{ // has the app + router, the global app , does not tween or open, may have signals
 	_onUrlChanged(newUrl, oldUrl):void;
 	dispatch(view:string, ctx:any):bool; //returns FALSE
 }
@@ -23,7 +23,7 @@ interface IAppCtr{ // has the app + router, the global app , does not position
  *  should be first line in app constructor
  *  @param app
  */
-function initController(ainst) {
+function initRouter(ainst) {
 	console.log('hRouter ready')
  	hasher.changed.add(ainst._onUrlChanged, ainst)
 	hasher.initialized.add(ainst._onUrlChanged, ainst)
