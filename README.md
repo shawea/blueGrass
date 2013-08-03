@@ -1,5 +1,5 @@
-# (king) blueGrass
- is a home made front helper library to help create stunning UX, cross platfrom, mobile-first.
+# blueGrass
+ (king) BlueGrassis a home made front helper library to help create stunning UX, cross platfrom, mobile-first.
 
 License is [http://opensource.org/licenses/AAL][] : requires the derivatives and their derivatives attribute a link to bikesheding page and agree to loser pays legal costs, or if not licensed or as aribtrated (for violaters of the license).
 
@@ -25,10 +25,10 @@ Recommended but not required:
 
 Recipe:
 1. Start with a prototype index.html
-2. Remove sections(div) and save in 'CDN/views'
+2. Remove sections(div) and save in 'CDN/views' or similar
 3. Load view (optional: use ES6 syntax & CSS animate via greensock)
 4. Optional: add Hasher for SEO | bookmarks
 5. Recomend running of CDN (ex MaxCDN)
-6. Use Cloud API: Recommend Primus API
+6. Use Cloud API: Recommend Primus API! @PrimusAPI
 
 
