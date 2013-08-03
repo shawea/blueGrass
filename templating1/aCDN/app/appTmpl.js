@@ -1,13 +1,9 @@
 viewDir = '../aCDN/views/';
-console.log('v0.02');
+console.log('v0.01');
 cloud = new CloudAPI();
 
 var but1 = document.getElementById('formId');
 but1.addEventListener('click', showD3);
-
-function showD3() {
-    forward('nameForm', 'form');
-}
 
 var NameForm = (function () {
     function NameForm() {
@@ -65,4 +61,4 @@ var App = (function () {
     return App;
 })();
 app = new App();
-//@ sourceMappingURL=appTmpl.js.map
+//@ sourceMappingURL=AppTmpl.js.map
