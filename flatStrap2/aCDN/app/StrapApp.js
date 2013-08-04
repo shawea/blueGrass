@@ -1,5 +1,5 @@
 viewDir = '../aCDN/views/';
-console.log('v0.02');
+console.log('v0.03');
 
 var Welcome = (function () {
     function Welcome() {
@@ -21,8 +21,8 @@ var Service = (function () {
 
 var App = (function () {
     function App() {
-        wel = new Welcome();
         scrolledSignal = new signals.Signal();
+        wel = new Welcome();
         $(window).scroll(function () {
             this.didScroll = true;
         });
@@ -30,10 +30,14 @@ var App = (function () {
             if (this.didScroll) {
                 this.didScroll = false;
 
-                console.log('scroll');
-                this.scrolledSignal.dispatch();
+                var docTop = $(window).scrollTop();
+                var docBot = $(document).height() - $(window).height() - 20;
+
+                this.diff = docBot - docTop;
+                console.log('s' + diff);
+                this.scrolledSignal.dispatch(this.diff);
             }
-        }, 100);
+        }, 200);
     }
     return App;
 })();
