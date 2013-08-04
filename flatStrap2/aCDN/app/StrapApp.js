@@ -1,13 +1,18 @@
 viewDir = '../aCDN/views/';
-console.log('v0.03');
+console.log('v0.0');
 
 var Welcome = (function () {
-    function Welcome() {
+    function Welcome(app) {
         open('headerwrap', '#kontainer', this.onLoad1);
+        app.scrolledSignal.add(this.onEOD);
     }
     Welcome.prototype.onLoad1 = function () {
         TweenLite.to(document.getElementById('nav'), .050, { css: { opacity: 1 }, ease: Power3.easeOut });
         TweenLite.to(document.getElementsByTagName('body'), .250, { css: { opacity: 1 }, ease: Power3.easeOut });
+        open('welcomewrap', '#kontainer');
+    };
+    Welcome.prototype.onEOD = function (diff) {
+        new Service();
     };
     return Welcome;
 })();
@@ -21,8 +26,10 @@ var Service = (function () {
 
 var App = (function () {
     function App() {
-        scrolledSignal = new signals.Signal();
-        wel = new Welcome();
+        this.scrolledSignal = new signals.Signal();
+        this.scrolledSignal.add(this.onEOD);
+
+        wel = new Welcome(this);
         $(window).scroll(function () {
             this.didScroll = true;
         });
@@ -33,12 +40,15 @@ var App = (function () {
                 var docTop = $(window).scrollTop();
                 var docBot = $(document).height() - $(window).height() - 20;
 
-                this.diff = docBot - docTop;
-                console.log('s' + diff);
-                this.scrolledSignal.dispatch(this.diff);
+                var diff = docBot - docTop;
+                app.scrolledSignal.dispatch(diff, app);
+                this.lastDiff = diff;
             }
         }, 200);
     }
+    App.prototype.onEOD = function (diff) {
+        console.log('s' + diff);
+    };
     return App;
 })();
 app = new App();
