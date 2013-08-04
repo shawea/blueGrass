@@ -1,5 +1,5 @@
 # blueGrass
- (king) BlueGrass is a few home made function to help create stunning & magical UX, cross platfrom, mobile-first.
+ (king) blueGrass is a few home made function to help create stunning & magical UX, cross platfrom, mobile-first.
 
 Licensed under Attribution Assurance,
 - http://opensource.org/licenses/AAL
@@ -51,9 +51,9 @@ Things that may not help your UI:
 - Not deploying entire app on CDN, ie. hosting HTML5 on app server(ex: Rails, JSP, ASP, PHP, etc.). You should seprate IE from the webapp.
 - Starting with own, non tested or documented CSS. Just select a CSS framework with an eco system.
 
-note: the (king) prefix in front of BlueGrass lib means BlueGras eats other non-UI friendly frameworks.
+note: the (king) prefix in front of blueGrass lib means BlueGras eats other non-UI friendly frameworks.
 
-If you have bugs, issues or want to list a webapp or site that is using BlueGrass, just file an ticket here on github.
+If you have bugs, issues or want to list a webapp or site that is using blueGrass, just file an ticket here on github.
 
-- http://PrimusAPI.com is porting to BlueGrass.
+- http://PrimusAPI.com is porting to blueGrass.
 
