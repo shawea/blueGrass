@@ -49,7 +49,8 @@ Recipe:
 
 You can follow me on twitter: @puppetMaster3
 
-Note: current trends are metro buttons, blur background image, flat.
+Notes: current trends are metro buttons, blur background image, flat.
+IE 8 is not supported but Cordova is.
 
 Things that may not help your UI:
 - MV* frameworks: they focus on something, but not UI, their UI is not desiger friendly.

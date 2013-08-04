@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <title>Template Ex</title>
     <meta name='viewport' content='initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'>
 
     <link href='../../blueGrass/topcoat-mobile-light.css' rel='stylesheet'>
     <link href='../../blueGrass/snap.css'      rel='stylesheet'>
     <!-- attribution: derived from http://raw.github.com/shawea/blueGrass -->
+    <style>
+        form {
+         width: 200px;
+        }
+        form input, form textarea, form button {
+            float: left;
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -18,16 +26,18 @@
 
     </div>
 
-<input type="text" class="topcoat-text-input" value="" placeholder="text">
+<form>
+    <input type='text' class='topcoat-text-input' size=35 value='' placeholder='Title'>
 
-<textarea class="topcoat-textarea" rows="6" cols="36" placeholder="Textarea">
+    <textarea class='topcoat-textarea' rows='3' cols='38' placeholder='Tease'>
+     </textarea>
+
+    <textarea class='topcoat-textarea' rows='6' cols='38' placeholder='Tease'>
     </textarea>
 
+    <a class='topcoat-button--cta' >Save</a>
 
-<a class="topcoat-button--cta" >Button</a>
-
-
-<input type="search" value="" placeholder="search" class="topcoat-search-input">
+</form>
 
 
 <footer>
