@@ -1,30 +1,28 @@
-/*
 @font-face {
-  font-family: "Source Sans";
-  src: url("../font/SourceSansPro-Regular.otf");
+  font-family: 'Source Sans';
+  src: url('font/SourceSansPro-Regular.otf');
 }
 @font-face {
-  font-family: "Source Sans";
-  src: url("../font/SourceSansPro-Light.otf");
+  font-family: 'Source Sans';
+  src: url('font/SourceSansPro-Light.otf');
   font-weight: 200;
 }
 @font-face {
-  font-family: "Source Sans";
-  src: url("../font/SourceSansPro-Semibold.otf");
+  font-family: 'Source Sans';
+  src: url('font/SourceSansPro-Semibold.otf');
   font-weight: 600;
 }
-*/
 body {
   margin: 0;
   padding: 0;
   background: #dfe2e2;
   color: #000;
-  font: 16px "Source Sans", helvetica, arial, sans-serif;
+  font: 16px 'Source Sans', helvetica, arial, sans-serif;
   font-weight: 200;
   text-rendering: optimizeLegibility;
 }
 .topcoat-icon--menu-stack {
-  background: url("img/hamburger_dark.svg") no-repeat;
+  background: url('img/hamburger_dark.svg') no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -84,14 +82,14 @@ body {
 }
 /*
 Copyright 2012 Adobe Systems Inc.;
-Licensed under the Apache License, Version 2.0 (the "License");
+Licensed under the Apache License, Version 2.0 (the 'License');
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
 http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
+distributed under the License is distributed on an 'AS IS' BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
@@ -108,9 +106,9 @@ limitations under the License.
 
  .is-disabled - Simulates a disabled state on mobile devices
 
-    <a class="topcoat-button">Button</a>
-    <a class="topcoat-button is-active">Button</a>
-    <a class="topcoat-button is-disabled">Button</a>
+    <a class='topcoat-button'>Button</a>
+    <a class='topcoat-button is-active'>Button</a>
+    <a class='topcoat-button is-disabled'>Button</a>
 */
 .topcoat-button,
 .topcoat-button--quiet,
@@ -181,9 +179,9 @@ limitations under the License.
 
  .is-disabled - Simulates disabled state
 
-    <a class="topcoat-button--quiet">Button</a>
-    <a class="topcoat-button--quiet is-active">Button</a>
-    <a class="topcoat-button--quiet is-disabled">Button</a>
+    <a class='topcoat-button--quiet'>Button</a>
+    <a class='topcoat-button--quiet is-active'>Button</a>
+    <a class='topcoat-button--quiet is-disabled'>Button</a>
 */
 .topcoat-button--quiet {
   background: transparent;
@@ -220,9 +218,9 @@ limitations under the License.
 
  .is-disabled - Simulates disabled state
 
-    <a class="topcoat-button--large" >Button</a>
-    <a class="topcoat-button--large is-active" >Button</a>
-    <a class="topcoat-button--large is-disabled" >Button</a>
+    <a class='topcoat-button--large' >Button</a>
+    <a class='topcoat-button--large is-active' >Button</a>
+    <a class='topcoat-button--large is-disabled' >Button</a>
 */
 .topcoat-button--large,
 .topcoat-button--large--quiet {
@@ -248,9 +246,9 @@ limitations under the License.
  .is-disabled - Simulates disabled state
 
 
-    <a class="topcoat-button--large--quiet" >Button</a>
-    <a class="topcoat-button--large--quiet is-active" >Button</a>
-    <a class="topcoat-button--large--quiet is-disabled" >Button</a>
+    <a class='topcoat-button--large--quiet' >Button</a>
+    <a class='topcoat-button--large--quiet is-active' >Button</a>
+    <a class='topcoat-button--large--quiet is-disabled' >Button</a>
 */
 .topcoat-button--large--quiet {
   background: transparent;
@@ -277,9 +275,9 @@ limitations under the License.
  .is-disabled - Simulates disabled state
 
 
-    <a class="topcoat-button--cta" >Button</a>
-    <a class="topcoat-button--cta is-active" >Button</a>
-    <a class="topcoat-button--cta is-disabled" >Button</a>
+    <a class='topcoat-button--cta' >Button</a>
+    <a class='topcoat-button--cta is-active' >Button</a>
+    <a class='topcoat-button--cta is-disabled' >Button</a>
 
 */
 .topcoat-button--cta,
@@ -318,9 +316,9 @@ limitations under the License.
 
  .is-disabled - Simulates disabled state
 
-    <a class="topcoat-button--large--cta" >Button</a>
-    <a class="topcoat-button--large--cta is-active" >Button</a>
-    <a class="topcoat-button--large--cta is-disabled" >Button</a>
+    <a class='topcoat-button--large--cta' >Button</a>
+    <a class='topcoat-button--large--cta is-active' >Button</a>
+    <a class='topcoat-button--large--cta is-disabled' >Button</a>
 */
 .topcoat-button--large--cta {
   font-size: 1.3rem;
@@ -334,14 +332,14 @@ limitations under the License.
 }
 /*
 Copyright 2012 Adobe Systems Inc.;
-Licensed under the Apache License, Version 2.0 (the "License");
+Licensed under the Apache License, Version 2.0 (the 'License');
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
 http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
+distributed under the License is distributed on an 'AS IS' BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
@@ -358,16 +356,16 @@ limitations under the License.
 
  .is-disabled - Simulates a disabled state on mobile devices
 
-    <a class="topcoat-icon-button">
-        <span class="topcoat-icon topcoat-icon--menu-stack"></span>
+    <a class='topcoat-icon-button'>
+        <span class='topcoat-icon topcoat-icon--menu-stack'></span>
     </a>
 
-    <a class="topcoat-icon-button is-active">
-      <span class="topcoat-icon topcoat-icon--menu-stack"></span>
+    <a class='topcoat-icon-button is-active'>
+      <span class='topcoat-icon topcoat-icon--menu-stack'></span>
     </a>
 
-    <a class="topcoat-icon-button is-disabled">
-      <span class="topcoat-icon topcoat-icon--menu-stack"></span>
+    <a class='topcoat-icon-button is-disabled'>
+      <span class='topcoat-icon topcoat-icon--menu-stack'></span>
     </a>
 */
 .topcoat-icon-button,
@@ -435,16 +433,16 @@ limitations under the License.
 
  .is-disabled - Simulates disabled state
 
-    <a class="topcoat-icon-button--quiet">
-        <span class="topcoat-icon topcoat-icon--menu-stack"></span>
+    <a class='topcoat-icon-button--quiet'>
+        <span class='topcoat-icon topcoat-icon--menu-stack'></span>
     </a>
 
-    <a class="topcoat-icon-button--quiet is-active">
-      <span class="topcoat-icon topcoat-icon--menu-stack"></span>
+    <a class='topcoat-icon-button--quiet is-active'>
+      <span class='topcoat-icon topcoat-icon--menu-stack'></span>
     </a>
 
-    <a class="topcoat-icon-button--quiet is-disabled">
-      <span class="topcoat-icon topcoat-icon--menu-stack"></span>
+    <a class='topcoat-icon-button--quiet is-disabled'>
+      <span class='topcoat-icon topcoat-icon--menu-stack'></span>
     </a>
 */
 .topcoat-icon-button--quiet {
@@ -482,16 +480,16 @@ limitations under the License.
 
  .is-disabled - Simulates a disabled state on mobile devices
 
-    <a class="topcoat-icon-button--large">
-        <span class="topcoat-icon--large topcoat-icon--menu-stack"></span>
+    <a class='topcoat-icon-button--large'>
+        <span class='topcoat-icon--large topcoat-icon--menu-stack'></span>
     </a>
 
-    <a class="topcoat-icon-button--large is-active">
-      <span class="topcoat-icon--large topcoat-icon--menu-stack"></span>
+    <a class='topcoat-icon-button--large is-active'>
+      <span class='topcoat-icon--large topcoat-icon--menu-stack'></span>
     </a>
 
-    <a class="topcoat-icon-button--large is-disabled">
-      <span class="topcoat-icon--large topcoat-icon--menu-stack"></span>
+    <a class='topcoat-icon-button--large is-disabled'>
+      <span class='topcoat-icon--large topcoat-icon--menu-stack'></span>
     </a>
 */
 .topcoat-icon-button--large,
@@ -524,16 +522,16 @@ limitations under the License.
 
  .is-disabled - Simulates a disabled state on mobile devices
 
-    <a class="topcoat-icon-button--large--quiet">
-        <span class="topcoat-icon--large topcoat-icon--menu-stack"></span>
+    <a class='topcoat-icon-button--large--quiet'>
+        <span class='topcoat-icon--large topcoat-icon--menu-stack'></span>
     </a>
 
-    <a class="topcoat-icon-button--large--quiet is-active">
-      <span class="topcoat-icon--large topcoat-icon--menu-stack"></span>
+    <a class='topcoat-icon-button--large--quiet is-active'>
+      <span class='topcoat-icon--large topcoat-icon--menu-stack'></span>
     </a>
 
-    <a class="topcoat-icon-button--large--quiet is-disabled">
-      <span class="topcoat-icon--large topcoat-icon--menu-stack"></span>
+    <a class='topcoat-icon-button--large--quiet is-disabled'>
+      <span class='topcoat-icon--large topcoat-icon--menu-stack'></span>
     </a>
 */
 .topcoat-icon-button--large--quiet {
@@ -564,14 +562,14 @@ limitations under the License.
 }
 /*
 Copyright 2012 Adobe Systems Inc.;
-Licensed under the Apache License, Version 2.0 (the "License");
+Licensed under the Apache License, Version 2.0 (the 'License');
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
 http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
+distributed under the License is distributed on an 'AS IS' BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
@@ -580,16 +578,16 @@ limitations under the License.
  List
  ------------
 
-    <div class="topcoat-list__container">
-      <h3 class="topcoat-list__header">Category</h3>
-      <ul class="topcoat-list">
-        <li class="topcoat-list__item">
+    <div class='topcoat-list__container'>
+      <h3 class='topcoat-list__header'>Category</h3>
+      <ul class='topcoat-list'>
+        <li class='topcoat-list__item'>
           Item
         </li>
-        <li class="topcoat-list__item">
+        <li class='topcoat-list__item'>
           Item
         </li>
-        <li class="topcoat-list__item">
+        <li class='topcoat-list__item'>
           Item
         </li>
       </ul>
@@ -644,14 +642,14 @@ limitations under the License.
 }
 /*
 Copyright 2012 Adobe Systems Inc.;
-Licensed under the Apache License, Version 2.0 (the "License");
+Licensed under the Apache License, Version 2.0 (the 'License');
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
 http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
+distributed under the License is distributed on an 'AS IS' BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
@@ -660,18 +658,18 @@ limitations under the License.
 Navigation Bar
 --------------
 
-    <div class="topcoat-navigation-bar">
-        <div class="topcoat-navigation-bar__item left quarter">
-            <a class="topcoat-icon-button--quiet">
-              <span class="topcoat-icon topcoat-icon--menu-stack"></span>
+    <div class='topcoat-navigation-bar'>
+        <div class='topcoat-navigation-bar__item left quarter'>
+            <a class='topcoat-icon-button--quiet'>
+              <span class='topcoat-icon topcoat-icon--menu-stack'></span>
             </a>
         </div>
-        <div class="topcoat-navigation-bar__item center half">
-            <h1 class="topcoat-navigation-bar__title">Header</h1>
+        <div class='topcoat-navigation-bar__item center half'>
+            <h1 class='topcoat-navigation-bar__title'>Header</h1>
         </div>
-        <div class="topcoat-navigation-bar__item right quarter">
-            <a class="topcoat-icon-button--quiet">
-              <span class="topcoat-icon topcoat-icon--edit"></span>
+        <div class='topcoat-navigation-bar__item right quarter'>
+            <a class='topcoat-icon-button--quiet'>
+              <span class='topcoat-icon topcoat-icon--edit'></span>
             </a>
         </div>
     </div>
@@ -741,14 +739,14 @@ Navigation Bar
 }
 /*
 Copyright 2012 Adobe Systems Inc.;
-Licensed under the Apache License, Version 2.0 (the "License");
+Licensed under the Apache License, Version 2.0 (the 'License');
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
 http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
+distributed under the License is distributed on an 'AS IS' BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
@@ -756,15 +754,15 @@ limitations under the License.
 /*
 
 
-Use this class to create a dialog element. Make sure to apply ".topcoat-overlay-bg" an empty div on the page as well,
+Use this class to create a dialog element. Make sure to apply '.topcoat-overlay-bg' an empty div on the page as well,
 so that the dialog is resting on a dark, transparent background
 
-	<div class="topcoat-overlay-bg"></div>
-	<aside class="topcoat-overlay">
+	<div class='topcoat-overlay-bg'></div>
+	<aside class='topcoat-overlay'>
 		<h1>Are eagles nice ?</h1>
-		<div class="topcoat-overlay-buttons">
-			<button role="button" class="topcoat-button">No</button>
-			<button role="button" class="topcoat-button--cta">Yes</button>
+		<div class='topcoat-overlay-buttons'>
+			<button role='button' class='topcoat-button'>No</button>
+			<button role='button' class='topcoat-button--cta'>Yes</button>
 		</div>
 	</aside>
 
@@ -805,14 +803,14 @@ so that the dialog is resting on a dark, transparent background
 }
 /*
 Copyright 2012 Adobe Systems Inc.;
-Licensed under the Apache License, Version 2.0 (the "License");
+Licensed under the Apache License, Version 2.0 (the 'License');
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
 http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
+distributed under the License is distributed on an 'AS IS' BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
@@ -825,8 +823,8 @@ limitations under the License.
 
  .is-disabled - Simulates a disabled state
 
-    <input type="search" value="" placeholder="search" class="topcoat-search-input">
-    <input type="search is-disabled" value="" placeholder="search" class="topcoat-search-input">
+    <input type='search' value='' placeholder='search' class='topcoat-search-input'>
+    <input type='search is-disabled' value='' placeholder='search' class='topcoat-search-input'>
 
  */
 .topcoat-search-input,
@@ -852,7 +850,7 @@ limitations under the License.
   padding: 0 0 0 2.7em;
   -webkit-border-radius: 30px;
   border-radius: 30px;
-  background-image: url("img/search.svg");
+  background-image: url('img/search.svg');
   background-position: 1em center;
   background-repeat: no-repeat;
   -webkit-background-size: 16px;
@@ -886,8 +884,8 @@ limitations under the License.
 
  .is-disabled - Simulates a disabled state
 
-    <input type="search"  value="" placeholder="search" class="topcoat-search-input--large">
-    <input type="search"  value="" placeholder="search" class="topcoat-search-input--large .is-disabled">
+    <input type='search'  value='' placeholder='search' class='topcoat-search-input--large'>
+    <input type='search'  value='' placeholder='search' class='topcoat-search-input--large .is-disabled'>
 
 */
 .topcoat-search-input--large {
@@ -910,14 +908,14 @@ limitations under the License.
 }
 /*
 Copyright 2012 Adobe Systems Inc.;
-Licensed under the Apache License, Version 2.0 (the "License");
+Licensed under the Apache License, Version 2.0 (the 'License');
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
 http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
+distributed under the License is distributed on an 'AS IS' BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
@@ -929,8 +927,8 @@ limitations under the License.
 :disabled - Disabled state
 .is-disabled - Simulates a disabled state on mobile devices
 
-    <input type="text" class="topcoat-text-input" value="" placeholder="text">
-    <input type="text" class="topcoat-text-input is-disabled" value="" placeholder="text">
+    <input type='text' class='topcoat-text-input' value='' placeholder='text'>
+    <input type='text' class='topcoat-text-input is-disabled' value='' placeholder='text'>
 
 */
 .topcoat-text-input,
@@ -970,8 +968,8 @@ limitations under the License.
 :disabled - Disabled state
 .is-disabled - Simulates a disabled state on mobile devices
 
-    <input type="text" class="topcoat-text-input--large" value="" placeholder="text">
-    <input type="text" class="topcoat-text-input--large is-disabled" value="" placeholder="text">
+    <input type='text' class='topcoat-text-input--large' value='' placeholder='text'>
+    <input type='text' class='topcoat-text-input--large is-disabled' value='' placeholder='text'>
 */
 .topcoat-text-input--large {
   height: 4rem;
@@ -989,14 +987,14 @@ limitations under the License.
 }
 /*
 Copyright 2012 Adobe Systems Inc.;
-Licensed under the Apache License, Version 2.0 (the "License");
+Licensed under the Apache License, Version 2.0 (the 'License');
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
 http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
+distributed under the License is distributed on an 'AS IS' BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
@@ -1005,7 +1003,7 @@ limitations under the License.
  TopCoat Textarea
  ------------------------
 
-    <textarea class="topcoat-textarea" rows="6" cols="36" placeholder="Textarea"></textarea>
+    <textarea class='topcoat-textarea' rows='6' cols='36' placeholder='Textarea'></textarea>
 
  */
 .topcoat-textarea,
@@ -1018,7 +1016,7 @@ limitations under the License.
   -webkit-border-radius: 6px;
   border-radius: 6px;
   margin: var-margin;
-  font: var-font;
+  font: inherit;
   font-weight: 200;
   line-height: 3rem;
   resize: none;
@@ -1038,7 +1036,7 @@ limitations under the License.
 Topcoat Large Textarea
  ------------------------
 
-	<textarea class="topcoat-textarea--large" rows="6" cols="36" placeholder="Textarea"></textarea>
+	<textarea class='topcoat-textarea--large' rows='6' cols='36' placeholder='Textarea'></textarea>
 
 */
 .topcoat-textarea--large {
