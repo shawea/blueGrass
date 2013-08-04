@@ -6,8 +6,11 @@ License is [http://opensource.org/licenses/AAL][] : requires the derivatives and
 It's based(ie requires) on Ajax (ex. [http://zeptojs.com/#$.get][]) to insert/remove a section(viw). It is just a lib, like underscore, mostly use w/ Zepto or jQuery.
 It is pure HTML5 and could run of CDN, preventing DOS.
 
-To run:
+To run examples:
 open terminal in the directory and 'python -m SimpleHTTPServer' or similar - then surf to ROOT in each folder.
+
+To view/use, download this lib:
+- http://raw.github.com/shawea/blueGrass/master/blueGrass/blueGrass.js
 
 Recommended but not required:
 * chrome  (and open the developer console in icognito mode)
