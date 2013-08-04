@@ -1,6 +1,6 @@
 /* v0.0812 - 99% of times you should not change this file
- (c) blueGrass  http://github.com/shawea/blueGrass
-  Attribution Assurance License is @ http://github.com/shawea/blueGrass
+ (c) puppetMaster3  http://github.com/shawea/blueGrass
+  Attribution Assurance License @ http://github.com/shawea/blueGrass
 */
 
 declare var $;
