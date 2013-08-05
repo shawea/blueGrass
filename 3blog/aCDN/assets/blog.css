@@ -1,20 +1,23 @@
 .form {
   margin-left: 4rem;
+  margin-top: 2rem;
 }
-.form,
 .line {
   display: block;
   float: left;
-  width: 34rem;
+  width: 40rem;
 }
 .label {
   float: left;
+  display: block;
+  width: 6rem;
+  text-align: right;
 }
 .textInput {
   float: right;
-  width: 30rem;
+  width: 33rem;
 }
 .but {
-  display: inline-block;
-  margin-right: 4rem;
+  float: left;
+  margin-left: 7rem;
 }
