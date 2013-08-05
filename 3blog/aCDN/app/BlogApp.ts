@@ -4,7 +4,7 @@ console.log('v0.0')
 snapper = new Snap({
     element: document.getElementById('content')
 })
-//snapper.close()
+snapper.close()
 
 
 class EnterForm {
