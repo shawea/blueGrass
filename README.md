@@ -10,7 +10,7 @@ In your index.html in view source indicate that your code is derived from http:/
 It's based(ie requires) Ajax, ex:
 - http://zeptojs.com/#$.get
  to insert (or remove a section/div/view. It is just a lib, like underscore, mostly used w/ Zepto or jQuery.
-It is pure HTML5 and could run of CDN, preventing DOS. Also each view can be previwed independetly by a designer. Another one of it's features is that a view | section can be previwed by a designer.
+It is pure HTML5 and could run of CDN, preventing DOS. Also each view can be previwed independetly by a designer. Another one of it's features is that a view | section can be previwed by a designer. Plus it's a structure for managing large applications. And it allows browser to G.C.
 
 Here is the goal of the type of application you can/should build:
 - http://intothearctic.gp
@@ -49,7 +49,7 @@ Recipe:
 
 You can follow me on twitter: @puppetMaster3
 
-Notes: current trends are metro buttons, blur background image, flat.
+Notes: current trends are metro buttons, blur background image, flat and one page.
 IE 8 is not supported but Cordova is.
 
 Things that may not help your UI:
