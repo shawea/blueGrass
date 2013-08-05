@@ -1,5 +1,17 @@
-viewDir = '../aCDN/views/'
-console.log('v0.01')
+viewDir = '../aCDN/view/'
+console.log('v0.0')
 
-forward('enterForm', 'enterForm')
+snapper = new Snap({
+    element: document.getElementById('content')
+})
+//snapper.close()
 
+
+class EnterForm {
+    constructor() {
+        forward('enterForm', 'enterForm')
+    }
+
+}
+
+frm = new EnterForm()

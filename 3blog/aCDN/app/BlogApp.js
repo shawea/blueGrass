@@ -1,5 +1,16 @@
-viewDir = '../aCDN/views/';
-console.log('v0.01');
+viewDir = '../aCDN/view/';
+console.log('v0.0');
 
-forward('enterForm', 'enterForm');
+snapper = new Snap({
+    element: document.getElementById('content')
+});
+
+var EnterForm = (function () {
+    function EnterForm() {
+        forward('enterForm', 'enterForm');
+    }
+    return EnterForm;
+})();
+
+frm = new EnterForm();
 //@ sourceMappingURL=BlogApp.js.map
