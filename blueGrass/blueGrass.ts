@@ -1,4 +1,4 @@
-/* v0.0812 - 99% of times you should not change this file
+/* v0.0809 - 95% of times you should not change this file
  (c) puppetMaster3  http://github.com/shawea/blueGrass
   Attribution Assurance License @ http://github.com/shawea/blueGrass
 */
@@ -14,7 +14,7 @@ interface IPresenter {// ~ composition, a section? presenter to manage a views/s
 	_transition(transEnum:number, ctx:any):void; //enum
 }
 
-interface IApp{ // has the app + router, the global app , does not tween or open, may have signals
+interface IApp{ // has the app + hasher, the global app , does not animate or open, may have signals
 	_onUrlChanged(newUrl, oldUrl):void;
 	dispatch(view:string, ctx:any):bool; //returns FALSE
 }
@@ -23,12 +23,12 @@ interface IApp{ // has the app + router, the global app , does not tween or open
  *  should be first line in app constructor
  *  @param app
  */
-function initRouter(ainst) {
-	console.log('hRouter ready')
+function initHasher(ainst) {
  	hasher.changed.add(ainst._onUrlChanged, ainst)
 	hasher.initialized.add(ainst._onUrlChanged, ainst)
 	hasher.prependHash = '!' // SEO
 	hasher.init()
+    console.log('hRouter ready')
 }
 
 /*

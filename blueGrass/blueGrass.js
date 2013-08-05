@@ -1,9 +1,9 @@
-function initRouter(ainst) {
-    console.log('hRouter ready');
+function initHasher(ainst) {
     hasher.changed.add(ainst._onUrlChanged, ainst);
     hasher.initialized.add(ainst._onUrlChanged, ainst);
     hasher.prependHash = '!';
     hasher.init();
+    console.log('hRouter ready');
 }
 
 var viewDir;

@@ -1,0 +1,46 @@
+<section id='enterForm' >
+<style>
+    .form {
+        opacity:0.99;
+        margin-left: 4rem;
+        margin-top: 2rem;
+    }
+    .line {
+        display: block;
+        float: left;
+        width: 40rem;
+    }
+    .label {
+        float: left;
+        display: block;
+        width: 6rem;
+        text-align: right;
+    }
+    .textInput {
+        float: right;
+        width: 33rem;
+    }
+    .but {
+        float: left;
+        margin-left: 7rem;
+    }
+</style>
+<form class='form'>
+    <div class='line'>
+        <label class='label' for='title'>Title:</label>
+        <input id='title' class='topcoat-text-input textInput' type='text' size='38' value='' placeholder='Title'>
+    </div>
+
+    <div class ='line'>
+        <label class='label' for='short' >Short:</label> <textarea id='short' class='topcoat-textarea textInput' rows='2'   cols='38' placeholder='Tease'>
+    </textarea> </div>
+
+    <div class ='line'>
+        <label class='label' for ='full'>Full:</label> <textarea id='full' class='topcoat-textarea textInput' rows='6'   cols='38' placeholder='Tease'>
+    </textarea></div>
+
+    <div class ='line'><label class='label'></label>
+        <a class='topcoat-button--cta but' >Save</a>
+    </div>
+</form>
+</section>
