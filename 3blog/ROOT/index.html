@@ -5,17 +5,10 @@
     <title>Template Ex</title>
     <meta name='viewport' content='initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'>
 
-    <link href='../../blueGrass/topcoat-mobile-light.css' rel='stylesheet'>
     <link href='../../blueGrass/snap.css'      rel='stylesheet'>
+    <link href='../../blueGrass/topcoat-mobile-light.css' rel='stylesheet'>
+    <link href='../aCDN/assets/blog.css'      rel='stylesheet'>
     <!-- attribution: derived from http://raw.github.com/shawea/blueGrass -->
-    <style>
-        form {
-         width: 200px;
-        }
-        form input, form textarea, form button {
-            float: left;
-        }
-    </style>
 </head>
 <body>
 <header>
@@ -26,17 +19,23 @@
 
     </div>
 
-<form>
-    <input type='text' class='topcoat-text-input' size=35 value='' placeholder='Title'>
+<form class='form'>
+    <br class='line'>
+    <label class='label' for='title'>Title:</label>
+        <input id='title' class='topcoat-text-input textInput' type='text' size='38' value='' placeholder='Title'>
+    </br>
 
-    <textarea class='topcoat-textarea' rows='3' cols='38' placeholder='Tease'>
-     </textarea>
+    <br class ='line'>
+    <label class='label' for='short' >Short:</label> <textarea id='short' class='topcoat-textarea textInput' rows='2'   cols='38' placeholder='Tease'>
+    </textarea> </br>
 
-    <textarea class='topcoat-textarea' rows='6' cols='38' placeholder='Tease'>
-    </textarea>
+    <br class ='line'>
+    <label class='label' for ='full'>Full:</label> <textarea id='full' class='topcoat-textarea textInput' rows='6'   cols='38' placeholder='Tease'>
+    </textarea> <br>
 
-    <a class='topcoat-button--cta' >Save</a>
-
+    <br class ='line'>
+    <a class='topcoat-button--cta but' >Save</a>
+    </br>
 </form>
 
 
