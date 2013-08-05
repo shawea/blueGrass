@@ -1,11 +1,11 @@
 # blueGrass
- (king) blueGrass is a few home made function to help create stunning & magical UX, cross platfrom, mobile-first, SPA (Single Page Applications).
+ (king) blueGrass is a few home made function that could help you create stunning & magical UX, cross platfrom, mobile-first, SPA (Single Page Applications).
 
 Licensed under Attribution Assurance,
 - http://opensource.org/licenses/AAL
- License requires the derivatives and their derivatives attribute a link to bikesheding page and agree to loser pays legal costs, or if not licensed or as aribtrated (for violaters of the license).
-If you can't agree and OK this, go away, or write us a large check for a commercial license.
-In your index.html in view source indicate that your code is derived from http://raw.github.com/shawea/blueGrass
+ License is free of cost if you comply: it requires the derivatives and their derivatives attribute a link to bikesheding page and agree to loser pays legal costs, or if not licensed or as aribtrated (for violaters of the license).
+Designs that are free of cost are not free of obligations, I hope this is not news. If you can't agree and OK this, go away, or write us a large check for a commercial license.
+In your index.html or simlilar in view source indicate that your code is derived from http://raw.github.com/shawea/blueGrass
 
 It's based(ie requires) Ajax, ex:
 - http://zeptojs.com/#$.get
@@ -14,6 +14,7 @@ It is pure HTML5 and could run of CDN, preventing DOS. Also each view can be pre
 
 Here is the goal of the type of application you can/should build:
 - http://intothearctic.gp
+For example, we can animate a div/section after loading.
 
 To run lab examples:
 open terminal in the directory and 'python -m SimpleHTTPServer' or similar - then surf to ROOT in each folder.
