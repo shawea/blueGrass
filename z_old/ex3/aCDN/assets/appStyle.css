@@ -1,7 +1,0 @@
-body {
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f9f9f9), to(#5195ce), color-stop(0.5, #5195ce));
-  background: -moz-linear-gradient(top, #f9f9f9 0%, #5195ce 50%, #5195ce 100%);
-}
-.back {
-  z-index: -10;
-}

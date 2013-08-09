@@ -4,7 +4,7 @@
 */
 
 declare var $;
-declare var hasher;//simple router
+declare var hasher;// router
 
 //presenter section
 /**
@@ -17,7 +17,13 @@ interface IPresenter {// ~ composition, a section? presenter to manage a views/s
 interface IApp{ // has the app + hasher, the global app , does not animate or open, may have signals
 	_onUrlChanged(newUrl, oldUrl):void;
 	dispatch(view:string, ctx:any):bool; //returns FALSE
+    /*template code in dispatch
+    hasher.changed.active = false; //disable changed signal
+    hasher.setHash(view); //set hash without dispatching changed signal
+    hasher.changed.active = true;
+    */
 }
+
 
 /**
  *  should be first line in app constructor

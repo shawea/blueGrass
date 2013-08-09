@@ -14,7 +14,7 @@ It is pure HTML5 and could run of CDN, preventing DOS. Also each view can be pre
 
 Here is the goal of the type of application you can/should build:
 - http://intothearctic.gp
-For example, we can animate a div/section after loading.
+For example, we can animate a div/section after loading. But the key to blueGrass is that it is hard to do nice UI in .js views.
 
 To run lab examples:
 open terminal in the directory and 'python -m SimpleHTTPServer' or similar - then surf to ROOT in each folder.
