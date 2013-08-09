@@ -280,7 +280,7 @@
                         }
                     }
                     
-                    utils.dispatchEvent('start');
+                    utils.dispatchEvent('startStructure');
                     settings.element.style[cache.vendor+'Transition'] = '';
                     cache.isDragging = true;
                     cache.hasIntent = null;

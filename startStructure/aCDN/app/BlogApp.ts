@@ -42,7 +42,7 @@ class App {
 
     dispatch(view:string, ctx:any) {
 
-       // if('form'==view | view == null )  {
+       // if('form'==view || view == null )  {
             this.frm._transition()
         //}
 

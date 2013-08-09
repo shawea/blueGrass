@@ -3,7 +3,7 @@
 
 Licensed under Attribution Assurance,
 - http://opensource.org/licenses/AAL
- License is free of cost if you comply: it requires the derivatives and their derivatives attribute a link to bikesheding page and agree to loser pays legal costs, or if not licensed or as aribtrated (for violaters of the license).
+ As you know a license free of cost is not free of obligations. These designs require the derivatives and their derivatives attribute a link to bikesheding page and agree to loser pays legal costs, or if not licensed or as aribtrated (for violaters of the license).
 Designs that are free of cost are not free of obligations, I hope this is not news. If you can't agree and OK this, go away, or write us a large check for a commercial license.
 In your index.html or simlilar in view source indicate that your code is derived from http://raw.github.com/shawea/blueGrass
 
@@ -41,12 +41,13 @@ Recommended but not required:
 * MaxCDN
 
 Recipe:
+- Download the 'start' folder to get the structure and edit.
 - Start with a prototype index.html, recommend starting w/ CSS Framework
 - Remove sections(div) and save in 'CDN/views' or similar
 - Load view (optional: use ES6/tsc syntax & CSS animate via greensock)
 - Optional: add Hasher for SEO | bookmarks
 - Recomend running of CDN (ex MaxCDN)
-- Use Cloud API: Recommend Primus API! @PrimusAPI
+- Use Cloud API: Recommend Primus API!
 
 You can follow me on twitter: @puppetMaster3
 
@@ -56,12 +57,11 @@ IE 8 is not supported but Cordova is.
 Things that may not help your UI:
 - MV* frameworks: they focus on something, but not UI, their UI is not desiger friendly.
     If you are not ready to move past MV*, that's OK, we'll be here when you are, this can be used with any MV*.
-- ASM : CSS3 gives you speed, not .js.
-- Require : load and unload divs, not 'classes'
+- ASM compilter: CSS3 gives you speed, not .js.
+- Require loader : load and unload divs, not 'classes'
 - Not deploying entire app on CDN, ie. hosting HTML5 on app server(ex: Rails, JSP, ASP, PHP, etc.). You should seprate IE from the webapp.
 - Starting with own, non tested or documented CSS. Just select a CSS framework with an eco system.
 
-note: the (king) prefix in front of blueGrass lib means BlueGras eats other non-UI friendly frameworks.
 
 If you have bugs, issues or want to list a webapp or site that is using blueGrass, just file an ticket here on github.
 
