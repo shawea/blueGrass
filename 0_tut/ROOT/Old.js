@@ -5,4 +5,3 @@ function bar(arg) {
     console.log('yes, ' + arg);
 }
 foo();
-//@ sourceMappingURL=Old.js.map

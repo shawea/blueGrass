@@ -1,4 +1,4 @@
-console.log('ready 0.0');
+console.log('ready 0.03');
 viewDir = '../aCDN/view/';
 document.querySelector('#load1').addEventListener('click', onclickone);
 function onclickone() {
@@ -12,9 +12,9 @@ function iloaded1() {
 var load2But = document.getElementById('load2');
 load2But.addEventListener('click', function () {
     console.log('Test');
-    open('view2', 'bod', iloaded2);
+    open('view2', 'body', iloaded2);
 });
 function iloaded2() {
-    console.log('loaded2');
+    console.log('loaded 2');
 }
 //@ sourceMappingURL=app.js.map
