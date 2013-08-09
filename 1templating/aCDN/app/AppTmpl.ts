@@ -1,14 +1,14 @@
-viewDir = '../aCDN/views/'
-console.log('v0.01')
+viewDir = '../aCDN/view/'
+console.log('v0.02')
 cloud = new CloudAPI()
 
-
-var but1 = document.getElementById('formId')
+var but1 = document.getElementById('d3')
 but1.addEventListener('click', showD3 )
 
-//function showD3():void {
-//    forward('D3', 'd3')
-//};
+function showD3():void {
+    console.log('load d3')
+    forward('D3', 'd3')
+};
 
 
 class NameForm implements IPresenter {
@@ -33,7 +33,7 @@ class NameForm implements IPresenter {
         var ename = new Object()
         ename.first_name=firstname
         ename.last_name=lastname
-        cloud.insert('my_table',ename, frm.onPK)
+        cloud.insert('my_table',ename, app.frm.onPK)
     }
     onPK(data, er){
         console.log('back ' + JSON.stringify(data) + er)
