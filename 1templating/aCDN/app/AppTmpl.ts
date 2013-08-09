@@ -46,7 +46,7 @@ class Templ implements IPresenter {
         but1.addEventListener('click', this._transition )
     }
     _transition(transEnum:number, ctx:any):void {
-        forward('trans', 'transId', app.templ.onLoaded)
+        forward('trans2', 'transId', app.templ.onLoaded)
     }
     onLoaded(nid) {
         cleanUpViews(1)

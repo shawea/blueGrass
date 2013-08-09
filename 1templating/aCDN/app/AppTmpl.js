@@ -42,7 +42,7 @@ var Templ = (function () {
         but1.addEventListener('click', this._transition);
     }
     Templ.prototype._transition = function (transEnum, ctx) {
-        forward('trans', 'transId', app.templ.onLoaded);
+        forward('trans2', 'transId', app.templ.onLoaded);
     };
     Templ.prototype.onLoaded = function (nid) {
         cleanUpViews(1);

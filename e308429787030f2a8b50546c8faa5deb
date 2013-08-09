@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<!--[if lte IE 9]>
+<html class="ie" lang="en">
+<![endif]-->
+<!--[if gt IE 9]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="robots" content="noindex" />
+
+  <title>Burger Boy Finished - CodePen</title>
+
+  <link href="http://assets.codepen.io/assets/global/global-NoMQ-40ceb5b07221b1dda81c4e45016adfb5.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="http://assets.codepen.io/assets/editor/editor-e216dbef192d8e51256d0733547dc402.css" media="all" rel="stylesheet" type="text/css" />
+
+  <meta name="description" content="...">
+
+  <link href="http://assets.codepen.io/assets/editor/themes/twilight-ae79bdaa66415274d37fe96be628fd28.css" media="screen" rel="stylesheet" type="text/css" />
+
+  <link href="http://assets.codepen.io/assets/editor/layouts/top-f8a6edbfe23c01869b6c3209552d1788.css" media="screen" rel="stylesheet" type="text/css" />
+
+<style>
+    .CodeMirror {
+      font-family: Monaco, MonoSpace;
+    }
+
+    .CodeMirror {
+      font-size: 14px;
+    }
+
+</style>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@CodePen">
+<meta name="twitter:title" content="Burger Boy Finished">
+<meta name="twitter:description" content="...">
+<meta name="twitter:image" content="http://i.cdpn.io.s3.amazonaws.com/16327.Fqmsa.9b82d7415363b2ed25c4a09e5cdafbe6.png">
+
+
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <meta content="authenticity_token" name="csrf-param" />
+<meta content="zZe5jDHHyB3/yCIE7oHQz9zsN8MUVoLeHakgeN/jPWU=" name="csrf-token" />
+
+</head>
+
+<body class="preload no-mobile editor">
+
+  
+<header class="main-header group">
+
+  <h1 class="logo">
+    <a href="/">
+      CodePen
+    </a>
+  </h1>
+
+  <div class="box-actions">
+
+
+
+
+
+        <div id="sharing-button" class="top-button button sharing-button" href="#sharing-panel">
+
+  <span class="icon" aria-hidden="true" data-icon="&#xe034;"></span>
+  <span id="share-link">Share</span>
+
+  <section id="sharing-panel" class="sharing-panel">
+
+    <ul id="share-buttons" class="share-buttons">
+      
+      
+    </ul>
+
+    <div class="jump-view-wrap">
+
+
+    <div class="jump-view jump-view-last">
+      <a id="full-page-link" href="http://codepen.io/GreenSock/full/e308429787030f2a8b50546c8faa5deb" class="jump-label jump-label-full" target="_blank">
+        <span>
+          <span data-icon="&#xe037;" aria-hidden="true"></span>
+        </span>
+        Full Page
+      </a>
+      <input type="url" onclick="this.focus();this.select();" id="full-page-url" readonly="readonly" value="http://codepen.io/GreenSock/full/e308429787030f2a8b50546c8faa5deb">
+    </div>
+
+    </div>
+
+
+    <div class="share-actions">
+
+      <a id="share-gist" class="button">
+        Save as GitHub Gist
+      </a>
+
+      <a id="share-zip" href="#0" class="button">
+        Export .zip
+      </a>
+
+    </div>
+
+  </section>
+
+</div>
+
+
+
+  </div>
+
+  <div class="app-actions">
+
+    <div class="user-stuff">
+
+
+    <div style="padding-right: 5px;">
+
+      <a href="https://codepen.io/login" class="top-button button" id="login">Login / Sign up</a>
+
+    </div>
+
+
+</div>
+
+
+      <div class="view-switcher">
+
+  <a id="editor-link" href="http://codepen.io/GreenSock/pen/e308429787030f2a8b50546c8faa5deb"
+     class="active">
+    Editor
+  </a>
+
+  <a id="details-link" href="http://codepen.io/GreenSock/details/e308429787030f2a8b50546c8faa5deb"
+    >
+    Details
+  </a>
+
+
+</div>
+
+  </div>
+
+</header>
+
+
+<div class="page-wrap twilight">
+
+  <div class="boxes">
+
+    <div class="top-boxes group state-htmlOn-cssOn-jsOn">
+
+      <div id="box-html" class="box box-html">
+
+        <div class="powers">
+          
+          <a id="settings-pane-html" href="#" class="settings-nub" data-type="html"
+          title="Open Settings">
+            <span class="icon" data-type="html" aria-hidden="true" data-icon="&#xe032;"></span>
+          </a>
+
+          <h2 id="viewsource-html">HTML</h2>
+
+          <a href="#" aria-hidden="true" class="expander" title="Expand/Collapse HTML Editor" data-type="html" data-state="on" id="html-expander">
+            <span data-type="html" data-icon="&#57407;"></span>
+          </a>
+          
+        </div>
+
+        <div class="code-wrap">
+          <textarea id="html" style="display: none" class="code-box"></textarea>
+          <div class="error-bar" id="error-bar-html">
+            <span class="error-icon" data-type="html">
+              !
+            </span>
+          </div>
+        </div>
+
+        <div class="settings" id="settings-html">
+          <form class="settings-row settings-row-1 preprocessor-choice group">
+  <div>
+    <input type="radio" class="hidden" id="html-none" checked name="html-preprocessor" value="none">
+    <label class="button" for="html-none">None</label>
+  </div>
+
+  <div>
+    <input type="radio" class="hidden" id="haml" name="html-preprocessor" value="haml">
+    <label class="button" for="haml">Haml <a target="_blank" href="http://haml.info/">?</a></label>
+  </div>
+
+  <div>
+    <input type="radio" class="hidden" id="markdown" name="html-preprocessor" value="markdown">
+    <label class="button" for="markdown">Markdown <a target="_blank" href="http://daringfireball.net/projects/markdown/">?</a></label>
+  </div>
+
+  <div>
+    <input type="radio" class="hidden" id="slim" name="html-preprocessor" value="slim">
+    <label class="button" for="slim">Slim <a target="_blank" href="http://slim-lang.com/">?</a></label>
+  </div>
+
+</form>
+
+<form class="settings-row settings-row-2" onsubmit="return false;">
+
+  <label for="html-classes" class="small">Add Class(es) to &lt;html></label>
+  <input type="text" id="html-classes" name="html-classes" class="fullwidth" placeholder="e.g. single post post-1234">
+
+  <input style="position: fixed; top: 500px; right: 500px;" id="tcolor" type="hidden">
+
+</form>
+
+<form class="settings-row settings-row-3">
+  <label for="head-content" class="small">Stuff for &lt;head></label>
+  <textarea id="head-content" name="head-content" class="fullwidth" placeholder="e.g. &lt;meta name='viewport' content='width=device-width'>"></textarea>
+</form>
+        </div>
+
+      </div>
+
+      <div id="box-css" class="box box-css">
+
+        <div class="powers">
+
+          <a id="settings-pane-css" href="#" class="settings-nub" data-type="css">
+            <span class="icon" data-type="css" aria-hidden="true" data-icon="&#xe032;"></span>
+          </a>
+
+          <h2 id="viewsource-css">CSS</h2>
+          
+          <a href="#" aria-hidden="true" class="expander" title="Expand/Collapse CSS Editor" data-type="css" data-state="on" id="css-expander">
+            <span data-type="css" data-icon="&#57407;"></span>
+          </a>
+
+        </div>
+
+        <div class="code-wrap">
+          <textarea id="css" style="display: none" class="code-box"></textarea>
+          <div class="error-bar" id="error-bar-css">
+            <span class="error-icon" data-type="css">
+              !
+            </span>
+          </div>
+        </div>
+
+        <div class="settings" id="settings-css">
+          <form class="settings-row settings-row-1 preprocessor-choice group">
+  <div>
+    <input type="radio" class="hidden" id="css-none" checked name="css-preprocessor" value="none">
+    <label class="button" for="css-none">None</label>
+  </div>
+  <div>
+    <input type="radio" class="hidden" id="less" name="css-preprocessor" value="less">
+    <label class="button" for="less">LESS <a target="_blank" href="http://lesscss.org/">?</a></label>
+  </div>
+  <div>
+    <input type="radio" class="hidden" id="scss" name="css-preprocessor" value="scss">
+    <label class="button double-line" for="scss">
+      SCSS<br>
+      <small>with Compass</small>
+      <a target="_blank" href="http://sass-lang.com/">?</a></label>
+  </div>
+  <div>
+    <input type="radio" class="hidden" id="sass" name="css-preprocessor" value="sass">
+    <label class="button double-line" for="sass">
+      Sass<br>
+      <small>with Compass</small>
+      <a target="_blank" href="http://sass-lang.com/">?</a></label>
+  </div>
+
+</form>
+
+<form class="settings-row settings-row-2" onsubmit="return false;">
+  <input type="radio" id="startercss-normalize" name="startercss" checked value="normalize">
+  <label for="startercss-normalize" class="small-inline">Normalize</label>
+  <a class="inline-q" target="_blank" href="http://necolas.github.com/normalize.css/">?</a>
+
+  &ensp;
+
+  <input type="radio" id="startercss-reset" name="startercss" value="reset">
+  <label for="startercss-reset" class="small-inline">Reset</label>
+  <a class="inline-q" target="_blank" href="http://meyerweb.com/eric/tools/css/reset/">?</a>
+
+  &ensp;
+
+  <input type="radio" id="startercss-neither" name="startercss" value="neither">
+  <label for="startercss-neither" class="small-inline">Neither</label>
+</form>
+
+<form class="settings-row settings-row-3">
+  <input type="checkbox" id="prefix-free" name="prefix-free">
+  <label for="prefix-free" class="small-inline">Prefix free</label>
+  <a class="inline-q" target="_blank" href="http://leaverou.github.com/prefixfree/">?</a>
+</form>
+
+<form id="external-css-resources" class="settings-row settings-row-4" onsubmit="return false;">
+  <label class="small" for="external-css">
+    External CSS File or Another Pen&nbsp;
+    <a target="_blank" class="inline-q" href="http://blog.codepen.io/documentation/editor/adding-external-resources/">?</a></label>
+
+  <div class="external-resource-wrapper">
+    <input class="fullwidth css-resource external-resource" type="url" id="external-css"
+    name="external-css" placeholder="http://yourwebsite.com/external.css">
+    <small class="error">Must be a valid URL.</small>
+  </div>
+
+
+</form>
+        </div>
+
+      </div>
+
+      <div id="box-js" class="box box-js show-run-button">
+
+        <div class="powers">
+
+          <a id="settings-pane-js" href="#" class="settings-nub" data-type="js">
+            <span class="icon" data-type="js" aria-hidden="true" data-icon="&#xe032;"></span>
+          </a>
+
+          <h2 id="viewsource-js">JS</h2>
+
+          <button id="run" class="button mini-button blue run nobounce">Run</button>
+
+          <a href="#" aria-hidden="true" class="expander" title="Expand/Collapse JS Editor" data-type="js" data-state="on" id="js-expander">
+            <span data-type="js" data-icon="&#57407;"></span>
+          </a>
+
+        </div>
+
+        <div class="code-wrap">
+          <textarea id="js" style="display: none" class="code-box"></textarea>
+          <div class="error-bar" id="error-bar-js">
+            <span class="error-icon" data-type="js">
+              !
+            </span>
+          </div>
+        </div>
+
+        <div class="settings" id="settings-js">
+          <form class="settings-row settings-row-1 preprocessor-choice group">
+  <div>
+    <input type="radio" class="hidden" id="js-none" checked name="js-preprocessor" value="none">
+    <label class="button" for="js-none">None</label>
+  </div>
+  <div>
+    <input type="radio" class="hidden" id="coffeescript" name="js-preprocessor" value="coffeescript">
+    <label class="button" for="coffeescript">CoffeeScript <a target="_blank" href="http://coffeescript.org/">?</a></label>
+  </div>
+</form>
+
+<form class="settings-row settings-row-2">
+  <label class="small" for="js-select">Latest Version of...</label>
+  <select data-placeholder="JavaScript Library" id="js-select">
+    <option value="">No Library</option>
+    <option value="jquery">jQuery</option>
+    <option value="jquery_and_jqueryui">jQuery &amp; jQuery UI (Base Theme)</option>
+    <option value="zepto">Zepto</option>
+    <option value="mootools">MooTools</option>
+    <option value="prototype">Prototype</option>
+    <option value="yui">YUI</option>
+    <option value="extjs">Ext JS</option>
+    <option value="dojo">Dojo</option>
+  </select>
+</form>
+
+<form id="external-js-resources" class="settings-row external-js-resources settings-row-3" onsubmit="return false;">
+  <label class="small" for="js-select">
+    External JS File or Another Pen&nbsp;
+    <a target="_blank" class="inline-q" href="http://blog.codepen.io/documentation/editor/adding-external-resources/">?</a>
+    <span><a target="_blank" href="http://cdnjs.com/">cdnjs.com &rarr;</a>
+  </label>
+
+  <div class="external-resource-wrapper">
+    <input class="external-url js-resource fullwidth" type="url" id="external-js" name="external-js" placeholder="http://yourwebsite.com/script.js">
+    <small class="error">Must be a valid URL.</small>
+  </div>
+
+
+</form>
+
+<form class="settings-row settings-row-4 group">
+  <div style="float: left;">
+    <input type="checkbox" id="modernizr" name="modernizr">
+    <label for="modernizr" class="small-inline">Modernizr</label>
+  </div>
+
+  <div style="float: right;">
+    <input type="checkbox" id="auto-run" name="auto-run" >
+    <label for="auto-run" class="small-inline">Auto Run?</label>
+  </div>
+</form>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div id="result_div" class="result">
+
+      <iframe src="http://s.codepen.io/pen/secure_iframe?turn_off_js=false" sandbox="allow-scripts allow-same-origin allow-pointer-lock" id="result" scrolling="no" allowTransparency="true" class="result-iframe" onload="try {CodeRenderer.loadInitialIframeResult();}catch(e){};"></iframe>
+
+
+      <div id="editor-drag-cover" class="drag-cover"></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<footer class="site-footer editor-footer">
+
+  <div class="footer-left">
+
+        CodePen PRO is <a href="/login/pro/">pretty sweet</a>. Just saying.
+
+
+    <a href="#0" class="button mini-button" id="embed-builder-button">Embed This Pen</a>
+
+
+  </div>
+
+  <div class="footer-middle">
+    A Pen by <a href="/GreenSock/">GreenSock</a>
+  </div>
+
+  <div class="footer-right">
+
+
+    <a href="#0" class="keyboard-commands-button command">&thinsp;Shortcuts</a>
+
+    &nbsp;
+
+    <a href="http://codepen.io/GreenSock/pen/e308429787030f2a8b50546c8faa5deb/left/">
+      <span class="screen-reader-text">Use Left Layout</span>
+      <span data-icon="&#xe002;"></span>
+    </a>
+
+    <a href="http://codepen.io/GreenSock/pen/e308429787030f2a8b50546c8faa5deb/top/" class="active">
+      <span class="screen-reader-text">Use Top Layout</span>
+      <span data-icon="&#xe003;"></span>
+    </a>
+
+    <a href="http://codepen.io/GreenSock/pen/e308429787030f2a8b50546c8faa5deb/right/">
+      <span class="screen-reader-text">Use Right Layout</span>
+      <span data-icon="&#xe004;"></span>
+    </a>
+
+  </div>
+
+</footer>
+
+
+<div id="resizer" class="resizer"><span></span></div>
+
+<div id="keycommands" class="modal-message modal-neutral">
+
+  <section class="editor-commands" style="padding-right: 10px;">
+
+    <h2>Pen Actions</h2>
+
+    <div class="key-group">
+      <kbr class="command">P</kbr>
+      Create New Pen
+    </div>
+
+    <div class="key-group">
+      <kbr class="command">S</kbr>
+      Save
+    </div>
+
+    <div class="key-group">
+      <kbr class="command">I</kbr>
+      Info Panel (if owned)
+    </div>
+
+    <div class="key-group">
+      <kbr class="command">⇧0</kbr>
+      Open Full Page View
+    </div>
+
+    <h2>Editor Commands</h2>
+
+    <div class="key-group">
+      <kbr class="command">[</kbr>
+      Indent Code Right
+    </div>
+    <div class="key-group">
+      <kbr class="command">]</kbr>
+      Indent Code Left
+    </div>
+    <div class="key-group">
+      <kbr class="command">/</kbr>
+      Block Comment
+    </div>
+    <div class="key-group">
+      <kbr class="command-no-mod">⇧ Tab</kbr>
+      Tidy Up Code
+    </div>
+
+    <div class="key-group">
+      <kbr class="command">L</kbr>
+      Select Current Line
+    </div>
+    <div class="key-group">
+      <kbr class="command">⇧ .</kbr>
+      Select Next Important Thing
+    </div>
+
+
+    <p style="margin: 20px 0 0 0;">Also see: <a href="http://blog.codepen.io/documentation/features/tab-triggers/" target="_blank">Tab Triggers</a></p>
+
+  </section>
+
+
+  <section class="editor-commands">    
+
+    <h2>HTML Specific</h2>
+
+    <div class="key-group">
+      <kbr class="command">D</kbr>
+      Select Outward Matching Pair
+    </div>
+
+    <div class="key-group">
+      <kbr class="command">⇧A</kbr>
+      Wrap With...
+    </div>
+
+
+    <h2>CSS Specific</h2>
+
+    <div class="key-group">
+      <kbr class="command">⇧Y</kbr>
+      Evaluate Simple Math
+    </div>
+
+    <div class="key-group">
+      <kbr class="command-no-mod">⌥ ↑</kbr>
+      Increment Number 0.1
+    </div>
+
+    <div class="key-group">
+      <kbr class="command-no-mod">⌥ ↓</kbr>
+      Decrement Number 0.1
+    </div>
+
+
+    <h2>JS Specific</h2>
+
+    <div class="key-group">
+      <kbr class="command">⇧5</kbr>
+      Re-Run Code
+    </div>
+    <div class="key-group">
+      <kbr class="command">⇧7</kbr>
+      Run JS Hint
+    </div>
+    <div class="key-group">
+      <kbr class="command">⇧8</kbr>
+      Remove JS Hint Messages
+    </div>
+
+
+    <h2>Misc</h2>
+
+    <div class="key-group">
+      <kbr class="command">⇧9</kbr>
+      Open This Dialog
+    </div>
+
+    <div class="key-group">
+      <kbr class="command no-mod">ESC</kbr>
+      Close Dialogs / Collapse Editors
+    </div>
+
+  </section>
+
+</div>
+
+
+
+
+  <div id="overlay" class="overlay"></div>
+
+  
+	<script>
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-30102653-1']);
+	  _gaq.push(['_trackPageview']);
+	  (function() {
+	    var ga = document.createElement('script'); ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	</script>
+
+
+
+  <noscript>
+  <div class="noscript-overlay" style="display: block;"></div>
+  <div class="modal-message group modal-warning">
+    <div class="modal-title">This Site Totally Doesn't Work Without JavaScript.</div>
+    <p>Like, at all. Sorry. If you enable it and reload this page you'll be good to go. Need to know how? <a href="http://enable-javascript.com/" target="_blank">Go here.</a></p>
+  </div>
+</noscript>
+
+  <script src="http://assets.codepen.io/assets/common/everypage-eadbdd3b6529910454dfcdfb05335d9e.js" type="text/javascript"></script>
+  
+<script>
+  __pageType = 'pen';
+  __penGridType = 'grid';
+  __sortOrder   = 'desc';
+  __tags = [];
+
+  __user     = {"email":"jonny@secrectsauce.com","id":1,"name":"seraphzz","username":"anon","paid":false};
+  __pen_user = {"email":"info@greensock.com","id":16327,"name":"GreenSock","username":"GreenSock","paid":true};
+
+  __pen = {"auto_run":false,"created_at":"2013-07-09T05:14:20Z","css":"body{\n  font-family:Asap;\n\tbackground-color:#555;\n  color:white;\n  margin:20px;  \n}\n\n#banner {\n  position:relative;\n  width:300px;\n  height:250px;\n  background:white;\n  overflow:hidden;\n}\n\n.panel {\n  position:absolute;\n  width:300px;\n  height:250px;\n  overflow:hidden;\n\n}\n\n#panel1 {\n  background: #a02600;\n \n}\n\n#panel2 {\n  top:260px;\n  background: url(http:\/\/s.cdpn.io\/16327\/burger.jpg);\n}\n\n#panel1 h1 {\n  position: relative;\n  font-size:40px;\n  line-height:240px;\n  text-align:center;\n  width:300px;\n}\n\n#panel2 h2{\n  margin: 0;\n  position: absolute;\n  top: 188px;\n  width: 260px;\n  font-size: 22px;\n  text-align: center;\n  padding: 20px;\n  background: #a02600;\n}\n\n#panel3 {\n  top:520px;\n}\n\n#panel3 #info{\n  position:absolute;\n  top:125px;\n  width:100%;\n  padding:10px;\n  height:125px;\n  background: #a02600;\n}\n\n#panel3 h1 {\n  font-size:34px;\n  font-weight:700;\n  letter-spacing: 1px;\n}\n\n#panel3 li {\n  position:relative;\n  margin-top:10px;\n  color: #ffa488;\n}\n\n#panel3 #orderNow {\n  position:absolute;\n  top:60px;\n  left:180px;\n  background:#ffc600;\n  color:#000;\n  font-size:16px;\n  font-weight:bold;\n  padding:10px;\n  border-radius:10px;\n  border: 4px solid transparent;\n}\n\n#panel3 #orderNow:hover {\n  background:#ffaa00;\n  border: 4px solid #fff;\n  cursor: pointer;\n}","css_external":"","css_pre_processor":"none","css_prefix_free":false,"css_starter":"reset","description":"","head":"","html":"<link href='http:\/\/fonts.googleapis.com\/css?family=Asap:400,700' rel='stylesheet' type='text\/css'>\n<div id=\"banner\">\n  <div class=\"panel\" id=\"panel1\">\n    <h1>hungry?<\/h1>\n  <\/div>\n  <div class=\"panel\" id=\"panel2\">\n    <h2>How about now?<\/h2>\n  <\/div>\n  <div class=\"panel\" id=\"panel3\">\n    <div id=\"info\">\n      <h1>Burger Boy<\/h1>\n      <ul>\n        <li>Free delivery in NYC<\/li>\n        <li>Open 24hrs<\/li>\n      <\/ul>\n      <div id=\"orderNow\">order now<\/div>\n    <\/div>\n  <\/div>\n  \n<\/div>","html_classes":"","html_pre_processor":"none","id":497534,"js":"var $ = Sizzle,\n    $panel1 = $(\"#panel1\"),\n    $panel2 = $(\"#panel2\"),\n    $panel3 = $(\"#panel3\"),\n    $panel1Text = $(\"#panel1 h1\"),\n    $panel2Text = $(\"#panel2 h2\"),\n    $info = $(\"#info\"),\n    $list = $(\"li\"),\n    $orderNow = $(\"#orderNow\"),    \n    tl;\n\nvar tl = new TimelineMax({delay:0.5, repeat:3, repeatDelay:2});\n\n tl.from(panel1, 0.5, {autoAlpha:0})\n    .from($panel1Text, 0.5, {scale:0.5, autoAlpha:0, ease:Back.easeOut})\n\n    .set($panel2, {top:0}, \"+=2\")\n    .from($panel2, 0.2, {autoAlpha:0, scale:1.5})\n    .from($panel2Text, 0.2, {top:\"+=62\"}, \"+=0.5\")\n    .to($panel2Text, 0.2, {top:\"+=62\"}, \"+=2\")\n\n    .set($panel3, {top:0}, \"final\")\n    .from($info, 0.5, {top:250}, \"final\")\n    .to($panel2, 0.5, {backgroundPosition:\"0px -60px\"}, \"final\")\n    .staggerFrom($list, 0.3, {autoAlpha:0, left:50}, 0.1, \"+=0.2\")\n    .from($orderNow, 0.5, {scale:0, autoAlpha:0, ease:Back.easeOut});\n","js_external":"http:\/\/cdnjs.cloudflare.com\/ajax\/libs\/gsap\/latest\/TweenMax.min.js;http:\/\/s.cdpn.io\/16327\/sizzle.min.js","js_library":"zepto","js_modernizr":false,"js_pre_processor":"none","parent":488754,"private":true,"screenshot_md5":"9b82d7415363b2ed25c4a09e5cdafbe6","session_hash":"cf27172a7afcd38f26ae01cb1b6d2d27","slug":null,"slug_hash":"Fqmsa","slug_hash_private":"e308429787030f2a8b50546c8faa5deb","title":"Burger Boy Finished","updated_at":"2013-07-11T16:23:09Z","user_id":16327};
+</script>
+
+<script src="http://assets.codepen.io/assets/editor/pen/libs-c1f2064b9ec2d924bbd795dbd1b425fb.js" type="text/javascript"></script>
+
+  <script src="http://assets.codepen.io/assets/editor/common/layout/layout-top-291f73dfb2ad35536fdd6f28626df7da.js" type="text/javascript"></script>
+
+<script src="http://assets.codepen.io/assets/editor/pen/index-e36a8f757a0480fb5bbdcbdc595c1c87.js" type="text/javascript"></script>
+
+
+
+</body>
+
+</html>

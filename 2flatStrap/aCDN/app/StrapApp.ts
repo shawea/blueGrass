@@ -1,5 +1,5 @@
-viewDir = '../aCDN/views/'
-console.log('v0.0')
+viewDir = '../aCDN/view/'
+console.log('v0.01')
 
 class Welcome implements IPresenter {
     constructor(app) {
