@@ -1,2 +1,20 @@
-console.log("ready 0.1");
+console.log('ready 0.0');
+viewDir = '../aCDN/view/';
+document.querySelector('#load1').addEventListener('click', onclickone);
+function onclickone() {
+    console.log('I just got clicked thank you');
+    open('view1', 'body', iloaded1);
+    console.log('is it loaded?');
+}
+function iloaded1() {
+    console.log('loaded1');
+}
+var load2But = document.getElementById('load2');
+load2But.addEventListener('click', function () {
+    console.log('Test');
+    open('view2', 'bod', iloaded2);
+});
+function iloaded2() {
+    console.log('loaded2');
+}
 //@ sourceMappingURL=app.js.map

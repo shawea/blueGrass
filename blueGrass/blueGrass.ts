@@ -42,7 +42,7 @@ var viewDir:string;
  * @param cb_
  */
 function open(ht, elSel, cb_):void {
-    console.log(viewDir)
+    //console.log(viewDir)
 	$.get(viewDir + ht + '.html', function (resp_) {
 		console.log(ht)
         $(elSel).append(resp_)
