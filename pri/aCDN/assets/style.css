@@ -10,9 +10,6 @@ html,
 body {
   height: 100%;
 }
-body {
-  overflow: hidden;
-}
 .full-height {
   height: 100%;
 }
@@ -33,10 +30,13 @@ body {
 }
 #kontainer {
   top: 4rem;
-  position: relative;
-  overflow: auto;
+  position: relative ;
+  overflow-x: auto;
+  overflow-y: show;
   height: 100%;
 }
 #code1 {
   visibility: hidden;
+  overflow: visible;
+  width: 1000px;
 }
