@@ -19,7 +19,7 @@ function toggleSideNav () {
 
 Rainbow.onHighlight(function(block) {
     console.log( 'was highlighted')
-    TweenLite.from('#code1',.2, {autoAlpha:0})
+    TweenLite.from('#code1',.3, {autoAlpha:0})
 
 })
 
