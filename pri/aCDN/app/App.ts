@@ -1,9 +1,10 @@
-console.log('0')
 
+viewDir = '../aCDN/view/'
+console.log('1')
 
-var navFlag = false;
-var navBtn = document.querySelector('.topcoat-icon--menu-stack');
-navBtn.addEventListener('click', toggleSideNav, false);
+var navFlag = false
+var navBtn = document.querySelector('.topcoat-icon--menu-stack')
+navBtn.addEventListener('click', toggleSideNav, false)
 function toggleSideNav () {
     console.log('side')
     if(!navFlag) {
@@ -13,5 +14,13 @@ function toggleSideNav () {
         TweenLite.to('#slider',.2,{x:0})
         TweenLite.to('#container',.2,{x:0})
     }
-    navFlag = !navFlag;
+    navFlag = !navFlag
 }
+
+Rainbow.onHighlight(function(block) {
+    console.log( 'was highlighted')
+    TweenLite.from('#code1',.2, {autoAlpha:0})
+
+})
+
+forward('why','why')

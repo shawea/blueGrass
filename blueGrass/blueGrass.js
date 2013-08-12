@@ -18,13 +18,7 @@ function forward(ht, id, cb_) {
         cur.attr('id', gid);
         if (!cur.attr('id'))
             throw new Error('id not found or kontainer');
-        try  {
-            var t = $('header').height();
-            var b = $('footer').position().top;
-            cur.height(b - t);
-        } catch (err) {
-            console.log(err);
-        }
+
         if (cb_)
             cb_(gid);
     });

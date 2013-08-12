@@ -35,3 +35,6 @@ body {
 #kontainer {
   top: 4rem;
 }
+#code1 {
+  visibility: hidden;
+}

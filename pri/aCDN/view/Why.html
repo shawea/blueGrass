@@ -1,0 +1,56 @@
+<div id='why'>
+
+
+    Why
+    Why
+
+    <pre id='code1'><code data-language='HTML'>
+        <html><head></head><body>
+        <form>
+            First Name<input type='text' id='firstname' ><br>
+            Last Name<input type='text' id='lastname' ><br>
+            <button id='lookup' onclick='return false'>Look Up</button>
+            <button id='create' onclick='return false'>Create Name</button>
+        </form>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js'></script>
+        <!-- app -->
+        <script id='primusAPI'
+                data-app_key='XXX' src='http://ca_1.primusapi.com/acdn/libs/cloudAPI.js' ></script>
+        <script>
+            cAPI=new CloudAPI()
+            <!-- insert -->
+            var cBut = document.getElementById('create')
+            cBut.addEventListener('click', function(e) {
+                var firstname = $('#firstname').val()
+                var lastname = $('#lastname').val()
+                console.log('clicked ' + firstname +', ' + lastname)
+                var ename =new Object()
+                ename.firstname=firstname
+                ename.lastname=lastname
+                cAPI.insert('nameapp',ename, onInserted)
+            })
+
+            function onInserted(data){
+                console.log('back')
+                //console.log(data)
+            }
+            <!-- select -->
+            var sBut = document.getElementById('lookup')
+            sBut.addEventListener('click', function(e) {
+                var firstname = $('#firstname').val()
+                console.log('clicked ' + firstname)
+                var ename =new Object()
+                ename.firstname=firstname
+                cAPI.select('nameapp', ename, onSelect)
+            })
+
+            function onSelect(data){
+                console.log(data.array_)
+                $('#lastname').val(data.array_[0].lastname)
+            }
+
+        </script>
+        </body></html>
+    </code></pre>
+
+</div>
