@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Primus API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="http://s.primusapi.com/ver0613/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="http://s.primusapi.com/ver0613/css/flat-ui.css"             rel="stylesheet">
+
+
+    <link rel="shortcut icon" href="http://s.primusapi.com/ver0613/images/favicon.ico">
+
+    <link href="http://s.primusapi.com/ver0613/assets/tuts.css"
+          rel="stylesheet">
+
+
+
+    <!--[if lt IE 9]>
+    <script src="http://s.primusapi.com/ver0613/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!--GA Code-->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        var pluginUrl =
+                '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+        _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+        _gaq.push(['_setAccount', 'UA-42075346-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top" style="">
+    <div class="navbar-inner" style="">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a href="http://primusapi.com/index.html" class="brand" href="#" style="margin-left:20px">Primus API *BETA</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li><a href="http://primusapi.com/index.html#solution">Solution</a></li>
+                    <li><a href="http://primusapi.com/index.html#features">Features</a></li>
+                    <li><a href="http://primusapi.com/index.html#pricing">Pricing</a></li>
+                    <li><a href="http://s.primusapi.com/ver0613/views/tutorials2.html">Tutorials</a></li>
+                    <li><a href="http://blog.primusapi.com/">Blog</a></li>
+                    <li class="dropdown">
+                </ul>
+                </li>
+                </ul>
+                </ul>
+                <div class="span2" style="margin-bottom:-10px;">
+                    <a href="http://ca_1.primusapi.com/account"><button class="btn btn-primary span2 offset1">
+                        <span>Login / Sign Up</span>
+                    </button></a>
+
+
+                </div>
+            </div>
+
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
+</div>
+
+<!-- Main hero unit for a primary marketing message or call to action -->
+<div class="hero-unit-tut">
+    <div class="container">
+        <h1>Tutorials</h1>
+        <div class="span6 offset4">
+            <h2 style="text-align: left">Using Primus API</h2>
+        </div>
+        <div class="span5 offset4">
+            <ul>
+                <a id="insert">
+                    <li>Inserting Data via Primus API</li>
+                </a>
+                <a id="select">
+                    <li>Selecting Data via Primus API</li>
+                </a>
+                <a id="join">
+                    <li>Joining Data via Primus API</li>
+                </a>
+                <a id="documentation">
+                    <li>Documentation</li>
+                </a>
+            </ul>
+        </div>
+        <div class="span6 offset4">
+            <h2 style="text-align: left">Understanding Cloud API's</h2>
+        </div>
+        <div class="span6 offset4">
+            <ul>
+                <a id="what">
+                    <li>What is a Cloud API?</li>
+                </a>
+                <a id="link">
+                    <li>Linking Cloud API Data to HTML</li>
+                </a>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div id="kontainer" class="hero-unit-bottom">
+
+            </div>
+
+
+        </div>
+
+        <script src='http://s.primusapi.com/ver0613/js/BikeSheding.js'></script>
+        <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js'></script>
+        <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+        <script>
+            viewDir="http://s.primusapi.com/ver0613/views/"
+
+            $('#what').click(function() {
+                        forward("intro_cloudapi", 'intro', onLoad)
+
+                    }
+            )
+
+            $('#link').click(function() {
+                        forward("linkdata", 'link', onLoad)
+                    }
+            )
+
+            $('#insert').click(function() {
+                        forward("insertdata", 'insert', onLoad)
+                    }
+            )
+
+            $('#select').click(function() {
+                        forward("selectdata", 'select', onLoad)
+                    }
+            )
+
+            $('#join').click(function() {
+                        forward("joindata", 'join', onLoad)
+                    }
+            )
+
+            $('#documentation').click(function() {
+                        forward("documentation", 'docum', onLoad)
+                    }
+            )
+
+            function onLoad() {
+                cleanUpViews()
+                $('html, body').animate({
+                    scrollTop: $("#kontainer").offset().top
+                }, 800);
+
+            }
+        </script>
+
+</body>
+<footer>
+    <div class="hero-unit-pricing" style="background-color: #ffffff; text-align:center;">
+        </h3>&copy; Primus API 2013</h3>
+        <p><a href="mailto:support@primusapi.com">Support Contact</a></p>
+    </div>
+</footer>
+
+</html>

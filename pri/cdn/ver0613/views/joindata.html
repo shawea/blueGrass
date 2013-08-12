@@ -1,0 +1,266 @@
+<div id="join">
+
+<h1>How To Join Data Through Primus API</h1>
+
+<p>Now we can move on to some more advanced API's. Often you will want to find and show data that is not easily accessible from 1 table. And you will need to take data that combines these 2 tables. This is known as a join. We have developed a proprietary function that makes this incredibly easy.</p>
+
+<p>But lets start out with an examination of how  Joins work using what are known as Primary and Foreign Keys. If you feel comfortable with this and just want to learn about how our function works, click here to jump ahead.</p>
+
+<p>Lets get started!</p>
+
+<p>*Note the new code snippets will be in <bo>Bold</bo><br>
+** This tutorial assumes you have basic html and .js understanding. The first 2 tutorials about Cloud API's go into more details about these.</p>
+
+<h2>Step 1:
+Understanding Primary and Foreign Keys</h2>
+
+<p>The concept of Primary and Foreign Keys for pulling in data may at first sound confusing and daunting, especially if you are used to thinking of that as "back-end developer mumbo jumbo" but once understood is relatively simple. We will take a look first at what these keys are, why they are important in databases, and then look at how easy it is to use them when creating queries using the Primus API in your application.</p>
+
+<p>So lets first imagine a very simple application where you have customers buying products. When looking at how you structure data, you need to first think of these kinds of buckets of information that can be lumped together. Lets keep it simple, so in this case at the minimum, you would need: customer first name, customer last name, shipping address, product ordered, and the order date. We can organize these fields into 2 tables with the following columns.</p>
+
+<p>Table 1: Customer_Information
+    <ul>
+        <li>First_Name</li>
+        <li>Last_Name</li>
+        <li>Shipping_Address</li>
+    </ul>
+</p>
+<p>
+Table 2: Order_Information
+    <ul>
+        <li>Product</li>
+        <li>Order_Date</li>
+</ul>
+</p>
+<p>But we now need to make these tables relate to each other. This is where keys come in. Primary Keys are used to identify uniquely a row in a table. The important part of this is that every single row must be unique. We would not want to use any of the fields in the Customer_Information table as a primary key because there might be many people with the same first or last name, or you could have 2 people who live together using the same address. So we cannot ensure that each row would be unique. So in this case lets add another column called CustomerID. And in this we will assign a new id to every entry. This column will be used as our Primary Key.</p>
+
+<p>With a little sample data that illustrates why we need a unique Primary Key (PK), our <b>Customer_Information</b> table looks like this:</p>
+
+<table style="margin-left: 4em" border="2px" width=75%>
+    <thead>
+        <th>CustomerID (PK)</th>
+        <th>First_Name</th>
+        <th>Last_Name</th>
+        <th>Shipping_Address</th>
+    </thead>
+    <tr>
+        <td>1</td>
+        <td>John</td>
+        <td>Smith</td>
+        <td>1 Park Lane</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Sally</td>
+        <td>Smith</td>
+        <td>5 Madison Lane</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Alex</td>
+        <td>Adams</td>
+        <td>5 Madison Ave</td>
+    </tr>
+</table>
+
+<p>Now lets look at how we can use this to relate orders to customers. We know that every order will have a unique customer attached to it. And we also know that 1 customer could be related to multiple orders.</p>
+
+<p>So in our <b>Order_Information</b> Table we need to add a column that allows to make that relation. This column is called a Foreign Key. It relates the information in one table to a different table. So we will take the Primary Key from the Customer_Information Table and put it into the Order_Information Table. This means with one unique Key, we can tell all the information about a customer that relates to the specific order. So lets make sure to assign a Primary Key ID to Order information in case we wanted to link that to some other data in the future.</p>
+
+<p>So if we have 2 orders made by Sally Smith, and one by Alex Adams the <b>Order_Information</b> table might look like this:</p>
+
+<table style="margin-left: 4em" border="2px" width=75%">
+    <thead>
+        <th>OrderID (PK)</th>
+        <th>CustomerID (FK)</th>
+        <th>Product</th>
+        <th>Order_Date</th>
+    </thead>
+    <tr>
+        <td>11</td>
+        <td>2</td>
+        <td>Shampoo</td>
+        <td>6/10/13</td>
+    </tr>
+    <tr>
+        <td>12</td>
+        <td>2</td>
+        <td>Conditioner</td>
+        <td>6/10/13</td>
+    </tr>
+    <tr>
+        <td>13</td>
+        <td>3</td>
+        <td>Soap</td>
+        <td>5/30/13</td>
+    </tr>
+</table>
+
+<p>Notice that each order is uniquely identifiable with the Primary Key of OrderID, and that we can by looking up the CustomerID in the Customer_Information table, we can know all the data about the customer that made each individual purpose.</p>
+
+<p>That's really all there is.
+    <ol>
+        <li>Make sure sure that each table is well thought out for what information would be specific for each row.</li>
+        <li>Include that column you used as a primary key in the table you want to relate that data to as a Foreign Key.</li>
+    </ol>
+</p>
+
+<p>Now lets look at the code you would use to select data from these 2 tables in your query using our Select CloudAPI.</p>
+
+<h2>Step 2:</h2>
+<p>So lets first just insert some data using the techniques we have already learned. We are going to create these exact tables in your account.</p>
+
+<p>So you should take a look at and copy the following code into an html doc. Please make sure to update the API with your API app key which you get from logging into your Primus API account. You should replace the ### where it says <code>data-app_key="###"</code>.</p>
+
+<p>You should be able to see how data is getting inserted into your tables with the c.insert Insert Data function, and using the callback function to also insert other data into a different table. In this example code we are creating 2 tables:
+<ol>
+    <li>table (which is our Customer_Information table)</li>
+    <li>tableF (where the F represents that we are putting a foreigh key here, which is our Order_Information table)</li>    
+</ol>
+</p>
+
+<p>Here is the setup code:</p>
+
+<pre class="prettyprint">
+    &lthtml>
+    &lthead>
+    &lt/head>
+    &ltbody>
+    &ltb>Example of how to do a join:&lt/b>
+    
+    &ltscript id="primusAPI" data-app_key="###" src="http://ca_1.primusapi.com/acdn/libs/cloudAPI.js">&lt/script>
+
+    &ltscript>
+        c= new CloudAPI()
+    
+    var table = 'Customer_Information'
+    tableF = 'Order_Information'
+    
+    //row1
+    var msg = new Object()
+    msg.first = 'John'
+    msg.last=  'Smith'
+    msg.address=  '1 Park Lane'
+    c.insert(table, msg, onPK)
+    function onPK(data) {
+        console.log(data)
+    }
+    
+    //row2
+    var msg2 = new Object()
+    msg2.first = 'Sally'
+    msg2.last=  'Smith'
+    msg2.address=  '5 Madison'
+    c.insert(table, msg2, onPK2)
+    function onPK2(data) {
+        console.log(data)
+        var fk = data._id
+        var row = new Object()
+        row.fk=fk
+        row.Product='Shampoo'
+        row.Order_Date = new Date().getTime()
+        c.insert(tableF, row, null)
+    
+        var row1 = new Object()
+        row1.fk=fk
+        row1.Product='Conditioner'
+        row1.Order_Date = new Date().getTime()
+        c.insert(tableF, row1) // insert()
+        console.log(2)
+    }
+    
+    //row3
+    var msg3 = new Object()
+    msg3.first = 'Alex'
+    msg3.last=  'Adams'
+    msg3.address=  '5 Madison'
+    c.insert(table, msg3, onPK3)
+    function onPK3(data) {
+        console.log(data)
+        var fk = data._id
+        var row = new Object()
+        row.fk=fk
+        row.Product='Soap'
+        row.Order_Date = new Date().getTime()
+        c.insert(tableF, row)
+    }
+    
+    &lt/script>
+    &lt/body>&lt/html></pre>
+
+<p>If you log into you account and look at your  "Data View" you should see these 2 tables added with information just like we drew up in Step 1.</p>
+<br>
+<img src="http://s.primusapi.com/ver0613/assets/dataview.png" width=75% style="margin-left: 4em">
+
+
+<h2>Step 3:</h2>
+<p>Now lets actually write a join. This is actually the easiest part once you understand how Primary and Foreign Keys work.</p>
+
+<p>In a new html doc lets again go through same process of loading the Primus API library and creating a new API with our unique API Key. This should feel pretty familiar to you by now.</p>
+
+<pre class="prettyprint">
+    &lthtml>&lthead>
+    &lt/head>
+    &ltbody>
+    &ltscript id="primusAPI" data-app_key="###" src="http://ca_1.primusapi.com/acdn/libs/cloudAPI.js">&lt/script>
+    &ltscript src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.1/jquery.min.js'>&lt/script>
+
+    &ltscript>
+        c= new CloudAPI()
+    
+    &lt/script>
+    &lt/body>&lt/html></pre>
+
+<p>Next lets add in the code to run the Join Data function</p>
+<pre class="prettyprint">
+    &lthtml>&lthead>
+    &lt/head>
+    &ltbody>
+    &ltscript id="primusAPI" data-app_key="###" src="http://ca_1.primusapi.com/acdn/libs/cloudAPI.js">&lt/script>
+    &ltscript src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.1/jquery.min.js'>&lt/script>
+
+    &ltscript>
+        c= new CloudAPI()
+    
+    <bo>c.selectRelation( 'Customer_Information', 'Order_Information', null, '_id', 'fk', onRet)
+    
+    function onRet(data) {
+        console.log(data.array_)
+    }</bo>
+    
+    &lt/script>
+    &lt/body>&lt/html></pre>
+
+<p>This first new line calls the function selectRelation which is used to join data. This function consists of 6 arguments.</p>
+
+<table style="margin-left: 4em" border="2px" width=75%">
+    <tr>
+        <td width = 10%>Arg 1</td>
+        <td>Table Name that has the Primary Key - in this case "Customer_Information"</td>
+    </tr>
+    <tr>
+        <td>Arg 2</td>
+        <td>Table Name that has the Foreign Key that gives us our starting place. In this case "Order_Information"</td>
+    </tr>
+    <tr>
+        <td>Arg 3</td>
+        <td>Any limiting value pairs associated with the Arg 2.  This would allow us to look for things like Date = x, or Product = x. If we wanted to limit our joins to things bought by Sally, we would need to make the table with the foreign key in Arg 2 the Customer_Information table.</td>
+    </tr>
+    <tr>
+        <td>Arg 4</td>
+        <td>The column or id of the Primary Key for the table you are using in Arg 1.</td>
+    </tr>
+    <tr>
+        <td>Arg 5</td>
+        <td>The column or id of the Foreign Key for the table you are using in Arg 2.</td>
+    </tr>
+    <tr>
+        <td>Arg 6</td>
+        <td>Callback function</td>
+    </tr>
+</table>
+
+<p>So in this example we are joining, <b>Customer_Information</b> to <b>Order_Information</b> with no limiting arguments, where the primary key in the Customer_Information table is the <b>_id</b>, and the foreign key in the Order_Information table is <b>fk</b>. This finally as a callback function <b>onRet</b> which we run to show the array of data in our console log. So this returns all order and who made them</p>
+
+<p>There you have it. Joins made easy with one simple Primus API function.</p>
+</div>

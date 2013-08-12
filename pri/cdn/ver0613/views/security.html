@@ -1,0 +1,146 @@
+<div id="security">
+
+<h1>Security and Auth with Primus API</h1>
+
+<p>Primus API takes security very seriously and we feel confident that we have put the most effort into providing security for 99% of all potential applications in the market today.</p>
+
+<p>There are several layers of Security that we provide without you ever having to do anything. First, all our services and data are geo-distributed much like a CDN. This renders DOS attacks irrelevant and ineffective. Secondly we have a security expert that is regularly monitoring security and examining attack vectors ensuring that our API’s and services stay updated and safe.</p>
+
+<p>Please know that you should only be working with the security solutions described below <b>AFTER</b> you have built your app, are comfortable with Insert, Select, Update, Delete, and selectRelation. These tools will make it more difficult to edit and develop your application while in that phase.</p>
+
+<h2>Level 1: App Key Obfuscation</h2>
+<p>As with most API’s, Primus API requires a unique App Key so that the data you are writing and receiving can be unique to your account and applications. From a provider side it is very difficult to obfuscate this App Key within a developer's Source Code. But we built the setup in a way that makes it easy for you to encrypt only a small part of your code.</p>
+
+<p>When using Primus API, as discussed in the earlier tutorials, you need to download the library, attach a handle, and provide your app key in one line of code that lets you access all our functionality. This app key can be found when logging into you account and clicking on an app.</p>
+
+<pre class="prettyprint">
+    &ltscript id="primusAPI" data-app_key="###" src="http://ca_1.primusapi.com/acdn/libs/cloudAPI.js">&lt/script>
+</pre>    
+
+<p>We highly recommend using an html obfuscator for this particular line of code. This will make it much harder to steal your App Key from the source code. One example of an html obfuscator can be found here: <a href="http://www.wmtips.com/tools/html-obfuscator/">wmtips html obfuscator</a></p>
+
+<h2>Level 2: Domain Restriction</h2>
+<p>Simply put, domain restriction makes it so that someone cannot just steal your Source Code and host it somewhere else using your account. In most cases, this should always be set once your app goes live.</p>
+
+<p>When you login to your account successfully, you will see a page that shows your apps and has details about each specific application. When you select an application you can see a field "Domain".</p>
+
+<img style="margin:3em" src="../images/domainSec.png">
+
+<p>This box sets a security restriction to only serve data to a domain that is requesting it if part of the domain matches the string you set. For example if you were to set this domain to "awesomesauce", our system would only serve data to domains like awesomesause.com and awesomesauce.net. If you want to only serve to awesomesauce.com, you would specify that here.</p>
+
+<p>This means that if you have obfuscated your app key code, and also set your domain (both of which are very easy) and some mad hacker decides to break your code, they would still need to access your site via ftp in order to use your App Key.</p>
+
+<p>Please note that when this is turned on, development will be more difficult. Developing from your localhost will not work, you would need to ftp every iteration to your site with a matching domain. This is why we recommend turning this on once your app goes live, or creating a dev app without this restriction.</p>
+
+<h2>Level 3: Authentication and Validation</h2>
+<p>The idea behind authentication and validation is that a new user signing up must validate that they have entered both a valid email address and have access to it. Upon signup the user will be sent an email with a unique code that they must enter in your app. We then match that code and validate the email address. And once this is complete, we allow the user to login, which then sets an auth token for the user session. We can then have that user start creating data in an application that has the checkbox set for "Lock app to auth".</p>
+
+<p>Make sure that this login app does <b>NOT</b> have the checkbox set for "auth". This checkbox will make any user without an auth token unable to write / select data. So the flow will be to create a login app using the steps below, and then another app that is "secure" with the checkbox checked. This tutorial will walk you through a sample auth application. </p>
+
+<img style="margin:3em" src="../images/authSec.png">
+<p><b>As this is advanced security, please only build this if you have a complete understanding of how this works after this tutorial.</b></p>
+
+<p>There are 5 new API’s for this which we will go over below:
+<ul>
+    <li>.signUp()</li>
+    <li>.matchValidateCode()</li>
+    <li>.login</li>
+    <li>.setAuthToken</li>
+    <li>.setAppKey</li>
+</ul></p>
+
+<h3>Step 1</h3>
+<p>First, we will create a form in our html doc. The first step will allows us to enter an email address, set a password and click the sign up button. Then we have a field to enter the emailed code, and a match button. And finally we create a login button.</p>
+
+<pre class="prettyprint">
+    &ltform>
+        Email&ltinput type="text" id="email" class="field">&ltbr>
+        Password&ltinput type="text" id="password" class="field">&ltbr>
+        &ltbutton id="signup" onclick="return false">Sign Up&lt/button>&ltbr>
+        Match Code&ltinput type="text" id="matchcode" class="field">&ltbr>
+        &ltbutton id="matchme" onclick="return false">Match&lt/button>&ltbr>
+        &ltbutton id="login" onclick="return false">Login&lt/button>
+    &lt/form></pre>
+
+
+<h3>Step 2</h3>
+<p>Next we will load the Primus API library with a unique key (make sure you use your own key here) as well as a jQuery library.</p>
+
+<pre class="prettyprint">
+    &ltscript src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.1/jquery.min.js'>&lt/script>
+    &ltscript id="primusAPI" data-app_key="###" src='http://ca_1.primusapi.com/acdn/libs/cloudAPI.js'>&lt/script></pre>
+
+
+<h3>Step 3</h3>
+<p>Like our other tutorials, we will add a script to create our new Cloud API and define a set of variables that get created when the signup button (#signup) is clicked. If this does not make sense, please refer back to our earlier tutorials.</p>
+
+<p>We then run our first new function <code>c.signUp()</code>.</p>
+
+<pre class="prettyprint">
+    &ltscript>
+        c=new CloudAPI()
+    
+        $('#signup').click(function(){
+            var email = $('#email').val()
+            var pw = $('#password').val()
+            c.signUp(email, pw, 5, "Welcome", "Here is your validation code _CODE_", null, onRet)
+        })
+    
+    &lt/script></pre>
+
+
+<p>As you can see in this example this function has 7 arguments. The first 2 pass the minimal pieces of information necessary for an account: email and password which are defined cariables "email" and "pw".</p>
+
+<p>The third argument defines the length of the unique code generated that the email will receive. As we have 5 in this case, the match code will be 5 characters long.</p>
+
+<p>The next two arguments specify the subject and body of the email that will be sent. You <b>MUST</b> include <b>_CODE_</b> in the email body. This will be replaced with the unique match code.</b></p>
+
+<p>Next there is an argument that would be an object containing any other sign up information such as account name, full name, address etc. And lastly we have a callback function.</p>
+
+<p>The email address specified will get an email containing a unique match code which you will then have them input into the Match Code field.</p>
+
+<h3>Step 4</h3>
+<p>Now we want to validate the code, that it is in fact linked to the email specified.</p>
+
+<pre class="prettyprint">
+    $('#matchme').click(function(){
+    var email = $('#email').val()
+    var match = $('#matchcode').val()
+    c.matchValidateCode(email, match, onMatch)
+    })</pre>
+
+
+<p>Here when the Match button is clicked we again collect the variables we need and run the new function <code>c.matchValidateCode()</code></p>
+
+<p>This function contains 3 arguments: email, match code, and a callback function. This will either return a success or error.</p>
+
+<p>An email only needs to be validated once. Once is has been successfully validated once, it will be allowed to login. If the matchValidateCode returns an error, the email address will not be allowed to login.</p>
+
+<h3>Step 5</h3>
+<p>Now once we have a successful match validation, we can log the user into another secure application. The login function returns an auth token for that session that is specific to that user's vectors.</p>
+
+<pre class="prettyprint">
+    $('#login').click(function(){
+    var email = $('#email').val()
+    var pw = $('#password').val()
+    c.login(email, pw, onLg)
+    })</pre>
+
+<p>Here, when the login button is clicked, we again collect the variables we need, and run the new function <code>c.login()</code></p>
+
+<p>This function contains 3 arguments: email, password, and a callback function. If this function is successful, meaning the email and password match, the system will return an auth token.</p>
+
+<p>So as a callback function we will set that token to the user for the duration of the session. This ensures that the user cannot be faked, and we can track all vectors to monitor attacks. If this token changes, the user will be kicked out of the app.</p>
+
+<pre class="prettyprint">
+    function onLg(data){
+    c.setAuthToken(data.auth_token)
+    c.setAppKey("###")
+    }</pre>
+
+
+<p>Here on the callback "onLg" we run the function <code>c.setAuthToken(data.auth_token)</code>. This sets the token returned in the data to that user session.</p>
+
+<p>Once we have this set, we can now can begin writing data to an auth secured app. We do that through very simply setting the new app key to this logged in user. We do this through the function <code>c.setAppKey(‘###’)</code> where the secured app key replaces the ###. Now the app with the new key should have the "Lock app to auth" checkbox selected</p>
+
+</div>

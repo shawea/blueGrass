@@ -1,0 +1,96 @@
+<div id="intro">
+
+<h1>What Is A Cloud API Anyway?</h1>
+<p>A Cloud API is a way for apps to access data in the cloud from somewhere else on the web. Think of this in terms of Facebook, in order for an application to get all of a users friends, they have to use the Facebook API to access that data and pull it into. We will work with a very simple API which is a service that has location data stored on zip code information.</p>
+
+<p>Please note, this tutorial assumes a minimal understanding of javascript. If you have worked with API’s or are comfortable with .js, you may want to skip ahead.</p>
+
+<p>So lets build an app where we want to collect a user's City, State and Zip. But for a better User Experience, we don’t want the user to have to enter any more fields than they have to. So if we only ask the user to manually enter a zip, then this API can look up the City and State fields, which we can grab to populate those fields.</p>
+
+<p>In the following tutorial, I will show the newly added code in <b>Bold</b></p>
+
+<h2>Step 1:</h2>
+
+<p>So lets start with a blank html file:</p>
+
+<pre class="prettyprint">
+    &lthtml>
+    &lthead>&lt/head>
+    &ltbody>
+
+    &lt/body>
+    &lt/html></pre>
+
+
+<h2>Step 2:</h2>
+<p>Lets start by accessing the free API to pull in data. First we will add a library that will call such an API. Go ahead and copy this code into the body of your html doc.</p>
+
+<pre class="prettyprint">
+    &lthtml>
+    &lthead>&lt/head>
+    &ltbody>
+    <b>&ltscript src='http://ca_1.primusapi.com/acdn/libs/cloudAPI.js>&lt/script></b>
+
+    &lt/body>
+    &lt/html></pre>
+
+<p>This will download the library and let you use it.</p>
+
+<h2>Step 3:</h2>
+<p>Now lets create some code to use this library. We will use javascript to create an object that represents the new API, then a function to tell it what zip code to search for, and then finally another function to give us the data back.</p>
+
+<pre class="prettyprint">
+    &lthtml>
+    &ltbody>
+    &ltscript src='http://ca_1.primusapi.com/acdn/libs/cloudAPI.js'>&lt/script>
+    <b>&ltscript>
+        cApi =new CloudAPI()
+        cApi.zipCodeUSA(94107, onData)
+
+        function onData(data) {
+            console.log(data)
+        }
+    &lt/script></b>
+    &lt/body>
+    &lt/html></pre>
+
+<p>You can run this code by opening it in browser. You won't see anything, so you'll have to 'view console'. On the browser menu select Tools/Javascript console or F12 or similar. Different browsers have different ways to show the console.</p>
+
+<p>So lets look at what we did line by line:</p>
+
+<pre class="prettyprint">
+    &ltscript></pre>
+
+<p>Because we are using javascript to create the API object and use functions, we need to run all this code within a <code>&ltscript>&lt/script></code> tag.
+
+<pre class="prettyprint">
+    c=newCloudAPI()</pre>
+<p>We are creating a object called "cApi" (could be named whatever you like) as a new CloudAPI. This thing "CloudAPI" is defined in that library we downloaded in Step 2. It lets us handle and use information related to this API.</p>
+
+<pre class="prettyprint">
+    cApi.zipCodeUSA(94107, onData)</pre>
+<p>
+So for the new object we created "cAPI" we are calling a function zipCodeUSA(). Again this function was defined in the library we downloaded in Step 2. The function takes 2 parameters. The first one is any zip code in USA. We are using 94107.  And the second "onData" is a 'callback'. A callback allows us to do something like call another function, upon completion. This could be called anything you like.</p>
+
+<pre class="prettyprint">
+    function onData(data) {
+    console.log(data)
+    }
+    &lt/script></pre>
+<p>Here we are using the callback. So when we get the onData callback function, it runs the next function returning "data" as a parameter. This data is defined in the downloaded library, and has things like City, State, Coordinates, etc. Then we are finishing the script with the <code>&lt/script></code></p>
+
+
+<h2>Step 4</h2>
+<p>
+Lets run the code! Open the html file in your browser, make sure to have your Console open. Your browser's console should look a bit like this output:
+</p>
+
+    <code style="margin: 4em";>
+        Object {Long: -122.39, Location: "NA-US-CA-SAN FRANCISCO", Lat: 37.76, ZipCodeType:
+        "STANDARD", City: "SAN FRANCISCO"...}</code>
+
+<p>So that was just a test of us using this free API. If you fully understand the idea of how to use an API, and feel comfortable with using variable and form inputs to choose how the zip code data gets put into the function, and showing the data returned in an array to another field, then you are done and should move on to The Intermediate Tutorial for using a Primus API Cloud API to write data without any backend development.</p>
+
+<p>If not, lets use this API on a form to fill out the City and State based on a Zip and save the users some keystrokes in the next Tutorial "Linking API data to Your HTML"</p>
+
+</div>

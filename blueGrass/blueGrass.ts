@@ -15,7 +15,7 @@ interface IPresenter {// ~ composition, a section? presenter to manage a views/s
 }
 
 interface IApp{ // has the app + hasher, the global app , does not animate or open, may have signals
-	_onUrlChanged(newUrl, oldUrl):void;
+	//_onUrlChanged(newUrl, oldUrl):void;
 	dispatch(view:string, ctx:any):bool; //returns FALSE
     /*template code in dispatch
     hasher.changed.active = false; //disable changed signal
@@ -28,7 +28,7 @@ interface IApp{ // has the app + hasher, the global app , does not animate or op
 /**
  *  should be first line in app constructor
  *  @param app
- */
+
 function initHasher(ainst) {
  	hasher.changed.add(ainst._onUrlChanged, ainst)
 	hasher.initialized.add(ainst._onUrlChanged, ainst)
@@ -36,6 +36,8 @@ function initHasher(ainst) {
 	hasher.init()
     console.log('hRouter ready')
 }
+ console.log("clicked " + firstname)
+/*
 
 /*
 SPA section

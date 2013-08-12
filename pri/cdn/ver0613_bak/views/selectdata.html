@@ -1,0 +1,120 @@
+<div id="select">
+
+<h1>How To Select Data Through Primus API</h1>
+
+<p>Now that we successfully added data in the previous tutorial of a user and a score, we need to be able to pull that out to show on a high score list. This is where the "Select Data" function comes in.</p>
+
+<p>Lets get started!</p>
+
+<p>*Note the new code snippets will be in <bo>Bold</bo><br>
+** This tutorial assumes you have basic html and .js understanding. The first 2 tutorials about Cloud API's go into more details about these.</p>
+<h2>Step 1:</h2>
+<p>First lets create a form that lets us know what data we want. In your game, you would obviously have a different way of pulling this, but since we don't need a build a game, we will just enter this into a form activated from a "Look up" button</p>
+<pre class="prettyprint">
+    &ltbody>
+    &ltform name="form" method="get" action="Select2.html">
+        Name: &ltinput type='text' name='name' value='Jack' />&lt/br>
+        &ltbutton id='lookUp' >Look up&lt/button>&lt/br>
+    &lt/form>
+    &lt/body></pre>
+
+
+<p>Since we already entered information for the user "Jack" lets use the same user to pull up his score. Clicking the "Look up" button will get the next code from "Select2.html". So we will need to create that document.</p>
+
+<h2>Step 2:</h2>
+<p>Just as in the previous document we will need to add our libraries and create our new API. Make sure to use the same App Key as the previous tutorial.</p>
+
+<p style="font-style: italic">Advanced: (If you feel comfortable, you could also just add a lookup button in your previous app and just add the Select code without needing to recreate the forms and app)</p>
+
+<p>Lets also add a field to our form that is where the score will be shown. So your code should look something like this to start on Select2.html</p>
+
+<pre class="prettyprint">
+    &ltbody>
+    &ltform name="form" method="get" action="Select2.html">
+        Name: &ltinput type='text' name='name' value='Jack' />&lt/br>
+        Score: &ltinput type="text" id='score' value=''>
+    &lt/form>
+
+    &ltscript src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.1/jquery.min.js'>&lt/script>
+    &ltscript src='//cdnjs.cloudflare.com/ajax/libs/jquery-url-parser/2.2.1/purl.min.js'>&lt/script>
+    &ltscript src='http://ca_1.primusapi.com/acdn/libs/cloudAPI.js'>&lt/script>
+    &ltscript>c = new CloudAPI(###)
+    &lt/script>
+    &lt/body></pre>
+
+<h2>Step 3:</h2>
+<p>Now lets do some work on grabbing our data. Just like before we first create a New Object, then fill that object with the property that we know so the system knows which row to grab.</p>
+
+<pre class="prettyprint">
+    &ltbody>
+    &ltscript src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.1/jquery.min.js'>&lt/script>
+    &ltscript src='//cdnjs.cloudflare.com/ajax/libs/jquery-url-parser/2.2.1/purl.min.js'>&lt/script>
+    &ltscript src='http://ca_1.primusapi.com/acdn/libs/cloudAPI.js'>&lt/script>
+    &ltscript>c = new CloudAPI('fisvhiad2ir')
+        <bo>var msg = new Object()
+        msg.name = $.url().param('name');</bo>
+    &lt/script>
+    &lt/body></pre>
+
+<p>Here all we did was create a new object called "msg" and then give it the property of the parameter "name" which was passed through the url on the click of the "Look up" button. This will make the msg.name = "Jack"</p>
+
+<h2>Step 4:</h2>
+<p>Finally we run the "Select Data" function which will select rows as described using the object we created in Step 3. So your code should end up looking this like:</p>
+
+<pre class="prettyprint">
+    &ltbody>
+    &ltscript src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.1/jquery.min.js'>&lt/script>
+    &ltscript src='//cdnjs.cloudflare.com/ajax/libs/jquery-url-parser/2.2.1/purl.min.js'>&lt/script>
+    &ltscript src='http://ca_1.primusapi.com/acdn/libs/cloudAPI.js'>&lt/script>
+    &ltscript>c = new CloudAPI('###')
+    var msg = new Object()
+    msg.name = $.url().param('name');
+    
+    <bo>c.select('names', msg, onRet)
+    function onRet(data) {
+        console.log(data.array_)
+        $('#score').val(data.array_[0].score)
+    }</bo>
+    &lt/script>
+    &lt/body></pre>
+
+<p>So we are running c.select, which runs the "Select Data" function from the new API "c" we created at the beginning. The arguments in the function are as follows:</p>
+<table style="margin-left: 4em" border="2px">
+    <tr>
+        <td class="pc1">
+            1st argument
+        </td>
+        <td class="pc2">
+            Table name to select the data from. In this case we are selecting from the "names" table.
+        </td>
+    </tr>
+
+    <tr>
+        <td class="pc1">
+            2nd Argument
+        </td>
+        <td class="pc2">
+            Defines the object that has properties we are looking for. This tells the system which row(s) to select.<br>In this case it is the msg object which has the properties of name = Jack
+        </td>
+    </tr>
+
+    <tr>
+        <td class="pc1">
+            3rd Argument
+        </td>
+        <td class="pc2">
+            Callback function. This lets us do something like run another function when complete to put the score into the form field
+        </td>
+    </tr>
+</table>
+
+<p>The next two lines run a callback function with a trace, just as in the previous tutorial.</p>
+
+<p>Finally we have the last bit of the onRet function which will place the data returned from the database into the form field.</p>
+
+<p>It is important to note that data from an object is retrieved as an array.</p>
+
+<p>Since we specified the id of the score field in step 2 as "score" we are telling the system to get that field and make the value of that field be the score data point from the array of the returned "data". You can get this by <code>data.array...</code> Then when clicking through the array in the console log you can see that the property "score" is found in the first area <code>_[0].score.</code></p>
+
+<p>Now we have 2 apps. One that writes data, and one that selects and retrieves it!</p>
+</div>

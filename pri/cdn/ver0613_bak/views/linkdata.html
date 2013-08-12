@@ -1,0 +1,101 @@
+<div id="link">
+
+<h1>Linking Cloud API Data To Your HTML</h1>
+
+<p>So now that you created an API that works to return data in the browser console, lets run it with HTML.</p>
+
+<h2>Step 1:</h2>
+<p>First lets create a form with:
+<ol>
+    <li>Name text input field</li>
+    <li>Zip Code text input field</li>
+    <li>City text input field</li>
+    <li>State input field</li>
+    <li>"Look up" Button</li>
+</ol>
+</p>
+
+<p>Copy the following code into a new html doc to do this. We assume you are already comfortable with most html.</p>
+
+<pre class="prettyprint">
+    &ltbody>
+    &ltform name="form" method="get" action="ZipAny2.html">
+        Zip code: &ltinput type='text' name='zipcode' value='94107'/>
+        &ltbutton id='lookUp' >Look up&lt/button>&lt/br>
+        City, State &ltinput type='text' id='city'/>, &ltinput type='text' id='state'/>&lt/br>
+    &lt/form>
+    &lt/body></pre>
+
+
+<p>This form submit will take us to the next page <b>"ZipAny2.html"</b> with the url passing through the form data.</p>
+
+<h2>Step 2</h2>
+<p>So lets make this html page and insert the following into our new html doc.</p>
+
+<pre class="prettyprint">
+    &ltbody>
+    &ltform>
+        Zip code: &ltinput type='text' id='zipcode' value=''/>&lt/br>
+        City, State &ltinput type='text' id='city'/>, &ltinput type='text' id='state'/>&lt/br>
+    &lt/form>
+
+    &ltscript src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.1/jquery.min.js'>&lt/script>
+    &ltscript src='//cdnjs.cloudflare.com/ajax/libs/jquery-url-parser/2.2.1/purl.min.js'>&lt/script>
+    &ltscript src='http://ca_1.primusapi.com/acdn/libs/cloudAPI.js'>&lt/script>
+
+    &ltscript>
+        console.log('oh hi')
+        cApi = new CloudAPI()
+
+        var zipcode = $.url().param('zipcode');
+        console.log('clicked ' + zipcode)
+        cApi.zipCodeUSA(zipcode, onData)
+
+        function onData(data) {
+            console.log(data)
+            $('#city').val(data.City)
+            $('#state').val(data.State)
+            $('#zipcode').val(zipcode)
+        }
+    &lt/script>
+    &lt/body></pre>
+
+
+<p>The first bit is to maintain the form that we are passing data through. Next we have called in a few libraries that make writing this code slightly easier. You can look these up separately on your time if you wish to learn about how they work.</p>
+
+<p>But the relevant code starts up at:</p>
+
+<pre class="prettyprint">
+    &ltscript>
+    console.log('oh hi')...</pre>
+
+<p>Just like in the previous tutorial, we first create a new Cloud API object.</p>
+
+<h2>Step 3</h2>
+
+<p>Next we have:
+<pre class="prettyprint">
+    var zipcode = $.url().param('zipcode');
+    console.log('clicked ' + zipcode)
+    cApi.zipCodeUSA(zipcode, onData)</pre>
+
+<p>First we are creating a variable called "zipcode" and are telling it to be equal to the url. $.url tells the system to "get" the url and then we are looking at the parameter it is passing through that from the previous form was defined as "zipcode"</p>
+
+<p>The 2nd line is just a trace that will show in the console that this was successful.</p>
+
+<p>Just like in the previous tutorial, we tell the defined cApi to run the zipCodeUsa function and in the first argument pass forward that variable zipcode, we defined 2 lines above.</p>
+
+<h2>Step 4</h2>
+<p>Finally, we use the callback function "onData" to do things with this data. We are telling the system to fill all the form fields.</p>
+
+<p>So the code</p>
+<pre class="prettyprint">
+    $('#city).val(data.City)</pre>
+
+<p>looks to get anything that has an ID of city (which is our "City" form field. It then tells the system that the value (.val) of that field should be whatever is returned from the array of data and is named City (data.City)</p>
+
+<p>We use this same arrangement to fill in the State field and also pass through the zipcode field.</p>
+
+<p>Thats it! You have a working zip code lookup app.</p>
+
+</div>

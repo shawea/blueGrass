@@ -1,0 +1,30 @@
+.col1 {
+  width: 65%;
+  vertical-align: top;
+  padding-right: 4em;
+}
+.col2 {
+  width: 35%;
+  vertical-align: top;
+  font-size: 24px;
+}
+ul {
+  margin: 0px;
+}
+li {
+  padding-bottom: 1em;
+}
+table {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.subh {
+  text-decoration: underline;
+}
+.pc1 {
+  vertical-align: top;
+  padding-right: 4em;
+}
+.pc2 {
+  vertical-align: top;
+}
