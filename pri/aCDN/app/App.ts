@@ -10,7 +10,7 @@ function toggleSideNav () {
     if(!navFlag) {
         TweenLite.to('#slider',.2,{x:400})
         TweenLite.to('#container',.2,{x:400})
-     } else {
+    } else {
         TweenLite.to('#slider',.2,{x:0})
         TweenLite.to('#container',.2,{x:0})
     }
@@ -24,3 +24,4 @@ Rainbow.onHighlight(function(block) {
 })
 
 forward('why','why')
+
