@@ -1,12 +1,17 @@
 console.log('0')
 
 
-var menuBtn = document.querySelector('.topcoat-icon--menu-stack');
-menuBtn.addEventListener('click', showSidemenu, false);
-function showSidemenu () {
+var navFlag = false;
+var navBtn = document.querySelector('.topcoat-icon--menu-stack');
+navBtn.addEventListener('click', toggleSideNav, false);
+function toggleSideNav () {
     console.log('side')
-    var container = document.querySelector('#container');
-    container.classList.toggle('opened');
-    var slider = document.querySelector('#slider');
-    slider.classList.toggle('opened');
+    if(!navFlag) {
+        TweenLite.to('#slider',.2,{x:400})
+        TweenLite.to('#container',.2,{x:400})
+     } else {
+        TweenLite.to('#slider',.2,{x:0})
+        TweenLite.to('#container',.2,{x:0})
+    }
+    navFlag = !navFlag;
 }
