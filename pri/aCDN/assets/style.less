@@ -1,22 +1,13 @@
 
-.container--sidemenu {
-  position:fixed;
-  width:400px;
-  left:-400px;
-  z-index:9;
-}
 
 .on-top {
-  z-index:10;
+  z-index:9;
 }
 
 html, body {
   height:100%;
 }
 
-body {
-  overflow-x: hidden;
-}
 
 .full-height {
   height:100%;
@@ -26,26 +17,41 @@ body {
   width:100%;
 }
 
-#header  {
-  top: 0  ;
-  position: fixed ;
+body {
+  //overflow: hidden;
+}
+
+
+.container--sidemenu {
+  position:absolute;
+  width:400px;
+  left:-400px;
   z-index:11;
+}
+
+#container {
+  top: 0px ;
+  position: relative ;
+  overflow: visible;
+}
+
+#header  {
+  top: 0px ;
+  position: fixed ;
+  z-index:10;
 }
 
 .content {
   background: #dfe2e2;
   margin:0;
   padding: 1rem;
-  top: 0  ;
-  position: fixed ;
-  overflow: hidden;
 }
 
 #kontainer {
   top:4rem;
   position: relative ;
-  overflow-x:auto;
-  overflow-y:show;
+
+
 }
 
 #code1 {

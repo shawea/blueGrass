@@ -29,7 +29,6 @@ Recommended but not required:
 * tablet (easy to port to both laptops and phones from a tablet)
 * Zepto js (or jQuery currently required)
 * Topcoat css (or BootStrap or Foundation, etc.)
-* Snap js
 * Signals js
 * Cordova (native IOS and Android is for n00bs)
 * Hasher js
