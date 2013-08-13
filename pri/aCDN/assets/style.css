@@ -1,6 +1,3 @@
-.on-top {
-  z-index: 9;
-}
 html,
 body {
   height: 100%;
@@ -11,26 +8,29 @@ body {
 .full-width {
   width: 100%;
 }
-.container--sidemenu {
+.content {
+  background: #dfe2e2;
+  margin: 0;
+  padding: 1rem;
+}
+#slider {
   position: fixed;
+  top: 4.5rem;
   width: 400px;
-  left: -400px;
+  left: -407px;
   z-index: 100;
+  border: 1px solid gray;
+  border-radius: 3px;
+  box-shadow: 5px 5px 2px #888;
 }
 #container {
   top: 0px ;
   position: absolute ;
 }
-#header {
-  top: 0px !important;
-  position: fixed !important;
+header {
+  top: 0px ;
+  position: fixed ;
   z-index: 9;
-  width: 100%;
-}
-.content {
-  background: #dfe2e2;
-  margin: 0;
-  padding: 1rem;
 }
 #kontainer {
   top: 4rem;
