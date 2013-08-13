@@ -1,5 +1,4 @@
 
-
 .on-top {
   z-index:9;
 }
@@ -21,24 +20,23 @@ body {
   //overflow: hidden;
 }
 
-
 .container--sidemenu {
-  position:absolute;
+  position:fixed;
   width:400px;
   left:-400px;
-  z-index:11;
+  z-index:100;
 }
 
 #container {
   top: 0px ;
-  position: relative ;
-  overflow: visible;
+  position: absolute ;
 }
 
 #header  {
-  top: 0px ;
-  position: fixed ;
-  z-index:10;
+  top: 0px !important;
+  position: fixed !important;
+  z-index:9;
+  width: 100%;
 }
 
 .content {
@@ -50,7 +48,7 @@ body {
 #kontainer {
   top:4rem;
   position: relative ;
-
+  z-index:1;
 
 }
 
