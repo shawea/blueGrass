@@ -5,10 +5,11 @@
     <title>Primus API</title>
     <META HTTP-EQUIV='Pragma' CONTENT='no-cache'>
     <META HTTP-EQUIV='Expires' CONTENT='-1'>
-    <meta name='viewport' content='initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'>
+    <meta name="viewport" content="width=device-width" />
     <meta name='apple-mobile-web-app-capable' content='yes'>
     <meta name='apple-touch-fullscreen' content='yes'>
     <link href='../../blueGrass/topcoatLib/topcoat-mobile-light.css' rel='stylesheet'>
+    <link href='../../blueGrass/responsive.gs.12col.css' rel='stylesheet'>
     <!-- attribution: derived from http://raw.github.com/shawea/blueGrass -->
     <!--app -->
     <link href='../aCDN/assets/style.css'      rel='stylesheet'>
@@ -19,7 +20,7 @@
     <h3 class='topcoat-list__header'>Menu</h3>
     <ul class='topcoat-list'>
         <li class='topcoat-list__item'>
-            What is Primus API?
+            About
         </li>
         <li class='topcoat-list__item'>
             Pricing
@@ -40,10 +41,26 @@
 <!-- header -->
 <header id='header' class='topcoat-navigation-bar full-width '>
     <div class='topcoat-navigation-bar__item left quarter'>
-
-    </div>
-    <div class='topcoat-navigation-bar__item center half'>
         <h1 class='topcoat-navigation-bar__title'>Primus API</h1>
+    </div>
+    <div id='navMenuCont' class='topcoat-navigation-bar__item center half'>
+    <ul id='navMenu'>
+        <li >
+            About
+        </li>
+        <li >
+            Pricing
+        </li>
+        <li >
+            Tutorial
+        </li>
+        <li >
+            Features
+        </li>
+        <li>
+            Blog
+        </li>
+   </ul>
     </div>
     <div class='topcoat-navigation-bar__item right quarter'>
         <a class='topcoat-icon-button--quiet'>
@@ -52,9 +69,9 @@
     </div>
 </header>
 
-    <div id='kontainer' class='content '>
+    <main id='kontainer' class='content '>
 
-    </div>
+    </main>
 
 </section>
 <script src='//cdnjs.cloudflare.com/ajax/libs/zepto/1.0/zepto.min.js'></script>

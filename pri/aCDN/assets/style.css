@@ -23,6 +23,11 @@ body {
   border-radius: 3px;
   box-shadow: 5px 5px 2px #888;
 }
+#navMenu li {
+  display: inline;
+  list-style-type: none;
+  padding-right: 20px;
+}
 #container {
   top: 0px ;
   position: absolute ;
