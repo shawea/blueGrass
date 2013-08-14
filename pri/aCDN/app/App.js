@@ -21,6 +21,8 @@ function toggleSideNav() {
 Rainbow.onHighlight(function (block) {
     console.log('was highlighted');
     TweenLite.from('#code1', .3, { autoAlpha: 0 });
+    var split = new SplitText("#code1");
+    TweenMax.staggerFrom(split.lines, .4, { y: -100, autoAlpha: 0, ease: Elastic.easeOut }, 0.1);
 });
 
 forward('why', 'why');
