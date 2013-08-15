@@ -102,3 +102,7 @@ function getGuerryString(key) {
     return match && decodeURIComponent(match[1].replace(/\+/g, " "));
 }
 
+
+window.onerror = function(msg, uri, line) {
+    console.log(msg + uri + line);
+}

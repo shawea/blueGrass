@@ -17,7 +17,7 @@ Here is the goal of the type of application you can/should build:
 For example, we can animate a div/section after loading. But the key to blueGrass is that it is hard to do nice UI in .js views.
 
 To run lab examples:
-open terminal in the directory and 'python -m SimpleHTTPServer' or similar - then surf to ROOT in each folder.
+open terminal in the directory and  run 'simplehttpserver' (via npm) or similar - then surf to ROOT in each folder.
 
 To view, use or download this lib for your app (yes these functions are all there is):
 - http://raw.github.com/shawea/blueGrass/master/blueGrass/blueGrass.js
@@ -25,6 +25,8 @@ To view, use or download this lib for your app (yes these functions are all ther
 Recommended but not required:
 * chrome  (and open the developer console in icognito mode)
 * npm -g install typescript (optional, it's all .js)
+* npm -g install simplehttpserver (optional)
+* npm -g install less (optional, it's all css)
 * WebStorm IDE (or  Sublime )
 * tablet (easy to port to both laptops and phones from a tablet)
 * Zepto js (or jQuery currently required)
