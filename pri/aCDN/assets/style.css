@@ -30,15 +30,17 @@ body {
 }
 #container {
   top: 0px ;
+  left: 0px ;
   position: absolute ;
 }
 header {
   top: 0px ;
+  left: 0px;
   position: fixed ;
-  z-index: 9;
+  z-index: 50;
 }
 #kontainer {
   top: 4rem;
-  position: relative ;
+  position: absolute  ;
   z-index: 1;
 }

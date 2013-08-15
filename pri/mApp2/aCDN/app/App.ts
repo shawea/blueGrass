@@ -13,8 +13,11 @@ function toggleSideNav () {
     console.log('side')
     if(!navFlag) {
         TweenLite.to('#slider',.2,{x:405})
+        TweenLite.to('#kontainer',.2,{x:405})
+
     } else {
         TweenLite.to('#slider',.2,{x:0})
+        TweenLite.to('#kontainer',.2,{x:0})
     }
     navFlag = !navFlag
 }
