@@ -4,7 +4,6 @@
 */
 
 declare var $;
-declare var hasher;// router
 
 //presenter section
 /**
@@ -90,7 +89,15 @@ function cleanUpViews(i:number):void { //GC
 	//console.log(views.length)
 }//()
 
+
 // misc utils section
+function createEvent(typ:string) {
+    var evt = document.createEventObject(typ)
+    evt.initEvent(typ,true, true)
+    return evt
+}
+
+
 function isEmailValid(email) {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
@@ -108,12 +115,14 @@ window.onerror = function(msg, uri, line) {
 }
 
 
-function browserInfo() {
+function getBrowserInfo() {
     var o = new Object()
-    o.p=window.devicePixelRatio
-    o.w = document.documentElement.clientWidth
+    o.pixR=window.devicePixelRatio
+    o.cw = document.documentElement.clientWidth
+    o.w= window.innerWidth
+    o.h = window.innerHeight
     return o
-
-
 }
+console.log(JSON.stringify(getBrowserInfo()))
+
 

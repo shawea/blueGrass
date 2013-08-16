@@ -1,4 +1,4 @@
-viewDir = '../aCDN/view/';
+viewDir = 'aCDN/view/';
 console.log('1');
 
 var navFlag = false;

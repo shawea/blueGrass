@@ -1,4 +1,4 @@
-viewDir = '../aCDN/view/'
+viewDir = 'aCDN/view/'
 console.log('v0.01')
 
 class Welcome implements IPresenter {

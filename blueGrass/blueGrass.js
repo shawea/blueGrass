@@ -34,6 +34,12 @@ function cleanUpViews(i) {
     }
 }
 
+function createEvent(typ) {
+    var evt = document.createEventObject(typ);
+    evt.initEvent(typ, true, true);
+    return evt;
+}
+
 function isEmailValid(email) {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
@@ -49,10 +55,13 @@ window.onerror = function (msg, uri, line) {
     console.log(msg + uri + line);
 };
 
-function browserInfo() {
+function getBrowserInfo() {
     var o = new Object();
-    o.p = window.devicePixelRatio;
-    o.w = document.documentElement.clientWidth;
+    o.pixR = window.devicePixelRatio;
+    o.cw = document.documentElement.clientWidth;
+    o.w = window.innerWidth;
+    o.h = window.innerHeight;
     return o;
 }
+console.log(JSON.stringify(getBrowserInfo()));
 //@ sourceMappingURL=blueGrass.js.map
