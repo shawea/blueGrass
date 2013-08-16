@@ -5,8 +5,9 @@
     <meta charset='utf-8'>
     <META HTTP-EQUIV='Pragma' CONTENT='no-cache'>
     <META HTTP-EQUIV='Expires' CONTENT='-1'>
+    <!--script src="http://jsconsole.com/remote.js?cek"></script-->
     <title>Primus API</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width">
     <meta name='apple-mobile-web-app-capable' content='yes'>
     <meta name='apple-touch-fullscreen' content='yes'>
     <link href='/blueGrass/topcoatLib/topcoat-mobile-light.css' rel='stylesheet'>
@@ -63,7 +64,7 @@
 </section>
 <script>// zepto or jq
 if('__proto__' in {}) {
-    document.write('<script src="/blueGrass/libs/zepto.js"><\/script>')
+    document.write('<script src="/blueGrass/libs/zepto.min.js"><\/script>')
     console.log('z')
 }   else {
     document.write('<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"><\/script>')
@@ -71,9 +72,10 @@ if('__proto__' in {}) {
 }
 </script>
 
-<script src='/blueGrass/TweenLite.js'></script>
-<script src='/blueGrass/blueGrass.js'></script>
 <script src='/blueGrass/fastclick.js'></script>
+<script src='/blueGrass/TweenLite.min.js'></script>
+<script src='/blueGrass/CSSPlugin.min.js'></script>
+<script src='/blueGrass/blueGrass.js'></script>
 <!-- app: -->
 <script src='aCDN/app/App.js'></script>
 

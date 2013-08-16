@@ -1,5 +1,5 @@
 # blueGrass
- (king) blueGrass is a few home made function that could help you create stunning & magical UX, cross platfrom, mobile-first, SPA (Single Page Applications).
+ (king) blueGrass is a few home made function that could help you create stunning & magical UX, cross platfrom, mobile-first, SPA (Single Page Applications), creative and interactive.
 
 Licensed under Attribution Assurance,
 - http://opensource.org/licenses/AAL

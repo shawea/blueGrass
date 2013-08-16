@@ -12,13 +12,6 @@ html, body {
   width:100%;
 }
 
-.content {
-  background: #dfe2e2;
-  margin:0;
-  padding: 1rem;
-}
-
-
 #slider {
   position:fixed;
   top:4.5rem;
@@ -39,6 +32,7 @@ html, body {
   top: 0px ;
   left: 0px ;
   position: absolute ;
+  width: 100%;
 }
 
 header  {
@@ -50,20 +44,32 @@ header  {
 
 #kontainer {
   top:4rem;
+  left:0px;
   position: absolute  ;
+  width: 100%;
   z-index:1;
 
 }
 
 /////////////////////////////
-#about {
+.about {
   width: 100%;
-  background: url(about_1.jpg) no-repeat center center fixed;
+  background: url(about_1.jpg) no-repeat scroll center top transparent;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;;
   min-height: 600px;
-  margin-top: -60px;
-  padding-top:160px;
-  text-align:center;
+
+}
+
+.about_txt {
+  text-align:right;
+  font-size: 3rem;
+  margin-right: 3rem;
+}
+
+.bold {
+  font-size: 5rem;
+  font-weight: 900;
+  line-height: 4rem;
 }

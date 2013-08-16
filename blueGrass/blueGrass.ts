@@ -123,6 +123,6 @@ function getBrowserInfo() {
     o.h = window.innerHeight
     return o
 }
-console.log(JSON.stringify(getBrowserInfo()))
+console.log(getBrowserInfo())
 
 

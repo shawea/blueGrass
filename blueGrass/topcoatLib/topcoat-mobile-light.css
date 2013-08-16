@@ -17,8 +17,8 @@ body {
   padding: 0;
   background: #dfe2e2;
   color: #000;
-  font: 16px 'Source Sans', helvetica, arial, sans-serif;
-  font-weight: 200;
+  font: 1.1rem 'Source Sans', helvetica, arial, sans-serif;
+  font-weight: 220;
   text-rendering: optimizeLegibility;
 }
 .topcoat-icon--menu-stack {

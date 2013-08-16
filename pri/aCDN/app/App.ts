@@ -23,15 +23,21 @@ function toggleSideNav () {
     navFlag = !navFlag
 }
 
-//Rainbow.onHighlight(function(block) {
 
-
-forward('why','why',onWhy)
+//forward('why','why',onWhy)
 
 function onWhy(id) {
-    console.log( 'was highlighted')
+    console.log( 'loaded')
     TweenLite.from('#code1',.2, {x:200})
     TweenLite.from('#code2',1, {x:600})
     TweenLite.from('#code3',2, {x:1200})
 }
 
+
+
+
+window.addEventListener('load', function() {
+    forward('about','about')
+    console.log('loaded')
+    FastClick.attach(document.body);
+}, false);
