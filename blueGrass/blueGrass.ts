@@ -106,3 +106,14 @@ function getGuerryString(key) {
 window.onerror = function(msg, uri, line) {
     console.log(msg + uri + line);
 }
+
+
+function browserInfo() {
+    var o = new Object()
+    o.p=window.devicePixelRatio
+    o.w = document.documentElement.clientWidth
+    return o
+
+
+}
+
