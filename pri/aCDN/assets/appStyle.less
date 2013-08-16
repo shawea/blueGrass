@@ -3,7 +3,6 @@ html, body {
   height:100%;
 }
 
-
 .full-height {
   height:100%;
 }
@@ -54,15 +53,18 @@ header  {
 /////////////////////////////
 .about {
   width: 100%;
-  background: url(about_1.jpg) no-repeat scroll center top transparent;
+  background: url(about_1.jpg) no-repeat  center top fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
-  background-size: cover;;
-  min-height: 600px;
+  background-size: cover;
+  height: 28rem;
+  display: block;
+  position: absolute;
 
 }
 
 .about_txt {
+  padding-top:1.2rem;
   text-align:right;
   font-size: 3rem;
   margin-right: 3rem;
@@ -72,4 +74,15 @@ header  {
   font-size: 5rem;
   font-weight: 900;
   line-height: 4rem;
+}
+
+.more_txt {
+  text-align:center;
+  margin: 1rem;
+  font-size: 2rem;
+}
+
+
+.pad {
+  padding: 1rem;
 }
