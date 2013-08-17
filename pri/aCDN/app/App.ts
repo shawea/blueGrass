@@ -3,10 +3,10 @@ declare var TweenLite;
 
 window.addEventListener('load', function() {
     viewDir = 'aCDN/view/'
-    console.log('0.22')
-    console.log(getBrowserInfo())
+    console.log('0.6')
+    //console.log(getBrowserInfo())
     FastClick.attach(document.body)
-    new App()
+    app = new App()
 })
 
 
@@ -41,12 +41,14 @@ class About implements IPresenter{
 
 }
 
+
 class App {
     private about:About;
     private tut:Tut;
     private navFlag:bool;
     viewSignal:any;
     constructor () {
+
         //setup slider
         this.navFlag = false
         var menu = document.getElementById('navMenu')
@@ -54,28 +56,36 @@ class App {
         var nav = document.getElementById('navBut')
         nav.addEventListener('click', this.toggleSideNav, false)
 
+
         //create views
         this.viewSignal = new signals.Signal();
         this.about = new About(this)
         this.tut = new Tut(this)
 
         //setup nav
-        var _this = this;//ctx
         var aboutBut = document.getElementById('aboutBut')
-        aboutBut.addEventListener('click', function() {_this.display('about')})
+        aboutBut.addEventListener('click', function() {setHash('about')})
         var tutBut = document.getElementById('tutBut')
-        tutBut.addEventListener('click', function() {_this.display('tut')})
+        tutBut.addEventListener('click', function() {setHash('tut')})
 
+        window.addEventListener('hashchange', this.onHashChanged)
 
-        //show pg1
-        this.viewSignal.dispatch('about')
     }//()
 
-    private display(view:string, ctx:any):any {
-        this.viewSignal.dispatch(view)
-        this.toggleSideNav()
+    onHashChanged() {
+        var view = getHash()
+        if(view==null)
+            view='about' //first
+        console.log('changed ' + view)
+        app.viewSignal.dispatch(getHash())
+        app.toggleSideNavOff()
         cleanUpViews(0)
-        this.toggleSideNav()
+    }
+
+
+    toggleSideNavOff () {
+        TweenLite.to('#slider',.2,{x:0})
+        TweenLite.to('#kontainer',.2,{x:0})
     }
 
     private toggleSideNav () {
@@ -83,10 +93,8 @@ class App {
         if(!this.navFlag) {
             TweenLite.to('#slider',.2,{x:405})
             TweenLite.to('#kontainer',.2,{x:405})
-
         } else {
-            TweenLite.to('#slider',.2,{x:0})
-            TweenLite.to('#kontainer',.2,{x:0})
+            app.toggleSideNavOff()
         }
         this.navFlag = !this.navFlag
     }//()

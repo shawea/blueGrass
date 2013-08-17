@@ -1,44 +1,29 @@
-/* v0.0809 - 95% of times you should not change this file
+/** v0.0809 - 95% of times you should not change this file
  (c) puppetMaster3  http://github.com/shawea/blueGrass
   Attribution Assurance License @ http://github.com/shawea/blueGrass
 */
 
 declare var $;
 
+
 //presenter section
 /**
- * Each view should position and manage self and receive the app in constructor
+ * Each 'view' should position and manage self and receive the app in constructor
  */
 interface IPresenter {// ~ composition, a 'section' presenter to manage a views/sections (and hold state/model ex, when view is cleanedUp)
     _transition(transEnum:number, ctx:any):any; //enum
 }
 
+/**
+ * App should be light, start up and dispatch
+ */
 interface IApp{ // has the app + hasher, the global app , does not animate or open, may have signals
 	//_onUrlChanged(newUrl, oldUrl):void;
 	_display(view:string, ctx:any):any;
-    /*template code in dispatch
-    hasher.changed.active = false; //disable changed signal
-    hasher.setHash(view); //set hash without dispatching changed signal
-    hasher.changed.active = true;
-    */
     setBussy(bussy:bool, timeOut:number):any;//stop other events
     getEventSignal(signalType:string):any;
 }
 
-
-/**
- *  should be first line in app constructor
- *  @param app
-
-function initHasher(ainst) {
- 	hasher.changed.add(ainst._onUrlChanged, ainst)
-	hasher.initialized.add(ainst._onUrlChanged, ainst)
-	hasher.prependHash = '!' // SEO
-	hasher.init()
-    console.log('hRouter ready')
-}
- console.log("clicked " + firstname)
-/*
 
 /*
 SPA section
@@ -59,7 +44,7 @@ function open(ht, elSel, cb_):void {
 	})
 }//()
 
-/*
+/**
  *  calls back with new #id   -- of course it changes the id
  */
 function forward(ht, id, cb_):void {
@@ -80,6 +65,13 @@ function forward(ht, id, cb_):void {
 	})
 }//()
 
+
+
+
+/**
+ * How many views to allow in #kontainer
+ * @param i
+ */
 function cleanUpViews(i:number):void { //GC
 	var views = $('#kontainer').children()
 	console.log(views.length)
@@ -91,14 +83,24 @@ function cleanUpViews(i:number):void { //GC
 	//console.log(views.length)
 }//()
 
-
-// misc utils section
-function createEvent(typ:string) {
-    var evt = document.createEventObject(typ)
-    evt.initEvent(typ,true, true)
-    return evt
+function getHash():string{
+    var h:string= window.location.hash;
+    if(h!=null&& h.length>1) {
+        return h.slice(1)
+    }
+    return null;
+}
+function setHash(v:string) {
+    window.location.hash = v
+    //history.pushState(null,null,'#'+v)
+}
+function clearHash() {
+    window.location.hash=''
 }
 
+
+
+/////////////////
 
 function isEmailValid(email) {
     var re = /\S+@\S+\.\S+/;
@@ -116,7 +118,10 @@ window.onerror = function(msg, uri, line) {
     console.log(msg + uri + line);
 }
 
-
+/**
+ * Returns some resposnive info
+ * @returns {Object}
+ */
 function getBrowserInfo() {
     var o = new Object()
     o.pixR=window.devicePixelRatio

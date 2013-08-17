@@ -1,9 +1,9 @@
 window.addEventListener('load', function () {
     viewDir = 'aCDN/view/';
-    console.log('0.22');
-    console.log(getBrowserInfo());
+    console.log('0.6');
+
     FastClick.attach(document.body);
-    new App();
+    app = new App();
 });
 
 var Tut = (function () {
@@ -48,23 +48,30 @@ var App = (function () {
         this.about = new About(this);
         this.tut = new Tut(this);
 
-        var _this = this;
         var aboutBut = document.getElementById('aboutBut');
         aboutBut.addEventListener('click', function () {
-            _this.display('about');
+            setHash('about');
         });
         var tutBut = document.getElementById('tutBut');
         tutBut.addEventListener('click', function () {
-            _this.display('tut');
+            setHash('tut');
         });
 
-        this.viewSignal.dispatch('about');
+        window.addEventListener('hashchange', this.onHashChanged);
     }
-    App.prototype.display = function (view, ctx) {
-        this.viewSignal.dispatch(view);
-        this.toggleSideNav();
+    App.prototype.onHashChanged = function () {
+        var view = getHash();
+        if (view == null)
+            view = 'about';
+        console.log('changed ' + view);
+        app.viewSignal.dispatch(getHash());
+        app.toggleSideNavOff();
         cleanUpViews(0);
-        this.toggleSideNav();
+    };
+
+    App.prototype.toggleSideNavOff = function () {
+        TweenLite.to('#slider', .2, { x: 0 });
+        TweenLite.to('#kontainer', .2, { x: 0 });
     };
 
     App.prototype.toggleSideNav = function () {
@@ -73,8 +80,7 @@ var App = (function () {
             TweenLite.to('#slider', .2, { x: 405 });
             TweenLite.to('#kontainer', .2, { x: 405 });
         } else {
-            TweenLite.to('#slider', .2, { x: 0 });
-            TweenLite.to('#kontainer', .2, { x: 0 });
+            app.toggleSideNavOff();
         }
         this.navFlag = !this.navFlag;
     };

@@ -34,10 +34,18 @@ function cleanUpViews(i) {
     }
 }
 
-function createEvent(typ) {
-    var evt = document.createEventObject(typ);
-    evt.initEvent(typ, true, true);
-    return evt;
+function getHash() {
+    var h = window.location.hash;
+    if (h != null && h.length > 1) {
+        return h.slice(1);
+    }
+    return null;
+}
+function setHash(v) {
+    window.location.hash = v;
+}
+function clearHash() {
+    window.location.hash = '';
 }
 
 function isEmailValid(email) {
