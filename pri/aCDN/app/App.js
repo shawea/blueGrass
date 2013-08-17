@@ -28,8 +28,7 @@ function onWhy(id) {
 }
 
 window.addEventListener('load', function () {
-    forward('about', 'about');
-    console.log('loaded');
     FastClick.attach(document.body);
+    forward('tut', 'tut');
 }, false);
 //@ sourceMappingURL=App.js.map

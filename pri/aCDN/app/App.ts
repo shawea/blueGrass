@@ -2,7 +2,6 @@
 viewDir = 'aCDN/view/'
 console.log('1')
 
-
 var navFlag = false
 var navBtn = document.querySelector('.topcoat-icon--menu-stack')
 navBtn.addEventListener('click', toggleSideNav, false)
@@ -23,7 +22,6 @@ function toggleSideNav () {
     navFlag = !navFlag
 }
 
-
 //forward('why','why',onWhy)
 
 function onWhy(id) {
@@ -33,11 +31,11 @@ function onWhy(id) {
     TweenLite.from('#code3',2, {x:1200})
 }
 
-
-
+//forward('about','about')
 
 window.addEventListener('load', function() {
-    forward('about','about')
-    console.log('loaded')
     FastClick.attach(document.body);
+    forward('tut','tut')
+
+
 }, false);

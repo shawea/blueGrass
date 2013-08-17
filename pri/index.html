@@ -5,9 +5,9 @@
     <meta charset='utf-8'>
     <META HTTP-EQUIV='Pragma' CONTENT='no-cache'>
     <META HTTP-EQUIV='Expires' CONTENT='-1'>
-    <!--script src="http://jsconsole.com/remote.js?cek"></script-->
+    <!--script src='http://jsconsole.com/remote.js?cek'></script-->
     <title>Primus API</title>
-    <meta name="viewport" content="width=device-width">
+    <meta name='viewport' content='width=device-width'>
     <meta name='apple-mobile-web-app-capable' content='yes'>
     <meta name='apple-touch-fullscreen' content='yes'>
     <link href='/blueGrass/libs/gridism.css' rel='stylesheet'>
@@ -36,9 +36,12 @@
     <!-- header -->
     <header id='header' class='topcoat-navigation-bar full-width '>
         <div class='topcoat-navigation-bar__item left quarter'>
-            <h1 class='topcoat-navigation-bar__title'><b>Primus</b></h1>
+            <a class='topcoat-icon-button--quiet'>
+                <span class='topcoat-icon topcoat-icon--menu-stack'></span>
+            </a>
+            <b>Primus</b>
         </div>
-        <div id='navMenuCont' class='topcoat-navigation-bar__item  half'>
+        <div id='navMenuCont' class='topcoat-navigation-bar__item center half'>
             <ul id='navMenu'>
                 <li >
                     About
@@ -52,9 +55,7 @@
             </ul>
         </div>
         <div class='topcoat-navigation-bar__item right quarter'>
-            <a class='topcoat-icon-button--quiet'>
-                <span class='topcoat-icon topcoat-icon--menu-stack'></span>
-            </a>
+            <button id='login' class='topcoat-button--cta' style='margin-top: .5rem' >Login/Sign Up</button>
         </div>
     </header>
 

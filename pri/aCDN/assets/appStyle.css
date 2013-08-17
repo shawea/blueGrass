@@ -41,6 +41,26 @@ header {
   width: 100%;
   z-index: 1;
 }
+table {
+  color: #333333;
+  border-width: 1px;
+  border-color: #666666;
+  border-collapse: collapse;
+}
+table th {
+  border-width: 1px;
+  padding: .5rem;
+  border-style: solid;
+  border-color: #666666;
+  background-color: #dedede;
+}
+table td {
+  border-width: 1px;
+  padding: .5rem;
+  border-style: solid;
+  border-color: #666666;
+  background-color: #ffffff;
+}
 .about {
   width: 100%;
   background: url(about_1.jpg) no-repeat center top fixed;
