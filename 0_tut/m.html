@@ -1,0 +1,44 @@
+<html><head></head><body>
+<form>
+    First Name<input type='text' id='firstname' class='field'><br>
+    Last Name<input type='text' id='lastname' class='field'><br>
+<button id='lookup' onclick='return false'>Look Up</button>
+<button id='create' onclick='return false'>Create Name</button>
+</form>
+<div id='kontainer'></div>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.1/jquery.min.js'></script>
+<script id='primusAPI' data-app_key='dduxlbvqtex' src='http://ca_1.primusapi.com/acdn/libs/cloudAPI.js' ></script>
+<script>
+cAPI=new CloudAPI()
+
+var newAppBut = document.getElementById('create')
+newAppBut.addEventListener('click', function(e) {
+    var ename =new Object()
+    var firstname = $('#firstname').val()
+    var lastname = $('#lastname').val()
+    ename.firstname=firstname
+    ename.lastname=lastname
+    console.log('clicked ' + firstname +', ' + lastname)
+    cAPI.insert('nameapp',ename, onPK)
+})
+
+function onPK(data,er){
+    console.log('back')
+    console.log(data)
+}
+
+$('#lookup').click(function(){
+            var ename =new Object()
+            var firstname = $('#firstname').val()
+            ename.firstname=firstname
+            console.log('clicked ' + firstname)
+            cAPI.select('nameapp', ename, onFound)
+})
+
+function onFound(data){
+    console.log(data.array_)
+    $('#firstname').val(data.array_[0].firstname)
+    $('#lastname').val(data.array_[0].lastname)
+}
+
+</script></body></html>

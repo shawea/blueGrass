@@ -7,20 +7,22 @@ declare var $;
 
 //presenter section
 /**
- * Each view should position and manage self
+ * Each view should position and manage self and receive the app in constructor
  */
-interface IPresenter {// ~ composition, a section? presenter to manage a views/sections (and hold state/model ex, when view is cleanedUp)
-	_transition(transEnum:number, ctx:any):void; //enum
+interface IPresenter {// ~ composition, a 'section' presenter to manage a views/sections (and hold state/model ex, when view is cleanedUp)
+    _transition(transEnum:number, ctx:any):any; //enum
 }
 
 interface IApp{ // has the app + hasher, the global app , does not animate or open, may have signals
 	//_onUrlChanged(newUrl, oldUrl):void;
-	dispatch(view:string, ctx:any):bool; //returns FALSE
+	_display(view:string, ctx:any):any;
     /*template code in dispatch
     hasher.changed.active = false; //disable changed signal
     hasher.setHash(view); //set hash without dispatching changed signal
     hasher.changed.active = true;
     */
+    setBussy(bussy:bool, timeOut:number):any;//stop other events
+    getEventSignal(signalType:string):any;
 }
 
 
@@ -123,6 +125,6 @@ function getBrowserInfo() {
     o.h = window.innerHeight
     return o
 }
-console.log(getBrowserInfo())
+
 
 

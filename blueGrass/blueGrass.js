@@ -63,5 +63,4 @@ function getBrowserInfo() {
     o.h = window.innerHeight;
     return o;
 }
-console.log(getBrowserInfo());
 //@ sourceMappingURL=blueGrass.js.map
