@@ -1,6 +1,6 @@
 window.addEventListener('load', function () {
     viewDir = 'aCDN/view/';
-    console.log('0.6');
+    console.log('0.8');
 
     FastClick.attach(document.body);
     app = new App();
@@ -57,12 +57,19 @@ var App = (function () {
             setHash('tut');
         });
 
+        this.loadFirst();
         window.addEventListener('hashchange', this.onHashChanged);
     }
-    App.prototype.onHashChanged = function () {
+    App.prototype.loadFirst = function () {
         var view = getHash();
         if (view == null)
             view = 'about';
+        console.log('first ' + view);
+        this.viewSignal.dispatch(getHash());
+    };
+
+    App.prototype.onHashChanged = function () {
+        var view = getHash();
         console.log('changed ' + view);
         app.viewSignal.dispatch(getHash());
         app.toggleSideNavOff();

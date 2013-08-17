@@ -3,7 +3,7 @@ declare var TweenLite;
 
 window.addEventListener('load', function() {
     viewDir = 'aCDN/view/'
-    console.log('0.6')
+    console.log('0.8')
     //console.log(getBrowserInfo())
     FastClick.attach(document.body)
     app = new App()
@@ -56,7 +56,6 @@ class App {
         var nav = document.getElementById('navBut')
         nav.addEventListener('click', this.toggleSideNav, false)
 
-
         //create views
         this.viewSignal = new signals.Signal();
         this.about = new About(this)
@@ -68,14 +67,22 @@ class App {
         var tutBut = document.getElementById('tutBut')
         tutBut.addEventListener('click', function() {setHash('tut')})
 
+        //SPA
+        this.loadFirst()
         window.addEventListener('hashchange', this.onHashChanged)
 
     }//()
 
-    onHashChanged() {
+    loadFirst() {
         var view = getHash()
         if(view==null)
             view='about' //first
+        console.log('first ' + view)
+        this.viewSignal.dispatch(getHash())
+    }
+
+    onHashChanged() {
+        var view = getHash()
         console.log('changed ' + view)
         app.viewSignal.dispatch(getHash())
         app.toggleSideNavOff()
