@@ -1,6 +1,6 @@
 window.addEventListener('load', function () {
     viewDir = 'aCDN/view/';
-    console.log('0.8');
+    console.log('0.01');
 
     FastClick.attach(document.body);
     app = new App();
@@ -9,7 +9,7 @@ window.addEventListener('load', function () {
 var Tut = (function () {
     function Tut(app_) {
         this.app = app_;
-        app_.viewSignal.add(this.onView, this);
+        app_.hashSignal.add(this.onView, this);
     }
     Tut.prototype.transition = function (transEnum, ctx) {
         forward('tut', 'tut');
@@ -24,7 +24,7 @@ var Tut = (function () {
 var About = (function () {
     function About(app_) {
         this.app = app_;
-        app_.viewSignal.add(this.onView, this);
+        app_.hashSignal.add(this.onView, this);
     }
     About.prototype.transition = function (transEnum, ctx) {
         forward('about', 'about');
@@ -44,9 +44,13 @@ var App = (function () {
         var nav = document.getElementById('navBut');
         nav.addEventListener('click', this.toggleSideNav, false);
 
-        this.viewSignal = new signals.Signal();
+        this.hashSignal = new signals.Signal();
         this.about = new About(this);
         this.tut = new Tut(this);
+
+        this.loadFirst();
+
+        window.addEventListener('hashchange', this.onHashChanged);
 
         var aboutBut = document.getElementById('aboutBut');
         aboutBut.addEventListener('click', function () {
@@ -56,22 +60,19 @@ var App = (function () {
         tutBut.addEventListener('click', function () {
             setHash('tut');
         });
-
-        this.loadFirst();
-        window.addEventListener('hashchange', this.onHashChanged);
     }
     App.prototype.loadFirst = function () {
         var view = getHash();
         if (view == null)
             view = 'about';
         console.log('first ' + view);
-        this.viewSignal.dispatch(getHash());
+        this.hashSignal.dispatch(view);
     };
 
     App.prototype.onHashChanged = function () {
         var view = getHash();
         console.log('changed ' + view);
-        app.viewSignal.dispatch(getHash());
+        app.hashSignal.dispatch(view);
         app.toggleSideNavOff();
         cleanUpViews(0);
     };

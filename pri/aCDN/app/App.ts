@@ -1,20 +1,18 @@
-
 declare var TweenLite;
 
 window.addEventListener('load', function() {
     viewDir = 'aCDN/view/'
-    console.log('0.8')
+    console.log('0.01')
     //console.log(getBrowserInfo())
     FastClick.attach(document.body)
     app = new App()
 })
 
-
 class Tut {
     private app:App;
     constructor(app_:App) {
         this.app = app_;
-        app_.viewSignal.add(this.onView, this)
+        app_.hashSignal.add(this.onView, this)
     }
     private transition(transEnum:number, ctx:any):any {
         forward('tut','tut')
@@ -29,7 +27,7 @@ class About implements IPresenter{
     private app:App;
     constructor(app_:App) {
         this.app = app_;
-        app_.viewSignal.add(this.onView, this)
+        app_.hashSignal.add(this.onView, this)
     }
     private transition(transEnum:number, ctx:any):any {
         forward('about','about')
@@ -38,15 +36,13 @@ class About implements IPresenter{
         if('about'==view)
             this.transition()
     }//()
-
 }
-
 
 class App {
     private about:About;
     private tut:Tut;
     private navFlag:bool;
-    viewSignal:any;
+    hashSignal:any;
     constructor () {
 
         //setup slider
@@ -57,19 +53,19 @@ class App {
         nav.addEventListener('click', this.toggleSideNav, false)
 
         //create views
-        this.viewSignal = new signals.Signal();
+        this.hashSignal = new signals.Signal();
         this.about = new About(this)
         this.tut = new Tut(this)
+
+        this.loadFirst()
+        //DeepLink
+        window.addEventListener('hashchange', this.onHashChanged)
 
         //setup nav
         var aboutBut = document.getElementById('aboutBut')
         aboutBut.addEventListener('click', function() {setHash('about')})
         var tutBut = document.getElementById('tutBut')
         tutBut.addEventListener('click', function() {setHash('tut')})
-
-        //SPA
-        this.loadFirst()
-        window.addEventListener('hashchange', this.onHashChanged)
 
     }//()
 
@@ -78,13 +74,13 @@ class App {
         if(view==null)
             view='about' //first
         console.log('first ' + view)
-        this.viewSignal.dispatch(getHash())
+        this.hashSignal.dispatch(view)
     }
 
     onHashChanged() {
         var view = getHash()
         console.log('changed ' + view)
-        app.viewSignal.dispatch(getHash())
+        app.hashSignal.dispatch(view)
         app.toggleSideNavOff()
         cleanUpViews(0)
     }
@@ -106,7 +102,6 @@ class App {
         this.navFlag = !this.navFlag
     }//()
 }
-
 
 
 
