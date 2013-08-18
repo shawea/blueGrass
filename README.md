@@ -68,4 +68,4 @@ If you have bugs, issues or want to list a webapp or site that is using blueGras
 
 To get started, start w/ Start structure and copy blueGrass folder contents (and optional 'more' contents) to aCDN/libs and start simplehttpserver.
 
-
+Great is the enemy of Good.

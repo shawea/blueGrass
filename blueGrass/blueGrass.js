@@ -44,9 +44,6 @@ function getHash() {
 function setHash(v) {
     window.location.hash = v;
 }
-function clearHash() {
-    window.location.hash = '';
-}
 
 function isEmailValid(email) {
     var re = /\S+@\S+\.\S+/;
@@ -58,10 +55,6 @@ function getGuerryString(key) {
     var match = location.search.match(new RegExp("[?&]" + key + "=([^&]+)(&|$)"));
     return match && decodeURIComponent(match[1].replace(/\+/g, " "));
 }
-
-window.onerror = function (msg, uri, line) {
-    console.log(msg + uri + line);
-};
 
 function getBrowserInfo() {
     var o = new Object();

@@ -35,7 +35,8 @@ class App {
         wel = new Welcome(this)
         $(window).scroll(function() {
             this.didScroll = true //deBounce
-            })
+        })
+        var _this=this
         setInterval(function() {
             if ( this.didScroll ) {
                 this.didScroll = false
@@ -44,15 +45,13 @@ class App {
                 var docBot = $(document).height() - $(window).height() -20;
 
                 var diff=docBot - docTop
-                app.scrolledSignal.dispatch(diff,app)
+                _this.scrolledSignal.dispatch(diff)
                 this.lastDiff = diff;
             }//fi
-            }, 200)
+        }, 200)
     }//cons
     onEOD(diff) {
         console.log('s'+diff)
     }
 }//class
-app = new App()
-
-
+new App()

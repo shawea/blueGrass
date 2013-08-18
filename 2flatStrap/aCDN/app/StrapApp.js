@@ -33,6 +33,7 @@ var App = (function () {
         $(window).scroll(function () {
             this.didScroll = true;
         });
+        var _this = this;
         setInterval(function () {
             if (this.didScroll) {
                 this.didScroll = false;
@@ -41,7 +42,7 @@ var App = (function () {
                 var docBot = $(document).height() - $(window).height() - 20;
 
                 var diff = docBot - docTop;
-                app.scrolledSignal.dispatch(diff, app);
+                _this.scrolledSignal.dispatch(diff);
                 this.lastDiff = diff;
             }
         }, 200);
@@ -51,5 +52,5 @@ var App = (function () {
     };
     return App;
 })();
-app = new App();
+new App();
 //@ sourceMappingURL=StrapApp.js.map

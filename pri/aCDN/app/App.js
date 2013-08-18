@@ -1,9 +1,9 @@
 window.addEventListener('load', function () {
     viewDir = 'aCDN/view/';
-    console.log('0.01');
+    console.log('0.03');
 
     FastClick.attach(document.body);
-    app = new App();
+    new App();
 });
 
 var Tut = (function () {
@@ -40,9 +40,9 @@ var App = (function () {
     function App() {
         this.navFlag = false;
         var menu = document.getElementById('navMenu');
-        menu.addEventListener('click', this.toggleSideNav, false);
+        menu.addEventListener('click', this.toggleSideNav.bind(this), false);
         var nav = document.getElementById('navBut');
-        nav.addEventListener('click', this.toggleSideNav, false);
+        nav.addEventListener('click', this.toggleSideNav.bind(this), false);
 
         this.hashSignal = new signals.Signal();
         this.about = new About(this);
@@ -50,7 +50,7 @@ var App = (function () {
 
         this.loadFirst();
 
-        window.addEventListener('hashchange', this.onHashChanged);
+        window.addEventListener('hashchange', this._onHashChanged.bind(this));
 
         var aboutBut = document.getElementById('aboutBut');
         aboutBut.addEventListener('click', function () {
@@ -69,11 +69,11 @@ var App = (function () {
         this.hashSignal.dispatch(view);
     };
 
-    App.prototype.onHashChanged = function () {
+    App.prototype._onHashChanged = function () {
         var view = getHash();
         console.log('changed ' + view);
-        app.hashSignal.dispatch(view);
-        app.toggleSideNavOff();
+        this.hashSignal.dispatch(view);
+        this.toggleSideNavOff();
         cleanUpViews(0);
     };
 
@@ -88,7 +88,7 @@ var App = (function () {
             TweenLite.to('#slider', .2, { x: 405 });
             TweenLite.to('#kontainer', .2, { x: 405 });
         } else {
-            app.toggleSideNavOff();
+            this.toggleSideNavOff();
         }
         this.navFlag = !this.navFlag;
     };

@@ -2,10 +2,10 @@ declare var TweenLite;
 
 window.addEventListener('load', function() {
     viewDir = 'aCDN/view/'
-    console.log('0.01')
+    console.log('0.03')
     //console.log(getBrowserInfo())
     FastClick.attach(document.body)
-    app = new App()
+    new App()
 })
 
 class Tut {
@@ -44,13 +44,12 @@ class App {
     private navFlag:bool;
     hashSignal:any;
     constructor () {
-
         //setup slider
         this.navFlag = false
         var menu = document.getElementById('navMenu')
-        menu.addEventListener('click', this.toggleSideNav, false)
+        menu.addEventListener('click', this.toggleSideNav.bind(this), false)
         var nav = document.getElementById('navBut')
-        nav.addEventListener('click', this.toggleSideNav, false)
+        nav.addEventListener('click', this.toggleSideNav.bind(this), false)
 
         //create views
         this.hashSignal = new signals.Signal();
@@ -59,9 +58,9 @@ class App {
 
         this.loadFirst()
         //DeepLink
-        window.addEventListener('hashchange', this.onHashChanged)
+        window.addEventListener('hashchange', this._onHashChanged.bind(this))
 
-        //setup nav
+        //setup menu items
         var aboutBut = document.getElementById('aboutBut')
         aboutBut.addEventListener('click', function() {setHash('about')})
         var tutBut = document.getElementById('tutBut')
@@ -77,11 +76,11 @@ class App {
         this.hashSignal.dispatch(view)
     }
 
-    onHashChanged() {
+    _onHashChanged() {
         var view = getHash()
         console.log('changed ' + view)
-        app.hashSignal.dispatch(view)
-        app.toggleSideNavOff()
+        this.hashSignal.dispatch(view)
+        this.toggleSideNavOff()
         cleanUpViews(0)
     }
 
@@ -97,23 +96,8 @@ class App {
             TweenLite.to('#slider',.2,{x:405})
             TweenLite.to('#kontainer',.2,{x:405})
         } else {
-            app.toggleSideNavOff()
+            this.toggleSideNavOff()
         }
         this.navFlag = !this.navFlag
     }//()
 }
-
-
-
-/*class Why {
- _transition(transEnum:number, ctx:any):any {
- forward('why','why',onWhy)
- }
- onWhy(id) {
- console.log( 'loaded')
- TweenLite.from('#code1',.2, {x:200})
- TweenLite.from('#code2',1, {x:600})
- TweenLite.from('#code3',2, {x:1200})
- }
-
- }*/

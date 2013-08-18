@@ -2,7 +2,6 @@
  (c) puppetMaster3  http://github.com/shawea/blueGrass
   Attribution Assurance License @ http://github.com/shawea/blueGrass
 */
-
 declare var $;
 
 
@@ -10,20 +9,25 @@ declare var $;
 /**
  * Each 'view' should position and manage self and receive the app in constructor
  */
-interface IPresenter {// ~ composition, a 'section' presenter to manage a views/sections (and hold state/model ex, when view is cleanedUp)
+interface IPresenter {// ~ composition, a 'section' presenter to manage a views/sections (and hold state/model ex, when view is cleanedUp). app has no reference to a presneter
     _transition(transEnum:number, ctx:any):any; //enum
 }
 
 /**
  * App should be light, start up and dispatch
  */
-interface IApp{ // has the app + hasher, the global app , does not animate or open, may have signals
-	//_onUrlChanged(newUrl, oldUrl):void;
-	_display(view:string, ctx:any):any;
-    setBussy(bussy:bool, timeOut:number):any;//stop other events
-    getEventSignal(signalType:string):any;
-}
+interface IApp{ // has the app + hasher + event/signalbuss, the global app , does not animate or open, may have signals
+    _onHashChanged()
 
+    setBusy(bussy:bool, timeOut:number):any;//stop other events
+    /**
+     * Returns signal you can add() a listener for
+     * @param signalType
+     */
+    getEvtSignalFor(signalType:string):any;
+    //_display(view:string, ctx:any):any;
+
+}
 
 /*
 SPA section
@@ -66,8 +70,6 @@ function forward(ht, id, cb_):void {
 }//()
 
 
-
-
 /**
  * How many views to allow in #kontainer
  * @param i
@@ -94,14 +96,9 @@ function setHash(v:string) {
     window.location.hash = v
     //history.pushState(null,null,'#'+v)
 }
-function clearHash() {
-    window.location.hash=''
-}
-
 
 
 /////////////////
-
 function isEmailValid(email) {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
@@ -114,12 +111,12 @@ function getGuerryString(key) {
 }
 
 
-window.onerror = function(msg, uri, line) {
+/*window.onerror = function(msg, uri, line) {
     console.log(msg + uri + line);
-}
+} */
 
 /**
- * Returns some resposnive info
+ * Returns some responsive info
  * @returns {Object}
  */
 function getBrowserInfo() {
