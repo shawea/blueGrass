@@ -66,5 +66,6 @@ Things that may not help your UI:
 
 If you have bugs, issues or want to list a webapp or site that is using blueGrass, just file an ticket here on github.
 
-- http://PrimusAPI.com is porting to blueGrass.
+To get started, start w/ Start structure and copy blueGrass folder contents (and optional 'more' contents) to aCDN/libs and start simplehttpserver.
+
 
