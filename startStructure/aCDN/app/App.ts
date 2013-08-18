@@ -1,56 +1,119 @@
-class EnterForm {
+declare var TweenLite;
 
-    _transition(enu,ctx) {
-        forward('enterForm', 'enterForm',this._onLoaded)
+window.addEventListener('load', function() {
+    viewDir = 'aCDN/view/'
+    console.log('0.01')
+    //console.log(getBrowserInfo())
+    FastClick.attach(document.body)
+    app = new App()
+})
+
+class Tut {
+    private app:App;
+    constructor(app_:App) {
+        this.app = app_;
+        app_.hashSignal.add(this.onView, this)
     }
-    _onLoaded(n_id) {
-       cleanUpViews(1)
-       TweenLite.from(
-           document.getElementById(n_id),.5,{x:300})
+    private transition(transEnum:number, ctx:any):any {
+        forward('tut','tut')
+    }
+    private onView(view:string){
+        if('tut'==view)
+            this.transition()
     }
 }
 
-class Posting {
-    constructor() {
-        forward('Posting', 'Posting')
+class About implements IPresenter{
+    private app:App;
+    constructor(app_:App) {
+        this.app = app_;
+        app_.hashSignal.add(this.onView, this)
+    }
+    private transition(transEnum:number, ctx:any):any {
+        forward('about','about')
+    }
+    private onView(view:string){
+        if('about'==view)
+            this.transition()
     }//()
 }
-
 
 class App {
-    frm:EnterForm;
-    pst:Posting;
-    snapper:any;
-    constructor() {//app starts
-        viewDir = '../aCDN/view/'
-        console.log('v0.2')
-        this.frm = new EnterForm()
-        //pst = new Posting()
+    private about:About;
+    private tut:Tut;
+    private navFlag:bool;
+    hashSignal:any;
+    constructor () {
 
-        initHasher(this)
-        this.snapper = new Snap({
-            element: document.getElementById('content')
-        })
-        this.snapper.close()
-    }
-    _onUrlChanged(newUrl, oldUrl) {
-        console.log('newUrl::' ,newUrl)
+        //setup slider
+        this.navFlag = false
+        var menu = document.getElementById('navMenu')
+        menu.addEventListener('click', this.toggleSideNav, false)
+        var nav = document.getElementById('navBut')
+        nav.addEventListener('click', this.toggleSideNav, false)
 
-        this.dispatch(newUrl)
+        //create views
+        this.hashSignal = new signals.Signal();
+        this.about = new About(this)
+        this.tut = new Tut(this)
 
-    }
+        this.loadFirst()
+        //DeepLink
+        window.addEventListener('hashchange', this.onHashChanged)
 
-    dispatch(view:string, ctx:any) {
-
-       // if('form'==view || view == null )  {
-            this.frm._transition()
-        //}
-
-        //template code
-        hasher.changed.active = false; //disable changed signal
-        hasher.setHash(view); //set hash without dispatching changed signal
-        hasher.changed.active = true;
+        //setup nav
+        var aboutBut = document.getElementById('aboutBut')
+        aboutBut.addEventListener('click', function() {setHash('about')})
+        var tutBut = document.getElementById('tutBut')
+        tutBut.addEventListener('click', function() {setHash('tut')})
 
     }//()
+
+    loadFirst() {
+        var view = getHash()
+        if(view==null)
+            view='about' //first
+        console.log('first ' + view)
+        this.hashSignal.dispatch(view)
+    }
+
+    onHashChanged() {
+        var view = getHash()
+        console.log('changed ' + view)
+        app.hashSignal.dispatch(view)
+        app.toggleSideNavOff()
+        cleanUpViews(0)
+    }
+
+
+    toggleSideNavOff () {
+        TweenLite.to('#slider',.2,{x:0})
+        TweenLite.to('#kontainer',.2,{x:0})
+    }
+
+    private toggleSideNav () {
+        console.log('slider')
+        if(!this.navFlag) {
+            TweenLite.to('#slider',.2,{x:405})
+            TweenLite.to('#kontainer',.2,{x:405})
+        } else {
+            app.toggleSideNavOff()
+        }
+        this.navFlag = !this.navFlag
+    }//()
 }
-app= new App()
+
+
+
+/*class Why {
+ _transition(transEnum:number, ctx:any):any {
+ forward('why','why',onWhy)
+ }
+ onWhy(id) {
+ console.log( 'loaded')
+ TweenLite.from('#code1',.2, {x:200})
+ TweenLite.from('#code2',1, {x:600})
+ TweenLite.from('#code3',2, {x:1200})
+ }
+
+ }*/
