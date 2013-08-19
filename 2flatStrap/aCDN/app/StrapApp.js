@@ -26,6 +26,7 @@ var Service = (function () {
 
 var App = (function () {
     function App() {
+        this.presenter = [];
         this.scrolledSignal = new signals.Signal();
         this.scrolledSignal.add(this.onEOD);
 

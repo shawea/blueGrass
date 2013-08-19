@@ -27,6 +27,7 @@ class Service implements IPresenter {
 class App {
     didScroll:bool;
     scrolledSignal: any;
+    presenter: string[] = [];  // you can disptach last element in array to presnter listeners
     lastDiff: Number;
     constructor() {
         this.scrolledSignal = new signals.Signal();

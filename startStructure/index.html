@@ -6,7 +6,7 @@
     <META HTTP-EQUIV='Pragma' CONTENT='no-cache'>
     <META HTTP-EQUIV='Expires' CONTENT='-1'>
     <!--script src='http://jsconsole.com/remote.js?cek'></script-->
-    <title>Primus API</title>
+    <title>bg Blog</title>
     <meta name='viewport' content='width=device-width'>
     <meta name='apple-mobile-web-app-capable' content='yes'>
     <meta name='apple-touch-fullscreen' content='yes'>
@@ -20,14 +20,11 @@
 <nav id='slider' class='topcoat-list__container container--sidemenu'>
     <h3 class='topcoat-list__header'><i>Menu</i></h3>
     <ul class='topcoat-list'>
-        <li id='aboutBut' class='topcoat-list__item'>
-            About
-        </li>
-        <li id='tutBut' class='topcoat-list__item'>
-            Tutorial
-        </li>
         <li class='topcoat-list__item'>
             Blog
+        </li>
+        <li id='aboutBut' class='topcoat-list__item'>
+            About
         </li>
     </ul>
 </nav>
@@ -39,20 +36,12 @@
             <a class='topcoat-icon-button--quiet'>
                 <span class='topcoat-icon topcoat-icon--menu-stack'></span>
             </a>
-            <b>Primus</b>
+            <b>bg Blog</b>
         </div>
         <div id='navMenuCont' class='topcoat-navigation-bar__item center half'>
-            <ul id='navMenu'>
-                <li >
-                    About
-                </li>
-                <li >
-                    Tutorial
-                </li>
-                <li>
-                    Blog
-                </li>
-            </ul>
+            <div id='navMenu'>
+                Menu
+            </div>
         </div>
         <div class='topcoat-navigation-bar__item right quarter'>
             <button id='login' class='topcoat-button--cta' style='margin-top: .5rem' >Login/Sign Up</button>
@@ -64,23 +53,15 @@
     </main>
 
 </section>
-<script>// zepto or jq
-if('__proto__' in {}) {
-    document.write('<script src="/blueGrass/zepto.min.js"><\/script>')
-    console.log('z')
-}   else {
-    document.write('<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"><\/script>')
-    console.log('jq')
-}
-</script>
-<script src='/blueGrass/fastclick.js'></script>
-<script src='/blueGrass/TweenLite.min.js'></script>
-<script src='/more/signals.min.js'></script>
-<script src='/blueGrass/CSSPlugin.min.js'></script>
-<script src='/blueGrass/blueGrass.js'></script>
-<!-- app: -->
-<script src='aCDN/app/App.js'></script>
-
-
+<!-- zepto or jq ?! -->
+    <script src='/more/jquery-2.0.3.min.js'></script>
+    <script src='/more/transparency.min.js'></script>
+    <script src='/blueGrass/fastclick.js'></script>
+    <script src='/blueGrass/TweenLite.min.js'></script>
+    <script src='/more/signals.min.js'></script>
+    <script src='/blueGrass/CSSPlugin.min.js'></script>
+    <script src='/blueGrass/blueGrass.js'></script>
+    <!-- app: -->
+    <script src='aCDN/app/App.js'></script>
 </body>
 </html>
