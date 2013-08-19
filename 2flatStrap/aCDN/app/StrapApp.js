@@ -26,24 +26,24 @@ var Service = (function () {
 
 var App = (function () {
     function App() {
-        this.presenter = [];
+        this.presenters = [];
         this.scrolledSignal = new signals.Signal();
         this.scrolledSignal.add(this.onEOD);
 
         wel = new Welcome(this);
         $(window).scroll(function () {
-            this.didScroll = true;
+            this.positionChanged = true;
         });
         var _this = this;
         setInterval(function () {
-            if (this.didScroll) {
-                this.didScroll = false;
+            if (this.positionChanged) {
+                this.positionChanged = false;
 
                 var docTop = $(window).scrollTop();
                 var docBot = $(document).height() - $(window).height() - 20;
-
                 var diff = docBot - docTop;
-                _this.scrolledSignal.dispatch(diff);
+
+                _this.scrolledSignal.dispatch(presenters, diff);
                 this.lastDiff = diff;
             }
         }, 200);

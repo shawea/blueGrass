@@ -1,37 +1,9 @@
-/** v0.0809 - 95% of times you should not change this file
+/** v0.810 - 95% of times you should not change this file
  (c) puppetMaster3  http://github.com/shawea/blueGrass
-  Attribution Assurance License @ http://github.com/shawea/blueGrass
+  requries attribution, as per Attribution Assurance License @ http://github.com/shawea/blueGrass
 */
 declare var $;
 
-
-//presenter section
-/**
- * Each 'view' should position and manage self and receive the app in constructor
- */
-interface IPresenter {// ~ composition, a 'section' presenter to manage a views/sections (and hold state/model ex, when view is cleanedUp). app has no reference to a presneter
-    _transition(transEnum:number, ctx:any):any; //enum
-}
-
-/**
- * App should be light, start up and dispatch
- */
-interface IApp{ // has the app + hasher + event/signalbuss, the global app , does not animate or open, may have signals
-    _onHashChanged()
-
-    setBusy(bussy:bool, timeOut:number):any;//stop other events
-    /**
-     * Returns signal you can add() a listener for
-     * @param signalType
-     */
-    getEvtSignalFor(signalType:string):any;
-    //_display(view:string, ctx:any):any;
-
-}
-
-/*
-SPA section
-*/
 var viewDir:string;
 
 /**
@@ -69,7 +41,6 @@ function forward(ht, id, cb_):void {
 	})
 }//()
 
-
 /**
  * How many views to allow in #kontainer
  * @param i
@@ -96,7 +67,6 @@ function setHash(v:string) {
     window.location.hash = v
     //history.pushState(null,null,'#'+v)
 }
-
 
 /////////////////
 function isEmailValid(email) {
@@ -129,4 +99,33 @@ function getBrowserInfo() {
 }
 
 
+///// optional 'masturbation'
+/**
+ * Each 'view' should position and manage self and receive the app in constructor
+ */
+interface IPresenter {// ~ composition, a 'section' presenter to manage a views/sections (and hold state/model ex, when view is cleanedUp). app has no reference to a presneter
+    /**
+     * In constructor, may listen here to app's dispatch
+     * @param ctx
+     * @private
+     */
+    _onAppNav( ctx:any):any; //enum
 
+}
+
+/**
+ * App should be light, start up and dispatch
+ */
+interface IApp{ // has the app + hasher + event/signalbuss, the global app , does not animate or open, may have signals, does not have references to 'view' presetners
+    _onHashChanged()
+
+    _setupNavDispatching()
+
+    setBusy(bussy:bool, timeOut:number):any;//stop other events
+    /**
+     * Returns signal a presnter might add() a listener for
+     * @param signalType
+     */
+    getEvtSignalFor(signalType:string):any;
+
+}

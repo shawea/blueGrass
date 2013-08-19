@@ -1,24 +1,24 @@
 window.addEventListener('load', function () {
     viewDir = 'aCDN/view/';
-    console.log('0.03');
+    console.log('0.01');
 
     FastClick.attach(document.body);
     new App();
 });
 
-var Tut = (function () {
-    function Tut(app_) {
+var EnterForm = (function () {
+    function EnterForm(app_) {
         this.app = app_;
         app_.hashSignal.add(this.onView, this);
     }
-    Tut.prototype.transition = function (transEnum, ctx) {
-        forward('tut', 'tut');
+    EnterForm.prototype._transition = function (transEnum, ctx) {
+        forward('enterForm', 'enterForm');
     };
-    Tut.prototype.onView = function (view) {
+    EnterForm.prototype.onView = function (view) {
         if ('tut' == view)
-            this.transition();
+            this._transition();
     };
-    return Tut;
+    return EnterForm;
 })();
 
 var About = (function () {
@@ -38,29 +38,30 @@ var About = (function () {
 
 var App = (function () {
     function App() {
+        this.hashSignal = new signals.Signal();
+        var enterF = new EnterForm(this);
+        var about = new About(this);
+
+        this.loadFirst();
+
+        window.addEventListener('hashchange', this._onHashChanged.bind(this));
+
+        this._setupNavDispatching();
+    }
+    App.prototype._setupNavDispatching = function () {
         this.navFlag = false;
         var menu = document.getElementById('navMenu');
         menu.addEventListener('click', this.toggleSideNav.bind(this), false);
         var nav = document.getElementById('navBut');
         nav.addEventListener('click', this.toggleSideNav.bind(this), false);
 
-        this.hashSignal = new signals.Signal();
-        this.about = new About(this);
-        this.tut = new Tut(this);
-
-        this.loadFirst();
-
-        window.addEventListener('hashchange', this._onHashChanged.bind(this));
-
         var aboutBut = document.getElementById('aboutBut');
         aboutBut.addEventListener('click', function () {
             setHash('about');
         });
         var tutBut = document.getElementById('tutBut');
-        tutBut.addEventListener('click', function () {
-            setHash('tut');
-        });
-    }
+    };
+
     App.prototype.loadFirst = function () {
         var view = getHash();
         if (view == null)

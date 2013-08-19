@@ -39,11 +39,26 @@ class About implements IPresenter{
 }
 
 class App {
-    private about:About;
-    private tut:Tut;
+
     private navFlag:bool;
     hashSignal:any;
     constructor () {
+        //create views
+        this.hashSignal = new signals.Signal();
+        var about = new About(this)
+        var tut = new Tut(this)
+
+        this.loadFirst()
+        //DeepLink
+        window.addEventListener('hashchange', this._onHashChanged.bind(this))
+
+        this._setupNavDispatching()
+
+        }//()
+
+
+    private _setupNavDispatching() {
+
         //setup slider
         this.navFlag = false
         var menu = document.getElementById('navMenu')
@@ -51,22 +66,13 @@ class App {
         var nav = document.getElementById('navBut')
         nav.addEventListener('click', this.toggleSideNav.bind(this), false)
 
-        //create views
-        this.hashSignal = new signals.Signal();
-        this.about = new About(this)
-        this.tut = new Tut(this)
-
-        this.loadFirst()
-        //DeepLink
-        window.addEventListener('hashchange', this._onHashChanged.bind(this))
-
         //setup menu items
         var aboutBut = document.getElementById('aboutBut')
         aboutBut.addEventListener('click', function() {setHash('about')})
         var tutBut = document.getElementById('tutBut')
         tutBut.addEventListener('click', function() {setHash('tut')})
 
-    }//()
+    }
 
     private loadFirst() {
         var view = getHash()

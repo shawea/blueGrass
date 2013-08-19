@@ -25,28 +25,28 @@ class Service implements IPresenter {
 }
 
 class App {
-    didScroll:bool;
+    private positionChanged:bool;
     scrolledSignal: any;
-    presenter: string[] = [];  // you can disptach last element in array to presnter listeners
-    lastDiff: Number;
+    presenters: string[] = [];  // you can disptach last element in array to presenter listeners
+    private lastDiff: Number;
     constructor() {
         this.scrolledSignal = new signals.Signal();
         this.scrolledSignal.add(this.onEOD)
 
         wel = new Welcome(this)
         $(window).scroll(function() {
-            this.didScroll = true //deBounce
+            this.positionChanged = true //deBounce
         })
         var _this=this
         setInterval(function() {
-            if ( this.didScroll ) {
-                this.didScroll = false
+            if ( this.positionChanged ) {
+                this.positionChanged = false
 
                 var docTop = $(window).scrollTop();
                 var docBot = $(document).height() - $(window).height() -20;
-
                 var diff=docBot - docTop
-                _this.scrolledSignal.dispatch(diff)
+
+                _this.scrolledSignal.dispatch(presenters,diff)
                 this.lastDiff = diff;
             }//fi
         }, 200)
