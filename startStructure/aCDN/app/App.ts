@@ -25,7 +25,7 @@ class EnterForm {
     }
 
     private onSave() {
-        var post:Object = makeFormMessage('formE')
+        var post:Object = cAPI.makeFormMessage('formE')
         console.log(post)
         console.log(JSON.stringify(post))
         cAPI.insert('blog',post,this.onIns)
@@ -38,22 +38,6 @@ class EnterForm {
 }//()
 
 
-function makeFormMessage(id:string):Object {
-    var msg:Object = new Object()
-    var form = $('#'+id).serializeArray();
-    $.each(form, function() {
-        if (msg[this.name]) {
-            if (!msg[this.name].push) {
-                msg[this.name] = [msg[this.name]];
-            }
-            msg[this.name].push(this.value || '');
-        } else {
-            msg[this.name] = this.value || '';
-        }
-    });
-    return msg;
-}//()
-
 
 class Home {
     private app:App;
@@ -65,6 +49,11 @@ class Home {
         if('home'==view)
             forward('HomePg','home')
     }
+
+    private onHome() {
+        cAPI.prevRows('blog', 1, 10, this.onData)
+    }
+
 }
 
 class About {

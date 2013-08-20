@@ -21,7 +21,7 @@ var EnterForm = (function () {
     };
 
     EnterForm.prototype.onSave = function () {
-        var post = makeFormMessage('formE');
+        var post = cAPI.makeFormMessage('formE');
         console.log(post);
         console.log(JSON.stringify(post));
         cAPI.insert('blog', post, this.onIns);
@@ -34,22 +34,6 @@ var EnterForm = (function () {
     return EnterForm;
 })();
 
-function makeFormMessage(id) {
-    var msg = new Object();
-    var form = $('#' + id).serializeArray();
-    $.each(form, function () {
-        if (msg[this.name]) {
-            if (!msg[this.name].push) {
-                msg[this.name] = [msg[this.name]];
-            }
-            msg[this.name].push(this.value || '');
-        } else {
-            msg[this.name] = this.value || '';
-        }
-    });
-    return msg;
-}
-
 var Home = (function () {
     function Home(app_) {
         this.app = app_;
@@ -58,6 +42,10 @@ var Home = (function () {
     Home.prototype._onAppNav = function (view) {
         if ('home' == view)
             forward('HomePg', 'home');
+    };
+
+    Home.prototype.onHome = function () {
+        cAPI.prevRows('blog', 1, 10, this.onData);
     };
     return Home;
 })();
