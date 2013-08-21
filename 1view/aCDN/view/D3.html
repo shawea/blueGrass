@@ -27,7 +27,7 @@
 <script>
 console.log('d3 ex')
 var width = 960,
-        height = 500,
+        height = 800,
         centered;
 
 var projection = d3.geo.albersUsa()
@@ -49,7 +49,7 @@ svg.append("rect")
 
 var g = svg.append("g");
 
-d3.json("../aCDN/assets/us.json", function(error, us) {
+d3.json("aCDN/assets/us.json", function(error, us) {
     g.append("g")
             .attr("id", "states")
             .selectAll("path")

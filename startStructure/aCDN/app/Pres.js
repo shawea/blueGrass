@@ -40,12 +40,12 @@ var Home = (function () {
 
     Home.prototype.onHome = function () {
         console.log('onHome');
-        cAPI.prevRows('blog', 1, 10, this.onData);
+        cAPI.prevRows('blog', 1376948749872, 2, this.onData);
     };
 
     Home.prototype.onData = function (data, err) {
         console.log('onData');
-        console.log(data, err);
+        console.log(JSON.stringify(data));
     };
     return Home;
 })();

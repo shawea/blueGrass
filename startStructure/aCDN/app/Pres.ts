@@ -3,7 +3,6 @@ declare var App;
 
 console.log('0.05')
 
-
 class EnterForm {
     private app:App;
     constructor(app_:App) {
@@ -38,6 +37,7 @@ class Home {
         this.app = app_
         app_.hashSignal.add(this._onAppNav, this)
     }
+
     private _onAppNav(view:string){
         if('home'==view)
             forward('HomePg','home', this.onHome.bind(this))
@@ -45,12 +45,12 @@ class Home {
 
     private onHome() {
         console.log('onHome')
-        cAPI.prevRows('blog', 1, 10, this.onData)
+        cAPI.prevRows('blog', 1376948749872, 2, this.onData)
     }
 
     private onData(data,err) {
         console.log('onData')
-        console.log(data,err)
+        console.log(JSON.stringify(data))
     }
 
 }

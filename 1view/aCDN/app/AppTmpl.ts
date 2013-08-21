@@ -1,5 +1,5 @@
-viewDir = '../aCDN/view/'
-console.log('v0.02')
+viewDir = 'aCDN/view/'
+console.log('v0.03')
 cloud = new CloudAPI()
 
 var but1 = document.getElementById('d3')
@@ -14,26 +14,27 @@ function showD3():void {
 class NameForm implements IPresenter {
     constructor() {// when created via new
         var but1 = document.getElementById('formId')
-        but1.addEventListener('click', this._transition )
+        but1.addEventListener('click', this._transition.bind(this) )
     }
     _transition(transEnum:number, ctx:any):void {
-        forward('nameForm', 'form', app.frm.onFormLoaded)
+        forward('nameForm', 'form', this.onFormLoaded.bind(this) )
         // is DOM loaded here??
     }
     onFormLoaded(new_id){
         console.log(new_id)
         cleanUpViews(1)// remove other views in kontainer
         var but1 = document.getElementById('create')
-        but1.addEventListener('click', app.frm.doInsert )
+        but1.addEventListener('click', this.doInsert.bind(this) )
     }
     doInsert() {
+        console.log('ins')
         var firstname = $('#firstname').val()
         var lastname = $('#lastname').val()
         console.log('clicked ' + firstname +', ' + lastname)
         var ename = new Object()
         ename.first_name=firstname
         ename.last_name=lastname
-        cloud.insert('my_table',ename, app.frm.onPK)
+        cloud.insert('my_table',ename, this.onPK.bind(this) )
     }
     onPK(data, er){
         console.log('back ' + JSON.stringify(data) + er)
@@ -43,14 +44,14 @@ class NameForm implements IPresenter {
 class Templ implements IPresenter {
     constructor() {
         var but1 = document.getElementById('transparencyBut')
-        but1.addEventListener('click', this._transition )
+        but1.addEventListener('click', this._transition.bind(this) )
     }
     _transition(transEnum:number, ctx:any):void {
-        forward('trans2', 'transId', app.templ.onLoaded)
+        forward('trans2', 'transId', this.onLoaded.bind(this))
     }
     onLoaded(nid) {
         cleanUpViews(1)
-        cloud.select('my_table', null, app.templ.onSelectRet)
+        cloud.select('my_table', null, this.onSelectRet.bind(this))
     }
     onSelectRet(data, er) {
         console.log('back2 ' + JSON.stringify(data) + er)
@@ -59,12 +60,11 @@ class Templ implements IPresenter {
 }
 
 class App {
-    templ:Templ;
-    frm:NameForm;
+
     constructor() {
-        this.templ = new Templ()
-        this.frm  = new NameForm()
+        var templ = new Templ()
+        var frm  = new NameForm()
     }
 }
-app = new App();
+new App();
 
