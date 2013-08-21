@@ -79,7 +79,7 @@ function setupPosSignal(posSignal, this_) {
     };
     setInterval(function () {
         if (this_.positionChanged_) {
-            posSignal.dispatch(getBroInfo());
+            posSignal.dispatch(getBroInfo(), this_);
             this_.positionChanged_ = false;
         }
     }, 100);

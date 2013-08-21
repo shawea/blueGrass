@@ -40,7 +40,11 @@ var Home = (function () {
 
     Home.prototype.onHome = function () {
         console.log('onHome');
-        cAPI.prevRows('blog', 1, 20, this.onData.bind(this));
+        cAPI.prevRows('blog', 1, 3, this.onData.bind(this));
+    };
+
+    Home.prototype.getNext = function () {
+        cAPI.prevRows('blog', 1, 3, this.onData.bind(this));
     };
 
     Home.prototype.onData = function (data, err) {

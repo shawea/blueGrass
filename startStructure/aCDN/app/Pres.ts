@@ -45,7 +45,11 @@ class Home {
 
     private onHome() {
         console.log('onHome')
-        cAPI.prevRows('blog', 1, 20, this.onData.bind(this))
+        cAPI.prevRows('blog', 1, 3, this.onData.bind(this))
+    }
+
+    private getNext() {
+        cAPI.prevRows('blog', 1, 3, this.onData.bind(this))
     }
 
     private onData(data,err) {

@@ -107,7 +107,7 @@ function getBroInfo() {
  *
  *
  * @param posSignal
- * @param this_
+ * @param this_ pass the context
  * @returns create Signal you can add functions onto
  */
 function setupPosSignal(posSignal, this_) {
@@ -120,7 +120,7 @@ function setupPosSignal(posSignal, this_) {
     }
     setInterval(function() {
         if ( this_.positionChanged_ ) {
-            posSignal.dispatch(getBroInfo())
+            posSignal.dispatch(getBroInfo(),this_)
             this_.positionChanged_ = false
         }//fi
     },100)// ~ 10/sec
