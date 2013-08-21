@@ -35,7 +35,7 @@ var Home = (function () {
     }
     Home.prototype._onAppNav = function (view) {
         if ('home' == view)
-            forward('HomePg', 'home', this.onHome);
+            forward('HomePg', 'home', this.onHome.bind(this));
     };
 
     Home.prototype.onHome = function () {

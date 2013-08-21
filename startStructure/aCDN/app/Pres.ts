@@ -40,7 +40,7 @@ class Home {
     }
     private _onAppNav(view:string){
         if('home'==view)
-            forward('HomePg','home', this.onHome)
+            forward('HomePg','home', this.onHome.bind(this))
     }
 
     private onHome() {
