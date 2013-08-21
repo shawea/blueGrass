@@ -1,7 +1,7 @@
 declare var TweenLite;
 declare var App;
 
-console.log('0.06')
+console.log('0.02')
 
 class EnterForm {
     private app:App;
@@ -50,10 +50,23 @@ class Home {
 
     private onData(data,err) {
         console.log('onData')
-        console.log(JSON.stringify(data))
-        $('#postsTpl').render(data.array_)
-        alert(new moment(1376948749872).format('llll'))
-    }
+        console.log(data)
+
+     var dirs =  {
+                dat :  {
+                    text: function(p) {
+                        var s=new moment(this._daoc).format()
+                        console.log(s,p)
+                        return s
+                    } //()
+                }//dat
+
+        }
+
+
+        $('#postsTpl').render(data.array_,dirs)
+    }//()
+
 }
 
 class About {
