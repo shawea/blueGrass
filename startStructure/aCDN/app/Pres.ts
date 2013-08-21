@@ -1,7 +1,7 @@
 declare var TweenLite;
 declare var App;
 
-console.log('0.02')
+console.log('0.03')
 
 class EnterForm {
     private app:App;
@@ -45,7 +45,7 @@ class Home {
 
     private onHome() {
         console.log('onHome')
-        cAPI.prevRows('blog', 1, 20, this.onData)
+        cAPI.prevRows('blog', 1, 20, this.onData.bind(this))
     }
 
     private onData(data,err) {
@@ -55,14 +55,13 @@ class Home {
      var dirs =  {
                 dat :  {
                     text: function(p) {
-                        var s=new moment(this._daoc).format()
-                        console.log(s,p)
+                        var s=new moment(this._daoc).format('ddd MMMM Do ha')
+                        //console.log(s,p)
                         return s
                     } //()
                 }//dat
 
         }
-
 
         $('#postsTpl').render(data.array_,dirs)
     }//()

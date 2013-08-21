@@ -89,17 +89,46 @@ function getGuerryString(key) {
  * Returns some responsive info
  * @returns {Object}
  */
-function getBrowserInfo() {
+function getBroInfo() {
     var o = new Object()
     o.pixR=window.devicePixelRatio
     o.cw = document.documentElement.clientWidth
     o.w= window.innerWidth
     o.h = window.innerHeight
+
+    o.docTop = $(window).scrollTop();
+    o.docBot = $(document).height() - $(window).height();
+
     return o
 }
 
 
-///// optional 'masturbation'
+/**
+ *
+ *
+ * @param posSignal
+ * @param this_
+ * @returns create Signal you can add functions onto
+ */
+function setupPosSignal(posSignal, this_) {
+    posSignal = new signals.Signal()
+    $(window).scroll(function() {
+        this_.positionChanged_ = true //deBounce
+    })
+    window.onresize = function(event) {
+        this_.positionChanged_ = true //deBounce
+    }
+    setInterval(function() {
+        if ( this_.positionChanged_ ) {
+            posSignal.dispatch(getBroInfo())
+            this_.positionChanged_ = false
+        }//fi
+    },100)// ~ 10/sec
+    return posSignal
+}//()
+
+
+///// optional paterns:
 /**
  * Each 'view' should position and manage self and receive the app in constructor
  */

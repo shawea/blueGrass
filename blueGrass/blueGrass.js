@@ -56,12 +56,33 @@ function getGuerryString(key) {
     return match && decodeURIComponent(match[1].replace(/\+/g, " "));
 }
 
-function getBrowserInfo() {
+function getBroInfo() {
     var o = new Object();
     o.pixR = window.devicePixelRatio;
     o.cw = document.documentElement.clientWidth;
     o.w = window.innerWidth;
     o.h = window.innerHeight;
+
+    o.docTop = $(window).scrollTop();
+    o.docBot = $(document).height() - $(window).height();
+
     return o;
+}
+
+function setupPosSignal(posSignal, this_) {
+    posSignal = new signals.Signal();
+    $(window).scroll(function () {
+        this_.positionChanged_ = true;
+    });
+    window.onresize = function (event) {
+        this_.positionChanged_ = true;
+    };
+    setInterval(function () {
+        if (this_.positionChanged_) {
+            posSignal.dispatch(getBroInfo());
+            this_.positionChanged_ = false;
+        }
+    }, 100);
+    return posSignal;
 }
 //@ sourceMappingURL=blueGrass.js.map

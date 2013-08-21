@@ -1,4 +1,4 @@
-console.log('0.02');
+console.log('0.03');
 
 var EnterForm = (function () {
     function EnterForm(app_) {
@@ -40,7 +40,7 @@ var Home = (function () {
 
     Home.prototype.onHome = function () {
         console.log('onHome');
-        cAPI.prevRows('blog', 1, 20, this.onData);
+        cAPI.prevRows('blog', 1, 20, this.onData.bind(this));
     };
 
     Home.prototype.onData = function (data, err) {
@@ -50,8 +50,8 @@ var Home = (function () {
         var dirs = {
             dat: {
                 text: function (p) {
-                    var s = new moment(this._daoc).format();
-                    console.log(s, p);
+                    var s = new moment(this._daoc).format('ddd MMMM Do ha');
+
                     return s;
                 }
             }
