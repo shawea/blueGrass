@@ -1,3 +1,5 @@
+console.log('0.05');
+
 var EnterForm = (function () {
     function EnterForm(app_) {
         this.app = app_;
@@ -37,10 +39,12 @@ var Home = (function () {
     };
 
     Home.prototype.onHome = function () {
+        console.log('onHome');
         cAPI.prevRows('blog', 1, 10, this.onData);
     };
 
-    Home.prototype.onData = function () {
+    Home.prototype.onData = function (data, err) {
+        console.log('onData');
         console.log(data, err);
     };
     return Home;

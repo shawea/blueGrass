@@ -2,7 +2,6 @@ declare var TweenLite;
 
 window.addEventListener('load', function() {
     viewDir = 'aCDN/view/'
-    console.log('0.04')
     //console.log(getBrowserInfo())
     FastClick.attach(document.body)
     new App()

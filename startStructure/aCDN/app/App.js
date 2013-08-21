@@ -1,6 +1,5 @@
 window.addEventListener('load', function () {
     viewDir = 'aCDN/view/';
-    console.log('0.04');
 
     FastClick.attach(document.body);
     new App();

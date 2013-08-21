@@ -1,6 +1,9 @@
 declare var TweenLite;
 declare var App;
 
+console.log('0.05')
+
+
 class EnterForm {
     private app:App;
     constructor(app_:App) {
@@ -41,10 +44,12 @@ class Home {
     }
 
     private onHome() {
+        console.log('onHome')
         cAPI.prevRows('blog', 1, 10, this.onData)
     }
 
-    private onData() {
+    private onData(data,err) {
+        console.log('onData')
         console.log(data,err)
     }
 
