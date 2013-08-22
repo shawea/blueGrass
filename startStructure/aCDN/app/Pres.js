@@ -40,7 +40,8 @@ var Home = (function () {
 
     Home.prototype.onHome = function () {
         console.log('onHome');
-        cAPI.prevRows('blog', 1, 3, this.onData.bind(this));
+
+        cAPI.prevRows('blog', 0, 3, this.onData.bind(this));
     };
 
     Home.prototype.getNext = function () {
@@ -50,7 +51,6 @@ var Home = (function () {
     Home.prototype.onData = function (data, err) {
         console.log('onData');
         console.log(data);
-
         var dirs = {
             dat: {
                 text: function (p) {
@@ -60,7 +60,6 @@ var Home = (function () {
                 }
             }
         };
-
         $('#postsTpl').render(data.array_, dirs);
     };
     return Home;

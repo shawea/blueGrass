@@ -45,7 +45,8 @@ class Home {
 
     private onHome() {
         console.log('onHome')
-        cAPI.prevRows('blog', 1, 3, this.onData.bind(this))
+        // load first 2
+        cAPI.prevRows('blog', 0, 3, this.onData.bind(this))
     }
 
     private getNext() {
@@ -55,19 +56,16 @@ class Home {
     private onData(data,err) {
         console.log('onData')
         console.log(data)
-
      var dirs =  {
-                dat :  {
-                    text: function(p) {
-                        var s=new moment(this._daoc).format('ddd MMMM Do ha')
-                        //console.log(s,p)
-                        return s
-                    } //()
-                }//dat
-
-        }
-
-        $('#postsTpl').render(data.array_,dirs)
+          dat :  {
+            text: function(p) {//format the date using moment js via transprency js template
+                var s=new moment(this._daoc).format('ddd MMMM Do ha')
+                //console.log(s,p)
+                return s
+            } //()
+          }//dat
+     }
+     $('#postsTpl').render(data.array_,dirs)
     }//()
 
 }

@@ -1,6 +1,6 @@
 # blueGrass
  blueGrass is a library w/ a few function that could help you create stunning & magical UI w/ animation,
-    cross platform, mobile-first, SPA (Single Page Applications) for interactive and creative HTML5. It is built on top of select 3rd party libraries listed.
+    cross platform, mobile-first, SPA (Single Page Applications) for interactive and creative HTML5. It is built on top of select 3rd party libraries included here for reference.
 
 These patterns are licensed under Attribution Assurance License ( details are here http://opensource.org/licenses/AAL )
 As you may know a license free of cost is not free of obligations. These here designs require
@@ -13,6 +13,7 @@ If you can't agree to the license then go away, or maybe write us a large checke
 Here is an example of the type of application you can/should build:
 - http://intothearctic.gp
 - http://www.google.com/nexus
+
 For example, we can animate a div/section after loading. But the key to blueGrass is that it is hard to do nice UI in .js views, here the views are HTML.
 
 Since you are here, you agree to the AAL license :-), here you go: http://raw.github.com/shawea/blueGrass/master/blueGrass/blueGrass.js
