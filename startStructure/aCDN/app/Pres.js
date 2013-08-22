@@ -1,4 +1,4 @@
-console.log('0.03');
+console.log('0.02');
 
 var EnterForm = (function () {
     function EnterForm(app_) {
@@ -58,9 +58,15 @@ var Home = (function () {
 
                     return s;
                 }
+            },
+            Hfull: {
+                html: function () {
+                    return this.full;
+                }
             }
         };
         $('#postsTpl').render(data.array_, dirs);
+        $('#bla').html('aaaaaaaa<b>bb</b>aaaaaaaa');
     };
     return Home;
 })();

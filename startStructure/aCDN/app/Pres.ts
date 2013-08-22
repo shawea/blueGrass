@@ -1,7 +1,7 @@
 declare var TweenLite;
 declare var App;
 
-console.log('0.03')
+console.log('0.02')
 
 class EnterForm {
     private app:App;
@@ -63,9 +63,15 @@ class Home {
                 //console.log(s,p)
                 return s
             } //()
+          },
+          Hfull : {
+            html : function() {
+                return this.full
+            }
           }//dat
      }
      $('#postsTpl').render(data.array_,dirs)
+     $('#bla').html('aaaaaaaa<b>bb</b>aaaaaaaa')
     }//()
 
 }
