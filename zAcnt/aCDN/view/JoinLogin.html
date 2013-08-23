@@ -1,7 +1,6 @@
 <section id='joinLogin' >
 <style>
-    .form {
-        opacity:0.99;
+    form {
         margin-left: auto;
         margin-right: auto;
         margin-top: 1rem;
@@ -11,13 +10,16 @@
     .line {
         display: block;
         float: left;
-        width: 27rem;
+        width: 30rem;
+        margin-bottom: .3rem;
     }
-    .label {
+    label {
         float: left;
         display: block;
-        width: 3rem;
+        width: 6em;
         text-align: right;
+        vertical-align: middle;
+        line-height: 3rem;
     }
     .textInput {
         float: right;
@@ -26,22 +28,75 @@
     .but {
         margin-top: .1rem;
         float: left;
-        margin-left: 4rem;
+        margin-left: 7rem;
     }
-</style>
-<form id='formE' class='form '>
-    <div class='line'>
-        <label class='label' for='title'>Title:</label>
-        <input id='title' name='title' class='topcoat-text-input textInput' type='text' size='38' value='' placeholder='Title'>
-    </div>
-    <div class ='line'>
-        <label class='label' for ='full'>Full:</label>
-        <textarea id='full' name='full'
-                  class='topcoat-textarea textInput' rows='7'   cols='38' placeholder='Text'>
-    </textarea></div>
+    .tabIn {
+        margin-left: 7rem;
+    }
 
+
+</style>
+<form id='formL' class='form '>
+    <div class='line center'>
+        Login
+    </div>
+    <div class='line'>
+        <label class='label' for='email'>E-Mail:</label>
+        <input id='email' name='title' class='topcoat-text-input textInput' type='text' size='38' value='' placeholder='E-Mail'>
+    </div>
+    <div class='line'>
+        <label class='label' for='password'>Password:</label>
+        <input id='password' name='title' class='topcoat-text-input textInput' type='password' size='38' value='' placeholder='Password'>
+    </div>
     <div class ='line'><label class='label'></label>
-        <a id='saveFormBut' class='topcoat-button--cta but' >Save</a>
+        <a id='loginBut' class='topcoat-button--cta but' >Login</a>
+    </div>
+    <div class='line center'>
+        <a href=''>Reset your password</a>
+    </div>
+
+</form>
+
+<form id='formJ' class='form '>
+    <div class='line center'>
+        - or -
+    </div>
+    <div class='line center'>
+        Sign Up
+    </div>
+    <div class='line'>
+        <label class='label' for='Jemail'>Full Name:</label>
+        <input id='full_name' name='title' class='topcoat-text-input textInput' type='text' size='38' value='' placeholder='Enter your full name'>
+    </div>
+    <div class='line'>
+        <label class='label' for='Jpassword'>Password:</label>
+        <input id='Jpassword' name='title' class='topcoat-text-input textInput' type='password' size='38' value='' placeholder='Password'>
+   </div>
+    <div class='line'>
+        <label class='label' for='Jpassword2'>Confirm:</label>
+        <input id='Jpassword2' name='title' class='topcoat-text-input textInput' type='password' size='38' value='' placeholder='Confirm Password'>
+    </div>
+    <div class='line'>
+        <label class='label' for='Jemail'>Work E-Mail:</label>
+        <input id='Jemail' name='title' class='topcoat-text-input textInput' type='text' size='38' value='' placeholder='E-Mail'>
+    </div>
+    <div class='line'>
+        <label class='label' for='promo_code'>Promo code:</label>
+        <input id='promo_code' name='title' class='topcoat-text-input textInput' type='text' size='38' value='' placeholder='Promo COde'>
+    </div>
+    <div class='line'>
+
+        <div class='tabIn'>
+            <input type="checkbox">
+            I agree with terms of service.
+        </div>
+    </div>
+    <div class ='line'><label class='label'></label>
+        <a id='joinBut' class='topcoat-button--cta but' >Sign Up</a>
     </div>
 </form>
+
+
+
+
 </section>

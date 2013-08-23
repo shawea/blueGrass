@@ -1,0 +1,53 @@
+.pc1 {
+  padding: 1em;
+}
+.pc2 {
+  padding: 1em;
+}
+.prettyprint {
+  margin: 3em;
+  width: 80%;
+  overflow: scroll;
+  border-radius: .5em;
+  background-color: lightgrey;
+  font-size: 14px;
+}
+p {
+  margin-left: 3em;
+  margin-right: 2em;
+}
+h2 {
+  margin-left: 2em;
+  margin-top: 1.5em;
+}
+h1 {
+  text-align: center;
+}
+ol,
+ul {
+  margin-left: 5em;
+}
+b {
+  font-size: 16px;
+  font-weight: bold;
+}
+.tdoc {
+  overflow: hidden;
+  border: 1px double #d3d3d3;
+  background: #fefefe;
+  margin-left: 4em;
+  width: 75%;
+  border-radius: 5px;
+}
+th {
+  padding: 1em;
+  text-shadow: 1px 1px 1px #fff;
+  background: #e8eaeb;
+  border-color: #e0e0e0;
+}
+td {
+  padding: 1em;
+  border-top: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+  background-color: whitesmoke;
+}
