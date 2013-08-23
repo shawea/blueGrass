@@ -1,4 +1,62 @@
 <section id='account'>
 
+<style>
+    .border {
+        border:1px solid black;
+        padding-top: .4rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        border-radius: .2rem;
+        min-height: 20rem;
+    }
+    .cen {
+        text-align: center;
+    }
+    .bak {
+        background: lightslategray;
+        height: 2rem;;
+        line-height: 2rem;
+    }
 
+</style>
+<div class='grid'>
+<section id='left' class='unit one-third'>
+<div class='border'>
+
+    <div class='cen bak'>Apps</div>
+
+    <div class="cen pad"><button class='topcoat-button--cta'>Data View</button></div>
+
+    <div class='cen'>Create a new app:</div>
+    <div class='cen'><input id='new_app' name='title' class='topcoat-text-input textInput' type='text'
+              value='' placeholder='New app name'></div>
+    <div class='cen pad'><a id='loginBut' class='topcoat-button but' >Create New App</a></div>
+
+    <!--list -->
+    <div class="topcoat-list__container">
+        <h3 class="topcoat-list__header">Category</h3>
+        <ul class="topcoat-list">
+            <li class="topcoat-list__item">
+                Item
+            </li>
+            <li class="topcoat-list__item">
+                Item
+            </li>
+            <li class="topcoat-list__item">
+                Item
+            </li>
+        </ul>
+    </div>
+
+</div>
+</section>
+<section id='right' class='unit two-thirds'>
+<div class='border'>
+
+    Right
+
+</div>
+</section>
+
+</div>
 </section>
