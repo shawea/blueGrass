@@ -1,6 +1,5 @@
 viewDir = 'aCDN/view/';
 console.log('0.01');
-console.log(getBrowserInfo());
 
 var menu = document.getElementById('navMenu');
 menu.addEventListener('click', toggleSideNav, false);
@@ -14,24 +13,27 @@ function toggleSideNav() {
         TweenLite.to('#slider', .2, { x: 405 });
         TweenLite.to('#kontainer', .2, { x: 405 });
     } else {
-        TweenLite.to('#slider', .2, { x: 0 });
-        TweenLite.to('#kontainer', .2, { x: 0 });
+        closeNav();
     }
     this.navFlag = !this.navFlag;
+}
+function closeNav() {
+    TweenLite.to('#slider', .2, { x: 0 });
+    TweenLite.to('#kontainer', .2, { x: 0 });
 }
 
 var aboutBut = document.getElementById('aboutBut');
 aboutBut.addEventListener('click', about);
-var tutBut = document.getElementById('tutBut');
-tutBut.addEventListener('click', tut);
+var hBut = document.getElementById('home');
+hBut.addEventListener('click', home);
 
-function tut() {
-    forward('tut', 'tut', onTut);
+function home() {
+    forward('HomePg', 'home', onHome);
 }
-function onTut() {
-    console.log('loaded tut');
+function onHome() {
     cleanUpViews(1);
-    setHash('tut');
+    closeNav();
+    setHash('home');
 }
 function about() {
     forward('about', 'about', onAbout);
@@ -39,6 +41,7 @@ function about() {
 function onAbout() {
     console.log('loaded about');
     cleanUpViews(1);
+    closeNav();
     setHash('about');
 }
 
@@ -49,6 +52,6 @@ function loadFirst() {
         about();
         return;
     }
-    tut();
+    about();
 }
 //@ sourceMappingURL=App1.js.map

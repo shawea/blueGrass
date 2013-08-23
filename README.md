@@ -10,7 +10,7 @@ if not properly licensed.
 So, in your index.html or similar in view source you must indicate that your code is derived from http://raw.github.com/shawea/blueGrass to comply w/ our offered license.
 If you can't agree to the license then go away, or maybe write us a large checkes for a commercial license.
 
-Here is an example of the type of application you can/should build:
+Here are example of the type of application you can/should build:
 - http://intothearctic.gp
 - http://www.google.com/nexus
 
@@ -54,6 +54,7 @@ Recipe:
 Things that may not help your UI:
 - MV* frameworks: they focus on UI in javascript, not HTML.
     If you are not ready to move past MV*, that's OK, we'll be here when you are. Before you leave, this can be used with any MV*.
+    (But if you must know, this is a a presenter/event bus.)
 - ASM compilers: CSS3 gives you speed, not .js.
 - Require/AMD loaders : load and unload divs, not 'classes'
 - Starting with own, non tested or documented CSS. Just select a CSS framework with an eco system. Most examples here use TopCoat css.

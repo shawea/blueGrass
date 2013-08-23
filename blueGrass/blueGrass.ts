@@ -150,6 +150,8 @@ interface IApp{ // has the app + hasher + event/signalbuss, the global app , doe
 
     _setupNavDispatching()
 
+    _loadFirst();
+
     setBusy(bussy:bool, timeOut:number):any;//stop other events
     /**
      * Returns signal a presnter might add() a listener for
