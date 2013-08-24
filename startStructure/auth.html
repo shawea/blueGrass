@@ -1,37 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- p  RC14T5SkQ3Ueko-2PU2jF3qfBbQ -->
-    <!-- p  Zn1jlDD3VGTxJPXzTFD8laLGYIk -->
+
 </head>
 <body>
-
 <button id='but1'>T Auth</button>
-<script src="/more/oauth.js"></script>
-<script src="//connect.facebook.net/en_US/all/debug.js"></script>
+
+<script src='/more/oauth.js'></script>
+<script src='//connect.facebook.net/en_US/all.js'></script>
 
 <script>
-OAuth.initialize('RC14T5SkQ3Ueko-2PU2jF3qfBbQ');
 
-window.fbAsyncInit = function() {// on pre-init
+window.fbAsyncInit = function() {// Hack by FB, fires on pre-init
+    OAuth.initialize('RC14T5SkQ3Ueko-2PU2jF3qfBbQ')
     OAuth.popup('facebook', function(error, result) {
         //handle error with error
         var resp = new Object()
         resp.accessToken = result.access_token;
         FB.init({//sould trigger event
-            appId : '495607073863358'
+             appId  : '495607073863358'
            , status : false
            , authResponse: resp
            })//
         // should be ready:
-        FB.api('/me', function(response) {
-           console.log(response.id)
-           console.log(response.email)
-           console.log(response.first_name)
-           console.log(response.last_name)
-           console.log(response.verified)
+        FB.api('/me', function(dat) {
+           console.log(dat.id)
+           console.log(dat.email)
+           console.log(dat.first_name)
+           console.log(dat.last_name)
+           console.log(dat.verified)
         })//call
-
     })//OAuth
 }//()
 
