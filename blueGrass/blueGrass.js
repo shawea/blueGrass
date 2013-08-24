@@ -56,6 +56,16 @@ function getGuerryString(key) {
     return match && decodeURIComponent(match[1].replace(/\+/g, " "));
 }
 
+window.onerror = function (msg, uri, line) {
+    console.log(msg + uri + line);
+};
+
+function showSpinner(status) {
+    if (status)
+        document.getElementById('loader').style.display = 'block'; else
+        document.getElementById('loader').style.display = 'none';
+}
+
 function getBroInfo() {
     var o = new Object();
     o.pixR = window.devicePixelRatio;

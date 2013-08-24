@@ -81,9 +81,18 @@ function getGuerryString(key) {
 }
 
 
-/*window.onerror = function(msg, uri, line) {
+window.onerror = function(msg, uri, line) {
     console.log(msg + uri + line);
-} */
+}
+
+
+function showSpinner(status){
+    if (status)
+        document.getElementById('loader').style.display = 'block';
+    else
+        document.getElementById('loader').style.display = 'none';
+}
+
 
 /**
  * Returns some responsive info

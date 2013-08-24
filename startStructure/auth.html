@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- p  RC14T5SkQ3Ueko-2PU2jF3qfBbQ -->
+    <!-- p  Zn1jlDD3VGTxJPXzTFD8laLGYIk -->
+</head>
+<body>
+
+<button id='but1'>T Auth</button>
+<script src="/more/oauth.js"></script>
+<script src="//connect.facebook.net/en_US/all/debug.js"></script>
+
+<script>
+OAuth.initialize('RC14T5SkQ3Ueko-2PU2jF3qfBbQ');
+
+window.fbAsyncInit = function() {
+    OAuth.popup('facebook', function(error, result) {
+        //handle error with error
+        //console.log(result)
+        //use result.access_token in your API request
+        var r = result.access_token;
+        FB.init({//sould trigger event
+            appId : '495607073863358'
+            , channelUrl : 'channel.html'
+            , status : true
+            , logging : true
+            , oauth : true
+            , authResponse: result
+            })//
+
+        console.log(r)
+        //ready
+        FB.api('/me', function(response) {
+            console.log(response)
+            console.log(response.data)
+
+        })//call
+    })//OAuth
+}//()
+
+
+
+
+</script>
+</body>
+</html>
