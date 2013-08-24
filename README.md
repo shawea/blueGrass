@@ -14,7 +14,7 @@ Here are example of the type of application you can/should build:
 - http://intothearctic.gp
 - http://www.google.com/nexus
 
-For example, we can animate a div/section after loading. But the key to blueGrass is that it is hard to do nice UI in .js views, here the views are HTML.
+For example, we can animate a div/section after loading. But the key to blueGrass is that it is hard to do nice UI in .js views, here the views are HTML DOM, not .js emited.
 
 Since you are here, you agree to the AAL license :-), here you go: http://raw.github.com/shawea/blueGrass/master/blueGrass/blueGrass.js
 Yes this is all functions we have to make patterns work. You do have to learn how to use them.
@@ -44,7 +44,7 @@ Recommended but not required:
 * There are other libs used, check under blueGrass and more.
 
 Recipe:
-- Download the 'startStructure' folder to get the structure and edit. Copy blueGrass and more folder into aCDN/libs.
+- Download the 'startStructure' folder to get the structure and edit. Copy blueGrass, style and more folder into aCDN/libs.
 - Start with a prototype layout, recommend starting w/ CSS Framework
 - Remove sections(div) and save in 'CDN/views' or similar
 - Load view using provided open() or forward(). On open, animate, using greenSock.

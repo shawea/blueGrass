@@ -1,8 +1,32 @@
 /*
   Startup blueGrass style
 */
+@import 'topcoat-mobile-light';
+@import 'gridism';
+
+
+@radius: .2rem;
+@hiLite: #df4f4f;
+
 html, body {
   height:100%;
+}
+
+button .but{
+  .button;
+  margin-top: .1rem;
+  float: left;
+  margin-left: 7rem;
+}
+
+button .but .topcoat-button,
+.topcoat-button--quiet,
+.topcoat-button--large,
+.topcoat-button--large--quiet,
+.topcoat-button--cta,
+.topcoat-button--large--cta {
+  -webkit-border-radius: @radius;
+  border-radius: @radius;
 }
 
 .full-height {
@@ -21,7 +45,7 @@ html, body {
   z-index:100;
   border:1px solid gray;
   border-radius:3px;
-  box-shadow: 5px 5px 2px #888;
+  box-shadow: 5px 5px 2px gray;
 }
 
 #navMenu li {
@@ -51,33 +75,9 @@ header  {
   position: absolute  ;
   width: 100%;
   z-index:1;
-
+  box-shadow: 0rem .05rem .4rem black;
 }
 
-///////////////table
-table {
-  color:#333333;
-  border-width: 1px;
-  border-color: #666666;
-  border-collapse: collapse;
-}
-
-table th {
-  border-width: 1px;
-  padding: .5rem;
-  border-style: solid;
-  border-color: #666666;
-  background-color: #dedede;
-}
-table td {
-  border-width: 1px;
-  padding: .5rem;
-  border-style: solid;
-  border-color: #666666;
-  background-color: #ffffff;
-}
-
-/////////////////////////////
 
 .bold {
   font-size: 5rem;
@@ -87,10 +87,6 @@ table td {
 
 .pad {
   padding: 1rem;
-}
-
-header {
-  box-shadow: 0rem .05rem .4rem black;
 }
 
 /////////////
@@ -105,6 +101,7 @@ header {
 .cen {
   text-align: center;
 }
+
 .bak {
   background: lightslategray;
   border-radius: .2rem;
@@ -137,11 +134,7 @@ label {
   float: right;
   width: 23rem;
 }
-.but {
-  margin-top: .1rem;
-  float: left;
-  margin-left: 7rem;
-}
+
 .tabIn {
   margin-left: 7rem;
 }
