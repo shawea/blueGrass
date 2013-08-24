@@ -1,23 +1,8 @@
 <section id='account'>
-
 <style>
-    .border {
-        border:1px solid black;
-        padding-top: .4rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        border-radius: .2rem;
-        min-height: 20rem;
+    .non-select {
+        background-color: white;
     }
-    .cen {
-        text-align: center;
-    }
-    .bak {
-        background: lightslategray;
-        height: 2rem;;
-        line-height: 2rem;
-    }
-
 </style>
 <div class='grid'>
 <section id='left' class='unit one-third'>
@@ -28,12 +13,14 @@
     <div class="cen pad"><button class='topcoat-button--cta'>Data View</button></div>
 
     <div class='cen'>Create a new app:</div>
-    <div class='cen'><input id='new_app' name='title' class='topcoat-text-input textInput' type='text'
+    <div class='cen'><input id='new_app' name='new_app'
+                            class='topcoat-text-input cen' type='text'
               value='' placeholder='New app name'></div>
-    <div class='cen pad'><a id='loginBut' class='topcoat-button but' >Create New App</a></div>
-
+    <div class='cen pad'>
+        <a id='newApp' class='topcoat-button cen' >Create New App</a>
+    </div>
     <!--list -->
-    <div class="topcoat-list__container">
+    <div class="topcoat-list__container ">
         <h3 class="topcoat-list__header">Category</h3>
         <ul class="topcoat-list">
             <li class="topcoat-list__item">
@@ -52,8 +39,29 @@
 </section>
 <section id='right' class='unit two-thirds'>
 <div class='border'>
+    <div class='cen bak'>App</div>
 
-    Right
+    <legend>Selected App:</legend>
+        <div class='line'>
+            <label class='label' for='app_name'>App name:</label>
+            <input id='app_name'
+                   class='topcoat-text-input textInput non-select ' readonly type='text'
+                   value='' >
+        </div>
+        <div class='line'>
+            <label class='label' for='app_key'>App key:</label>
+            <input id='app_key'
+                   class='topcoat-text-input textInput non-select' readonly type='text'
+                   value='' >
+        </div>
+
+        <div class='line'>
+            <label class='label' for='app_key'>Lock Domain:</label>
+            <input id='lock_domain'
+                   class='topcoat-text-input textInput '  type='text'
+                   value='' >
+        </div>
+        <button  class='topcoat-button tabIn'>Set Security</button>
 
 </div>
 </section>
