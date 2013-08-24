@@ -13,33 +13,27 @@
 <script>
 OAuth.initialize('RC14T5SkQ3Ueko-2PU2jF3qfBbQ');
 
-window.fbAsyncInit = function() {
+window.fbAsyncInit = function() {// on pre-init
     OAuth.popup('facebook', function(error, result) {
         //handle error with error
-        //console.log(result)
-        //use result.access_token in your API request
-        var r = result.access_token;
+        var resp = new Object()
+        resp.accessToken = result.access_token;
         FB.init({//sould trigger event
             appId : '495607073863358'
-            , channelUrl : 'channel.html'
-            , status : true
-            , logging : true
-            , oauth : true
-            , authResponse: result
-            })//
-
-        console.log(r)
-        //ready
+           , status : false
+           , authResponse: resp
+           })//
+        // should be ready:
         FB.api('/me', function(response) {
-            console.log(response)
-            console.log(response.data)
-
+           console.log(response.id)
+           console.log(response.email)
+           console.log(response.first_name)
+           console.log(response.last_name)
+           console.log(response.verified)
         })//call
+
     })//OAuth
 }//()
-
-
-
 
 </script>
 </body>
