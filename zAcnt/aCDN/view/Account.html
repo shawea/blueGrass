@@ -10,7 +10,7 @@
 
     <div class='cen bak'>Apps</div>
 
-    <div class="cen pad"><button class='topcoat-button--cta'>Data View</button></div>
+    <div class='cen pad'><button class='topcoat-button--cta'>Data View</button></div>
 
     <div class='cen'>Create a new app:</div>
     <div class='cen'><input id='new_app' name='new_app'
@@ -20,16 +20,10 @@
         <a id='newAppBut' class='topcoat-button cen' >Create New App</a>
     </div>
     <!--list -->
-    <div class="topcoat-list__container ">
-        <h3 class="topcoat-list__header">Category</h3>
-        <ul class="topcoat-list">
-            <li class="topcoat-list__item">
-                Item
-            </li>
-            <li class="topcoat-list__item">
-                Item
-            </li>
-            <li class="topcoat-list__item">
+    <div class='topcoat-list__container '>
+        <h3 class='topcoat-list__header'>Category</h3>
+        <ul id='template' class='topcoat-list'>
+            <li class='topcoat-list__item' data-bind='app_name' >
                 Item
             </li>
         </ul>

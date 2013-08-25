@@ -50,7 +50,7 @@ var JoinLogin = (function () {
 var Account = (function () {
     function Account(data, app_) {
         this.app = app_;
-        this._Ldata = data;
+        this.loginDat = data;
         forward('Account', 'account', this.onLoaded.bind(this));
         cleanUpViews(0);
     }
@@ -61,16 +61,18 @@ var Account = (function () {
     };
     Account.prototype.getApps = function () {
         var msg = new Object();
-        msg.account_id = this._Ldata._id;
+        msg.account_id = this.loginDat._id;
         this.app.cloudAPI._call('ListApps', msg, this.onRet.bind(this), null);
     };
     Account.prototype.onRet = function (data) {
-        console.log(data);
+        this._list = data.array_;
+        console.log(this._list);
+        $('#template').render(this._list);
     };
 
     Account.prototype.onNew = function () {
         var msg = new Object();
-        msg.account_id = this._Ldata._id;
+        msg.account_id = this.loginDat._id;
         msg.app_name = $('#new_app').val();
         $('#new_app').val('');
         this.app.cloudAPI._call('ListApps', msg, this.onRet.bind(this), null);
