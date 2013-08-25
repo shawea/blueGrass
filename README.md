@@ -27,6 +27,9 @@ It is pure HTML5 and could run of CDN, preventing DOS. Also each view can be pre
 To run examples:
 open terminal in the directory and run 'simplehttpserver' (installed via npm) or similar - then surf to ROOT in each folder.
 
+After you download, you may want to watch a 10 minue video: http://www.youtube.com/watch?v=YWUGC3wKe14.
+
+
 Recommended but not required:
 * chrome  (and open the developer console in icognito mode or any browser)
 * npm -g install simplehttpserver (optional)
