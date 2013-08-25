@@ -44,7 +44,7 @@ Recommended but not required:
 * There are other libs used, check under blueGrass and more.
 
 Recipe:
-- Download the 'startStructure' folder to get the structure and edit. Copy blueGrass, style and more folder into aCDN/libs.
+- Download the 'startStructure' folder to get the structure and edit. Copy blueGrass and more folder into aCDN/libs.
 - Start with a prototype layout, recommend starting w/ CSS Framework
 - Remove sections(div) and save in 'CDN/views' or similar
 - Load view using provided open() or forward(). On open, animate, using greenSock.

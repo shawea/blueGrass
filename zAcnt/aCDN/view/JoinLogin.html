@@ -14,7 +14,10 @@
         <label class='label' for='password'>Password:</label>
         <input id='password'  class='topcoat-text-input textInput' type='password'  value='' placeholder='Password'>
     </div>
-    <div class ='line'><label class='label'></label>
+    <div id='loginEmailError' class='line tabIn alert' style="display:none">
+        <strong>Error: </strong> The email or password is not valid.
+    </div>
+    <div class ='line tabIn'>
         <a id='loginBut' class='topcoat-button--cta but' >Login</a>
     </div>
     <div class='line center'>
@@ -28,6 +31,7 @@
         - or -
     </div>
     <div class='line center'>
+        <hr/>
         Sign Up
     </div>
     <div class='line'>
@@ -52,13 +56,12 @@
         <input id='promo_code'  class='topcoat-text-input textInput' type='text'  value='' placeholder='Promo COde'>
     </div>
     <div class='line'>
-
-        <div class='tabIn'>
-            <input type="checkbox">
+        <span class='tabIn'>
+            <input type='checkbox'>
             I agree with terms of service.
-        </div>
+        </span>
     </div>
-    <div class ='line'><label class='label'></label>
+    <div class ='line tabIn'>
         <a id='joinBut' class='topcoat-button--cta but' >Sign Up</a>
     </div>
 </form>

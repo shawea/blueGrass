@@ -95,4 +95,10 @@ function setupPosSignal(posSignal, this_) {
     }, 100);
     return posSignal;
 }
+
+function browserSupportsCors() {
+    if ('withCredentials' in new XMLHttpRequest())
+        return true; else
+        return false;
+}
 //@ sourceMappingURL=blueGrass.js.map

@@ -136,8 +136,16 @@ function setupPosSignal(posSignal, this_) {
     return posSignal
 }//()
 
+function browserSupportsCors():bool {
+    if ('withCredentials' in new XMLHttpRequest())
+        return true
+    //else if (window.XDomainRequest)
+    //  return true
+    else
+        return false
+}
 
-///// optional paterns:
+///// optional patterns:
 /**
  * Each 'view' should position and manage self and receive the app in constructor
  */
@@ -148,6 +156,7 @@ interface IPresenter {// ~ composition, a 'section' presenter to manage a views/
      * @private
      */
     _onAppNav( ctx:any):any; //enum
+    _getModel(arg:any):Object;//could be array, returns nvp
 
 }
 
@@ -169,3 +178,5 @@ interface IApp{ // has the app + hasher + event/signalbuss, the global app , doe
     getEvtSignalFor(signalType:string):any;
 
 }
+
+
