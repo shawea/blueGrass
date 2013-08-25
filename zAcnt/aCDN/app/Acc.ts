@@ -2,7 +2,7 @@ declare var TweenLite;
 
 window.addEventListener('load', function() {
     viewDir = 'aCDN/view/'
-    console.log('0.2')
+    console.log('0.3')
     new App()
 })
 
@@ -20,7 +20,7 @@ class JoinLogin {
     private onLogBut() {
        //new Account(this.app)
         var loginModel=this._getModel(null)
-        console.log(loginModel)
+        //console.log(loginModel)
         if(loginModel==null) return;
         this.app.cloudAPI._call('JoinLogin', loginModel, this.onLoginRet.bind(this),null)
 
@@ -32,7 +32,7 @@ class JoinLogin {
             return;
         }
         $('#loginEmailError').hide()
-        console.log(data)
+        //console.log(data)
         this.app.showAccount(data)
     }
     private _getModel(arg:any):Object {
@@ -49,21 +49,41 @@ class JoinLogin {
         msg.email = email
         return msg;
     }
-
-
 }
 
 class Account {
-    _data:Object;
-    constructor(data:Object) {
-        this._data = data;
+    private _Ldata:Object;
+    private app:App;
+    constructor(data:Object,app_:App) {
+        this.app = app_;
+        this._Ldata = data;
         forward('Account','account',this.onLoaded.bind(this))
         cleanUpViews(0)
     }//
     private onLoaded() {
-
+        this.getApps()
+        var newBut = document.getElementById('newAppBut')
+        newBut.addEventListener('click',this.onNew.bind(this))
     }
+    private getApps() {
+        var msg:Object = new Object()
+        msg.account_id = this._Ldata._id
+        this.app.cloudAPI._call('ListApps', msg, this.onRet.bind(this),null)
+    }
+    private onRet(data) {
+        console.log(data)
+    }
+
+    private onNew() {
+        var msg:Object = new Object()
+        msg.account_id =  this._Ldata._id
+        msg.app_name = $('#new_app').val()
+        $('#new_app').val('')
+        this.app.cloudAPI._call('ListApps', msg, this.onRet.bind(this),null)
+    }
+
 }
+
 
 
 class App {
@@ -73,7 +93,7 @@ class App {
         this.loadFirst()
     }//()
     showAccount(data) {
-         new Account(data)
+         new Account(data,this)
     }
 
     loadFirst() {

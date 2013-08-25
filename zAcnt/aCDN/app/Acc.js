@@ -1,6 +1,6 @@
 window.addEventListener('load', function () {
     viewDir = 'aCDN/view/';
-    console.log('0.2');
+    console.log('0.3');
     new App();
 });
 
@@ -15,7 +15,7 @@ var JoinLogin = (function () {
     };
     JoinLogin.prototype.onLogBut = function () {
         var loginModel = this._getModel(null);
-        console.log(loginModel);
+
         if (loginModel == null)
             return;
         this.app.cloudAPI._call('JoinLogin', loginModel, this.onLoginRet.bind(this), null);
@@ -27,7 +27,7 @@ var JoinLogin = (function () {
             return;
         }
         $('#loginEmailError').hide();
-        console.log(data);
+
         this.app.showAccount(data);
     };
     JoinLogin.prototype._getModel = function (arg) {
@@ -48,12 +48,32 @@ var JoinLogin = (function () {
 })();
 
 var Account = (function () {
-    function Account(data) {
-        this._data = data;
+    function Account(data, app_) {
+        this.app = app_;
+        this._Ldata = data;
         forward('Account', 'account', this.onLoaded.bind(this));
         cleanUpViews(0);
     }
     Account.prototype.onLoaded = function () {
+        this.getApps();
+        var newBut = document.getElementById('newAppBut');
+        newBut.addEventListener('click', this.onNew.bind(this));
+    };
+    Account.prototype.getApps = function () {
+        var msg = new Object();
+        msg.account_id = this._Ldata._id;
+        this.app.cloudAPI._call('ListApps', msg, this.onRet.bind(this), null);
+    };
+    Account.prototype.onRet = function (data) {
+        console.log(data);
+    };
+
+    Account.prototype.onNew = function () {
+        var msg = new Object();
+        msg.account_id = this._Ldata._id;
+        msg.app_name = $('#new_app').val();
+        $('#new_app').val('');
+        this.app.cloudAPI._call('ListApps', msg, this.onRet.bind(this), null);
     };
     return Account;
 })();
@@ -64,7 +84,7 @@ var App = (function () {
         this.loadFirst();
     }
     App.prototype.showAccount = function (data) {
-        new Account(data);
+        new Account(data, this);
     };
 
     App.prototype.loadFirst = function () {

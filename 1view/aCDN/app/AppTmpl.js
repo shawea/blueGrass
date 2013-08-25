@@ -2,12 +2,12 @@ viewDir = 'aCDN/view/';
 console.log('v0.03');
 cloud = new CloudAPI();
 
-var but1 = document.getElementById('d3');
-but1.addEventListener('click', showD3);
+var but1 = document.getElementById('flotBut');
+but1.addEventListener('click', show);
 
-function showD3() {
+function show() {
     console.log('load d3');
-    forward('D3', 'd3');
+    forward('flot', 'flot');
 }
 ;
 

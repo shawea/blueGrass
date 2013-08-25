@@ -16,7 +16,7 @@ Here are example of the type of application you can/should build:
 
 For example, we can animate a div/section after loading. But the key to blueGrass is that it is hard to do nice UI in .js views, here the views are HTML DOM, not .js emited.
 
-Since you are here, you agree to the AAL license :-), here you go: http://raw.github.com/shawea/blueGrass/master/blueGrass/blueGrass.js
+Since you are here, you agree to the AAL license :-), here you go: http://raw.github.com/shawea/blueGrass/master/cdn/blueGrass.js
 Yes this is all functions we have to make patterns work. You do have to learn how to use them.
 
 We use Ajax, ex:
@@ -43,8 +43,8 @@ Recommended but not required:
 * A CDN, ex: MaxCDN
 * There are other libs used, check under blueGrass and more.
 
-Recipe:
-- Download the 'startStructure' folder to get the structure and edit. Copy blueGrass and more folder into aCDN/libs.
+Design/recipe:
+- Download the 'startStructure' folder to get the structure and edit. Copy cdn folder into aCDN/libs.
 - Start with a prototype layout, recommend starting w/ CSS Framework
 - Remove sections(div) and save in 'CDN/views' or similar
 - Load view using provided open() or forward(). On open, animate, using greenSock.
@@ -54,7 +54,7 @@ Recipe:
 Things that may not help your UI:
 - MV* frameworks: they focus on UI in javascript, not HTML.
     If you are not ready to move past MV*, that's OK, we'll be here when you are. Before you leave, this can be used with any MV*.
-    (But if you must know, this is a a presenter/event bus.)
+    (But if you want to know, this is a a presenter/event bus.)
 - ASM compilers: CSS3 gives you speed, not .js.
 - Require/AMD loaders : load and unload divs, not 'classes'
 - Starting with own, non tested or documented CSS. Just select a CSS framework with an eco system. Most examples here use TopCoat css.
