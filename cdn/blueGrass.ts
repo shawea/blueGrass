@@ -164,7 +164,8 @@ interface IPresenter {// ~ composition, a 'section' presenter to manage a views/
  * App should be light, start up and dispatch
  */
 interface IApp{ // has the app + hasher + event/signalbuss, the global app , does not animate or open, may have signals, does not have references to 'view' presetners
-    _onHashChanged()
+    _onHashChanged()    // listen to hash change: window.addEventListener('hashchange', this._onHashChanged.bind(this))
+
 
     _setupNavDispatching()
 

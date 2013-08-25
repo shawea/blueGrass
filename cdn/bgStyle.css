@@ -2015,6 +2015,7 @@ body {
 html,
 body {
   height: 100%;
+  font-size: 1rem;
 }
 button .but {
   position: relative;
@@ -2142,6 +2143,7 @@ label {
 .textInput {
   float: right;
   width: 23rem;
+  font-size: 1rem;
 }
 .tabIn {
   margin-left: 7rem;
