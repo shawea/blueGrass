@@ -1,12 +1,19 @@
-window.addEventListener('load', function () {
-    viewDir = 'aCDN/view/';
+//zepto or jq ?
+head.js('/cdn/more/jquery-2.0.3.min.js', '/cdn/more/transparency.min.js', '/cdn/fastclick.js', '/cdn/TweenLite.min.js', '/cdn/signals.min.js', '/cdn/more/moment.min.js', '/cdn/CSSPlugin.min.js', '/cdn/blueGrass.js', 'http://ca_1.primusapi.com/acdn/libs/cloudAPI.js', 'aCDN/app/Pres.js');
 
+head.ready(function () {
+    viewDir = 'aCDN/view/';
+    console.log('v1');
+
+    //console.log(getBrowserInfo())
     FastClick.attach(document.body);
     new App();
 });
 
 var App = (function () {
     function App() {
+        //setup slider
+        //create views
         this.hashSignal = new signals.Signal();
         var enterF = new EnterForm(this);
         var about = new About(this);
@@ -15,16 +22,19 @@ var App = (function () {
         this.loadFirst();
         cAPI = new CloudAPI();
 
+        //DeepLink
         window.addEventListener('hashchange', this._onHashChanged.bind(this));
         this._setupNavDispatching();
     }
     App.prototype._setupNavDispatching = function () {
+        //set up slider
         this.navFlag = false;
         var menu = document.getElementById('navMenu');
         menu.addEventListener('click', this.toggleSideNav.bind(this), false);
         var nav = document.getElementById('navBut');
         nav.addEventListener('click', this.toggleSideNav.bind(this), false);
 
+        //setup menu items, # should also work
         var aboutBut = document.getElementById('aboutBut');
         aboutBut.addEventListener('click', function () {
             setHash('about');

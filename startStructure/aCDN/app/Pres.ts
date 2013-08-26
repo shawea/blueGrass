@@ -1,7 +1,6 @@
 declare var TweenLite;
 declare var App;
 
-console.log('0.02')
 
 class EnterForm {
     private app:App;

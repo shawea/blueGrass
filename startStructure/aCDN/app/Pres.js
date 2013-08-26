@@ -1,5 +1,3 @@
-console.log('0.02');
-
 var EnterForm = (function () {
     function EnterForm(app_) {
         this.app = app_;
@@ -41,6 +39,7 @@ var Home = (function () {
     Home.prototype.onHome = function () {
         console.log('onHome');
 
+        // load first 2
         cAPI.prevRows('blog', 0, 3, this.onData.bind(this));
     };
 
@@ -56,6 +55,7 @@ var Home = (function () {
                 text: function (p) {
                     var s = new moment(this._daoc).format('ddd MMMM Do ha');
 
+                    //console.log(s,p)
                     return s;
                 }
             },
