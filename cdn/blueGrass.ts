@@ -157,6 +157,8 @@ interface IPresenter {// ~ composition, a 'section' presenter to manage a views/
      */
     _onAppNav( ctx:any):any; //enum
 
+    _doCleanup() // remove listeners
+
 }
 
 /**

@@ -33,7 +33,6 @@ var JoinLogin = (function () {
         this.app.showAccount(data);
     };
     JoinLogin.prototype._getModel = function (arg) {
-        console.log(this);
         var email = $('#email').val();
         if (!isEmailValid(email)) {
             $('#loginEmailError').show();
@@ -60,11 +59,12 @@ var AccountSrv = (function () {
     };
 
     AccountSrv.prototype.getApp = function (name, cb) {
+        console.log(name);
         var msg = new Object();
         msg.app_name = name;
-        msg.account_id = app.accData._id;
+        msg.account_id = this.loginDat._id;
         console.log(JSON.stringify(msg));
-        app.cloudAPI._call('GetApp', msg, cb, null);
+        this.app.cloudAPI._call('GetApp', msg, cb, null);
     };
 
     AccountSrv.prototype.insertNew = function (name, cb) {
@@ -79,9 +79,9 @@ var AccountSrv = (function () {
 
 var Account = (function () {
     function Account(data, app_) {
-        this._srv = new AccountSrv(app_);
+        this.srv = new AccountSrv(app_);
         this.app = app_;
-        this._srv.loginDat = data;
+        this.srv.loginDat = data;
         forward('Account', 'account', this.onLoaded.bind(this));
         cleanUpViews(0);
     }
@@ -91,24 +91,28 @@ var Account = (function () {
         var temp = document.getElementById('template');
         temp.addEventListener('click', this.onClicked.bind(this));
 
-        this._srv.getApps(this.onRet.bind(this));
+        this.srv.getApps(this.onRet.bind(this));
     };
 
     Account.prototype.onRet = function (data) {
-        this._srv.list = data.array_;
-        console.log(this._srv.list);
-        $('#template').render(this._srv.list);
+        this.srv.list = data.array_;
+        console.log(this.srv.list);
+        $('#template').render(this.srv.list);
     };
 
     Account.prototype.onClicked = function (e) {
         //console.log(e)
-        var name = e.target.innerText;
+        var name = e.target.textContent;
         console.log(name);
-        console.log(e.target.textContent);
+        this.srv.getApp(this.onAppData.bind(this));
+    };
+
+    Account.prototype.onAppData = function (dat) {
+        console.log(dat);
     };
 
     Account.prototype.onNew = function () {
-        this._srv.insertNew($('#new_app').val(), this.onRet.bind(this));
+        this.srv.insertNew($('#new_app').val(), this.onRet.bind(this));
     };
     return Account;
 })();

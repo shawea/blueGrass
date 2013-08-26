@@ -36,7 +36,6 @@ class JoinLogin {
         this.app.showAccount(data)
     }
     private _getModel(arg:any):Object {
-        console.log(this)
         var email:String = $('#email').val()
         if(!isEmailValid(email)) {
             $('#loginEmailError').show()
@@ -67,11 +66,12 @@ class AccountSrv {//Account services
     }
 
     getApp(name:string,cb) {
+        console.log(name)
         var msg:Object = new Object()
         msg.app_name=name
-        msg.account_id =  app.accData._id
+        msg.account_id =  this.loginDat._id
         console.log(JSON.stringify(msg))
-        app.cloudAPI._call('GetApp', msg, cb,null)
+        this.app.cloudAPI._call('GetApp', msg, cb,null)
     }
 
     insertNew(name:string,cb) { //this.onRet.bind(this)
@@ -82,16 +82,15 @@ class AccountSrv {//Account services
         this.app.cloudAPI._call('ListApps', msg, cb ,null)
     }
 
-
 }
 
 class Account {
-    private _srv:AccountSrv;
+    private srv:AccountSrv;
     private app:App;
     constructor(data:Object,app_:App) {
-        this._srv = new AccountSrv(app_)
+        this.srv = new AccountSrv(app_)
         this.app = app_;
-        this._srv.loginDat = data;
+        this.srv.loginDat = data;
         forward('Account','account',this.onLoaded.bind(this))
         cleanUpViews(0)
     }//
@@ -101,26 +100,29 @@ class Account {
         var temp = document.getElementById('template')
         temp.addEventListener('click', this.onClicked.bind(this))
 
-        this._srv.getApps(this.onRet.bind(this))
+        this.srv.getApps(this.onRet.bind(this))
     }
 
     private onRet(data) {
-        this._srv.list = data.array_
-        console.log(this._srv.list)
-        $('#template').render(this._srv.list);
+        this.srv.list = data.array_
+        console.log(this.srv.list)
+        $('#template').render(this.srv.list);
     }
 
     private onClicked(e) {
         //console.log(e)
-        var name:string = e.target.innerText
+        var name:string = e.target.textContent
         console.log(name)
-        console.log(e.target.textContent)
+        this.srv.getApp(this.onAppData.bind(this))
+    }
+
+    private onAppData(dat) {
+        console.log(dat)
     }
 
     private onNew() {
-        this._srv.insertNew($('#new_app').val(), this.onRet.bind(this) )
+        this.srv.insertNew($('#new_app').val(), this.onRet.bind(this) )
     }
-
 }
 
 
