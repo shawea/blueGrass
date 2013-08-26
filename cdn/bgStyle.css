@@ -2114,6 +2114,10 @@ header {
 .cen {
   text-align: center;
 }
+.mid {
+  vertical-align: middle;
+  line-height: 2rem;
+}
 .bak {
   background: lightslategray;
   border-radius: .2rem;

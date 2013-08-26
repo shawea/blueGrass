@@ -55,12 +55,12 @@
         <label class='label' for='promo_code'>Promo code:</label>
         <input id='promo_code'  class='topcoat-text-input textInput' type='text'  value='' placeholder='Promo COde'>
     </div>
-    <div class='line'>
-        <span class='tabIn'>
-            <input type='checkbox'>
-            I agree with terms of service.
-        </span>
+
+    <div class='line tabIn'>
+        <input id='terms' type='checkbox'><div class='topcoat-checkbox '></div>
+        <span class='mid' > I agree with terms of service.</span>
     </div>
+
     <!-- errors: -->
         <div id='nameError' class='line tabIn' style='display: none;'>
             <strong>Name: </strong>  Name is required
@@ -71,10 +71,10 @@
         <div id='termsError' class='line tabIn' style='display: none;'>
             <strong>Error: </strong> You must agree with the Terms of Service to Sign Up.
         </div>
-
         <div id='notMatching' class='line tabIn' style='display: none;'>
                <strong>Error: </strong> The passwords do not match.
         </div>
+
     <!-- login but -->
     <div class ='line tabIn'>
         <a id='joinBut' class='topcoat-button--cta but' >Sign Up</a>

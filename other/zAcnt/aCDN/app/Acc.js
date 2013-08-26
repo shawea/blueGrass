@@ -73,7 +73,7 @@ var JoinLogin = (function () {
         }
         $('#signupEmailError').hide();
 
-        var terms = $('#checkboxT').is(":checked");
+        var terms = $('#terms').is(":checked");
         console.log(terms);
         if (!terms) {
             $('#termsError').show();

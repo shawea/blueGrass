@@ -77,7 +77,7 @@ class JoinLogin {
         }
         $('#signupEmailError').hide()
 
-        var terms:bool = $('#checkboxT').is(":checked")
+        var terms:bool = $('#terms').is(":checked")
         console.log(terms)
         if(!terms) {
             $('#termsError').show()
