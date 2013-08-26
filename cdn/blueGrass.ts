@@ -147,7 +147,7 @@ function browserSupportsCors():bool {
 
 ///// optional patterns:
 /**
- * Each 'view' should position and manage self and receive the app in constructor
+ * Each 'presenter' should position, access loaded and manage self and receive the app in constructor.
  */
 interface IPresenter {// ~ composition, a 'section' presenter to manage a views/sections (and hold state/model ex, when view is cleanedUp). app has no reference to a presneter
     /**
@@ -181,7 +181,8 @@ interface IApp{ // has the app + hasher + event/signalbuss, the global app , doe
 
 }
 
-interface IService { // the presenter's service, makes it easier to test services, no dom
-    _getModel(arg:any):Object;
+interface IService { // the presenter's service, makes it easier to test services, no dom access
+    setModel(key:string, value:any)
+
 }
 

@@ -1,6 +1,6 @@
 window.addEventListener('load', function () {
     viewDir = 'aCDN/view/';
-    console.log('0.4');
+    console.log('0.5');
     new App();
 });
 
@@ -59,7 +59,6 @@ var AccountSrv = (function () {
     };
 
     AccountSrv.prototype.getApp = function (name, cb) {
-        console.log(name);
         var msg = new Object();
         msg.app_name = name;
         msg.account_id = this.loginDat._id;
@@ -96,19 +95,24 @@ var Account = (function () {
 
     Account.prototype.onRet = function (data) {
         this.srv.list = data.array_;
-        console.log(this.srv.list);
+
+        //console.log(this.srv.list)
         $('#template').render(this.srv.list);
     };
 
     Account.prototype.onClicked = function (e) {
         //console.log(e)
         var name = e.target.textContent;
-        console.log(name);
-        this.srv.getApp(this.onAppData.bind(this));
+        this.srv.getApp(name, this.onAppData.bind(this));
     };
 
     Account.prototype.onAppData = function (dat) {
-        console.log(dat);
+        this.srv.row = dat;
+
+        //console.log(dat)
+        $('#app_name').val(dat.app_name);
+        $('#app_key').val(dat.secret_app_key);
+        $('#domain').val(dat.domain);
     };
 
     Account.prototype.onNew = function () {

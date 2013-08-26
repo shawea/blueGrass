@@ -2,7 +2,7 @@ declare var TweenLite;
 
 window.addEventListener('load', function() {
     viewDir = 'aCDN/view/'
-    console.log('0.4')
+    console.log('0.5')
     new App()
 })
 
@@ -53,6 +53,7 @@ class JoinLogin {
 class AccountSrv {//Account services
     loginDat:Object;
     list:Array;
+    row:Object;
     private app:App;
 
     constructor(app_:App) {
@@ -66,7 +67,6 @@ class AccountSrv {//Account services
     }
 
     getApp(name:string,cb) {
-        console.log(name)
         var msg:Object = new Object()
         msg.app_name=name
         msg.account_id =  this.loginDat._id
@@ -105,19 +105,22 @@ class Account {
 
     private onRet(data) {
         this.srv.list = data.array_
-        console.log(this.srv.list)
+        //console.log(this.srv.list)
         $('#template').render(this.srv.list);
     }
 
     private onClicked(e) {
         //console.log(e)
         var name:string = e.target.textContent
-        console.log(name)
-        this.srv.getApp(this.onAppData.bind(this))
+        this.srv.getApp(name,this.onAppData.bind(this))
     }
 
     private onAppData(dat) {
-        console.log(dat)
+        this.srv.row = dat
+        //console.log(dat)
+        $('#app_name').val(dat.app_name)
+        $('#app_key').val(dat.secret_app_key)
+        $('#domain').val(dat.domain)
     }
 
     private onNew() {
