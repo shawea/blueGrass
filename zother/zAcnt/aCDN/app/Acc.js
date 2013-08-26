@@ -11,6 +11,10 @@ var JoinLoginSrv = (function () {
     JoinLoginSrv.prototype.login = function (model, cb) {
         this.app.cloudAPI._call('JoinLogin', model, cb, null);
     };
+
+    JoinLoginSrv.prototype.join = function (model, cb) {
+        this.app.cloudAPI._call('JoinLogin', model, cb, null);
+    };
     return JoinLoginSrv;
 })();
 
@@ -58,6 +62,14 @@ var JoinLogin = (function () {
         return msg;
     };
 
+    JoinLogin.prototype.onJoinRet = function (data, er) {
+        console.log(er);
+        if (typeof er != 'undefined') {
+            $('#customEr').text(er);
+            return;
+        }
+        this.app.showAccount(data);
+    };
     JoinLogin.prototype.getJoinModel = function () {
         var full_name = $('#full_name').val();
         if (full_name.length < 2) {
@@ -95,7 +107,9 @@ var JoinLogin = (function () {
         msg.pswd2 = pswd2;
         msg.email = email;
         msg.promo_code = $('#promo_code').val();
-        return msg;
+
+        this.srv.join(msg, this.onJoinRet.bind(this));
+        return;
     };
     return JoinLogin;
 })();
@@ -143,6 +157,7 @@ var Account = (function () {
         temp.addEventListener('click', this.onClicked.bind(this));
 
         this.srv.getApps(this.onRet.bind(this));
+        this.srv.getApp('firstapp', this.onAppData.bind(this));
     };
 
     Account.prototype.onRet = function (data) {

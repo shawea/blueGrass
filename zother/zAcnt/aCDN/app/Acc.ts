@@ -15,6 +15,10 @@ class JoinLoginSrv {
     login(model:Object, cb:any) {
         this.app.cloudAPI._call('JoinLogin', model, cb ,null)
     }
+
+    join(model:Object, cb:any) {
+        this.app.cloudAPI._call('JoinLogin', model, cb,null)
+    }
 }
 
 class JoinLogin {
@@ -62,7 +66,15 @@ class JoinLogin {
         return msg;
     }
 
-    private getJoinModel():Object  {
+    private onJoinRet(data,er) {
+        console.log(er)
+        if(typeof er != 'undefined') {
+            $('#customEr').text(er)
+            return
+        }
+        this.app.showAccount(data)
+    }
+    private getJoinModel()  {
         var full_name:string= $('#full_name').val()
         if(full_name.length<2) {
             $('#nameError').show()
@@ -99,10 +111,11 @@ class JoinLogin {
         msg.pswd2= pswd2
         msg.email= email;
         msg.promo_code= $('#promo_code').val()
-        return msg;
+
+        this.srv.join(msg, this.onJoinRet.bind(this))
+        return
     }
 }
-
 
 class AccountSrv {//Account services
     loginDat:Object;
@@ -155,6 +168,8 @@ class Account {
         temp.addEventListener('click', this.onClicked.bind(this))
 
         this.srv.getApps(this.onRet.bind(this))
+        this.srv.getApp('firstapp',this.onAppData.bind(this))//load first
+
     }
 
     private onRet(data) {
@@ -182,6 +197,7 @@ class Account {
     }
 }
 
+
 class App {
     cloudAPI:Object;
     constructor () {
@@ -195,6 +211,5 @@ class App {
     loadFirst() {
         new JoinLogin(this)
     }
-
 
 }//class
