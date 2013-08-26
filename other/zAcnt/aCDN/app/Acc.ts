@@ -2,15 +2,30 @@ declare var TweenLite;
 
 window.addEventListener('load', function() {
     viewDir = 'aCDN/view/'
-    console.log('0.5')
+    console.log('0.1')
     new App()
 })
 
 
-class JoinLogin {
+class JoinLoginSrv {
     private app:App;
     constructor(app_:App) {
         this.app = app_
+    }
+
+    login(model:Object, cb:any) {
+        this.app.cloudAPI._call('JoinLogin', model, cb ,null)
+    }
+
+}
+
+
+class JoinLogin {
+    private app:App;
+    private srv:JoinLoginSrv;
+    constructor(app_:App) {
+        this.app = app_
+        this.srv = new JoinLoginSrv(app_)
         forward('JoinLogin','joinLogin',this.onLoaded.bind(this))
     }//
     private onLoaded() {
@@ -19,10 +34,10 @@ class JoinLogin {
     }
     private onLogBut() {
        //new Account(this.app)
-        var loginModel=this._getModel(null)
+        var loginModel=this.getLoginModel()
         //console.log(loginModel)
         if(loginModel==null) return;
-        this.app.cloudAPI._call('JoinLogin', loginModel, this.onLoginRet.bind(this),null)
+        this.srv.login(loginModel, this.onLoginRet.bind(this))
 
     }
     private onLoginRet(data,er) {
@@ -35,7 +50,7 @@ class JoinLogin {
         //console.log(data)
         this.app.showAccount(data)
     }
-    private _getModel(arg:any):Object {
+    private getLoginModel():Object {
         var email:String = $('#email').val()
         if(!isEmailValid(email)) {
             $('#loginEmailError').show()
@@ -48,7 +63,53 @@ class JoinLogin {
         msg.email = email
         return msg;
     }
+
+    private getJoinModel():Object  {
+
+        var full_name:string= $('#full_name').val()
+        if(full_name.length<2) {
+            $('#nameError').show()
+            return null;
+        }
+        $('#nameError').hide()
+
+        var email:String = $('#Jemail').val()
+        if(!isEmailValid(email)) {
+            $('#signupEmailError').show()
+            return null;
+        }
+        $('#signupEmailError').hide()
+
+        var terms:bool = $('#checkboxT').is(":checked")
+        console.log(terms)
+        if(!terms) {
+            $('#termsError').show()
+            return null;
+        }
+        $('#termsError').hide()
+
+        var pswd:String =  $('#Jpassword').val()
+        var pswd2:String = $('#Jpassword2').val()
+        if(pswd!=pswd2||pswd.length<2) {
+            $('#notMatching').show()
+            return null;
+        }
+        $('#notMatching').hide()
+
+
+        var msg = new Object()
+        msg.full_name= full_name
+        msg.pswd= pswd
+        msg.pswd2= pswd2
+        msg.email= email;
+        msg.promo_code= $('#promo_code').val()
+
+
+
+        return msg;
+    }
 }
+
 
 class AccountSrv {//Account services
     loginDat:Object;
@@ -127,7 +188,6 @@ class Account {
         this.srv.insertNew($('#new_app').val(), this.onRet.bind(this) )
     }
 }
-
 
 class App {
     cloudAPI:Object;

@@ -1,12 +1,23 @@
 window.addEventListener('load', function () {
     viewDir = 'aCDN/view/';
-    console.log('0.5');
+    console.log('0.1');
     new App();
 });
+
+var JoinLoginSrv = (function () {
+    function JoinLoginSrv(app_) {
+        this.app = app_;
+    }
+    JoinLoginSrv.prototype.login = function (model, cb) {
+        this.app.cloudAPI._call('JoinLogin', model, cb, null);
+    };
+    return JoinLoginSrv;
+})();
 
 var JoinLogin = (function () {
     function JoinLogin(app_) {
         this.app = app_;
+        this.srv = new JoinLoginSrv(app_);
         forward('JoinLogin', 'joinLogin', this.onLoaded.bind(this));
     }
     JoinLogin.prototype.onLoaded = function () {
@@ -15,11 +26,11 @@ var JoinLogin = (function () {
     };
     JoinLogin.prototype.onLogBut = function () {
         //new Account(this.app)
-        var loginModel = this._getModel(null);
+        var loginModel = this.getLoginModel();
 
         if (loginModel == null)
             return;
-        this.app.cloudAPI._call('JoinLogin', loginModel, this.onLoginRet.bind(this), null);
+        this.srv.login(loginModel, this.onLoginRet.bind(this));
     };
     JoinLogin.prototype.onLoginRet = function (data, er) {
         if (typeof er != 'undefined') {
@@ -32,7 +43,7 @@ var JoinLogin = (function () {
         //console.log(data)
         this.app.showAccount(data);
     };
-    JoinLogin.prototype._getModel = function (arg) {
+    JoinLogin.prototype.getLoginModel = function () {
         var email = $('#email').val();
         if (!isEmailValid(email)) {
             $('#loginEmailError').show();
@@ -43,6 +54,47 @@ var JoinLogin = (function () {
         var msg = new Object();
         msg.pswd = $('#password').val();
         msg.email = email;
+        return msg;
+    };
+
+    JoinLogin.prototype.getJoinModel = function () {
+        var full_name = $('#full_name').val();
+        if (full_name.length < 2) {
+            $('#nameError').show();
+            return null;
+        }
+        $('#nameError').hide();
+
+        var email = $('#Jemail').val();
+        if (!isEmailValid(email)) {
+            $('#signupEmailError').show();
+            return null;
+        }
+        $('#signupEmailError').hide();
+
+        var terms = $('#checkboxT').is(":checked");
+        console.log(terms);
+        if (!terms) {
+            $('#termsError').show();
+            return null;
+        }
+        $('#termsError').hide();
+
+        var pswd = $('#Jpassword').val();
+        var pswd2 = $('#Jpassword2').val();
+        if (pswd != pswd2 || pswd.length < 2) {
+            $('#notMatching').show();
+            return null;
+        }
+        $('#notMatching').hide();
+
+        var msg = new Object();
+        msg.full_name = full_name;
+        msg.pswd = pswd;
+        msg.pswd2 = pswd2;
+        msg.email = email;
+        msg.promo_code = $('#promo_code').val();
+
         return msg;
     };
     return JoinLogin;

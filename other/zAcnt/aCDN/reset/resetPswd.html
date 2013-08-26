@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Primus API</title>
+    <link href="http://s.primusapi.com/ver0613/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="http://s.primusapi.com/ver0613/css/flat-ui.css"             rel="stylesheet">
+    <link href='../../../../account/acdn/bikeSheding/bikeSheding.css'                        rel='stylesheet'  />
+
+    <link rel="shortcut icon" href="http://s.primusapi.com/ver0613/images/favicon.ico">
+
+    <!--[if lt IE 9]>
+    <script src="http://s.primusapi.com/ver0613/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div id="login" class="login-screen">
+    <div class="login-icon span3">
+        <img src="http://s.primusapi.com/ver0613/img/primusapi256.png">
+        <h1>Primus API</h1>
+    </div>
+
+    <div class="login-form span4 offset6">
+        <p>Reset Password</p>
+
+        <div class="control-group">
+            <input id="loginPswd" type="password" class="login-field" value="" placeholder="New password" >
+            <label class="login-field-icon fui-lock" for="loginPswd"></label>
+        </div>
+        <div class="control-group">
+            <input id="loginPswd2" type="password" class="login-field" value="" placeholder="Repeat new password" >
+            <label class="login-field-icon fui-lock" for="loginPswd2"></label>
+        </div>
+
+        <div class="control-group">
+            <a id='saveBut' class="btn btn-primary btn-large btn-block" href="#">Save</a>
+        </div>
+        <div class="control-group">
+            <div id="notMatching" class="alert alert-danger" style="display: none;">
+                <strong>Error: </strong>The passwords do not match.
+            </div>
+        </div>
+        <div class="control-group">
+            <div id="saved" class="alert alert-danger" style="display: none;">
+                <strong>New password is now in effect.</strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="hero-unit-pricing" style="background-color: #ffffff; text-align:center;">
+        <a href="mailto:support@primusapi.com">Support Contact</a></br>
+        &copy; Primus API Corp., 2013
+    </div>
+</footer>
+
+<script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js'></script>
+<!-- app scripts : -->
+<script src='../acdn/bikeSheding/signals.js'></script>
+<script src='../../../../account/acdn/bikeSheding/bikeSheding.js'></script>
+<script src='../../../../account/acdn/libs/cloudAPI.js'></script>
+<script src='../../../../account/acdn/app/resetPswd.js'></script>
+
+<script type="text/javascript"><!--GA Code-->
+var _gaq = _gaq || [];
+    var pluginUrl =
+            '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+    _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+    _gaq.push(['_setAccount', 'UA-42075346-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+
+</body>
+</html>
