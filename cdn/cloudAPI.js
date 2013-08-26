@@ -1,20 +1,16 @@
 var CloudAPI = (function () {
-    function CloudAPI() {
+    function CloudAPI(key) {
         this._baseServiceUrl1 = 'http://ca_1.primusapi.com/service/';
         this._sec = 0;
-        try  {
-            var script_tag = document.getElementById('primusAPI');
-            this._secret_app_key = script_tag.getAttribute('data-app_key');
-            if (typeof this._secret_app_key != 'undefined' && this._secret_app_key != null) {
-                console.log('cloudAPI ready v1.812 ' + this._secret_app_key);
-            } else
-                console.log('app key not set ');
-        } catch (er) {
-            console.log('app key not set e ');
-        }
+        this.setAppKey(key);
     }
+    /**
+    * Set the application key
+    * @param key
+    */
     CloudAPI.prototype.setAppKey = function (key) {
         this._secret_app_key = key;
+        console.log('cloudAPI ready v1.812 ' + this._secret_app_key);
     };
 
     CloudAPI.prototype.setAuthToken = function (tok) {

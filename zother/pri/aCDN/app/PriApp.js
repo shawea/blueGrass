@@ -1,7 +1,17 @@
-window.addEventListener('load', function () {
+if ('__proto__' in {}) {
+    //jq or z
+    document.write('<script src="/cdn/zepto.min.js"><\/script>');
+    console.log('z');
+} else {
+    document.write('<script src="/cdn/more/jquery-2.0.3.min.js"><\/script>');
+    console.log('jq');
+}
+head.js('/cdn/fastclick.js', '/cdn/TweenLite.min.js', '/cdn/signals.min.js', '/cdn/CSSPlugin.min.js', '/cdn/blueGrass.js');
+head.ready(function () {
     viewDir = 'aCDN/view/';
     console.log('0.03');
 
+    //console.log(getBrowserInfo())
     FastClick.attach(document.body);
     new App();
 });
@@ -38,23 +48,27 @@ var About = (function () {
 
 var App = (function () {
     function App() {
+        //create views
         this.hashSignal = new signals.Signal();
         var about = new About(this);
         var tut = new Tut(this);
 
         this.loadFirst();
 
+        //DeepLink
         window.addEventListener('hashchange', this._onHashChanged.bind(this));
 
         this._setupNavDispatching();
     }
     App.prototype._setupNavDispatching = function () {
+        //setup slider
         this.navFlag = false;
         var menu = document.getElementById('navMenu');
         menu.addEventListener('click', this.toggleSideNav.bind(this), false);
         var nav = document.getElementById('navBut');
         nav.addEventListener('click', this.toggleSideNav.bind(this), false);
 
+        //setup menu items
         var aboutBut = document.getElementById('aboutBut');
         aboutBut.addEventListener('click', function () {
             setHash('about');

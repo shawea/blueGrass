@@ -10,7 +10,7 @@
     <meta name='viewport' content='width=device-width'>
     <meta name='apple-mobile-web-app-capable' content='yes'>
     <meta name='apple-touch-fullscreen' content='yes'>
-    <link href='/style/bgStyle.css'      rel='stylesheet'>
+    <link href='/cdn/bgStyle.css'      rel='stylesheet'>
     <!--app -->
     <link href='aCDN/assets/appStyle.css'      rel='stylesheet'>
 </head>
@@ -61,21 +61,7 @@
     </main>
 
 </section>
-<script>// zepto or jq
-if('__proto__' in {}) {
-    document.write('<script src="/cdn/zepto.min.js"><\/script>')
-    console.log('z')
-}   else {
-    document.write('<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"><\/script>')
-    console.log('jq')
-}
-</script>
-<script src='/cdn/fastclick.js'></script>
-<script src='/cdn/TweenLite.min.js'></script>
-<script src='/cdn/signals.min.js'></script>
-<script src='/cdn/CSSPlugin.min.js'></script>
-<script src='/cdn/blueGrass.js'></script>
-<!-- app: -->
-<script src='aCDN/app/PriApp.js'></script>
+    <script src='/cdn/more/head.load.min.js'></script>
+    <script src='aCDN/app/PriApp.js'></script>
 </body>
 </html>

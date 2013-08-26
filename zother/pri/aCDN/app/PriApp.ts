@@ -1,6 +1,19 @@
 declare var TweenLite;
-
-window.addEventListener('load', function() {
+if('__proto__' in {}) {
+    //jq or z
+    document.write('<script src="/cdn/zepto.min.js"><\/script>')
+    console.log('z')
+}   else {
+    document.write('<script src="/cdn/more/jquery-2.0.3.min.js"><\/script>')
+    console.log('jq')
+}
+head.js('/cdn/fastclick.js'
+    ,'/cdn/TweenLite.min.js'
+    ,'/cdn/signals.min.js'
+    ,'/cdn/CSSPlugin.min.js'
+    ,'/cdn/blueGrass.js'
+    )
+head.ready(function() {
     viewDir = 'aCDN/view/'
     console.log('0.03')
     //console.log(getBrowserInfo())
@@ -39,7 +52,6 @@ class About implements IPresenter{
 }
 
 class App {
-
     private navFlag:bool;
     hashSignal:any;
     constructor () {
@@ -107,7 +119,6 @@ class App {
         this.navFlag = !this.navFlag
     }//()
 }
-
 
 
 /*class Why {

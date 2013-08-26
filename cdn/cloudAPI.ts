@@ -16,21 +16,18 @@ class CloudAPI {
     _auth_token:string;
 
     _sec:number=0;
-    constructor() {
-        try{
-            var script_tag = document.getElementById('primusAPI')
-            this._secret_app_key = script_tag.getAttribute('data-app_key')
-            if(typeof this._secret_app_key !='undefined' && this._secret_app_key !=null) {
-                console.log('cloudAPI ready v1.812 ' + this._secret_app_key)
-            } else
-                console.log('app key not set ')
-        } catch(er) {
-            console.log('app key not set e ' )
-        }
+
+    constructor(key:string) {
+        this.setAppKey(key)
     }
 
+    /**
+     * Set the application key
+     * @param key
+     */
     setAppKey(key:string) {
         this._secret_app_key = key
+        console.log('cloudAPI ready v1.812 ' + this._secret_app_key)
     }
 
     setAuthToken(tok:string) {

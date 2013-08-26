@@ -58,7 +58,7 @@ Design/recipe:
 Things that may not help your UI:
 - MV* frameworks: they focus on UI in javascript, not HTML.
     If you are not ready to move past MV*, that's OK, we'll be here when you are. Before you leave, this can be used with any MV*.
-    (But if you want to know, this is a a presenter/event bus.)
+    But if you want to know, this is a a presenter/event bus, that starts with view(div).
 - ASM compilers: CSS3 gives you speed, not .js.
 - Require/AMD loaders : load and unload divs, not 'classes'
 - Starting with own, non tested or documented CSS. Just select a CSS framework with an eco system. Most examples here use TopCoat css.
