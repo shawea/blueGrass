@@ -13,7 +13,7 @@ head.js('/cdn/more/jquery-2.0.3.min.js'
 
 head.ready(function() {
     viewDir = 'aCDN/view/'
-    console.log('0.2')
+    console.log('0.1')
     new App()
 })
 
@@ -25,11 +25,18 @@ class JoinLogin {
         this.srv = new JoinLoginSrv(app_)
         forward('JoinLogin','joinLogin',this.onLoaded.bind(this))
     }//
+
+    private resetPassword() {
+        console.log('reset')
+        location='aCDN/reset/requestPswd.html'
+    }
     private onLoaded() {
         var Lbut = document.getElementById('loginBut')
         Lbut.addEventListener('click',this.onLogBut.bind(this))
         var jbut = document.getElementById('joinBut')
         jbut.addEventListener('click',this.getJoinModel.bind(this))
+        var resetPassword = document.getElementById('resetPassword')
+        resetPassword.addEventListener('click',this.resetPassword.bind(this))
     }
     private onLogBut() {
         var loginModel=this.getLoginModel()

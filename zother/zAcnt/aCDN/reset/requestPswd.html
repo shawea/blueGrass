@@ -1,55 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <meta charset="utf-8">
-    <title>Primus API</title>
-    <link href="http://s.primusapi.com/ver0613/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="http://s.primusapi.com/ver0613/css/flat-ui.css"             rel="stylesheet">
-    <link href='../../../../account/acdn/bikeSheding/bikeSheding.css'                        rel='stylesheet'  />
-
-    <link rel="shortcut icon" href="http://s.primusapi.com/ver0613/images/favicon.ico">
-
+    <!-- attribution: derived from http://raw.github.com/shawea/blueGrass -->
+    <meta charset='utf-8'>
+    <META HTTP-EQUIV='Pragma' CONTENT='no-cache'>
+    <META HTTP-EQUIV='Expires' CONTENT='-1'>
+    <!--script src='http://jsconsole.com/remote.js?cek'></script-->
+    <title>Primus Account</title>
+    <link href='/cdn/bgStyle.css' rel='stylesheet'>
 </head>
 <body>
-
-<div id="login" class="login-screen">
-    <div class="login-icon span3">
-        <img src="http://s.primusapi.com/ver0613/img/primusapi256.png">
-        <h1>Primus API</h1>
-    </div>
-
-    <div class="login-form span4 offset6">
-        <p>Reset Password</p>
-
-        <div class="control-group">
-            <input type="email" class="login-field" value="" placeholder="E-Mail Address" id="signup-email">
-            <label class="login-field-icon fui-mail" for="signup-email"></label>
-        </div>
-
-        <div class="control-group">
-            <a id='sendBut' class="btn btn-primary btn-large btn-block" href="#">Reset Password</a>
-        </div>
-        <div class="control-group">
-            <div id="saved" class="alert alert-danger" style="display: none;">
-                <strong>If this is a valid account, you will receive reset instructions within a few minutes.</strong>
-            </div>
+<header id='header' class='topcoat-navigation-bar full-width '>
+    <div id='navMenuCont' class='topcoat-navigation-bar__item center full-width'>
+        <div id='navMenu'>
+            Primus Account
         </div>
     </div>
-</div>
+</header>
+<section id='container' class='content' style='margin-top: 4rem'>
 
+    <p>Reset Password</p>
+
+    <input type='email' value=''
+           placeholder='E-Mail Address' id='signup-email'>
+    <label class='login-field-icon fui-mail' for='signup-email'></label>
+
+    <a id='sendBut' class='btn btn-primary btn-large btn-block'
+       href='#'>Reset Password</a>
+
+    <div id='saved' class='alert alert-danger' style='display: none;'>
+        <strong>If this is a valid account, you will receive reset
+            instructions within a few minutes.</strong>
+    </div>
+
+</section>
 <footer>
-    <div class="hero-unit-pricing" style="background-color: #ffffff; text-align:center;">
-        <a href="mailto:support@primusapi.com">Support Contact</a></br>
-        &copy; Primus API Corp., 2013
-    </div>
+
 </footer>
 
-<script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js'></script>
-<!-- app scripts : -->
-<script src='../acdn/bikeSheding/signals.js'></script>
-<script src='../../../../account/acdn/bikeSheding/bikeSheding.js'></script>
-<script src='../../../../account/acdn/libs/cloudAPI.js'></script>
-<script src='../../../../account/acdn/app/requestPswd.js'></script>
+    <script src='/cdn/more/head.load.min.js'></script>
+    <script src='requestPswd.js'></script>
 
 </body>
 </html>

@@ -2,7 +2,7 @@ head.js('/cdn/more/jquery-2.0.3.min.js', '/cdn/more/transparency.min.js', '/cdn/
 
 head.ready(function () {
     viewDir = 'aCDN/view/';
-    console.log('0.2');
+    console.log('0.1');
     new App();
 });
 
@@ -12,11 +12,17 @@ var JoinLogin = (function () {
         this.srv = new JoinLoginSrv(app_);
         forward('JoinLogin', 'joinLogin', this.onLoaded.bind(this));
     }
+    JoinLogin.prototype.resetPassword = function () {
+        console.log('reset');
+        location = 'aCDN/reset/requestPswd.html';
+    };
     JoinLogin.prototype.onLoaded = function () {
         var Lbut = document.getElementById('loginBut');
         Lbut.addEventListener('click', this.onLogBut.bind(this));
         var jbut = document.getElementById('joinBut');
         jbut.addEventListener('click', this.getJoinModel.bind(this));
+        var resetPassword = document.getElementById('resetPassword');
+        resetPassword.addEventListener('click', this.resetPassword.bind(this));
     };
     JoinLogin.prototype.onLogBut = function () {
         var loginModel = this.getLoginModel();
