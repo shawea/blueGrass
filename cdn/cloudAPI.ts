@@ -211,7 +211,6 @@ class CloudAPI {
                     }
 
                 } else  {
-                    console.log(cb_)
                     if(cb_ != null) cb_()
                 }
 

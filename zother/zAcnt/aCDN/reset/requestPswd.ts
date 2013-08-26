@@ -1,6 +1,15 @@
 
+head.js('/cdn/more/jquery-2.0.3.min.js'
+    ,'/cdn/blueGrass.js'
+    ,'/cdn/cloudAPI.js'
+)//head
+
+head.ready(function() {
+    console.log('ready')
+})
+
 //start
-var but = document.getElementById('sendBut')
+var but = document.getElementById('resetBut')
 but.addEventListener('click', function() {
         onSendClicked()
     },false
@@ -10,18 +19,16 @@ function onSendClicked() {
     console.log('save ')
 
     var msg:Object = new Object();
-    msg.email= $('#signup-email').val()
+    msg.email= $('#email').val()
 
     new CloudAPI()._call('resetPswd', msg, _onRetSaved,null)
     $('#saved').show()
 }
 
 function _onRetSaved(data_, errorString) {
-    console.log('L')
-    console.log(JSON.stringify(data_))
     setTimeout(function() {
-        location="http://primusAPI.com"
-        }, 5*1000
+        location='http://primusAPI.com'
+        }, 6*1000
     )
 }//()
 

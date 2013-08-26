@@ -184,7 +184,6 @@ var CloudAPI = (function () {
                         console.log('JSON parse err ' + ex);
                     }
                 } else {
-                    console.log(cb_);
                     if (cb_ != null)
                         cb_();
                 }

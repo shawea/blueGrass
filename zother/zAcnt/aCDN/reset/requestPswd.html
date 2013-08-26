@@ -17,18 +17,17 @@
         </div>
     </div>
 </header>
-<section id='container' class='content' style='margin-top: 4rem'>
+<section id='container' class='content' style='margin-top: 6rem'>
 
-    <p>Reset Password</p>
+    <div class='line'>
+        <label class='label' for='email'>E-Mail:</label>
+        <input id='email'  class='topcoat-text-input textInput' type='text'  value='' placeholder='E-Mail'>
+    </div>
 
-    <input type='email' value=''
-           placeholder='E-Mail Address' id='signup-email'>
-    <label class='login-field-icon fui-mail' for='signup-email'></label>
+    <a id='resetBut' style='margin-left: 1rem' class='topcoat-button but' >Reset Password</a>
 
-    <a id='sendBut' class='btn btn-primary btn-large btn-block'
-       href='#'>Reset Password</a>
-
-    <div id='saved' class='alert alert-danger' style='display: none;'>
+    </p>
+    <div id='saved' class='line tabIn' style='display: none;'>
         <strong>If this is a valid account, you will receive reset
             instructions within a few minutes.</strong>
     </div>
@@ -37,9 +36,7 @@
 <footer>
 
 </footer>
-
     <script src='/cdn/more/head.load.min.js'></script>
     <script src='requestPswd.js'></script>
-
 </body>
 </html>
