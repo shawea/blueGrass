@@ -1,6 +1,6 @@
 window.addEventListener('load', function () {
     viewDir = 'aCDN/view/';
-    console.log('0.1');
+    console.log('0.2');
     new App();
 });
 
@@ -23,9 +23,10 @@ var JoinLogin = (function () {
     JoinLogin.prototype.onLoaded = function () {
         var Lbut = document.getElementById('loginBut');
         Lbut.addEventListener('click', this.onLogBut.bind(this));
+        var jbut = document.getElementById('joinBut');
+        jbut.addEventListener('click', this.getJoinModel.bind(this));
     };
     JoinLogin.prototype.onLogBut = function () {
-        //new Account(this.app)
         var loginModel = this.getLoginModel();
 
         if (loginModel == null)
@@ -94,7 +95,6 @@ var JoinLogin = (function () {
         msg.pswd2 = pswd2;
         msg.email = email;
         msg.promo_code = $('#promo_code').val();
-
         return msg;
     };
     return JoinLogin;

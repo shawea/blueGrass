@@ -2,10 +2,9 @@ declare var TweenLite;
 
 window.addEventListener('load', function() {
     viewDir = 'aCDN/view/'
-    console.log('0.1')
+    console.log('0.2')
     new App()
 })
-
 
 class JoinLoginSrv {
     private app:App;
@@ -16,9 +15,7 @@ class JoinLoginSrv {
     login(model:Object, cb:any) {
         this.app.cloudAPI._call('JoinLogin', model, cb ,null)
     }
-
 }
-
 
 class JoinLogin {
     private app:App;
@@ -31,9 +28,10 @@ class JoinLogin {
     private onLoaded() {
         var Lbut = document.getElementById('loginBut')
         Lbut.addEventListener('click',this.onLogBut.bind(this))
+        var jbut = document.getElementById('joinBut')
+        jbut.addEventListener('click',this.getJoinModel.bind(this))
     }
     private onLogBut() {
-       //new Account(this.app)
         var loginModel=this.getLoginModel()
         //console.log(loginModel)
         if(loginModel==null) return;
@@ -65,7 +63,6 @@ class JoinLogin {
     }
 
     private getJoinModel():Object  {
-
         var full_name:string= $('#full_name').val()
         if(full_name.length<2) {
             $('#nameError').show()
@@ -96,16 +93,12 @@ class JoinLogin {
         }
         $('#notMatching').hide()
 
-
         var msg = new Object()
         msg.full_name= full_name
         msg.pswd= pswd
         msg.pswd2= pswd2
         msg.email= email;
         msg.promo_code= $('#promo_code').val()
-
-
-
         return msg;
     }
 }
