@@ -21,7 +21,7 @@ class CloudAPI {
             var script_tag = document.getElementById('primusAPI')
             this._secret_app_key = script_tag.getAttribute('data-app_key')
             if(typeof this._secret_app_key !='undefined' && this._secret_app_key !=null) {
-                console.log('cloudAPI ready v1.811a ' + this._secret_app_key)
+                console.log('cloudAPI ready v1.812 ' + this._secret_app_key)
             } else
                 console.log('app key not set ')
         } catch(er) {
@@ -95,7 +95,6 @@ class CloudAPI {
         }
 
         header.secret_app_key=this._secret_app_key
-       // header.st_='123'
         var h:string = JSON.stringify(header)
 
         var msg:Object = new Object()
@@ -196,7 +195,7 @@ class CloudAPI {
              console.log(this)
          }
 
-        req.onload = function () {  // returns error, array
+        req.onload = function (ev) {  // returns error, array
             //console.log(this.readyState)
             if (this.readyState == 4) {
                 var dat:String = this.response
@@ -208,9 +207,9 @@ class CloudAPI {
 
                         var ret = JSON.parse(dat)
                         setTimeout(function() {cb_(ret, ret['error_'])},1)
-                    } catch (e) {
+                    } catch (ex) {
                         console.log(dat)
-                        console.log('JSON parse err ' + e )
+                        console.log('JSON parse err ' + ex )
                         //console.log(curl)
                     }
 
@@ -220,7 +219,7 @@ class CloudAPI {
                 }
 
             }//fi
-            console.log('^')
+            console.log('.')
         }
 
          //console.log(curl)
@@ -320,5 +319,25 @@ class CloudAPI {
         else
             return false
     }
+
+    _createXHR()    {
+        var xhr
+        if (window.ActiveXObject)        {
+            try            {
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            catch(e)
+            {
+                alert(e.message);
+                xhr = null;
+            }
+        }
+        else        {
+            xhr = new XMLHttpRequest();
+        }
+
+        return xhr;
+    }
+
 
 }//class

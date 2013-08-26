@@ -179,7 +179,7 @@ interface IApp{ // has the app + hasher + event/signalbuss, the global app , doe
 
 }
 
-interface IService { // the presenter's service, makes it easier to test this layer
+interface IService { // the presenter's service, makes it easier to test services, no dom
     _getModel(arg:any):Object;
 }
 

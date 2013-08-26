@@ -2,7 +2,7 @@ declare var TweenLite;
 
 window.addEventListener('load', function() {
     viewDir = 'aCDN/view/'
-    console.log('0.3')
+    console.log('0.4')
     new App()
 })
 
@@ -51,32 +51,63 @@ class JoinLogin {
     }
 }
 
+class AccountSrv {//Account services
+    loginDat:Object;
+    list:Array;
+    private app:App;
+
+    constructor(app_:App) {
+        this.app = app_
+    }
+
+    getApps(cb) {
+        var msg:Object = new Object()
+        msg.account_id = this.loginDat._id
+        this.app.cloudAPI._call('ListApps', msg, cb,null)
+    }
+
+    getApp(name:string,cb) {
+        var msg:Object = new Object()
+        msg.app_name=name
+        msg.account_id =  app.accData._id
+        console.log(JSON.stringify(msg))
+        app.cloudAPI._call('GetApp', msg, cb,null)
+    }
+
+    insertNew(name:string,cb) { //this.onRet.bind(this)
+        var msg:Object = new Object()
+        msg.account_id =  this.loginDat._id
+        msg.app_name = name//
+        $('#new_app').val('')
+        this.app.cloudAPI._call('ListApps', msg, cb ,null)
+    }
+
+
+}
+
 class Account {
-    private loginDat:Object;
-    private _list:Array;
+    private _srv:AccountSrv;
     private app:App;
     constructor(data:Object,app_:App) {
+        this._srv = new AccountSrv(app_)
         this.app = app_;
-        this.loginDat = data;
+        this._srv.loginDat = data;
         forward('Account','account',this.onLoaded.bind(this))
         cleanUpViews(0)
     }//
     private onLoaded() {
-        this.getApps()
         var newBut = document.getElementById('newAppBut')
         newBut.addEventListener('click',this.onNew.bind(this))
-    }
-    private getApps() {
-        var msg:Object = new Object()
-        msg.account_id = this.loginDat._id
-        this.app.cloudAPI._call('ListApps', msg, this.onRet.bind(this),null)
-    }
-    private onRet(data) {
-        this._list = data.array_
-        console.log(this._list)
-        $('#template').render(this._list);
         var temp = document.getElementById('template')
         temp.addEventListener('click', this.onClicked.bind(this))
+
+        this._srv.getApps(this.onRet.bind(this))
+    }
+
+    private onRet(data) {
+        this._srv.list = data.array_
+        console.log(this._srv.list)
+        $('#template').render(this._srv.list);
     }
 
     private onClicked(e) {
@@ -84,25 +115,13 @@ class Account {
         var name:string = e.target.innerText
         console.log(name)
         console.log(e.target.textContent)
-
-        var msg:Object = new Object()
-        msg.app_name=name.replace(/\s/g, "")
-        msg.account_id =  app.accData._id
-        console.log(JSON.stringify(msg))
-        app.cloudAPI._call('GetApp', msg, app._profile._onRowRet,null)
-
     }
 
     private onNew() {
-        var msg:Object = new Object()
-        msg.account_id =  this.loginDat._id
-        msg.app_name = $('#new_app').val()
-        $('#new_app').val('')
-        this.app.cloudAPI._call('ListApps', msg, this.onRet.bind(this),null)
+        this._srv.insertNew($('#new_app').val(), this.onRet.bind(this) )
     }
 
 }
-
 
 
 class App {
