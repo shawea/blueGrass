@@ -1,0 +1,85 @@
+<html><head></head><body>
+<!-- html form with one field called todo_item: -->
+<form id='formId'><fieldset>
+    <label for='item'>Item:</label>
+
+    <input name='todo_item'  id= 'item'  size='40' />
+
+    <button id='addBut' onclick='return false'>Add</button>
+    <button id='upBut'  onclick='return false'>Update</button>
+    <button id='delBut' onclick='return false'>Delete</button>
+
+    <label id='pk'></label>
+</fieldset></form>
+<!-- template : (3rd party) -->
+<div id='todo-list'>
+    <ul class='template'></ul>
+</div>
+
+<script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js'></script>
+<script src='http://ca_1.primusAPI.com/acdn/libs/list_.js'></script>
+
+<!--script src='../acdn/libs/cloudAPI.js'></script-->
+<script id="primusAPI" data-app_key="fiasqrx5mli" src="http://ca_1.primusapi.com/acdn/libs/cloudAPI.js" ></script>
+
+<script>
+var cloud = new CloudAPI()
+
+
+$(document).ready(function () {// map mouse events:
+    document.querySelector('#addBut').addEventListener('click', onAddClicked)
+    document.querySelector('#upBut'). addEventListener('click', onUpClicked)
+    document.querySelector('#delBut').addEventListener('click', onDelClicked)
+
+    cloud.select('todo', null, onSelectRet)// call
+})//()
+
+// click event handlers
+function onAddClicked() {
+    var msg = cloud.makeFormMessage('formId') // helper method to make a msg, any Object could do, dynamic fields and table name
+    console.log(JSON.stringify(msg))
+    cloud.insert('todo', msg, onRet)
+}
+
+function onUpClicked() {
+    console.log('up')
+    var msg = new Object()
+    msg.todo_item =  $('#item').val()
+    cloud.update('todo',dat._id,msg,onRet)
+}
+
+function onDelClicked() {
+    console.log('del' )
+    cloud.del('todo',dat._id,onRet)
+}
+
+function onRet(data, errorMsg) { // after data has been changed
+    $('#item').val('')
+    $('#pk').text('')
+    dat = null
+    console.log('changed ' +  JSON.stringify(data) +' errorStringIfAny:' + errorMsg)
+    cloud.select('todo', null, onSelectRet)      // see docs on selectAll
+}
+
+function onSelectRet(data, errorMsg) { // we have now returned a list of rows
+    console.log('selected ')
+    //console.log( JSON.stringify(data) )
+    list=new List('todo-list', map, data.array_ ) //data bind to template
+    list.sort('_daoc', { asc: false })   // date-time as long
+}
+
+function onRowClicked(evt) {
+    var rows = list.search( evt)
+    list.search()// hack
+    dat = rows[0].values()
+    console.log(dat._id)
+    $('#item').val(dat.todo_item)
+    $('#pk').text(dat._id)
+}
+
+var map = { // example config template (3rd party)                                               _daoc
+    item:  "<div > <a href='#'><span onclick=onRowClicked(this.innerText) class='_id'></span></a> <span class='_daoc'></span> <b><span class='todo_item'></span></b> </div>"
+    ,listClass : 'template'
+}
+ </script>
+</body></html>

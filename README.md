@@ -30,7 +30,7 @@ open terminal in the directory and run 'simplehttpserver' (installed via npm) or
 After you download, you may want to watch a 10 minue video: http://www.youtube.com/watch?v=YWUGC3wKe14.
 
 
-Recommended but not required:
+Recommended but not required :
 * chrome  (and open the developer console in icognito mode or any browser)
 * npm -g install simplehttpserver (optional)
 * npm -g install less (optional, it's all css)
@@ -44,6 +44,7 @@ Recommended but not required:
 * Primus API (no servers)
 * HTML Muncher (or other obfuscator)
 * A CDN, ex: MaxCDN
+* npm install -g git://github.com/jsdoc3/jsdoc.git
 * There are other libs used, check under blueGrass and more.
 
 Design/recipe:

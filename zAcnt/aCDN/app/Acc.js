@@ -68,6 +68,20 @@ var Account = (function () {
         this._list = data.array_;
         console.log(this._list);
         $('#template').render(this._list);
+        var temp = document.getElementById('template');
+        temp.addEventListener('click', this.onClicked.bind(this));
+    };
+
+    Account.prototype.onClicked = function (e) {
+        var name = e.target.innerText;
+        console.log(name);
+        console.log(e.target.textContent);
+
+        var msg = new Object();
+        msg.app_name = name.replace(/\s/g, "");
+        msg.account_id = app.accData._id;
+        console.log(JSON.stringify(msg));
+        app.cloudAPI._call('GetApp', msg, app._profile._onRowRet, null);
     };
 
     Account.prototype.onNew = function () {

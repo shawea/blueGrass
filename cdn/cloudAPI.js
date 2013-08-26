@@ -31,6 +31,14 @@ var CloudAPI = (function () {
         this._call('USAZipCode', msg, cb_, null);
     };
 
+    /**
+    * Returns last few rows starting with dateTime
+    *
+    * @param table_
+    * @param startDateTime
+    * @param count
+    * @param cb_
+    */
     CloudAPI.prototype.prevRows = function (table_, startDateTime, count, cb_) {
         var header = new Object();
         header.table = table_;
@@ -71,6 +79,7 @@ var CloudAPI = (function () {
 
         header.secret_app_key = this._secret_app_key;
 
+        // header.st_='123'
         var h = JSON.stringify(header);
 
         var msg = new Object();
@@ -82,6 +91,7 @@ var CloudAPI = (function () {
         this._call('EMail', msg, null, h);
     };
 
+    //step 2 to auth
     CloudAPI.prototype.matchValidateCode = function (email, match_code, cb_) {
         var header = new Object();
         if (!this._secret_app_key) {
@@ -100,6 +110,7 @@ var CloudAPI = (function () {
         this._call('auth', msg, cb_, h);
     };
 
+    // returns token
     CloudAPI.prototype.login = function (email, pswd, cb_) {
         var header = new Object();
         if (!this._secret_app_key) {
@@ -118,6 +129,7 @@ var CloudAPI = (function () {
         this._call('auth', msg, cb_, h);
     };
 
+    // email's code to be validated - tag _CODE_ must exist
     CloudAPI.prototype.signUp = function (email, pswd, len, subject, body, args, cb_) {
         var header = new Object();
         if (!this._secret_app_key) {
@@ -149,6 +161,7 @@ var CloudAPI = (function () {
 
         var smsg = JSON.stringify(msg);
 
+        //if (typeof XDomainRequest != 'undefined') { // for IE 9
         var req = new XMLHttpRequest();
         if (this._sec == 1)
             req.withCredentials = true;
@@ -166,6 +179,8 @@ var CloudAPI = (function () {
 
                 if (cb_ != null && dat != null && dat.length > 3) {
                     try  {
+                        //if(typeof ret != 'undefined' && typeof ret['error_'] != 'undefined' )
+                        //   console.log(ret[CloudAPI.ERROR])
                         var ret = JSON.parse(dat);
                         setTimeout(function () {
                             cb_(ret, ret['error_']);
@@ -183,6 +198,7 @@ var CloudAPI = (function () {
             console.log('^');
         };
 
+        //console.log(curl)
         req.open('GET', curl, true);
 
         req.send('x');
@@ -195,6 +211,7 @@ var CloudAPI = (function () {
         };
         console.log(4);
 
+        //console.log(dat)
         var curl = this._baseServiceUrl1 + srv + '?header=' + header_;
 
         $.ajax({

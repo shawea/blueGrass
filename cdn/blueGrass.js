@@ -1,6 +1,12 @@
 var viewDir;
 
+/**
+* @param ht view
+* @param id of container
+* @param cb_
+*/
 function open(ht, elSel, cb_) {
+    //console.log(viewDir)
     $.get(viewDir + ht + '.html', function (resp_) {
         console.log(ht);
         $(elSel).append(resp_);
@@ -9,6 +15,9 @@ function open(ht, elSel, cb_) {
     });
 }
 
+/**
+*  calls back with new #id   -- of course it changes the id
+*/
 function forward(ht, id, cb_) {
     $.get(viewDir + ht + '.html', function (resp_) {
         $('#kontainer').append(resp_);
@@ -24,6 +33,10 @@ function forward(ht, id, cb_) {
     });
 }
 
+/**
+* How many views to allow in #kontainer
+* @param i
+*/
 function cleanUpViews(i) {
     var views = $('#kontainer').children();
     console.log(views.length);
@@ -45,6 +58,7 @@ function setHash(v) {
     window.location.hash = v;
 }
 
+/////////////////
 function isEmailValid(email) {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
@@ -66,6 +80,10 @@ function showSpinner(status) {
         document.getElementById('loader').style.display = 'none';
 }
 
+/**
+* Returns some responsive info
+* @returns {Object}
+*/
 function getBroInfo() {
     var o = new Object();
     o.pixR = window.devicePixelRatio;
@@ -79,6 +97,13 @@ function getBroInfo() {
     return o;
 }
 
+/**
+*
+*
+* @param posSignal
+* @param this_ pass the context
+* @returns create Signal you can add functions onto
+*/
 function setupPosSignal(posSignal, this_) {
     posSignal = new signals.Signal();
     $(window).scroll(function () {
