@@ -16,8 +16,8 @@ Here are example of the type of application you can/should build:
 
 For example, we can animate a div/section after loading. But the key to blueGrass is that it is hard to do nice UI in .js views, here the views are HTML DOM, not .js emited.
 
-Since you are here, you agree to the AAL license :-), here you go: http://raw.github.com/shawea/blueGrass/master/cdn/blueGrass.js
-Yes this is all functions we have to make patterns work. You do have to learn how to use them.
+Since you are here, you agree to the AAL license :-), here you go: http://scdn.primus.netdna-cdn.com/latest/blueGrass.js
+Yes this is all the functions we have to make patterns work. You do have to learn how to use them.
 
 We use Ajax, ex:
 - http://zeptojs.com/#$.get
@@ -44,8 +44,7 @@ Recommended but not required :
 * Primus API (no servers)
 * HTML Muncher (or other obfuscator)
 * A CDN, ex: MaxCDN
-* npm install -g git://github.com/jsdoc3/jsdoc.git
-* There are other libs used, check under blueGrass and more.
+* There are other libs used, check under cdn folder.
 
 Design/recipe:
 - Download the 'startStructure' folder to get the structure and edit. Copy cdn folder into aCDN/libs.
