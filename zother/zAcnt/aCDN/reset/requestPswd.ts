@@ -1,7 +1,7 @@
 
-head.js('/cdn/more/jquery-2.0.3.min.js'
-    ,'/cdn/blueGrass.js'
-    ,'/cdn/cloudAPI.js'
+head.js( 'http://scdn.primus.netdna-cdn.com/latest/more/jquery-2.0.3.min.js'
+        ,'http://scdn.primus.netdna-cdn.com/latest/blueGrass.js'
+        ,'http://scdn.primus.netdna-cdn.com/latest/cloudAPI.js'
 )//head
 
 head.ready(function() {

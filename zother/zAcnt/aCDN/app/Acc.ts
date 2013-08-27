@@ -1,12 +1,12 @@
 declare var TweenLite;
 
-head.js('http://scdn.primus.netdna-cdn.com/latest/more/jquery-2.0.3.min.js'
-    ,'http://scdn.primus.netdna-cdn.com/latest/more/transparency.min.js'
-    ,'http://scdn.primus.netdna-cdn.com/latest/TweenLite.min.js'
-    ,'http://scdn.primus.netdna-cdn.com/latest/signals.min.js'
-    ,'http://scdn.primus.netdna-cdn.com/latest/CSSPlugin.min.js'
-    ,'http://scdn.primus.netdna-cdn.com/latest/blueGrass.js'
-    ,'http://scdn.primus.netdna-cdn.com/latest/cloudAPI.js'
+head.js( 'http://scdn.primus.netdna-cdn.com/latest/more/jquery-2.0.3.min.js'
+        ,'http://scdn.primus.netdna-cdn.com/latest/more/transparency.min.js'
+        ,'http://scdn.primus.netdna-cdn.com/latest/TweenLite.min.js'
+        ,'http://scdn.primus.netdna-cdn.com/latest/signals.min.js'
+        ,'http://scdn.primus.netdna-cdn.com/latest/CSSPlugin.min.js'
+        ,'http://scdn.primus.netdna-cdn.com/latest/blueGrass.js'
+        ,'http://scdn.primus.netdna-cdn.com/latest/cloudAPI.js'
 
     ,'aCDN/app/Srv.js'
 )//head
@@ -135,9 +135,14 @@ class Account {
         newBut.addEventListener('click',this.onNew.bind(this))
         var temp = document.getElementById('template')
         temp.addEventListener('click', this.onClicked.bind(this))
+        var dataviewBut = document.getElementById('dataviewBut')
+        dataviewBut.addEventListener('click', function(e) {
+            location='http://ca_1.primusAPI.com/dataView/})
 
         this.srv.getApps(this.onRet.bind(this))
         this.srv.getApp('firstapp',this.onAppData.bind(this))//load first
+
+
 
     }
 

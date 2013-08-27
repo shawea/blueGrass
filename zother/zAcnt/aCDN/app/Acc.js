@@ -121,6 +121,10 @@ var Account = (function () {
         newBut.addEventListener('click', this.onNew.bind(this));
         var temp = document.getElementById('template');
         temp.addEventListener('click', this.onClicked.bind(this));
+        var dataviewBut = document.getElementById('dataviewBut');
+        dataviewBut.addEventListener('click', function (e) {
+            location = "http://ca_1.primusAPI.com/dataView/";
+        });
 
         this.srv.getApps(this.onRet.bind(this));
         this.srv.getApp('firstapp', this.onAppData.bind(this));
