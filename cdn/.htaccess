@@ -1,0 +1,3 @@
+Header add X-Pri "Pri Value"
+AddType font/opentype .otf
+

@@ -2082,11 +2082,13 @@ button .but .topcoat-button,
   position: absolute ;
   width: 100%;
 }
-header {
+header,
+#header {
   top: 0px ;
   left: 0px;
   position: fixed ;
   z-index: 50;
+  box-shadow: -2px 2px 4px #000000;
 }
 #kontainer {
   top: 4rem;

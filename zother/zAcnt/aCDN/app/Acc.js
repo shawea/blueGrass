@@ -2,7 +2,7 @@ head.js('http://scdn.primus.netdna-cdn.com/latest/more/jquery-2.0.3.min.js', 'ht
 
 head.ready(function () {
     viewDir = 'aCDN/view/';
-    console.log('0.1');
+    console.log('0.2');
     new App();
 });
 
@@ -65,8 +65,13 @@ var JoinLogin = (function () {
         this.app.showAccount(data);
     };
     JoinLogin.prototype.getJoinModel = function () {
-        var full_name = $('#full_name').val();
-        if (full_name.length < 2) {
+        var first_name = $('#first_name').val();
+        var last_name = $('#last_name').val();
+        if (typeof first_name == 'undefined' || typeof last_name == 'undefined') {
+            $('#nameError').show();
+            return null;
+        }
+        if (first_name.length < 2 || last_name.length < 2) {
             $('#nameError').show();
             return null;
         }
@@ -96,7 +101,8 @@ var JoinLogin = (function () {
         $('#notMatching').hide();
 
         var msg = new Object();
-        msg.full_name = full_name;
+        msg.first_name = first_name;
+        msg.last_name = last_name;
         msg.pswd = pswd;
         msg.pswd2 = pswd2;
         msg.email = email;
@@ -123,7 +129,7 @@ var Account = (function () {
         temp.addEventListener('click', this.onClicked.bind(this));
         var dataviewBut = document.getElementById('dataviewBut');
         dataviewBut.addEventListener('click', function (e) {
-            location = "http://ca_1.primusAPI.com/dataView/";
+            location = 'http://ca_1.primusAPI.com/dataView/';
         });
 
         this.srv.getApps(this.onRet.bind(this));
