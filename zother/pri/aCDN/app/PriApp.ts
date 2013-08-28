@@ -1,12 +1,10 @@
 declare var TweenLite;
 
-
-
 head.ready(function() {
     viewDir = 'aCDN/view/'
-    console.log('0.02')
+    console.log('0.03')
     //console.log(getBrowserInfo())
-    //new FastClick(document.body);
+    new FastClick(document.body);
     new App()
 })
 
@@ -16,7 +14,7 @@ class Tut {
         this.app = app_;
         app_.hashSignal.add(this.onView, this)
     }
-    private transition(transEnum:number, ctx:any):any {
+    private transition():any {
         forward('tut','tut')
     }
     private onView(view:string){
@@ -31,8 +29,8 @@ class About implements IPresenter{
         this.app = app_;
         app_.hashSignal.add(this.onView, this)
     }
-    private transition(transEnum:number, ctx:any):any {
-        forward('about','about')
+    private transition():any {
+        forward('select','select')
     }
     private onView(view:string){
         if('about'==view)
@@ -56,7 +54,6 @@ class App {
         this._setupNavDispatching()
 
         }//()
-
 
     private _setupNavDispatching() {
 

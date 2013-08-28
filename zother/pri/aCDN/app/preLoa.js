@@ -13,6 +13,6 @@ window.onload = function () {
     console.log('L');
     setTimeout(function () {
         head.js('http://scdn.primus.netdna-cdn.com/latest/TweenLite.min.js', 'http://scdn.primus.netdna-cdn.com/latest/signals.min.js', 'http://scdn.primus.netdna-cdn.com/latest/fastclick.js', '/cdn/blueGrass.js', 'http://scdn.primus.netdna-cdn.com/latest/CSSPlugin.min.js', 'aCDN/app/PriApp.js');
-    }, 40);
+    }, 20);
 };
 //@ sourceMappingURL=preLoa.js.map

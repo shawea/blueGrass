@@ -21,7 +21,7 @@ window.onload = function() {
             // app
             ,'aCDN/app/PriApp.js'
         )//head
-    },40)//wait on fonts
+    },20)//wait on fonts
 }
 
 

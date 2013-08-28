@@ -130,9 +130,9 @@ input[type="radio"]:focus+.topcoat-radio-button:before,.topcoat-radio-button__la
 .align-right{text-align:right;}
 .pull-left{float:left;}
 .pull-right{float:right;}
-@media screen and (max-width:568px){.grid .unit{width:100% !important;padding-left:20px;padding-right:20px;} .unit .grid .unit{padding-left:0px;padding-right:0px;} .center-on-mobiles{text-align:center !important;} .hide-on-mobiles{display:none !important;}}@media screen and (min-width:1180px){.wider .grid{margin:0 auto;}}html,body{height:100%;font-size:1rem;}
-button .but{position:relative;display:inline-block;vertical-align:top;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;-webkit-background-clip:padding;-moz-background-clip:padding;background-clip:padding-box;padding:0;margin:0;font:inherit;color:inherit;background:transparent;border:none;cursor:default;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-o-text-overflow:ellipsis;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;text-decoration:none;margin-top:.1rem;float:left;margin-left:7rem;}
+@media screen and (max-width:568px){.grid .unit{width:100% !important;padding-left:20px;padding-right:20px;} .unit .grid .unit{padding-left:0px;padding-right:0px;} .center-on-mobiles{text-align:center !important;} .hide-on-mobiles{display:none !important;}}@media screen and (min-width:1180px){.wider .grid{margin:0 auto;}}button .but{position:relative;display:inline-block;vertical-align:top;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;-webkit-background-clip:padding;-moz-background-clip:padding;background-clip:padding-box;padding:0;margin:0;font:inherit;color:inherit;background:transparent;border:none;cursor:default;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-o-text-overflow:ellipsis;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;text-decoration:none;margin-top:.1rem;float:left;margin-left:7rem;}
 button .but .topcoat-button,.topcoat-button--quiet,.topcoat-button--large,.topcoat-button--large--quiet,.topcoat-button--cta,.topcoat-button--large--cta{-webkit-border-radius:0.2rem;border-radius:0.2rem;}
+html,body{height:100%;font-size:1rem;}
 .full-height{height:100%;}
 .full-width{width:100%;}
 #slider{position:fixed;top:4.5rem;width:400px;left:-407px;z-index:100;border:1px solid gray;border-radius:3px;box-shadow:5px 5px 2px gray;}
@@ -144,10 +144,13 @@ header,#header{top:0px ;left:0px;position:fixed ;z-index:50;box-shadow:-2px 2px 
 .pad{padding:1rem;}
 .border{border:2px solid black;padding-top:.4rem;padding-left:1rem;padding-right:1rem;border-radius:.2rem;min-height:20rem;}
 .cen{text-align:center;}
-.mid{vertical-align:middle;line-height:2rem;}
+.mid{vertical-align:middle;line-height:3rem;}
 .bak{background:lightslategray;border-radius:.2rem;height:2rem;line-height:2rem;}
 form{margin-left:auto;margin-right:auto;margin-top:1rem;max-width:41rem;}
 .line{display:block;float:left;width:30rem;margin-bottom:.3rem;}
 label{float:left;display:block;width:6em;text-align:right;vertical-align:middle;line-height:3rem;}
 .textInput{float:right;width:23rem;font-size:1rem;}
 .tabIn{margin-left:7rem;}
+table{border-width:1px;border-collapse:collapse;}
+table th{border-width:1px;padding:8px;border-style:solid;}
+table td{border-width:1px;padding:8px;border-style:solid;}

@@ -4,17 +4,12 @@
 @import 'topcoat-mobile-light';
 @import 'more/gridism';
 
-
 @radius: .2rem;
 @hiLite: #df4f4f;
 
-html, body {
-  height:100%;
-  font-size: 1rem;
-}
 
 button .but{
-  .button;
+  .button;   // inherit
   margin-top: .1rem;
   float: left;
   margin-left: 7rem;
@@ -28,6 +23,11 @@ button .but .topcoat-button,
 .topcoat-button--large--cta {
   -webkit-border-radius: @radius;
   border-radius: @radius;
+}
+
+html, body {
+  height:100%;
+  font-size: 1rem;
 }
 
 .full-height {
@@ -90,7 +90,7 @@ header, #header  {
   padding: 1rem;
 }
 
-/////////////
+//////// stuff
 .border {
   border:2px solid black;
   padding-top: .4rem;
@@ -104,7 +104,7 @@ header, #header  {
 }
 .mid {
   vertical-align: middle;
-  line-height: 2rem;
+  line-height: 3rem;
 }
 
 .bak {
@@ -113,7 +113,7 @@ header, #header  {
   height: 2rem;;
   line-height: 2rem;
 }
-
+//// form
 form {
   margin-left: auto;
   margin-right: auto;
@@ -144,4 +144,20 @@ label {
 .tabIn {
   margin-left: 7rem;
 }
+//// table
+table {
+    border-width: 1px;
+    border-collapse: collapse;
+}
+table th {
+  border-width: 1px;
+  padding: 8px;
+  border-style: solid;
+}
+table td {
+  border-width: 1px;
+  padding: 8px;
+  border-style: solid;
+}
+
 

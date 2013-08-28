@@ -1,9 +1,9 @@
 head.ready(function () {
     viewDir = 'aCDN/view/';
-    console.log('0.02');
+    console.log('0.03');
 
     //console.log(getBrowserInfo())
-    //new FastClick(document.body);
+    new FastClick(document.body);
     new App();
 });
 
@@ -12,7 +12,7 @@ var Tut = (function () {
         this.app = app_;
         app_.hashSignal.add(this.onView, this);
     }
-    Tut.prototype.transition = function (transEnum, ctx) {
+    Tut.prototype.transition = function () {
         forward('tut', 'tut');
     };
     Tut.prototype.onView = function (view) {
@@ -27,8 +27,8 @@ var About = (function () {
         this.app = app_;
         app_.hashSignal.add(this.onView, this);
     }
-    About.prototype.transition = function (transEnum, ctx) {
-        forward('about', 'about');
+    About.prototype.transition = function () {
+        forward('select', 'select');
     };
     About.prototype.onView = function (view) {
         if ('about' == view)

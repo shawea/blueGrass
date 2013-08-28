@@ -1,0 +1,182 @@
+<section id="select">
+
+<h1>How To Select</h1>
+
+<p>Now that we successfully added data in the previous tutorial of a user and a score, we need to be able to pull that out to show on a high score list. This is where the "Select Data" function comes in.</p>
+
+<p>Lets get started!</p>
+
+<p>*Note the new code snippets will be in <bo>Bold</bo><br>
+** This tutorial assumes you have basic html and .js understanding. The two tutorials about Cloud API's go into more details about these.</p>
+<h2>Step 1:</h2>
+<p>First lets create a form that lets us know what data we want: a username and a score. In your game, you would obviously have a different way of pulling this, but since we don't need a build a game, we will just enter this into a form with buttons to Create Record (insert the data) and Lookup Score (select data)</p>
+<pre class="prettyprint">
+    &ltform>
+        Name&ltinput type="text" id="name" class="field">&ltbr>
+        Score&ltinput type="text" id="score" class="field">&ltbr>
+        &ltbutton id="create" onclick="return false">Create Record&lt/button>
+        &ltbutton id="lookup" onclick="return false">Lookup Score&lt/button>
+    &lt/form></pre>
+
+<h2>Step 2:</h2>
+
+
+<p>Now lets add our libraries, one being a jquery library, and the other being the Cloud API library. Be sure to use your own unique app code that you can get from your Primus API account screen. Your code should look something like this.</p>
+
+<pre class="prettyprint">
+    &ltform>
+        Name&ltinput type="text" id="name" class="field">&ltbr>
+        Score&ltinput type="text" id="score" class="field">&ltbr>
+        &ltbutton id="create" onclick="return false">Create Record&lt/button>
+        &ltbutton id="lookup" onclick="return false">Lookup Score&lt/button>
+    &lt/form>
+
+    &ltscript src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.1/jquery.min.js'>&lt/script>
+    &ltscript id="primusAPI" data-app_key="###" src="http://ca_1.primusapi.com/acdn/libs/cloudAPI.js">&lt/script>
+
+    &ltscript></pre>
+
+<h2>Step 3:</h2>
+<p>Now lets do some work on inserting our data. Just like before we first create a New Object, then fill that object with the properties we want to insert.</p>
+
+<pre class="prettyprint">
+    &ltbody>
+    &ltscript src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.1/jquery.min.js'>&lt/script>
+    &ltscript id="primusAPI" data-app_key="###" src="http://ca_1.primusapi.com/acdn/libs/cloudAPI.js">&lt/script>
+
+    &ltscript>
+        c= new CloudAPI()
+
+        <bo>$('#create').click(function(){
+            var ename =new Object()
+            var name = $('#name').val()
+            var score = $('#score').val()
+            ename.name=name
+            ename.score=score
+            console.log("clicked create"    )
+            c.insert("userscore",ename, onPK)
+            })
+
+        function onPK(data){
+            console.log("write score")
+        }</bo>
+    &lt/script>
+    &lt/body></pre>
+
+<p>We did this in a slightly different way as the previous method which used a form submit and passed variables through the url. This time was are using the jquery shortcut to pull in the variable from the value of the field. Where the code defines the variable <code>var name = var name = $('#name').val()</code> we then tell the system to grab from the field with the id (represented with the hashtag #) of 'name' the value .val() of that field.
+
+<p>So we created an object "ename" and then defined two variables: name and score which are set by the values of the respective fields. We set the parameters of the object to be those variables, and then performed our insert function which we learned in the last tutorial. Then we ran a callback function to print out to the console as a trace, "write score"</p>
+
+<h2>Step 4:</h2>
+<p>The exact same principle applies to the select function. We will create an object, and attach parameters as variables that will allow us to find a table and a row.
+
+So lets add the following code into our script.
+
+<pre class="prettyprint">
+    $('#lookup').click(function(){
+        var msg =new Object()
+        var name = $('#name').val()
+        msg.name=name
+        console.log("clicked lookup")
+        c.select("userscore", msg, onFound)
+    })</pre>
+
+<p>So when clicking the button with the id of 'lookup', we then run a function. This creates an object with the name 'msg' and then the variable of 'name' which we pull from the value of the selected field. We then assign that attribute to the object just like in the insert section of this tutorial.</p>
+
+<p>So we are running c.select, which runs the "Select Data" function from the new API "c" we created at the beginning. The arguments in the function are as follows:</p>
+<table style="margin-left: 4em" border="2px">
+    <tr>
+        <td class="pc1">
+            1st argument
+        </td>
+        <td class="pc2">
+            Table name to select the data from. In this case we are selecting from the "names" table.
+        </td>
+    </tr>
+
+    <tr>
+        <td class="pc1">
+            2nd Argument
+        </td>
+        <td class="pc2">
+            Defines the object that has properties we are looking for. This tells the system which row(s) to select.<br>In this case it is the 'msg' object which has the properties of name = Jack
+        </td>
+    </tr>
+
+    <tr>
+        <td class="pc1">
+            3rd Argument
+        </td>
+        <td class="pc2">
+            Callback function. This lets us do something like run another function when complete to put the score into the form field
+        </td>
+    </tr>
+</table>
+
+<h2>Step 5:</h2>
+<p>Finally we just will run a callback function to take the data we select and pass it into the form fields Here is the last bit of code to accomplish this.</p>
+
+<pre class="prettyprint">
+    function onFound(data){
+        console.log(data.array_)
+        $("#name").val(data.array_[0].name)
+        $("#score").val(data.array_[0].score)
+    }</pre>
+
+<p>This will run the callback function "onFoud" and s</p>
+
+<p>It is important to note that data from an object is retrieved as an array. This will run the callback function "onFoud" and first input to the console that array of data retrieved.</p>
+
+<p>Next since we specified the id of the score field in step 2 as "score" we are telling the system to get that field and make the value of that field <code>$('#score').val()</code> be the score data point from the array of the returned "data". You can get this by <code>data.array...</code> Then when clicking through the array in the console log you can see that the property "score" is found in the first area <code>_[0].score.</code></p>
+
+<p>Now we have 2 apps. One that writes data, and one that selects and retrieves it!</p>
+
+<p>The complete code for this app should look like this:
+
+<pre class="prettyprint">
+    &lthtml>&lthead>&lt/head>&ltbody>
+
+    &ltform>
+        Name&ltinput type="text" id="name" class="field">&ltbr>
+        Score&ltinput type="text" id="score" class="field">&ltbr>
+        &ltbutton id="create" onclick="return false">Create Record&lt/button>
+        &ltbutton id="lookup" onclick="return false">Lookup Score&lt/button>
+    &lt/form>
+
+    &ltscript src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.1/jquery.min.js'>&lt/script>
+    &ltscript id="primusAPI" data-app_key="###" src="http://ca_1.primusapi.com/acdn/libs/cloudAPI.js" >&lt/script>
+
+    &ltscript>
+        c=new CloudAPI()
+
+        $('#create').click(function(){
+            var ename =new Object()
+            var name = $('#name').val()
+            var score = $('#score').val()
+            ename.name=name
+            ename.score=score
+            console.log("clicked create"    )
+            c.insert("userscore",ename, onPK)
+        })
+
+        function onPK(data){
+            console.log("write score")
+        }
+
+        $('#lookup').click(function(){
+            var msg =new Object()
+            var name = $('#name').val()
+            msg.name=name
+            console.log("clicked lookup")
+            c.select("userscore", msg, onFound)
+        })
+
+        function onFound(data){
+            console.log(data.array_)
+            $("#name").val(data.array_[0].name)
+            $("#score").val(data.array_[0].score)
+        }
+
+    &lt/script>&lt/body>&lt/html></pre>
+</p>
+</section>
