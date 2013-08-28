@@ -25,8 +25,6 @@ function forward(ht, id, cb_) {
         console.log(ht, cur.attr('id'));
         var gid = id + Math.floor(Math.random() * 9999999);
         cur.attr('id', gid);
-        if (!cur.attr('id'))
-            throw new Error('id not found or kontainer');
 
         if (cb_)
             cb_(gid);
@@ -79,14 +77,10 @@ function getGuerryString(key) {
     return match && decodeURIComponent(match[1].replace(/\+/g, " "));
 }
 
-window.onerror = function (msg, uri, line) {
-    console.log(msg + uri + line);
-};
-
 function showSpinner(status) {
     if (status)
-        document.getElementById('loader').style.display = 'block'; else
-        document.getElementById('loader').style.display = 'none';
+        document.body.style.cursor = 'wait'; else
+        document.body.style.cursor = 'default';
 }
 
 /**

@@ -1,6 +1,3 @@
-//zepto or jq ?
-head.js('/cdn/more/jquery-2.0.3.min.js', '/cdn/more/transparency.min.js', '/cdn/fastclick.js', '/cdn/TweenLite.min.js', '/cdn/signals.min.js', '/cdn/more/moment.min.js', '/cdn/CSSPlugin.min.js', '/cdn/blueGrass.js', 'http://ca_1.primusapi.com/acdn/libs/cloudAPI.js', 'aCDN/app/Pres.js');
-
 head.ready(function () {
     viewDir = 'aCDN/view/';
     console.log('v1');
@@ -55,6 +52,7 @@ var App = (function () {
             view = 'about';
         console.log('first ' + view);
         this.hashSignal.dispatch(view);
+        showSpinner(false);
     };
 
     App.prototype._onHashChanged = function () {

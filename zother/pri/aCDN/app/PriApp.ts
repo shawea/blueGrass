@@ -1,23 +1,12 @@
 declare var TweenLite;
-if('__proto__' in {}) {
-    //jq or z
-    document.write('<script src="/cdn/zepto.min.js"><\/script>')
-    console.log('z')
-}   else {
-    document.write('<script src="/cdn/more/jquery-2.0.3.min.js"><\/script>')
-    console.log('jq')
-}
-head.js('/cdn/fastclick.js'
-    ,'/cdn/TweenLite.min.js'
-    ,'/cdn/signals.min.js'
-    ,'/cdn/CSSPlugin.min.js'
-    ,'/cdn/blueGrass.js'
-    )
+
+
+
 head.ready(function() {
     viewDir = 'aCDN/view/'
-    console.log('0.03')
+    console.log('0.02')
     //console.log(getBrowserInfo())
-    FastClick.attach(document.body)
+    //new FastClick(document.body);
     new App()
 })
 
@@ -92,6 +81,7 @@ class App {
             view='about' //first
         console.log('first ' + view)
         this.hashSignal.dispatch(view)
+        showSpinner(false)
     }
 
     _onHashChanged() {

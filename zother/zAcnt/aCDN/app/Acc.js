@@ -21,6 +21,7 @@ var JoinLogin = (function () {
         jbut.addEventListener('click', this.getJoinModel.bind(this));
         var resetPassword = document.getElementById('resetPassword');
         resetPassword.addEventListener('click', this.resetPassword.bind(this));
+        showSpinner(false);
     };
     JoinLogin.prototype.onLogBut = function () {
         var loginModel = this.getLoginModel();
