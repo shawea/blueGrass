@@ -16,7 +16,7 @@ function open(ht, elSel, cb_) {
 }
 
 /**
-*  calls back with new #id   -- of course it changes the id
+*  calls back with new #id
 */
 function forward(ht, id, cb_) {
     $.get(viewDir + ht + '.html', function (resp_) {
@@ -47,6 +47,10 @@ function cleanUpViews(i) {
     }
 }
 
+/**
+* Get the browser's hash so you can pull up date
+* @returns {*}
+*/
 function getHash() {
     var h = window.location.hash;
     if (h != null && h.length > 1) {
@@ -54,6 +58,11 @@ function getHash() {
     }
     return null;
 }
+
+/**
+* Sets browsers hash
+* @param v
+*/
 function setHash(v) {
     window.location.hash = v;
 }
@@ -81,7 +90,7 @@ function showSpinner(status) {
 }
 
 /**
-* Returns some responsive info
+* Returns some info
 * @returns {Object}
 */
 function getBroInfo() {
@@ -98,7 +107,7 @@ function getBroInfo() {
 }
 
 /**
-*
+* Fires a signal when postion changes.
 *
 * @param posSignal
 * @param this_ pass the context

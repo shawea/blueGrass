@@ -22,12 +22,12 @@ class CloudAPI {
     }
 
     /**
-     * Set the application key
+     * Set the application key you get from PrimusAPI.com web site
      * @param key
      */
     setAppKey(key:string) {
         this._secret_app_key = key
-        console.log('cloudAPI ready v1.812 ' + this._secret_app_key)
+        console.log('cloudAPI ready v1.814 ' + this._secret_app_key)
     }
 
     setAuthToken(tok:string) {
@@ -38,6 +38,11 @@ class CloudAPI {
         this._auth_token = null
     }
 
+    /**
+     * Simplest function, the only one that does not even need app key.
+     * @param zipcode
+     * @param cb_
+     */
     zipCodeUSA(zipcode:number, cb_):void {
          var  msg:any = new Object()
          msg.Zipcode = zipcode
@@ -45,7 +50,7 @@ class CloudAPI {
     }
 
     /**
-     * Returns last few rows starting with dateTime
+     * Returns last few rows based on with dateTime. You can kee going back.
      *
      * @param table_
      * @param startDateTime
@@ -83,6 +88,12 @@ class CloudAPI {
          this._call('CRUD', nvp, cb_, h)
     }
 
+    /**
+     * Send an email
+     * @param to
+     * @param subject
+     * @param body
+     */
     mail(to:string,subject:string,body:string) {
 
         var header:Object = new Object()
@@ -141,7 +152,17 @@ class CloudAPI {
         this._call('auth', msg,  cb_, h)
     }
 
-    // email's code to be validated - tag _CODE_ must exist
+    /**
+     * Sign up a member to your webapp.  This email's code to be validated - tag _CODE_ must exist
+
+     * @param email
+     * @param pswd
+     * @param len
+     * @param subject
+     * @param body
+     * @param args
+     * @param cb_
+     */
     signUp( email:string, pswd:string, len:number, subject:string, body:string,
             args:Object, cb_:any) {
         var header:Object = new Object()
@@ -257,6 +278,11 @@ class CloudAPI {
 
     }//() _call4
 
+    /**
+     * A helper function that uses 'name' to get an object of form data
+     * @param id
+     * @returns {Object}
+     */
     makeFormMessage(id:string):Object {
         var msg:Object = new Object()
         var form = $('#'+id).serializeArray()
@@ -273,25 +299,62 @@ class CloudAPI {
         return msg
     }//()
 
+    /**
+     * Update a row
+     * @param table_name
+     * @param pk
+     * @param updatedNVP
+     * @param cb_
+     */
     update( table_name:string, pk:string, updatedNVP:any, cb_):void {
         updatedNVP._id=pk
         this._crud(table_name, 'up', updatedNVP, cb_ )
     }//()
 
+    /**
+     * Delete a row by primary key
+     * @param table_name
+     * @param pk
+     * @param cb_
+     */
     del( table_name:string, pk:string, cb_):void {
         var nvp = new Object()
         nvp._id=pk
         this._crud(table_name, 'del', nvp, cb_ )
     }//()
 
+    /**
+     *
+     * Insert a row
+     *
+     * @param table_name
+     * @param nvp
+     * @param cb_
+     */
     insert( table_name:string, nvp:any, cb_):void {
         this._crud(table_name, 'ins', nvp, cb_ )
     }//()
 
+    /**
+     * Get data
+     * @param table_name
+     * @param nvp
+     * @param cb_
+     */
     select( table_name:string, nvp:any, cb_):void {
         this._crud(table_name, 'sel', nvp, cb_ )
     }//()
 
+    /**
+     * Used for join of 2 tables
+     *
+     * @param table1
+     * @param table2
+     * @param nvp
+     * @param field1
+     * @param field2
+     * @param cb_
+     */
     selectRelation( table1:string, table2:string, nvp:any, field1:string, field2:string, cb_):void {
 
         var header:Object = new Object()

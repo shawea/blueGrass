@@ -1,6 +1,6 @@
-/** v0.810 - 95% of times you should not change this file
+/** v0.814 - 95% of times you should not change this file
  (c) puppetMaster3  http://github.com/shawea/blueGrass
-  requries attribution, as per Attribution Assurance License @ http://github.com/shawea/blueGrass
+ requires attribution, as per Attribution Assurance License @ http://github.com/shawea/blueGrass
 */
 declare var $;
 
@@ -21,7 +21,7 @@ function open(ht, elSel, cb_):void {
 }//()
 
 /**
- *  calls back with new #id   -- of course it changes the id
+ *  calls back with new #id
  */
 function forward(ht, id, cb_):void {
 	$.get(viewDir + ht + '.html', function (resp_) {
@@ -56,6 +56,10 @@ function cleanUpViews(i:number):void { //GC
 	//console.log(views.length)
 }//()
 
+/**
+ * Get the browser's hash so you can pull up date
+ * @returns {*}
+ */
 function getHash():string{
     var h:string= window.location.hash;
     if(h!=null&& h.length>1) {
@@ -63,6 +67,10 @@ function getHash():string{
     }
     return null;
 }
+/**
+ * Sets browsers hash
+ * @param v
+ */
 function setHash(v:string) {
     window.location.hash = v
     //history.pushState(null,null,'#'+v)
@@ -95,7 +103,7 @@ function showSpinner(status){
 
 
 /**
- * Returns some responsive info
+ * Returns some info
  * @returns {Object}
  */
 function getBroInfo() {
@@ -113,7 +121,7 @@ function getBroInfo() {
 
 
 /**
- *
+ * Fires a signal when postion changes.
  *
  * @param posSignal
  * @param this_ pass the context
@@ -147,11 +155,11 @@ function browserSupportsCors():bool {
 
 ///// optional patterns:
 /**
- * Each 'presenter' should position, access loaded and manage self and receive the app in constructor.
+ * Each 'presenter' should position self and have no references to others (except app's dispatchers)
  */
 interface IPresenter {// ~ composition, a 'section' presenter to manage a views/sections (and hold state/model ex, when view is cleanedUp). app has no reference to a presneter
     /**
-     * In constructor, may listen here to app's dispatch
+     * In constructor, may listen here on app's dispatch
      * @param ctx
      * @private
      */
@@ -162,11 +170,10 @@ interface IPresenter {// ~ composition, a 'section' presenter to manage a views/
 }
 
 /**
- * App should be light, start up and dispatch
+ * App should be light, start up and dispatch and have no references to the view
  */
-interface IApp{ // has the app + hasher + event/signalbuss, the global app , does not animate or open, may have signals, does not have references to 'view' presetners
+interface IApp{
     _onHashChanged()    // listen to hash change: window.addEventListener('hashchange', this._onHashChanged.bind(this))
-
 
     _setupNavDispatching()
 
@@ -181,7 +188,11 @@ interface IApp{ // has the app + hasher + event/signalbuss, the global app , doe
 
 }
 
-interface IService { // the presenter's service, makes it easier to test services, no dom access
+/**
+ * Optionaly you can put your services seperate so you can test easier.
+ * Don't do dom here.
+ */
+interface IService {
     setModel(key:string, value:any)
 
 }

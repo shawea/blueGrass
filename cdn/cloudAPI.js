@@ -5,12 +5,12 @@ var CloudAPI = (function () {
         this.setAppKey(key);
     }
     /**
-    * Set the application key
+    * Set the application key you get from PrimusAPI.com web site
     * @param key
     */
     CloudAPI.prototype.setAppKey = function (key) {
         this._secret_app_key = key;
-        console.log('cloudAPI ready v1.812 ' + this._secret_app_key);
+        console.log('cloudAPI ready v1.814 ' + this._secret_app_key);
     };
 
     CloudAPI.prototype.setAuthToken = function (tok) {
@@ -21,6 +21,11 @@ var CloudAPI = (function () {
         this._auth_token = null;
     };
 
+    /**
+    * Simplest function, the only one that does not even need app key.
+    * @param zipcode
+    * @param cb_
+    */
     CloudAPI.prototype.zipCodeUSA = function (zipcode, cb_) {
         var msg = new Object();
         msg.Zipcode = zipcode;
@@ -28,7 +33,7 @@ var CloudAPI = (function () {
     };
 
     /**
-    * Returns last few rows starting with dateTime
+    * Returns last few rows based on with dateTime. You can kee going back.
     *
     * @param table_
     * @param startDateTime
@@ -66,6 +71,12 @@ var CloudAPI = (function () {
         this._call('CRUD', nvp, cb_, h);
     };
 
+    /**
+    * Send an email
+    * @param to
+    * @param subject
+    * @param body
+    */
     CloudAPI.prototype.mail = function (to, subject, body) {
         var header = new Object();
         if (!this._secret_app_key) {
@@ -123,7 +134,17 @@ var CloudAPI = (function () {
         this._call('auth', msg, cb_, h);
     };
 
-    // email's code to be validated - tag _CODE_ must exist
+    /**
+    * Sign up a member to your webapp.  This email's code to be validated - tag _CODE_ must exist
+    
+    * @param email
+    * @param pswd
+    * @param len
+    * @param subject
+    * @param body
+    * @param args
+    * @param cb_
+    */
     CloudAPI.prototype.signUp = function (email, pswd, len, subject, body, args, cb_) {
         var header = new Object();
         if (!this._secret_app_key) {
@@ -225,6 +246,11 @@ var CloudAPI = (function () {
         });
     };
 
+    /**
+    * A helper function that uses 'name' to get an object of form data
+    * @param id
+    * @returns {Object}
+    */
     CloudAPI.prototype.makeFormMessage = function (id) {
         var msg = new Object();
         var form = $('#' + id).serializeArray();
@@ -241,25 +267,62 @@ var CloudAPI = (function () {
         return msg;
     };
 
+    /**
+    * Update a row
+    * @param table_name
+    * @param pk
+    * @param updatedNVP
+    * @param cb_
+    */
     CloudAPI.prototype.update = function (table_name, pk, updatedNVP, cb_) {
         updatedNVP._id = pk;
         this._crud(table_name, 'up', updatedNVP, cb_);
     };
 
+    /**
+    * Delete a row by primary key
+    * @param table_name
+    * @param pk
+    * @param cb_
+    */
     CloudAPI.prototype.del = function (table_name, pk, cb_) {
         var nvp = new Object();
         nvp._id = pk;
         this._crud(table_name, 'del', nvp, cb_);
     };
 
+    /**
+    *
+    * Insert a row
+    *
+    * @param table_name
+    * @param nvp
+    * @param cb_
+    */
     CloudAPI.prototype.insert = function (table_name, nvp, cb_) {
         this._crud(table_name, 'ins', nvp, cb_);
     };
 
+    /**
+    * Get data
+    * @param table_name
+    * @param nvp
+    * @param cb_
+    */
     CloudAPI.prototype.select = function (table_name, nvp, cb_) {
         this._crud(table_name, 'sel', nvp, cb_);
     };
 
+    /**
+    * Used for join of 2 tables
+    *
+    * @param table1
+    * @param table2
+    * @param nvp
+    * @param field1
+    * @param field2
+    * @param cb_
+    */
     CloudAPI.prototype.selectRelation = function (table1, table2, nvp, field1, field2, cb_) {
         var header = new Object();
 
