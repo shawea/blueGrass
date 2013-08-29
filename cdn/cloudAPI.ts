@@ -2,7 +2,6 @@
 class CloudAPI {
     static ERROR:string = 'error_';
     static ARRAY:string = 'array_';
-    static AOP_ENUM:String ='aop_enum';
 
     static _INS:string ='ins';
     static _UP:string ='up';
@@ -17,6 +16,10 @@ class CloudAPI {
 
     _sec:number=0;
 
+    /**
+     * When you create cloudAPI, you need to pass in the app key that you get from PrimusAPI.com
+     * @param key
+     */
     constructor(key:string) {
         this.setAppKey(key)
     }

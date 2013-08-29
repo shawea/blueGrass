@@ -1,4 +1,8 @@
 var CloudAPI = (function () {
+    /**
+    * When you create cloudAPI, you need to pass in the app key that you get from PrimusAPI.com
+    * @param key
+    */
     function CloudAPI(key) {
         this._baseServiceUrl1 = 'http://ca_1.primusapi.com/service/';
         this._sec = 0;
@@ -359,7 +363,6 @@ var CloudAPI = (function () {
     };
     CloudAPI.ERROR = 'error_';
     CloudAPI.ARRAY = 'array_';
-    CloudAPI.AOP_ENUM = 'aop_enum';
 
     CloudAPI._INS = 'ins';
     CloudAPI._UP = 'up';

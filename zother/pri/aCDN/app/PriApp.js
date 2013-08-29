@@ -1,6 +1,6 @@
 head.ready(function () {
     viewDir = 'aCDN/view/';
-    console.log('0.03');
+    console.log('0.01');
 
     //console.log(getBrowserInfo())
     new FastClick(document.body);
@@ -13,8 +13,14 @@ var Tut = (function () {
         app_.hashSignal.add(this.onView, this);
     }
     Tut.prototype.transition = function () {
-        forward('tut', 'tut');
+        forward('tutorials', 'tut', this.onLoaded.bind(this));
     };
+    Tut.prototype.onLoaded = function () {
+        TweenLite.from('#code1', .2, { x: 200 });
+        TweenLite.from('#code2', 1, { x: 600 });
+        TweenLite.from('#code3', 2, { x: 1200 });
+    };
+
     Tut.prototype.onView = function (view) {
         if ('tut' == view)
             this.transition();
@@ -28,7 +34,7 @@ var About = (function () {
         app_.hashSignal.add(this.onView, this);
     }
     About.prototype.transition = function () {
-        forward('select', 'select');
+        forward('About', 'about');
     };
     About.prototype.onView = function (view) {
         if ('about' == view)
@@ -41,8 +47,10 @@ var App = (function () {
     function App() {
         //create views
         this.hashSignal = new signals.Signal();
-        var about = new About(this);
-        var tut = new Tut(this);
+        new About(this);
+        new Tut(this);
+        new Insert(this);
+        new Select(this);
 
         this.loadFirst();
 
@@ -52,7 +60,7 @@ var App = (function () {
         this._setupNavDispatching();
     }
     App.prototype._setupNavDispatching = function () {
-        //setup slider
+        //setup Nav slider
         this.navFlag = false;
         var menu = document.getElementById('navMenu');
         menu.addEventListener('click', this.toggleSideNav.bind(this), false);
@@ -67,6 +75,14 @@ var App = (function () {
         var tutBut = document.getElementById('tutBut');
         tutBut.addEventListener('click', function () {
             setHash('tut');
+        });
+        var insBut = document.getElementById('insert');
+        insBut.addEventListener('click', function () {
+            setHash('ins');
+        });
+        var selBut = document.getElementById('select');
+        selBut.addEventListener('click', function () {
+            setHash('sel');
         });
     };
 
@@ -103,5 +119,35 @@ var App = (function () {
         this.navFlag = !this.navFlag;
     };
     return App;
+})();
+
+var Insert = (function () {
+    function Insert(app_) {
+        this.app = app_;
+        app_.hashSignal.add(this.onView, this);
+    }
+    Insert.prototype.transition = function () {
+        forward('insert', 'insert');
+    };
+    Insert.prototype.onView = function (view) {
+        if ('ins' == view)
+            this.transition();
+    };
+    return Insert;
+})();
+
+var Select = (function () {
+    function Select(app_) {
+        this.app = app_;
+        app_.hashSignal.add(this.onView, this);
+    }
+    Select.prototype.transition = function () {
+        forward('select', 'select');
+    };
+    Select.prototype.onView = function (view) {
+        if ('sel' == view)
+            this.transition();
+    };
+    return Select;
 })();
 //@ sourceMappingURL=PriApp.js.map

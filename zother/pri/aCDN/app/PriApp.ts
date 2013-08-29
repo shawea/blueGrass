@@ -2,7 +2,7 @@ declare var TweenLite;
 
 head.ready(function() {
     viewDir = 'aCDN/view/'
-    console.log('0.03')
+    console.log('0.01')
     //console.log(getBrowserInfo())
     new FastClick(document.body);
     new App()
@@ -15,8 +15,14 @@ class Tut {
         app_.hashSignal.add(this.onView, this)
     }
     private transition():any {
-        forward('tut','tut')
+        forward('tutorials','tut',this.onLoaded.bind(this))
     }
+    private onLoaded() {
+        TweenLite.from('#code1',.2, {x:200})
+        TweenLite.from('#code2',1, {x:600})
+        TweenLite.from('#code3',2, {x:1200})
+    }
+
     private onView(view:string){
         if('tut'==view)
             this.transition()
@@ -30,7 +36,7 @@ class About implements IPresenter{
         app_.hashSignal.add(this.onView, this)
     }
     private transition():any {
-        forward('select','select')
+        forward('About','about')
     }
     private onView(view:string){
         if('about'==view)
@@ -44,10 +50,13 @@ class App {
     constructor () {
         //create views
         this.hashSignal = new signals.Signal();
-        var about = new About(this)
-        var tut = new Tut(this)
+        new About(this)
+        new Tut(this)
+        new Insert(this)
+        new Select(this)
 
         this.loadFirst()
+
         //DeepLink
         window.addEventListener('hashchange', this._onHashChanged.bind(this))
 
@@ -57,7 +66,7 @@ class App {
 
     private _setupNavDispatching() {
 
-        //setup slider
+        //setup Nav slider
         this.navFlag = false
         var menu = document.getElementById('navMenu')
         menu.addEventListener('click', this.toggleSideNav.bind(this), false)
@@ -69,6 +78,10 @@ class App {
         aboutBut.addEventListener('click', function() {setHash('about')})
         var tutBut = document.getElementById('tutBut')
         tutBut.addEventListener('click', function() {setHash('tut')})
+        var insBut = document.getElementById('insert')
+        insBut.addEventListener('click', function() {setHash('ins')})
+        var selBut = document.getElementById('select')
+        selBut.addEventListener('click', function() {setHash('sel')})
 
     }
 
@@ -108,15 +121,36 @@ class App {
 }
 
 
-/*class Why {
- _transition(transEnum:number, ctx:any):any {
- forward('why','why',onWhy)
- }
- onWhy(id) {
- console.log( 'loaded')
- TweenLite.from('#code1',.2, {x:200})
- TweenLite.from('#code2',1, {x:600})
- TweenLite.from('#code3',2, {x:1200})
- }
 
- }*/
+class Insert {
+    private app:App;
+    constructor(app_:App) {
+        this.app = app_;
+        app_.hashSignal.add(this.onView, this)
+    }
+    private transition():any {
+        forward('insert','insert')
+    }
+    private onView(view:string){
+        if('ins'==view)
+            this.transition()
+    }
+}
+
+
+class Select {
+    private app:App;
+    constructor(app_:App) {
+        this.app = app_;
+        app_.hashSignal.add(this.onView, this)
+    }
+    private transition():any {
+        forward('select','select')
+    }
+    private onView(view:string){
+        if('sel'==view)
+            this.transition()
+    }
+}
+
+
