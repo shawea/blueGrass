@@ -62,7 +62,12 @@ class App {
 
         this._setupNavDispatching()
 
-        }//()
+        var loginBut = document.getElementById('login')
+        loginBut.addEventListener('click', function() {
+            location='http://ca_1.primusAPI.com/account'
+        })
+
+    }//()
 
     private _setupNavDispatching() {
 

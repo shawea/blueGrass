@@ -58,6 +58,11 @@ var App = (function () {
         window.addEventListener('hashchange', this._onHashChanged.bind(this));
 
         this._setupNavDispatching();
+
+        var loginBut = document.getElementById('login');
+        loginBut.addEventListener('click', function () {
+            location = 'http://ca_1.primusAPI.com/account';
+        });
     }
     App.prototype._setupNavDispatching = function () {
         //setup Nav slider

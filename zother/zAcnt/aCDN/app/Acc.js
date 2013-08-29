@@ -128,7 +128,7 @@ var Account = (function () {
         temp.addEventListener('click', this.onClicked.bind(this));
         var dataviewBut = document.getElementById('dataviewBut');
         dataviewBut.addEventListener('click', function (e) {
-            location = 'http://ca_1.primusAPI.com/dataView/';
+            location = 'http://ca_1.primusAPI.com/dataView';
         });
 
         this.srv.getApps(this.onRet.bind(this));
@@ -137,8 +137,7 @@ var Account = (function () {
 
     Account.prototype.onRet = function (data) {
         this.srv.list = data.array_;
-
-        //console.log(this.srv.list)
+        console.log(this.srv.list);
         $('#template').render(this.srv.list);
     };
 
