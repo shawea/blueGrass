@@ -9,10 +9,10 @@ if ('__proto__' in {}) {
     console.log('jq');
 }
 
-window.onload = function () {
-    console.log('L');
+document.addEventListener('DOMContentLoaded', function () {
+    console.log('DL');
     setTimeout(function () {
         head.js('http://scdn.primus.netdna-cdn.com/latest/TweenLite.min.js', 'http://scdn.primus.netdna-cdn.com/latest/signals.min.js', 'http://scdn.primus.netdna-cdn.com/latest/fastclick.js', 'http://scdn.primus.netdna-cdn.com/latest/blueGrass.js', 'http://scdn.primus.netdna-cdn.com/latest/CSSPlugin.min.js', 'aCDN/app/PriApp.js');
-    }, 20);
-};
+    }, 140);
+});
 //@ sourceMappingURL=preLoa.js.map

@@ -142,6 +142,7 @@ header,#header{top:0px ;left:0px;position:fixed ;z-index:50;box-shadow:-2px 2px 
 #kontainer{top:4rem;left:0px;position:absolute ;width:100%;z-index:1;}
 .bold{font-size:5rem;font-weight:900;line-height:4rem;}
 .pad{padding:1rem;}
+.hide{position:absolute;overflow:hidden;left:-9999px;top:-9999px;height:1px;width:1px;}
 .border{border:2px solid black;padding-top:.4rem;padding-left:1rem;padding-right:1rem;border-radius:.2rem;min-height:20rem;}
 .cen{text-align:center;}
 .mid{vertical-align:middle;line-height:3rem;}

@@ -10,8 +10,8 @@ if('__proto__' in {}) {
     console.log('jq')
 }
 
-window.onload = function() {
-    console.log('L')
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DL')
     setTimeout(function(){
         head.js('http://scdn.primus.netdna-cdn.com/latest/TweenLite.min.js'
             ,'http://scdn.primus.netdna-cdn.com/latest/signals.min.js'
@@ -21,7 +21,7 @@ window.onload = function() {
             // app
             ,'aCDN/app/PriApp.js'
         )//head
-    },20)//wait on fonts
-}
+    },140)//wait on fonts
+})
 
 
