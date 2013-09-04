@@ -30,7 +30,7 @@ class CloudAPI {
      */
     setAppKey(key:string) {
         this._secret_app_key = key
-        console.log('cloudAPI ready v1.814 ' + this._secret_app_key)
+        console.log('cloudAPI ready v1.902 ' + this._secret_app_key)
     }
 
     setAuthToken(tok:string) {
@@ -39,17 +39,6 @@ class CloudAPI {
 
     clearAuthToken() {
         this._auth_token = null
-    }
-
-    /**
-     * Simplest function, the only one that does not even need app key.
-     * @param zipcode
-     * @param cb_
-     */
-    zipCodeUSA(zipcode:number, cb_):void {
-         var  msg:any = new Object()
-         msg.Zipcode = zipcode
-         this._call('USAZipCode', msg, cb_ , null)
     }
 
     /**

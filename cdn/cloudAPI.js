@@ -14,7 +14,7 @@ var CloudAPI = (function () {
     */
     CloudAPI.prototype.setAppKey = function (key) {
         this._secret_app_key = key;
-        console.log('cloudAPI ready v1.814 ' + this._secret_app_key);
+        console.log('cloudAPI ready v1.902 ' + this._secret_app_key);
     };
 
     CloudAPI.prototype.setAuthToken = function (tok) {
@@ -23,17 +23,6 @@ var CloudAPI = (function () {
 
     CloudAPI.prototype.clearAuthToken = function () {
         this._auth_token = null;
-    };
-
-    /**
-    * Simplest function, the only one that does not even need app key.
-    * @param zipcode
-    * @param cb_
-    */
-    CloudAPI.prototype.zipCodeUSA = function (zipcode, cb_) {
-        var msg = new Object();
-        msg.Zipcode = zipcode;
-        this._call('USAZipCode', msg, cb_, null);
     };
 
     /**
@@ -207,6 +196,7 @@ var CloudAPI = (function () {
                     } catch (ex) {
                         console.log(dat);
                         console.log('JSON parse err ' + ex);
+                        //console.log(curl)
                     }
                 } else {
                     if (cb_ != null)
@@ -342,7 +332,8 @@ var CloudAPI = (function () {
 
     CloudAPI.prototype._browserSupportsCors = function () {
         if ('withCredentials' in new XMLHttpRequest())
-            return true; else
+            return true;
+else
             return false;
     };
 
@@ -372,4 +363,4 @@ var CloudAPI = (function () {
     CloudAPI.PK = 'id_';
     return CloudAPI;
 })();
-//@ sourceMappingURL=cloudAPI.js.map
+//# sourceMappingURL=cloudAPI.js.map
