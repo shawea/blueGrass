@@ -2755,20 +2755,15 @@ body {
 }
 body {
   font-family: source-sans-pro, sans-serif;
-  position: relative;
   -webkit-font-smoothing: antialiased;
   font-size: 1.1rem;
   background: #F4F4F4;
   border-bottom: 1px solid #E0E0E0;
-  color: #797B7B;
   box-shadow: 0 0 0 1px #949696;
   background: #DDE1E1;
   border-top: 1px solid #FFF;
   color: #454545;
-  text-shadow: 0 -1px 0 #ffffff;
-}
-body {
-  background: #F4F4F4;
+  text-shadow: 0 -0.7px 0 #ffffff;
   color: #181919;
 }
 h1 {
@@ -2777,13 +2772,10 @@ h1 {
 pre {
   font-family: source-code-pro, sans-serif;
 }
-.wrapper {
-  width: 100%;
-  overflow-x: hidden;
-}
-#slider .sideNav {
+#slider,
+.sideNav {
   background: #4A4D4E;
-  position: absolute;
+  position: fixed;
   z-index: 10;
   height: 100%;
   width: 400px;
@@ -2808,20 +2800,21 @@ li a {
   text-decoration: none;
   list-style-type: none;
 }
-#main-header header {
+#main-header,
+header {
   color: #373435;
   background: #fff;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 10px 20px;
-  position: relative;
   z-index: 50;
   top: 0px ;
   left: 0px;
   position: fixed ;
   box-shadow: -2px 2px 4px #000000;
 }
-#container .container {
+#container,
+.container {
   width: 100%;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -2830,9 +2823,9 @@ li a {
 }
 #kontainer {
   left: 0px;
-  position: absolute  ;
+  position: absolute ;
   width: 100%;
-  z-index: -1;
+  z-index: 0;
 }
 table {
   border-width: 1px;
@@ -2874,6 +2867,13 @@ button .but .topcoat-button,
   height: 1px;
   width: 1px;
 }
+.cen {
+  text-align: center;
+}
+.mid {
+  vertical-align: middle;
+  line-height: 3rem;
+}
 .border {
   border: 2px solid black;
   padding-top: .4rem;
@@ -2882,13 +2882,6 @@ button .but .topcoat-button,
   -webkit-border-radius: 0.2rem;
   border-radius: 0.2rem;
   min-height: 20rem;
-}
-.cen {
-  text-align: center;
-}
-.mid {
-  vertical-align: middle;
-  line-height: 3rem;
 }
 form {
   margin-left: auto;

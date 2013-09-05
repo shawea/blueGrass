@@ -8,9 +8,9 @@
 @hiLite: #df4f4f;
 @headerH: 4.375rem;
 
-////////////// from topcoat
+////////////// topcoat.css
 
-html,body{
+html, body{
   margin:0;
   padding:0;
   height: 100%;
@@ -18,21 +18,15 @@ html,body{
 
 body {
   font-family: source-sans-pro, sans-serif;
-  position: relative;
   -webkit-font-smoothing: antialiased;
   font-size: 1.1rem;
   background: #F4F4F4;
   border-bottom: 1px solid #E0E0E0;
-  color: #797B7B;
   box-shadow: 0 0 0 1px #949696;
   background: #DDE1E1;
   border-top: 1px solid #FFF;
   color: #454545;
-  text-shadow: 0 -1px 0 #FFF;
-}
-
-body {
-  background: #F4F4F4;
+  text-shadow: 0 -.7px 0 #FFF;
   color: #181919;
 }
 
@@ -44,14 +38,9 @@ pre {
   font-family: source-code-pro, sans-serif;
 }
 
-.wrapper {   //body
-  width: 100%;
-  overflow-x: hidden;
-}
-
-#slider .sideNav { //left nav
+#slider, .sideNav { //left nav
   background: #4A4D4E;
-  position: absolute;
+  position: fixed;
   z-index: 10;
   height: 100%;
   width:400px;
@@ -77,13 +66,12 @@ li a {
   list-style-type: none;
 }
 
-#main-header header {
+#main-header, header {
   color: #373435;
   background: #fff;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 10px 20px;
-  position: relative;
   z-index:50;
   top: 0px ;
   left:0px;
@@ -91,21 +79,21 @@ li a {
   box-shadow: -2px 2px 4px black;
 }
 
-#container .container { // main
+#container, .container { // main
   width: 100%;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  //padding: 20px;
   position: absolute ;
   top: @headerH;
 }
 
+
 //////////////
 #kontainer { // inside content for views
   left:0px;
-  position: absolute  ;
+  position: absolute ;
   width: 100%;
-  z-index:-1;
+  z-index:0;
 }
 
 //// table
@@ -156,6 +144,16 @@ button .but .topcoat-button,
   width: 1px;
 }
 
+.cen {
+  text-align: center;
+}
+
+.mid {
+  vertical-align: middle;
+  line-height: 3rem;
+}
+
+
 .border {
   border:2px solid black;
   padding-top: .4rem;
@@ -164,13 +162,6 @@ button .but .topcoat-button,
   -webkit-border-radius: @radius;
   border-radius: @radius;
   min-height: 20rem;
-}
-.cen {
-  text-align: center;
-}
-.mid {
-  vertical-align: middle;
-  line-height: 3rem;
 }
 
 //// form
@@ -200,7 +191,7 @@ label {
   width: 23rem;
   font-size: 1rem;
 }
-
+////
 .tabIn {
   margin-left: 7rem;
 }

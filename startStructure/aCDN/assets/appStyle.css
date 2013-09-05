@@ -4,9 +4,6 @@
   -moz-background-size: contain;
   background-size: contain;
   height: 32rem;
-  display: block;
-  position: absolute;
-  width: 100%;
 }
 .about_txt {
   padding-top: 1.2rem;
