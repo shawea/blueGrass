@@ -24,7 +24,7 @@
 
 <p>When you login to your account successfully, you will see a page that shows your apps and has details about each specific application. When you select an application you can see a field "Domain".</p>
 
-<img style="margin:3em" src="../images/domainSec.png">
+<img style="margin:3em" src="domainSec.png">
 
 <p>This box sets a security restriction to only serve data to a domain that is requesting it if part of the domain matches the string you set. For example if you were to set this domain to "awesomesauce", our system would only serve data to domains like awesomesause.com and awesomesauce.net. If you want to only serve to awesomesauce.com, you would specify that here.</p>
 
@@ -37,7 +37,7 @@
 
 <p>Make sure that this login app does <b>NOT</b> have the checkbox set for "auth". This checkbox will make any user without an auth token unable to write / select data. So the flow will be to create a login app using the steps below, and then another app that is "secure" with the checkbox checked. This tutorial will walk you through a sample auth application. </p>
 
-<img style="margin:3em" src="../images/authSec.png">
+<img style="margin:3em" src="authSec.png">
 <p><b>As this is advanced security, please only build this if you have a complete understanding of how this works after this tutorial.</b></p>
 
 <p>There are 5 new API’s for this which we will go over below:

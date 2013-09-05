@@ -8,42 +8,6 @@ head.ready(function() {
     new App()
 })
 
-class Tut {
-    private app:App;
-    constructor(app_:App) {
-        this.app = app_;
-        app_.hashSignal.add(this.onView, this)
-    }
-    private transition():any {
-        forward('tutorials','tut',this.onLoaded.bind(this))
-    }
-    private onLoaded() {
-        TweenLite.from('#code1',.2, {x:200})
-        TweenLite.from('#code2',1, {x:600})
-        TweenLite.from('#code3',2, {x:1200})
-    }
-
-    private onView(view:string){
-        if('tut'==view)
-            this.transition()
-    }
-}
-
-class About implements IPresenter{
-    private app:App;
-    constructor(app_:App) {
-        this.app = app_;
-        app_.hashSignal.add(this.onView, this)
-    }
-    private transition():any {
-        forward('About','about')
-    }
-    private onView(view:string){
-        if('about'==view)
-            this.transition()
-    }//()
-}
-
 class App {
     private navFlag:bool;
     hashSignal:any;
@@ -87,6 +51,10 @@ class App {
         insBut.addEventListener('click', function() {setHash('ins')})
         var selBut = document.getElementById('select')
         selBut.addEventListener('click', function() {setHash('sel')})
+        var blogBut = document.getElementById('blog')
+        blogBut.addEventListener('click', function() {
+            location='http://blog.primusapi.com'
+            })
 
     }
 
@@ -124,38 +92,4 @@ class App {
         this.navFlag = !this.navFlag
     }//()
 }
-
-
-
-class Insert {
-    private app:App;
-    constructor(app_:App) {
-        this.app = app_;
-        app_.hashSignal.add(this.onView, this)
-    }
-    private transition():any {
-        forward('insert','insert')
-    }
-    private onView(view:string){
-        if('ins'==view)
-            this.transition()
-    }
-}
-
-
-class Select {
-    private app:App;
-    constructor(app_:App) {
-        this.app = app_;
-        app_.hashSignal.add(this.onView, this)
-    }
-    private transition():any {
-        forward('select','select')
-    }
-    private onView(view:string){
-        if('sel'==view)
-            this.transition()
-    }
-}
-
 

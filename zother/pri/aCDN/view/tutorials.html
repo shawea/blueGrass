@@ -1,8 +1,14 @@
 <div id='tut'>
+    <div class='tabIn'>
+    <p/>
+    The file you will be including, with comments on how to use it:
+    <a href='http://scdn.primus.netdna-cdn.com/latest/cloudAPI.js'>http://scdn.primus.netdna-cdn.com/latest/cloudAPI.js</a>.
+    It has all the api, this page is one example.
 
-
-
-    <pre id='code1'><code data-language='HTML'>
+    <p/>
+    In addition to the sample on this page, you should view insert and select examples (on the left menu).
+    </div>
+    <pre id='code1'><code>
         &lthtml>&lthead>&lt/head>&ltbody>
         &ltform>
             First Name&ltinput type='text' id='firstname' >&ltbr>
@@ -10,14 +16,14 @@
             &ltbutton id='lookup' onclick='return false'>Look Up&lt/button>
             &ltbutton id='create' onclick='return false'>Create Name&lt/button>
         &lt/form>
-        &ltscript src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js'>&lt/script>
+        &ltscript src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js'>&lt/script>
         &lt!-- app -->
-        &ltscript  src='http://ca_1.primusapi.com/acdn/libs/cloudAPI.js' >&lt/script>
+        &ltscript  src='http://scdn.primus.netdna-cdn.com/latest/cloudAPI.js'>&lt/script>
     </code></pre>
-    <pre id='code2'><code data-language='HTML'>
+    <pre id='code2'><code>
         &ltscript>
-            cAPI=new CloudAPI()
-            &lt!-- insert -->
+        &lt!-- insert -->
+        cAPI=new CloudAPI()
             var cBut = document.getElementById('create')
             cBut.addEventListener('click', function(e) {
                 var firstname = $('#firstname').val()
@@ -34,7 +40,7 @@
                 //console.log(data)
             }
     </code></pre>
-    <pre id='code3'><code data-language='HTML'>
+    <pre id='code3'><code>
             &lt!-- select -->
             var sBut = document.getElementById('lookup')
             sBut.addEventListener('click', function(e) {

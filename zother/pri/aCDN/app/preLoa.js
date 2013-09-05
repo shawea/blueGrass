@@ -12,7 +12,7 @@ if ('__proto__' in {}) {
 document.addEventListener('DOMContentLoaded', function () {
     console.log('DL');
     setTimeout(function () {
-        head.js('http://scdn.primus.netdna-cdn.com/latest/TweenLite.min.js', 'http://scdn.primus.netdna-cdn.com/latest/signals.min.js', 'http://scdn.primus.netdna-cdn.com/latest/fastclick.js', 'http://scdn.primus.netdna-cdn.com/latest/blueGrass.js', 'http://scdn.primus.netdna-cdn.com/latest/CSSPlugin.min.js', 'aCDN/app/PriApp.js');
-    }, 140);
+        head.js('http://scdn.primus.netdna-cdn.com/latest/TweenLite.min.js', 'http://scdn.primus.netdna-cdn.com/latest/signals.min.js', 'http://scdn.primus.netdna-cdn.com/latest/fastclick.js', 'http://scdn.primus.netdna-cdn.com/latest/blueGrass.js', 'http://scdn.primus.netdna-cdn.com/latest/CSSPlugin.min.js', 'aCDN/app/Pri.js', 'aCDN/app/App.js');
+    }, 10);
 });
-//@ sourceMappingURL=preLoa.js.map
+//# sourceMappingURL=preLoa.js.map
