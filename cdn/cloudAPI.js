@@ -14,7 +14,7 @@ var CloudAPI = (function () {
     */
     CloudAPI.prototype.setAppKey = function (key) {
         this._secret_app_key = key;
-        console.log('cloudAPI ready v1.902 ' + this._secret_app_key);
+        console.log('cloudAPI ready v1.903 ' + this._secret_app_key);
     };
 
     CloudAPI.prototype.setAuthToken = function (tok) {

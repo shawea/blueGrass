@@ -43,6 +43,7 @@ function cleanUpViews(i) {
         old.parentNode.removeChild(old);
         views = $('#kontainer').children();
     }
+    //console.log(views.length)
 }
 
 /**
@@ -63,6 +64,7 @@ function getHash() {
 */
 function setHash(v) {
     window.location.hash = v;
+    //history.pushState(null,null,'#'+v)
 }
 
 /////////////////
@@ -79,7 +81,8 @@ function getGuerryString(key) {
 
 function showSpinner(status) {
     if (status)
-        document.body.style.cursor = 'wait'; else
+        document.body.style.cursor = 'wait';
+else
         document.body.style.cursor = 'default';
 }
 
@@ -126,7 +129,8 @@ function setupPosSignal(posSignal, this_) {
 
 function browserSupportsCors() {
     if ('withCredentials' in new XMLHttpRequest())
-        return true; else
+        return true;
+else
         return false;
 }
-//@ sourceMappingURL=blueGrass.js.map
+//# sourceMappingURL=blueGrass.js.map
