@@ -67,7 +67,7 @@ var App = (function () {
     App.prototype._setupNavDispatching = function () {
         //setup Nav slider
         this.navFlag = false;
-        var menu = document.getElementById('navMenu');
+        var menu = document.getElementById('topMenu');
         menu.addEventListener('click', this.toggleSideNav.bind(this), false);
         var nav = document.getElementById('navBut');
         nav.addEventListener('click', this.toggleSideNav.bind(this), false);
@@ -155,4 +155,4 @@ var Select = (function () {
     };
     return Select;
 })();
-//@ sourceMappingURL=PriApp.js.map
+//# sourceMappingURL=PriApp.js.map

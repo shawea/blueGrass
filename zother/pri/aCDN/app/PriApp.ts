@@ -73,7 +73,7 @@ class App {
 
         //setup Nav slider
         this.navFlag = false
-        var menu = document.getElementById('navMenu')
+        var menu = document.getElementById('topMenu')
         menu.addEventListener('click', this.toggleSideNav.bind(this), false)
         var nav = document.getElementById('navBut')
         nav.addEventListener('click', this.toggleSideNav.bind(this), false)
