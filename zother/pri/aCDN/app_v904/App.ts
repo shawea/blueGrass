@@ -73,6 +73,8 @@ class App {
 
     _onHashChanged() {
         var view = getHash()
+        if (null==view)
+            view ='about'
         console.log('changed ' + view)
         this.hashSignal.dispatch(view)
         this.toggleSideNavOff()

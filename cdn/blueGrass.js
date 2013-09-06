@@ -25,7 +25,6 @@ function forward(ht, id, cb_) {
         console.log(ht, cur.attr('id'));
         var gid = id + Math.floor(Math.random() * 9999999);
         cur.attr('id', gid);
-
         if (cb_)
             cb_(gid);
     });

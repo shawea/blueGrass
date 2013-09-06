@@ -80,6 +80,8 @@ var App = (function () {
 
     App.prototype._onHashChanged = function () {
         var view = getHash();
+        if (null == view)
+            view = 'about';
         console.log('changed ' + view);
         this.hashSignal.dispatch(view);
         this.toggleSideNavOff();

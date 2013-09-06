@@ -30,13 +30,6 @@ function forward(ht, id, cb_):void {
         console.log(ht, cur.attr('id'))
         var gid = id + Math.floor(Math.random() * 9999999) //GUID 1 in 10mm
 		cur.attr('id', gid)//change id to guid - we could have many
-		//if (!cur.attr('id')) throw new Error('id not found or kontainer')
-		/*try{
-            var t:number = $('header').height()
-            var b:number = $('footer').position().top
-		    cur.height(b - t)
-        } catch (err) { console.log(err)}
-        */
 		if (cb_) cb_(gid)
 	})
 }//()
