@@ -19,6 +19,7 @@ class App {
         new Insert(this)
         new Select(this)
         new Vid(this)
+        new Pricing(this)
 
         this.loadFirst()
 
@@ -57,7 +58,8 @@ class App {
             })
         var moreBut = document.getElementById('more')
         moreBut.addEventListener('click', function() {setHash('vid')})
-
+        var pBut = document.getElementById('pricing')
+        pBut.addEventListener('click', function() {setHash('pricing')})
     }
 
     private loadFirst() {

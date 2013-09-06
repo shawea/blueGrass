@@ -41,6 +41,21 @@ class Vid implements IPresenter{
     }//()
 }
 
+class Pricing implements IPresenter{
+    private app:App;
+    constructor(app_:App) {
+        this.app = app_;
+        app_.hashSignal.add(this.onView, this)
+    }
+    private transition():any {
+        forward('pricing','pricing')
+    }
+    private onView(view:string){
+        if('pricing'==view)
+            this.transition()
+    }//()
+}
+
 class About implements IPresenter{
     private app:App;
     constructor(app_:App) {

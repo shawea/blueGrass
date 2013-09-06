@@ -16,6 +16,7 @@ var App = (function () {
         new Insert(this);
         new Select(this);
         new Vid(this);
+        new Pricing(this);
 
         this.loadFirst();
 
@@ -61,6 +62,10 @@ var App = (function () {
         var moreBut = document.getElementById('more');
         moreBut.addEventListener('click', function () {
             setHash('vid');
+        });
+        var pBut = document.getElementById('pricing');
+        pBut.addEventListener('click', function () {
+            setHash('pricing');
         });
     };
 

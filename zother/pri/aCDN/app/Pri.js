@@ -39,6 +39,21 @@ var Vid = (function () {
     return Vid;
 })();
 
+var Pricing = (function () {
+    function Pricing(app_) {
+        this.app = app_;
+        app_.hashSignal.add(this.onView, this);
+    }
+    Pricing.prototype.transition = function () {
+        forward('pricing', 'pricing');
+    };
+    Pricing.prototype.onView = function (view) {
+        if ('pricing' == view)
+            this.transition();
+    };
+    return Pricing;
+})();
+
 var About = (function () {
     function About(app_) {
         this.app = app_;

@@ -1,180 +1,106 @@
-<div>
+<section id='pricing'>
+<!-- http://freezecoders.com/demos/Simple-Pricing-Table-Using-CSS3.php -->
+<style>
+    .icon   {
+        background: url(aCDN/assets/gear.png) no-repeat;
+        background-size: 21%;
+        background-position: 50% 0%;
+        margin: 1rem auto;
+        height: 4rem;
+    }
 
+    .acc {
+        background-color: #F7D835;
+        text-align: center;
+        padding: 1rem 0;
+        font-size: 2rem;
+        text-transform: uppercase;
+        height: 6rem;
+    }
 
-    <!--http://desizntech.info/2013/08/pricing-table-using-css -->
-    <style>
+    .box    {
+        float: left;
+        margin:0 1rem;
+        transition:all 0.3s;
+        width: 20rem;
+        margin-top: 4rem;
+    }
+    .box:hover      {
+        transform: scale(1.05, 1.05);
+        -webkit-transform: scale(1.05, 1.05);
+        -moz-transform: scale(1.05, 1.05);
+        box-shadow: 1px 1px 30px #ccc;
+        -webkit-box-shadow: 1px 1px 30px #ccc;
+        -moz-box-shadow: 1px 1px 30px #ccc;
+        -ms-box-shadow: 1px 1px 30px #ccc;
+    }
+    .box ul        {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .box ul li       {
+        background-color: #E9E9E9;
+        margin: 0px;
+        padding: 10px 50px;
+        text-align:center;
+    }
+    .box ul li:nth-child(2n) {
+        background-color: #C2C2C2;
+    }
 
+    .amt       {
+        font-size: 3rem;
+        text-align: center;
+        background-color: #575757!important;
+        color: #FFF;
+        font-weight:bold;
+        height: 6rem;
+    }
 
+</style>
 
-        .pricing_table {
-            margin: 0 auto;
-            width: 600px;
-            line-height: 150%;
-            font-size: 12px;
-            padding-top: 10px;
-        }
+<div class='box'>
+    <div class='acc'>Not For Profit</div>
+    <div class='icon'></div>
+    <ul>
+        <li>1 GB DB Space</li>
+        <li>10K transactions</li>
+        <li>SLA</li>
 
-        .price_block {
-            text-align: center;
-            float: left;
-            width: 200px;
-            list-style-type: none;
-            transition: all 0.25s;
-            position: relative;
-            box-sizing: border-box;
-        }
+        <li>Email support</li>
 
-
-        .pricing_table h3 {
-            text-transform: uppercase;
-            padding: 5px 0;
-            background: #d7d7d7;
-        }
-
-        .price {
-            display: table;
-            background: #e1e1e1;
-            width: 100%;
-            height: 70px;
-        }
-
-        .price_figure {
-            font-size: 24px;
-            text-transform: uppercase;
-            vertical-align: middle;
-            display: table-cell;
-        }
-        .price_number {
-            font-weight: bold;
-            display: block;
-        }
-
-        .price_tenure {
-            font-size: 11px;
-        }
-
-
-        .features {
-            background: #fff;
-        }
-        .features li {
-            padding: 8px 15px;
-            font-size: 11px;
-            list-style-type: none;
-        }
-
-
-        .footer {
-            padding: 15px;
-            background: #fff;
-        }
-
-        .action_button {
-            text-decoration: none;
-            color: #262626;
-            font-weight: bold;
-            border-radius: 5px;
-            background: #e1e1e1;
-            padding: 10px 35px;
-            font-size: 11px;
-            text-transform: uppercase;
-        }
-
-        .action_button:hover {
-            background: #d7d7d7;
-        }
-
-        .extended h3 {
-            background: #ff7d32;
-            color: #fff;
-        }
-
-        .extended .price {
-            background: #ffc800;
-            color: #fff;
-        }
-
-        .extended .features, .extended .footer {
-            background: #f4f3f0;
-        }
-
-        .extended .action_button {
-            background: #ffc800;
-            color: #ff7d32;
-            border: none;
-        }
-
-        .extended .action_button:hover {
-            background: #ff7d32;
-            color: #ffc800;
-        }
-
-
-
-    </style>
-
-    <li class="price_block">
-        <h3>Basic</h3>
-        <div class="price">
-            <div class="price_figure">
-                <span class="price_number">$5.99</span>
-                <spann class="price_tenure">per month
-                </spann></div>
-        </div>
-
-        <ul class="features">
-            <li>1 user</li>
-            <li>10 clients</li>
-            <li>15 Projects</li>
-            <li>5GB of space</li>
-        </ul>
-
-        <div class="footer">
-            <a href="#" class="action_button"> Sign up</a>
-        </div>
-    </li>
-
-    <li class="extended price_block">
-        <h3>Extended</h3>
-        <div class="price">
-            <div class="price_figure">
-                <span class="price_number">$29.99</span>
-                <spann class="price_tenure">per month
-                </spann></div>
-        </div>
-
-        <ul class="features">
-            <li>5 user</li>
-            <li>50 clients</li>
-            <li>100 Projects</li>
-            <li>15GB of space</li>
-        </ul>
-
-        <div class="footer">
-            <a href="#" class="action_button"> Sign up</a>
-        </div>
-    </li>
-
-    <li class="price_block">
-        <h3>Premium</h3>
-        <div class="price">
-            <div class="price_figure">
-                <span class="price_number">$9.99</span>
-                <spann class="price_tenure">per month
-                </spann></div>
-        </div>
-
-        <ul class="features">
-            <li>Unlimited user</li>
-            <li>Unlimited clients</li>
-            <li>Unlimited Projects</li>
-            <li>Unlimited space</li>
-        </ul>
-
-        <div class="footer">
-            <a href="#" class="action_button"> Sign up</a>
-        </div>
-    </li>
-
-
+        <li class='amt'>$10 /month</li>
+    </ul>
 </div>
+
+
+<div class='box'>
+    <div class='acc'>Small Team Prototype</div>
+    <div class='icon'></div>
+    <ul>
+        <li>1 GB DB Space</li>
+        <li>10K transactions</li>
+        <li>SLA</li>
+
+        <li>Email support</li>
+
+        <li class='amt'>$35 /month</li>
+    </ul>
+</div>
+
+<div class='box'>
+    <div class='acc'>Mission Critical Enterprise Operations</div>
+    <div class='icon'></div>
+    <ul>
+        <li>10 GB DB Space</li>
+        <li>200K transactions</li>
+        <li>SLA</li>
+        <li>Named support</li>
+
+        <li class='amt'>$200 /month</li>
+    </ul>
+</div>
+
+
+</section>

@@ -6,6 +6,7 @@ var Welcome = (function () {
         open('headerwrap', '#kontainer', this.onLoad1);
         app.positionSignal.add(this.onEOD);
     }
+    //_transition(transEnum:number, ctx:any):void {}
     Welcome.prototype.onLoad1 = function () {
         TweenLite.to(document.getElementById('nav'), .050, { css: { opacity: 1 }, ease: Power3.easeOut });
         TweenLite.to(document.getElementsByTagName('body'), .250, { css: { opacity: 1 }, ease: Power3.easeOut });
@@ -35,4 +36,4 @@ var App = (function () {
     return App;
 })();
 new App();
-//@ sourceMappingURL=StrapApp.js.map
+//# sourceMappingURL=StrapApp.js.map
