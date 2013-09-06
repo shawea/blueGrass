@@ -19,8 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
             ,'http://scdn.primus.netdna-cdn.com/latest/blueGrass.js'
             ,'http://scdn.primus.netdna-cdn.com/latest/CSSPlugin.min.js'
             // app
-            ,'aCDN/app/Pri.js'
-            ,'aCDN/app/App.js'
+            ,'aCDN/app_v903/Pri.js'
+            ,'aCDN/app_v903/App.js'
         )//head
     },10)//wait on fonts
 })
