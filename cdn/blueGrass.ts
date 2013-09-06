@@ -176,7 +176,7 @@ interface IApp{
 
     setBusy(bussy:bool, timeOut:number):any;//stop other events
     /**
-     * Returns signal a presnter might add() a listener for
+     * Returns signal a presenter might add() a listener for
      * @param signalType
      */
     getEvtSignalFor(signalType:string):any;
@@ -184,10 +184,10 @@ interface IApp{
 }
 
 /**
- * Optionaly you can put your services seperate so you can test easier.
+ * Optionally you can put your services separate so you can test easier.
  * Don't do dom here.
  */
-interface IService {
+interface IAPI {
     setModel(key:string, value:any)
 
 }

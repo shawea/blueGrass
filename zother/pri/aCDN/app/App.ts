@@ -2,7 +2,7 @@ declare var TweenLite;
 
 head.ready(function() {
     viewDir = 'aCDN/view/'
-    console.log('0.01')
+    console.log('0.00')
     //console.log(getBrowserInfo())
     new FastClick(document.body);
     new App()
@@ -18,6 +18,7 @@ class App {
         new Tut(this)
         new Insert(this)
         new Select(this)
+        new Vid(this)
 
         this.loadFirst()
 
@@ -34,7 +35,6 @@ class App {
     }//()
 
     private _setupNavDispatching() {
-
         //setup Nav slider
         this.navFlag = false
         var menu = document.getElementById('topMenu')
@@ -55,6 +55,8 @@ class App {
         blogBut.addEventListener('click', function() {
             location='http://blog.primusapi.com'
             })
+        var moreBut = document.getElementById('more')
+        moreBut.addEventListener('click', function() {setHash('vid')})
 
     }
 

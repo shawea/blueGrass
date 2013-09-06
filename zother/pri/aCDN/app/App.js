@@ -1,6 +1,6 @@
 head.ready(function () {
     viewDir = 'aCDN/view/';
-    console.log('0.01');
+    console.log('0.00');
 
     //console.log(getBrowserInfo())
     new FastClick(document.body);
@@ -15,6 +15,7 @@ var App = (function () {
         new Tut(this);
         new Insert(this);
         new Select(this);
+        new Vid(this);
 
         this.loadFirst();
 
@@ -56,6 +57,10 @@ var App = (function () {
         var blogBut = document.getElementById('blog');
         blogBut.addEventListener('click', function () {
             location = 'http://blog.primusapi.com';
+        });
+        var moreBut = document.getElementById('more');
+        moreBut.addEventListener('click', function () {
+            setHash('vid');
         });
     };
 

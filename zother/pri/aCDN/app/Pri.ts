@@ -21,6 +21,26 @@ class Tut {
     }
 }
 
+class Vid implements IPresenter{
+    private app:App;
+    constructor(app_:App) {
+        this.app = app_;
+        app_.hashSignal.add(this.onView, this)
+    }
+    private transition():any {
+        forward('vid','vid',this.onLoaded)
+    }
+    private onLoaded() {
+        $('#ytplayer').width($(document).width())
+        $('#ytplayer').height($(document).height()-80)
+        TweenLite.to($('#ytplayer'),.25, {opacity:1, delay:.3})
+    }
+    private onView(view:string){
+        if('vid'==view)
+            this.transition()
+    }//()
+}
+
 class About implements IPresenter{
     private app:App;
     constructor(app_:App) {
