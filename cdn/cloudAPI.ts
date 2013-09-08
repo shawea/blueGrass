@@ -10,7 +10,7 @@ class CloudAPI {
 
     static PK:string ='id_';
 
-    _baseServiceUrl1:string ='http://ca_1.primusapi.com/service/';//'http://localhost:8080/service/'
+    _baseServiceUrl1:string ='http://primusapi.net/service/';//'http://localhost:8080/service/'
     _secret_app_key:string;
     _auth_token:string;
 

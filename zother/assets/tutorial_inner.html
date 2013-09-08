@@ -1,0 +1,188 @@
+<html>
+<head>
+    <link href='../libs/base.css'
+          rel='stylesheet'   />
+    <link href='../libs/bikeSheding.css'
+          rel='stylesheet' />
+    <link href='../assets/root.css'
+          rel='stylesheet' />
+
+    <link rel='stylesheet'
+          href='//cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shThemeDefault.css'/>
+    <link  rel='stylesheet'
+          href='//cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.css'/>
+
+    <style>
+
+    .animatingTile{
+        background-repeat:repeat-x;
+        float:left;
+        position:absolute;
+        width:4854px;
+        height:740px;
+        z-index: -100;
+
+    }
+</style>
+
+</head>
+<body class='gradienttop' style='margin-left:1em; margin-top:.5em; width:95%'>
+<div id='slider' class='swipe'><div class='swipe-wrap'>
+
+<div id='step1' class='step'>
+
+Can you try the Cloud API in 5 minutes to run in your enviroment?
+Lets get started:
+    <br/>&nbsp;<br/>
+
+    <b>Step 1:</b>
+    Edit an html file using your favorite set up and include this (cut/paste in):
+        <pre type='syntaxhighlighter' class='brush: js; gutter: false;'>
+        <br>
+        &lt;script src='http://f6.backendZero.com/acdn/libs/cloudAPI.js'>&lt/script>
+        &lt;script>
+            console.log('oh hi')
+
+            new CloudAPI().zipCodeUSA(94107, onData)
+            // a look up city/state based on zipcode - a free/no-sign up service.
+
+            function onData(data) {
+                console.log(data)
+            }
+        &lt;/script>
+        </pre>
+    Open the file in browser and view the javascript console (Tools/JavaScript Console).
+    Congratulations, you just used Cloud API. It's just REST/Ajax that you don't have to set up.
+    That was the hard part, ready for next step?
+
+</div>
+
+<div id='step2' class='step'><b>Step 2:</b>
+    Create an account on Cloud API by joining. You will get an app_key that you need. Then try this:
+        <pre type='syntaxhighlighter' class='brush: js; gutter: false;'>
+        <br>
+        &lt;script src='http://f6.backendZero.com/acdn/libs/cloudAPI.js'>&lt/script>
+        &lt;script>c = new CloudAPI('*YOUR APP KEY HERE*')>&lt/script>
+        &lt;script>
+            var msg = new Object()
+            msg.name = 'Jack'
+            msg.score=  1232
+
+            c.insert('names', msg, onPK) // insert()
+            function onPK(data) {
+                console.log(data)
+            }
+
+        </script>
+        </pre>
+    You just inserted a row by c.insert(...). 'names' is what you want to call the table, and msg proerties are dynamic column names.
+    You can insert any columns you like, and create a table name dynamically. Can you figure out by yourself how to insert another row in another table?
+    <br/>ps: There is a helper method that creates the 'message' to send on a form in one line, tell you about it later.
+
+</div>
+
+
+<div id='step3'  class='step'><b>Step 3:</b>
+    Try a select:
+        <pre type='syntaxhighlighter' class='brush: js; gutter: false;'>
+        <br>
+        &lt;script src='http://f6.backendZero.com/acdn/libs/cloudAPI.js'>&lt/script>
+        &lt;script>c = new CloudAPI('*YOUR APP KEY HERE*')>&lt/script>
+        &lt;script>
+            var msg = new Object()
+            msg.name = 'Jack'
+            c.select('names', msg, onRet) // select()
+            function onRet(data) {
+                console.log(data.array_)
+            }
+        </script>
+        </pre>
+    You can test if the insert worked if you issue the c.select(...) and get some rows back. Do you think you can guess how to select from a different table other than 'names' and select diffrent query other than 'name=Jack'?
+</div>
+
+
+<div id='step4'  class='step'>
+    Your done for now, 5 minutes are up.<p>&nbsp;</p>
+    You can find examples more at the docs page. But you should secure you data by setting it's domain origin( our secururity includes CORS) on you account settings page and maybe obfuscating your critical code at deploy.
+    We then take care of security, uptime, monitoring and even our servers are distributed to 12
+    cities around the world so the server latency is minial to your clients.
+    <br/>&nbsp;<br/>
+
+What will you do with the free time? Seriously, tell us, we want to know, and we do have prizes!
+<div><p>&nbsp;</p></div>
+</div>
+
+
+</div></div>
+
+<div id='animatingTile' class='animatingTile'>
+
+</div>
+
+<script src='http://code.jquery.com/jquery-2.0.0.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/gsap/1.9.3/TweenMax.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.js'></script>
+
+<script src='../libs/swipe.js'></script>
+
+
+<script>
+
+state = 0
+
+function rightClicked() {
+    console.log('right')
+    window.mySwipe.next()
+    scrollBackground()
+}//()
+function leftClicked() {
+    console.log('right')
+    window.mySwipe.slide(0)
+    scrollBackground()
+}//()
+
+$(document).ready(function () {
+    SyntaxHighlighter.all()
+    window.mySwipe = new Swipe(document.getElementById('slider')
+        , { speed: 850
+    })
+
+    setTimeout(function(){
+        document.getElementById("animatingTile").style.backgroundImage="url(http://f6.backendzero.com/scdn/assets/parallax_clouds.png)"
+        scrollBackgroundSet()
+        console.log('tutorial')
+    },1)
+
+})
+
+function scrollBackground() {
+    if(inProgress) {
+        return;
+    }
+    inProgress = true;
+    tweenBack.play();
+    setTimeout(function () {
+        console.log('parallax');
+        tweenBack.pause();
+        inProgress = false;
+    }, 800);
+}
+function scrollBackgroundSet() {
+    inProgress = false;
+    var lefty1 = $('#animatingTile').position().left;
+    tweenBack = TweenMax.from($('#animatingTile'), 12, {
+        css: {
+            left: lefty1 - 1618
+        },
+        repeatDelay: 0,
+        useFrames: false,
+        repeat: -1,
+        ease: Linear.easeNone
+    });
+    tweenBack.pause();
+}
+
+</script>
+</body>
+</html>
