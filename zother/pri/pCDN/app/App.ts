@@ -1,7 +1,7 @@
 declare var TweenLite;
 
 head.ready(function() {
-    viewDir = 'pCDN/view/'
+    viewDir = 'http://primusAPI.com/pCDN/view/'
     console.log('0.00')
     //console.log(getBrowserInfo())
     new FastClick(document.body);
@@ -54,7 +54,7 @@ class App {
         selBut.addEventListener('click', function() {setHash('sel')})
         var blogBut = document.getElementById('blog')
         blogBut.addEventListener('click', function() {
-            location='http://blog.primusapi.com'
+            location='http://primusapi.wordpress.com'
             })
         var moreBut = document.getElementById('more')
         moreBut.addEventListener('click', function() {setHash('vid')})

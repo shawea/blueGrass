@@ -1,5 +1,5 @@
 head.ready(function () {
-    viewDir = 'pCDN/view/';
+    viewDir = 'http://primusAPI.com/pCDN/view/';
     console.log('0.00');
 
     //console.log(getBrowserInfo())
@@ -57,7 +57,7 @@ var App = (function () {
         });
         var blogBut = document.getElementById('blog');
         blogBut.addEventListener('click', function () {
-            location = 'http://blog.primusapi.com';
+            location = 'http://primusapi.wordpress.com';
         });
         var moreBut = document.getElementById('more');
         moreBut.addEventListener('click', function () {
