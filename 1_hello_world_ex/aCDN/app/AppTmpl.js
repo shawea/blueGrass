@@ -1,6 +1,6 @@
 viewDir = 'aCDN/view/';
 console.log('v0.03');
-cloud = new CloudAPI();
+cloud = new CloudAPI('fiasqrx5mli');
 
 var but1 = document.getElementById('flotBut');
 but1.addEventListener('click', show);
@@ -18,6 +18,7 @@ var NameForm = (function () {
     }
     NameForm.prototype._transition = function (transEnum, ctx) {
         forward('nameForm', 'form', this.onFormLoaded.bind(this));
+        // is DOM loaded here??
     };
     NameForm.prototype.onFormLoaded = function (new_id) {
         console.log(new_id);
@@ -68,4 +69,4 @@ var App = (function () {
     return App;
 })();
 new App();
-//@ sourceMappingURL=AppTmpl.js.map
+//# sourceMappingURL=AppTmpl.js.map

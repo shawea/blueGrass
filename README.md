@@ -42,7 +42,7 @@ Recommended but not required :
 * There are other libs used, check under cdn folder.
 
 Recipe:
-- Download the 'startStructure' folder to get the structure and edit. Copy cdn folder into aCDN/libs.
+- Download the 'ROOT' folder to get the start structure and edit. Copy 'latest' folder into aCDN/libs.
 - Start with a prototype layout, recommend starting w/ CSS Framework
 - Remove sections(div) and save in 'CDN/views' or similar
 - Load view using provided open() or forward(). On open: animate as needed, using greenSock.

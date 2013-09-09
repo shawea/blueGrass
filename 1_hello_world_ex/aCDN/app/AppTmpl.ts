@@ -1,6 +1,6 @@
 viewDir = 'aCDN/view/'
 console.log('v0.03')
-cloud = new CloudAPI()
+cloud = new CloudAPI('fiasqrx5mli')
 
 var but1 = document.getElementById('flotBut')
 but1.addEventListener('click', show )
