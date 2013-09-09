@@ -14,7 +14,14 @@ var CloudAPI = (function () {
     */
     CloudAPI.prototype.setAppKey = function (key) {
         this._secret_app_key = key;
-        console.log('cloudAPI ready v1.903 ' + this._secret_app_key);
+        console.log('cloudAPI ready v1.904 ' + this._secret_app_key);
+    };
+
+    CloudAPI.prototype.showSpinner = function (status) {
+        if (status)
+            document.body.style.cursor = 'wait';
+else
+            document.body.style.cursor = 'default';
     };
 
     CloudAPI.prototype.setAuthToken = function (tok) {
@@ -167,6 +174,7 @@ var CloudAPI = (function () {
             return;
         }
 
+        this.showSpinner(true);
         var smsg = JSON.stringify(msg);
 
         //if (typeof XDomainRequest != 'undefined') { // for IE 9
@@ -202,8 +210,12 @@ var CloudAPI = (function () {
                     if (cb_ != null)
                         cb_();
                 }
+
+                setTimeout(function () {
+                    console.log('.');
+                    this.showSpinner(false);
+                }, 1);
             }
-            console.log('.');
         };
 
         //console.log(curl)

@@ -30,7 +30,14 @@ class CloudAPI {
      */
     setAppKey(key:string) {
         this._secret_app_key = key
-        console.log('cloudAPI ready v1.903 ' + this._secret_app_key)
+        console.log('cloudAPI ready v1.904 ' + this._secret_app_key)
+    }
+
+    showSpinner(status){
+        if (status)
+            document.body.style.cursor = 'wait';
+        else
+            document.body.style.cursor = 'default';
     }
 
     setAuthToken(tok:string) {
@@ -187,7 +194,8 @@ class CloudAPI {
             return
         }
 
-        var smsg:string = JSON.stringify(msg)
+         this.showSpinner(true)
+         var smsg:string = JSON.stringify(msg)
 
         //if (typeof XDomainRequest != 'undefined') { // for IE 9
         var req = new XMLHttpRequest()
@@ -208,6 +216,7 @@ class CloudAPI {
         req.onload = function (ev) {  // returns error, array
             //console.log(this.readyState)
             if (this.readyState == 4) {
+
                 var dat:String = this.response
                 //console.log(dat)
                 if (cb_ != null && dat != null && dat.length > 3) {
@@ -227,8 +236,13 @@ class CloudAPI {
                     if(cb_ != null) cb_()
                 }
 
+                setTimeout(function() {
+                    console.log('.')
+                    this.showSpinner(false)
+                },1)
+
             }//fi
-            console.log('.')
+
         }
 
          //console.log(curl)
