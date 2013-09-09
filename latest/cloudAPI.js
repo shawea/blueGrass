@@ -14,7 +14,7 @@ var CloudAPI = (function () {
     */
     CloudAPI.prototype.setAppKey = function (key) {
         this._secret_app_key = key;
-        console.log('cloudAPI ready v1.904 ' + this._secret_app_key);
+        console.log('cloudAPI ready v1.905 ' + this._secret_app_key);
     };
 
     CloudAPI.prototype.showSpinner = function (status) {
@@ -173,8 +173,8 @@ else
             this._call4(srv, msg, cb_, header_);
             return;
         }
-
         this.showSpinner(true);
+
         var smsg = JSON.stringify(msg);
 
         //if (typeof XDomainRequest != 'undefined') { // for IE 9
@@ -189,6 +189,7 @@ else
             console.log(this);
         };
 
+        var thiz = this;
         req.onload = function (ev) {
             if (this.readyState == 4) {
                 var dat = this.response;
@@ -211,7 +212,6 @@ else
                         cb_();
                 }
 
-                var thiz = this;
                 setTimeout(function () {
                     console.log('.');
                     thiz.showSpinner(false);

@@ -30,7 +30,7 @@ class CloudAPI {
      */
     setAppKey(key:string) {
         this._secret_app_key = key
-        console.log('cloudAPI ready v1.904 ' + this._secret_app_key)
+        console.log('cloudAPI ready v1.905 ' + this._secret_app_key)
     }
 
     showSpinner(status){
@@ -193,9 +193,9 @@ class CloudAPI {
             this._call4(srv,msg,cb_,header_)
             return
         }
+        this.showSpinner(true)
 
-         this.showSpinner(true)
-         var smsg:string = JSON.stringify(msg)
+        var smsg:string = JSON.stringify(msg)
 
         //if (typeof XDomainRequest != 'undefined') { // for IE 9
         var req = new XMLHttpRequest()
@@ -213,7 +213,8 @@ class CloudAPI {
              console.log(this)
          }
 
-        req.onload = function (ev) {  // returns error, array
+         var thiz = this
+         req.onload = function (ev) {  // returns error, array
             //console.log(this.readyState)
             if (this.readyState == 4) {
 
@@ -236,7 +237,6 @@ class CloudAPI {
                     if(cb_ != null) cb_()
                 }
 
-                var thiz = this
                 setTimeout(function() {
                     console.log('.')
                     thiz.showSpinner(false)
