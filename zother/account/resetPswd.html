@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <!-- attribution: derived from http://raw.github.com/shawea/blueGrass -->
+    <meta charset='utf-8'>
+    <META HTTP-EQUIV='Pragma' CONTENT='no-cache'>
+    <META HTTP-EQUIV='Expires' CONTENT='-1'>
+    <!--script src='http://jsconsole.com/remote.js?cek'></script-->
+    <title>Primus Account</title>
+    <link href='http://scdn.primus.netdna-cdn.com/latest/bgStyle.css' rel='stylesheet'>
+</head>
+<body>
+<header id='header' class='topcoat-navigation-bar full-width '>
+    <div id='navMenuCont' class='topcoat-navigation-bar__item center full-width'>
+        <div id='navMenu'>
+            Primus Account
+        </div>
+    </div>
+</header>
+<section id='container' class='content' style='margin-top: 6rem; width: 38rem'>
+
+    <div class='line'>
+        <label class='label' style='width: 7rem' for='loginPswd'>New password:</label>
+        <input class='topcoat-text-input textInput'
+               id='loginPswd'  type='password' placeholder='New password' >
+    </div>
+    <div class='line'>
+        <label class='label' for='loginPswd2'>Repeat pswd:</label>
+        <input class='topcoat-text-input textInput'
+               id='loginPswd2'  type='password' placeholder='Repeat new password' >
+    </div>
+    <div class='line'>
+        <a id='saveBut' style='margin-left: 7rem' class='topcoat-button but'>Save</a>
+    </div>
+
+    <div id='notMatching' class='line tabIn'  style='display: none;'>
+        <strong>Error: </strong>The passwords do not match.
+    </div>
+
+    <div id='saved' class='line tabIn'  style='display: none;'>
+        <strong>New password is now in effect.</strong>
+    </div>
+
+</section>
+<footer>
+    &copy; Primus API Corp., 2013
+</footer>
+<script src='http://scdn.primus.netdna-cdn.com/latest/more/head.load.min.js'></script>
+<script src='resetPswd.js'></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<section id='joinLogin' >
+<style>
+
+</style>
+<form id='formL' class='form '>
+    <div class='line center'>
+        Login
+    </div>
+    <div class='line'>
+        <label class='label' for='email'>E-Mail:</label>
+        <input id='email'  class='topcoat-text-input textInput' type='text'  value='' placeholder='E-Mail'>
+    </div>
+    <div class='line'>
+        <label class='label' for='password'>Password:</label>
+        <input id='password'  class='topcoat-text-input textInput' type='password'  value='' placeholder='Password'>
+    </div>
+    <div id='loginEmailError' class='line tabIn' style='display:none'>
+        <strong>Error: </strong> The email or password is not valid.
+    </div>
+    <div class ='line tabIn'>
+        <a id='loginBut' class='topcoat-button--cta but' style="margin-top: .2rem">Login</a>
+    </div>
+    <div id='resetPassword' class='line center'>
+        <a href='#'>Reset your password</a>
+    </div>
+</form>
+
+<form id='formJ' class='form '>
+    <div class='line center'>
+        - or -
+    </div>
+    <div class='line center'>
+        <hr/>
+        Sign Up
+    </div>
+    <div class='line'>
+        <label class='label' for='first_name'>First Name:</label>
+        <input id='first_name'  class='topcoat-text-input
+        textInput' type='text'  value='' placeholder='First name'>
+    </div>
+    <div class='line'>
+        <label class='label' for='last_name'>Last Name:</label>
+        <input id='last_name'  class='topcoat-text-input
+        textInput' type='text'  value='' placeholder='Last name'>
+    </div>
+    <div class='line'>
+        <label class='label' for='Jpassword'>Password:</label>
+        <input id='Jpassword'  class='topcoat-text-input textInput' type='password'  value='' placeholder='Password'>
+   </div>
+    <div class='line'>
+        <label class='label' for='Jpassword2'>Confirm:</label>
+        <input id='Jpassword2'  class='topcoat-text-input textInput' type='password'  value='' placeholder='Confirm Password'>
+    </div>
+    <div class='line'>
+        <label class='label' for='Jemail'>Work E-Mail:</label>
+        <input id='Jemail'  class='topcoat-text-input textInput' type='text'  value='' placeholder='E-Mail'>
+    </div>
+    <div class='line'>
+        <label class='label' for='promo_code'>Promo code:</label>
+        <input id='promo_code'  class='topcoat-text-input textInput' type='text'  value=''
+               placeholder='Promo Code'>
+    </div>
+
+    <div class='line tabIn'>
+           <input id='terms' type='checkbox'><div class='topcoat-checkbox__checkmark'></div>
+        <span class='mid'> I agree with <a href='aCDN/view/tos/tos.html'>terms of service.</a></span>
+    </div>
+
+    <!-- errors: -->
+    <div id='nameError' class='line tabIn'     style='display: none;'>
+            <strong>Name: </strong>  Name is required
+        </div>
+        <div id='signupEmailError' class='line tabIn' style='display: none;'>
+            <strong>Error: </strong> Please provide a valid e-mail address.
+        </div>
+        <div id='termsError' class='line tabIn' style='display: none;'>
+            <strong>Error: </strong> You must agree with the Terms of Service to Sign Up.
+        </div>
+        <div id='notMatching' class='line tabIn' style='display: none;'>
+               <strong>Error: </strong> The passwords do not match.
+        </div>
+        <strong id='customEr' class='line tabIn' >
+        </strong>
+
+    <!-- login but -->
+    <div class ='line tabIn'>
+        <a id='joinBut' class='topcoat-button--cta but' >Sign Up</a>
+    </div>
+</form>
+
+
+
+
+</section>
