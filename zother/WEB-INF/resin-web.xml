@@ -1,6 +1,0 @@
-<web-app xmlns="http://caucho.com/ns/resin">
-
-    <mime-mapping extension=".otf" mime-type="font/opentype"/>
-    <mime-mapping extension=".svg" mime-type="image/svg+xml"/>
-
-</web-app>

@@ -6,10 +6,11 @@
 <button id='create' onclick='return false'>Create Name</button>
 </form>
 <div id='kontainer'></div>
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.1/jquery.min.js'></script>
-<script id='primusAPI' data-app_key='dduxlbvqtex' src='http://ca_1.primusapi.com/acdn/libs/cloudAPI.js' ></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
+<script id='primusAPI'
+        src='http://scdn.primus.netdna-cdn.com/latest/cloudAPI.js' ></script>
 <script>
-cAPI=new CloudAPI()
+cAPI=new CloudAPI('fiasqrx5mli')
 
 var newAppBut = document.getElementById('create')
 newAppBut.addEventListener('click', function(e) {

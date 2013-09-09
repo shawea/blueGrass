@@ -211,9 +211,10 @@ else
                         cb_();
                 }
 
+                var thiz = this;
                 setTimeout(function () {
                     console.log('.');
-                    this.showSpinner(false);
+                    thiz.showSpinner(false);
                 }, 1);
             }
         };

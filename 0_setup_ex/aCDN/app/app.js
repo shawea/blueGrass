@@ -21,4 +21,4 @@ load2But.addEventListener('click', function () {
 function iloaded2() {
     console.log('loaded 2');
 }
-//@ sourceMappingURL=app.js.map
+//# sourceMappingURL=app.js.map
