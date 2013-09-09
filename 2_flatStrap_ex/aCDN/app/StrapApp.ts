@@ -28,7 +28,7 @@ class Service implements IPresenter {
 
 class App {
     positionSignal: any;
-    presenters: string[] = [];  // you can disptach last element in array to presenter listeners
+    presenters: string[] = [];  // you can dispatch last element in array to presenter listeners
     private lastDiff: Number;
     constructor() {
 
