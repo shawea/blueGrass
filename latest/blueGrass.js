@@ -1,5 +1,7 @@
 var viewDir;
 
+console.log('blueGrass v905');
+
 /**
 * @param ht view
 * @param id of container
@@ -7,9 +9,11 @@ var viewDir;
 */
 function open(ht, elSel, cb_) {
     //console.log(viewDir)
+    showSpinner(true);
     $.get(viewDir + ht + '.html', function (resp_) {
         console.log(ht);
         $(elSel).append(resp_);
+        showSpinner(false);
         if (cb_)
             cb_();
     });
@@ -19,8 +23,10 @@ function open(ht, elSel, cb_) {
 *  calls back with new #id
 */
 function forward(ht, id, cb_) {
+    showSpinner(true);
     $.get(viewDir + ht + '.html', function (resp_) {
         $('#kontainer').append(resp_);
+        showSpinner(false);
         var cur = $('#' + id);
         console.log(ht, cur.attr('id'));
         var gid = id + Math.floor(Math.random() * 9999999);
@@ -103,7 +109,7 @@ function getBroInfo() {
 }
 
 /**
-* Fires a signal when postion changes.
+* Fires a signal when position changes.
 *
 * @param posSignal
 * @param this_ pass the context

@@ -1,6 +1,5 @@
 declare var TweenLite;
 
-
 head.ready(function() {
     viewDir = 'aCDN/view/'
     console.log('v11')

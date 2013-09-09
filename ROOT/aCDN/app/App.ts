@@ -22,7 +22,7 @@ class App {
         var home = new Home(this)
 
         this.loadFirst()
-        cAPI = new CloudAPI()
+        cAPI = new CloudAPI('fiasqrx5mli')
         //DeepLink
         window.addEventListener('hashchange', this._onHashChanged.bind(this))
         this._setupNavDispatching()

@@ -66,7 +66,7 @@ var Home = (function () {
             }
         };
         $('#postsTpl').render(data.array_, dirs);
-        $('#bla').html('aaaaaaaa<b>bb</b>aaaaaaaa');
+        //$('#bla').html('aaaaaaaa<b>bb</b>aaaaaaaa')
     };
     return Home;
 })();
