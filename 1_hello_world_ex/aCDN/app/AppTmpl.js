@@ -1,4 +1,4 @@
-viewDir = 'aCDN/view/';
+viewDir = 'view/';
 console.log('v0.03');
 cloud = new CloudAPI('fiasqrx5mli');
 

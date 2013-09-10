@@ -1,5 +1,5 @@
 head.ready(function () {
-    viewDir = 'aCDN/view/';
+    viewDir = 'view/';
     console.log('v11');
 
     //console.log(getBrowserInfo())
@@ -55,7 +55,7 @@ function onHome() {
     setHash('home');
 }
 function about() {
-    forward('about', 'about', onAbout);
+    forward('About', 'about', onAbout);
 }
 function onAbout() {
     console.log('loaded about');

@@ -1,6 +1,6 @@
 head.ready(function () {
-    viewDir = 'pCDN/view/';
-    console.log('0.00');
+    viewDir = 'view/';
+    console.log('0.01');
 
     //console.log(getBrowserInfo())
     new FastClick(document.body);

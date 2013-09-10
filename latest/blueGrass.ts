@@ -173,7 +173,6 @@ interface IApp{
 
     _loadFirst();
 
-    setBusy(bussy:bool, timeOut:number):any;//stop other events
     /**
      * Returns signal a presenter might add() a listener for
      * @param signalType

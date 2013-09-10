@@ -1,4 +1,4 @@
-viewDir = 'aCDN/view/';
+viewDir = 'view/';
 console.log('v0.02');
 
 var Welcome = (function () {

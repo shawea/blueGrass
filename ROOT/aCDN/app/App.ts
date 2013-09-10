@@ -1,7 +1,7 @@
 declare var TweenLite;
 
 head.ready(function() {
-    viewDir = 'aCDN/view/'
+    viewDir = 'view/'
     console.log('v1')
     //console.log(getBrowserInfo())
     FastClick.attach(document.body)

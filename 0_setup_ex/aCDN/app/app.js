@@ -1,5 +1,5 @@
 console.log('ready 0.01');
-viewDir = 'aCDN/view/';
+viewDir = 'view/';
 
 document.querySelector('#load1').addEventListener('click', onclickone);
 function onclickone() {

@@ -1,5 +1,5 @@
 head.ready(function () {
-    viewDir = 'aCDN/view/';
+    viewDir = 'view/';
     console.log('0.2');
     new App();
 });
@@ -176,4 +176,4 @@ var App = (function () {
     };
     return App;
 })();
-//@ sourceMappingURL=Acc.js.map
+//# sourceMappingURL=Acc.js.map

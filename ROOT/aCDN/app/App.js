@@ -1,5 +1,5 @@
 head.ready(function () {
-    viewDir = 'aCDN/view/';
+    viewDir = 'view/';
     console.log('v1');
 
     //console.log(getBrowserInfo())
