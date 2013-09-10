@@ -1,7 +1,9 @@
-/** v1.903 - 95% of times you should not change this file
- (c) puppetMaster3  http://github.com/shawea/blueGrass
+/**
+ (c) http://github.com/shawea/blueGrass
  requires attribution, as per Attribution Assurance License @ http://github.com/shawea/blueGrass
 */
+class bG { }
+
 declare var $;
 
 var viewDir:string;
@@ -66,6 +68,7 @@ function getHash():string{
     }
     return null;
 }
+
 /**
  * Sets browsers hash
  * @param v
@@ -141,8 +144,8 @@ function setupPosSignal(posSignal, this_) {
 function browserSupportsCors():bool {
     if ('withCredentials' in new XMLHttpRequest())
         return true
-    //else if (window.XDomainRequest)
-    //  return true
+    else if (window.XDomainRequest)
+      return true
     else
         return false
 }
@@ -187,6 +190,5 @@ interface IApp{
  */
 interface IAPI {
     setModel(key:string, value:any)
-
 }
 

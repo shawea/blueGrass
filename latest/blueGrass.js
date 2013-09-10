@@ -1,3 +1,13 @@
+/**
+(c) http://github.com/shawea/blueGrass
+requires attribution, as per Attribution Assurance License @ http://github.com/shawea/blueGrass
+*/
+var bG = (function () {
+    function bG() {
+    }
+    return bG;
+})();
+
 var viewDir;
 
 console.log('blueGrass v905');
@@ -134,6 +144,8 @@ function setupPosSignal(posSignal, this_) {
 
 function browserSupportsCors() {
     if ('withCredentials' in new XMLHttpRequest())
+        return true;
+else if (window.XDomainRequest)
         return true;
 else
         return false;

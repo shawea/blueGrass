@@ -11,12 +11,13 @@ class Tut {
     }
     private onLoaded(nid) {
 
-        TweenLite.from('#code1',.7, {x:400})
+       /* TweenLite.from('#code1',.7, {x:400})
         TweenLite.from('#code2',1.4,{x:600})
         TweenLite.from('#code3',2,  {x:800})
+         */
 
-        TweenLite.from('#'+nid,4
-            ,{css:{rotationY:90, transformOrigin:"300% ", rotation:-1}
+        TweenLite.from('#'+nid, 2
+            ,{css:{rotationY:90, transformOrigin:"100% "}
                 ,onComplete:function(){
                     console.log('animated') }
             })
