@@ -1,4 +1,4 @@
-console.log('ready 0.01');
+console.log('ready 0.03');
 viewDir = 'view/';
 
 document.querySelector('#load1').addEventListener('click', onclickone)

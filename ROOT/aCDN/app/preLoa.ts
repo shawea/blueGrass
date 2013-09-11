@@ -14,7 +14,6 @@ window.onload = function() {
             ,'http://scdn.primus.netdna-cdn.com/latest/more/moment.min.js'
             ,'/latest/blueGrass.js'
             ,'http://scdn.primus.netdna-cdn.com/latest/cloudAPI.js'
-
             ,'http://scdn.primus.netdna-cdn.com/latest/CSSPlugin.min.js'
             // app
             ,'aCDN/app/Pres.js'

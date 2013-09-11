@@ -1,6 +1,6 @@
 head.ready(function () {
     viewDir = 'view/';
-    console.log('v1');
+    console.log('v02');
 
     //console.log(getBrowserInfo())
     FastClick.attach(document.body);
