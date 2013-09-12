@@ -18,8 +18,8 @@ class Tut {
 
         TweenLite.from('#'+nid, 2
             ,{css:{rotationY:90, transformOrigin:"100% "}
-                ,onComplete:function(){
-                    console.log('animated') }
+              //  ,onComplete:function(){
+                //    console.log('animated') }
             })
 
     }

@@ -12,10 +12,7 @@ var Tut = (function () {
         TweenLite.from('#code3',2,  {x:800})
         */
         TweenLite.from('#' + nid, 2, {
-            css: { rotationY: 90, transformOrigin: "100% " },
-            onComplete: function () {
-                console.log('animated');
-            }
+            css: { rotationY: 90, transformOrigin: "100% " }
         });
     };
 

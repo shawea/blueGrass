@@ -2,7 +2,7 @@ document.body.style.cursor = 'wait';
 
 if ('__proto__' in {}) {
     //jq or z
-    document.write('<script src="/latest/more/zepto.min.js"><\/script>');
+    document.write('<script src="/latest/zepto.min.js"><\/script>');
     console.log('z');
 } else {
     document.write('<script src="/latest/more/jquery-2.0.3.min.js"><\/script>');

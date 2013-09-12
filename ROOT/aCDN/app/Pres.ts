@@ -12,7 +12,9 @@ class EnterForm {
         if('enter'==view)
             forward('EnterForm','enterForm',this.onForm.bind(this))
     }
-    private onForm() {
+    private onForm(nid) {
+      //  TweenLite.from('#'+nid,{})
+
         var saveFormBut = document.getElementById('saveFormBut')
         saveFormBut.addEventListener('click', this.onSave.bind(this), false)
     }
