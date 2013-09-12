@@ -1,10 +1,12 @@
 viewDir = 'view/'
-console.log('v0.02')
+console.log('v0.15')
 
 class Welcome implements IPresenter {
+    _app:App;
     constructor(app) {
+        this._app=app
         open('headerwrap', '#kontainer', this.onLoad1)
-        app.positionSignal.add(this.onEOD)
+        app.positionSignal.addOnce(this.onEOD,this)
     }
     //_transition(transEnum:number, ctx:any):void {}
     onLoad1() {
@@ -15,16 +17,32 @@ class Welcome implements IPresenter {
     }//()
     onEOD(info) {
         console.log(JSON.stringify(info))
-        new Service()
+        new Service(this._app)
     }
 }//class
 
 class Service implements IPresenter {
-    constructor() {
+    _app:App;
+    constructor(app:App) {
+        console.log(app)
         open('servicewrap', '#kontainer')
+        app.positionSignal.add(this.onEOD,this)
+
+    }
+    onEOD(info) {
+        console.log('on EOD of Service')
+        console.log(JSON.stringify(info))
+        new SomeView()
     }
 }
 
+class SomeView {
+    constructor() {
+        open('clients', '#kontainer')   // just open another view
+        open('intro', '#kontainer')   // just open another view
+
+    }
+}
 
 class App {
     positionSignal: any;

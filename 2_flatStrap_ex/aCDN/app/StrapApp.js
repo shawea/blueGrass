@@ -1,10 +1,11 @@
 viewDir = 'view/';
-console.log('v0.02');
+console.log('v0.15');
 
 var Welcome = (function () {
     function Welcome(app) {
+        this._app = app;
         open('headerwrap', '#kontainer', this.onLoad1);
-        app.positionSignal.add(this.onEOD);
+        app.positionSignal.addOnce(this.onEOD, this);
     }
     //_transition(transEnum:number, ctx:any):void {}
     Welcome.prototype.onLoad1 = function () {
@@ -14,16 +15,31 @@ var Welcome = (function () {
     };
     Welcome.prototype.onEOD = function (info) {
         console.log(JSON.stringify(info));
-        new Service();
+        new Service(this._app);
     };
     return Welcome;
 })();
 
 var Service = (function () {
-    function Service() {
+    function Service(app) {
+        console.log(app);
         open('servicewrap', '#kontainer');
+        app.positionSignal.add(this.onEOD, this);
     }
+    Service.prototype.onEOD = function (info) {
+        console.log('on EOD of Service');
+        console.log(JSON.stringify(info));
+        new SomeView();
+    };
     return Service;
+})();
+
+var SomeView = (function () {
+    function SomeView() {
+        open('clients', '#kontainer');
+        open('intro', '#kontainer');
+    }
+    return SomeView;
 })();
 
 var App = (function () {
