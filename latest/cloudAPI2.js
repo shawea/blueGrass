@@ -1,3 +1,46 @@
+window.fbAsyncInit = function () {
+    //console.log('FB loaded/pre init')
+    FB.init({
+        appId: fb.fbAuth_app_id,
+        status: true
+    });
+    FB.login(function (resp) {
+        if (resp.authResponse) {
+            //console.log(resp)
+            FB.api('/me', function (dat) {
+                console.log(dat);
+                fb.fbAuth_cb(dat, resp);
+            });
+        }
+    });
+};
+
+var FBfbAuth = (function () {
+    function FBfbAuth() {
+    }
+    FBfbAuth.prototype.callFB = function (app_id, cb_) {
+        console.log('calling FB for ' + app_id);
+        setTimeout(function () {
+            ((function (d) {
+                var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+                if (d.getElementById(id)) {
+                    return;
+                }
+                js = d.createElement('script');
+                js.id = id;
+                js.async = true;
+                js.src = "//connect.facebook.net/en_US/all.js";
+                ref.parentNode.insertBefore(js, ref);
+            })(document));
+        }, 1);
+        this.fbAuth_app_id = app_id;
+        this.fbAuth_cb = cb_;
+    };
+    return FBfbAuth;
+})();
+var fb = new FBfbAuth();
+
+/////
 var COARSRpc = {
     version: "1.0.0.2",
     requestCount: 0

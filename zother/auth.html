@@ -4,45 +4,25 @@
 
 </head>
 <body>
-<button id='but1'>F Auth</button>
+<button id='but2'>F Auth</button>
 
-<script src='/zother/assets/oauth.js'></script>
-<script src='//connect.facebook.net/en_US/all.js'></script>
-
+<script src='/latest/cloudAPI2.js'></script>
 <script>
 
-ready = false;
-
-window.fbAsyncInit = function() {// Hack by FB, fires on pri-init
-    OAuth.initialize('RC14T5SkQ3Ueko-2PU2jF3qfBbQ')
-    ready = true
-}//()
-
-function fAuth() {
-    if(!ready) {
-        console.log('not pre-init')
-    }
-    OAuth.popup('facebook', function(error, result) {
-        //handle error with error
-        var resp = new Object()
-        resp.accessToken = result.access_token;
-        FB.init({ // init
-              appId  : '495607073863358'
-            , status : false
-            , authResponse: resp
-        })//
-        // now it is ready. make an api call:
-        FB.api('/me', function(dat) {
-            console.log(dat.email)
-            console.log(dat.id)
-            console.log(dat.first_name + ' ' +dat.last_name)
-            console.log(dat.verified)
-        })//api
-    })//popup
+function onFbBack(dat,auth) {
+    console.log(auth)
+    console.log(dat.email)
+    console.log(dat.id)
+    console.log(dat.first_name + ' ' +dat.last_name)
 }
 
-var but = document.getElementById('but1')
-but1.addEventListener('click',fAuth)
+var but = document.getElementById('but2')
+but.addEventListener('click',function() {
+    console.log('click')
+    fb.callFB('495607073863358',onFbBack)
+})
+
+
 
 </script>
 </body>

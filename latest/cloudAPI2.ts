@@ -1,4 +1,43 @@
 
+window.fbAsyncInit = function() {// Hack by FB, fires on load
+    //console.log('FB loaded/pre init')
+    FB.init({ // init
+        appId  : fb.fbAuth_app_id
+        , status : true
+    })
+    FB.login(function(resp) {
+        if (resp.authResponse) {
+            //console.log(resp)
+            FB.api('/me', function(dat) {
+                console.log(dat)
+                fb.fbAuth_cb(dat,resp)
+            })//api
+        }//fi
+    })//login
+};
+
+class FBfbAuth {
+    fbAuth_cb:Function;
+    fbAuth_app_id:string;
+
+    callFB(app_id, cb_:Function) {// load
+        console.log('calling FB for ' + app_id)
+        setTimeout(function(){
+            (function(d){
+                var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement('script'); js.id = id; js.async = true;
+                js.src = "//connect.facebook.net/en_US/all.js";
+                ref.parentNode.insertBefore(js, ref);
+            }(document))
+        },1)
+        this.fbAuth_app_id = app_id
+        this.fbAuth_cb = cb_
+    }
+}
+var fb:FBfbAuth = new FBfbAuth();
+
+/////
 var COARSRpc = {
     version:"1.0.0.2",
     requestCount: 0
