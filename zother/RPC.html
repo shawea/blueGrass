@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+
+<script src="\latest\cloudAPI2.js"></script>
+<script>
+    var coarsService = new COARSRpc.ServiceProxy("http://localhost:8080/service2/calc", {
+        asynchronous: true,
+        methods: ['calc.add']
+    });
+
+    // access it asynchronously
+    COARSRpc.setAsynchronous(coarsService, true);
+    coarsService.calc.add({
+        params:[1.2, 7.5],
+        onSuccess: function(result) {
+            alert("result is " + result);
+        },
+        onException: function(e) {
+            alert("Unable to compute because: " + e);
+            return true;
+        }
+    });
+
+    // access it synchronously
+    COARSRpc.setAsynchronous(coarsService, false);
+    try {
+        var result = coarsService.calc.add(1.2, 7.5);
+        alert("result is " + result);
+    } catch (e) {
+        alert("Unable to compute because: " + e);
+    }
+
+</script>
+</body>
+</html>
