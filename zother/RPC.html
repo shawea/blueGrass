@@ -16,24 +16,20 @@
     // access it asynchronously
     COARSRpc.setAsynchronous(coarsService, true);
     coarsService.calc.add({
-        params:[1.2, 7.5],
+        params:[1, 7],
         onSuccess: function(result) {
-            alert("result is " + result);
+            console.log( result);
         },
         onException: function(e) {
-            alert("Unable to compute because: " + e);
-            return true;
+            console.log(e)
         }
     });
 
     // access it synchronously
     COARSRpc.setAsynchronous(coarsService, false);
-    try {
-        var result = coarsService.calc.add(1.2, 7.5);
-        alert("result is " + result);
-    } catch (e) {
-        alert("Unable to compute because: " + e);
-    }
+
+     var result = coarsService.calc.add(1, 7);
+     console.log(result)
 
 </script>
 </body>

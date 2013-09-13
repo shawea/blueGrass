@@ -356,7 +356,7 @@ else
             try  {
                 xhr = new ActiveXObject("Microsoft.XMLHTTP");
             } catch (e) {
-                alert(e.message);
+                //alert(e.message);
                 xhr = null;
             }
         } else {

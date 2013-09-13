@@ -199,7 +199,7 @@ class CloudAPI {
 
         //if (typeof XDomainRequest != 'undefined') { // for IE 9
         var req = new XMLHttpRequest()
-        if(this._sec==1) // carefull what you ask for
+        if(this._sec==1) // careful what you ask for
             req.withCredentials=true
 
         var curl:string = this._baseServiceUrl1
@@ -394,7 +394,7 @@ class CloudAPI {
             }
             catch(e)
             {
-                alert(e.message);
+                //alert(e.message);
                 xhr = null;
             }
         }

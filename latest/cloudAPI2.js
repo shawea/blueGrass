@@ -1,5 +1,5 @@
 var COARSRpc = {
-    version: "1.0.0.1",
+    version: "1.0.0.2",
     requestCount: 0
 };
 COARSRpc.ServiceProxy = function (serviceUrl, options) {
@@ -10,10 +10,6 @@ COARSRpc.ServiceProxy = function (serviceUrl, options) {
 
     if (urlParts) {
         this.__isCrossSite = (location.protocol != urlParts[1] || document.domain != urlParts[2] || location.port != (urlParts[3] || ""));
-    }
-
-    if (this.__isCrossSite) {
-        // throw new Error("Cross site rpc not supported yet");
     }
 
     //Set other default options
@@ -118,7 +114,8 @@ COARSRpc.ServiceProxy.prototype.__callMethod = function (methodName, params, suc
             request.params = params;
         postData = this.__toJSON(request);
 
-        //XMLHttpRequest chosen (over Ajax.Request) because it propogates uncaught exceptions
+        console.log(postData);
+
         var xhr;
         if (window.XMLHttpRequest)
             xhr = new XMLHttpRequest();
@@ -129,6 +126,7 @@ else if (window.ActiveXObject) {
                 xhr = new ActiveXObject('Microsoft.XMLHTTP');
             }
         }
+
         xhr.open('POST', this.__serviceURL, this.__isAsynchronous, this.__authUsername, this.__authPassword);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.setRequestHeader('Accept', 'application/json');
@@ -143,6 +141,8 @@ else if (window.ActiveXObject) {
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4) {
                     //XML-RPC
+                    console.log(xhr.response);
+
                     var response = instance.__evalJSON(xhr.responseText, instance.__isResponseSanitized);
                     if (!response.id)
                         response.id = requestInfo.id;
@@ -155,6 +155,9 @@ else if (window.ActiveXObject) {
             //Send the request
             xhr.send(postData);
             var response;
+
+            console.log(xhr.responseText);
+
             response = this.__evalJSON(xhr.responseText, this.__isResponseSanitized);
 
             if (response.error)
@@ -164,7 +167,7 @@ else if (window.ActiveXObject) {
             return response.result;
         }
     } catch (err) {
-        //err.locationCode = PRE-REQUEST Cleint
+        //err.locationCode = PRE-REQUEST client
         var isCaught = false;
         if (exceptionHandler)
             isCaught = exceptionHandler(err);
@@ -184,7 +187,7 @@ COARSRpc.pendingRequests = {};
 //   is made, a function is created
 COARSRpc.callbacks = {};
 
-//Called by asychronous calls when their responses have loaded
+//Called by asynchronous calls when their responses have loaded
 COARSRpc.ServiceProxy.prototype.__doCallback = function (response) {
     if (typeof response != 'object')
         throw Error('The server did not respond with a response object.');
@@ -351,18 +354,14 @@ else {
     throw new TypeError('Unable to convert the value of type "' + typeof (value) + '" to JSON.');
 };
 
-COARSRpc.isJSON = function (string) {
-    var testStr = string.replace(/\\./g, '@').replace(/"[^"\\\n\r]*"/g, '');
-    return (/^[,:{}\[\]0-9.\-+Eaeflnr-u \n\r\t]*$/).test(testStr);
-};
-
 COARSRpc.ServiceProxy.prototype.__evalJSON = function (json, sanitize) {
     //Remove security comment delimiters
+    console.log(json);
     json = json.replace(/^\/\*-secure-([\s\S]*)\*\/\s*$/, "$1");
+    console.log(json);
     var err;
     try  {
-        if (!sanitize || COARSRpc.isJSON(json))
-            return eval('(' + json + ')');
+        return eval('(' + json + ')');
     } catch (e) {
         err = e;
     }
