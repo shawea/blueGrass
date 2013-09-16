@@ -42,21 +42,13 @@ var fb = new FBfbAuth();
 
 /*********************/
 var CORSRpc = (function () {
-    //__isCrossSite ;
-    //__isResponseSanitized;
-    //This acts as a lookup table for the response callback to execute the user-defined
-    //   callbacks and to clean up after a request
-    //pendingRequests = {};
-    //Ad hoc cross-site callback functions keyed by request ID; when a cross-site request
-    //   is made, a function is created
-    //callbacks = {};
     /**
     *
     * @param serviceUrl
     * @param options
     */
     function CORSRpc(serviceUrl, options) {
-        this.version = "1.0.0.1";
+        this.version = "1.0.0.2";
         this.requestCount = 0;
         this.__authUsername = null;
         this.__authPassword = null;
@@ -125,11 +117,12 @@ else if (window.ActiveXObject) {
 
             //resp
             var response;
-            console.log(xhr.responseText);
+
+            //console.log(xhr.responseText)
             response = this.__evalJSON(xhr.responseText);
 
             if (response.error)
-                throw Error('Unable to call "' + methodName + '". Server responsed with error (code ' + response.error.code + '): ' + response.error.message);
+                throw Error('Unable to call "' + methodName + '". Server returned error (code ' + response.error.code + '): ' + response.error.message);
 
             this.__upgradeValuesFromJSON(response);
             return response.result;
@@ -155,9 +148,10 @@ else if (window.ActiveXObject) {
 
     CORSRpc.prototype.__evalJSON = function (json) {
         //Remove security comment delimiters
-        console.log(json);
+        //console.log(json)
         json = json.replace(/^\/\*-secure-([\s\S]*)\*\/\s*$/, "$1");
-        console.log(json);
+
+        //console.log(json)
         var err;
         try  {
             return eval('(' + json + ')');
@@ -206,57 +200,6 @@ else
                 }
             }
         }
-    };
-
-    //Takes an array or hash and coverts it into a query string, converting dates to ISO8601
-    //   and throwing an exception if nested hashes or nested arrays appear.
-    CORSRpc.prototype.toQueryString2 = function (params) {
-        if (!(params instanceof Object || params instanceof Array) || params instanceof Date)
-            throw Error('You must supply either an array or object type to convert into a query string. You supplied: ' + params.constructor);
-
-        var str = '';
-        var useHasOwn = {}.hasOwnProperty ? true : false;
-
-        for (var key in params) {
-            if (useHasOwn && params.hasOwnProperty(key)) {
-                if (params[key] instanceof Array) {
-                    for (var i = 0; i < params[key].length; i++) {
-                        if (str)
-                            str += '&';
-                        str += encodeURIComponent(key) + "=";
-                        if (params[key][i] instanceof Date)
-                            str += encodeURIComponent(this.dateToISO8601(params[key][i]));
-else if (params[key][i] instanceof Object)
-                            throw Error('Unable to pass nested arrays nor objects as parameters while in making a cross-site request. The object in question has this constructor: ' + params[key][i].constructor);
-else
-                            str += encodeURIComponent(String(params[key][i]));
-                    }
-                } else {
-                    if (str)
-                        str += '&';
-                    str += encodeURIComponent(key) + "=";
-                    if (params[key] instanceof Date)
-                        str += encodeURIComponent(this.dateToISO8601(params[key]));
-else if (params[key] instanceof Object)
-                        throw Error('Unable to pass objects as parameters while in making a cross-site request. The object in question has this constructor: ' + params[key].constructor);
-else
-                        str += encodeURIComponent(String(params[key]));
-                }
-            }
-        }
-        return str;
-    };
-
-    //Converts an iterateable value into an array; similar to Prototype's $A function
-    CORSRpc.prototype.toArray2 = function (value) {
-        if (value instanceof Array)
-            return value;
-        var array = [];
-        for (var i = 0; i < value.length; i++)
-            array.push(value[i]);
-        return array;
-        //}
-        //throw Error("Unable to convert to an array the value: " + String(value));
     };
 
     /** Returns an ISO8601 string *in UTC* for the provided date (Prototype's Date.toJSON() returns localtime)
