@@ -14,7 +14,6 @@ window.fbAsyncInit = function () {
         }
     });
 };
-
 var FBfbAuth = (function () {
     function FBfbAuth() {
     }
@@ -29,7 +28,7 @@ var FBfbAuth = (function () {
                 js = d.createElement('script');
                 js.id = id;
                 js.async = true;
-                js.src = "//connect.facebook.net/en_US/all.js";
+                js.src = '//connect.facebook.net/en_US/all.js';
                 ref.parentNode.insertBefore(js, ref);
             })(document));
         }, 1);
@@ -40,31 +39,24 @@ var FBfbAuth = (function () {
 })();
 var fb = new FBfbAuth();
 
-/*********************/
-var CORSRpc = (function () {
+/***************************************************************************************/
+var CORS = (function () {
     /**
     *
     * @param serviceUrl
     * @param options
     */
-    function CORSRpc(serviceUrl, options) {
-        this.version = "1.0.0.2";
+    function CORS(serviceUrl, options) {
+        this._baseServiceUrl1 = 'http://localhost:8080/service/';
+        this.version = '1.0.0.3';
         this.requestCount = 0;
         this.__authUsername = null;
         this.__authPassword = null;
         this.__dateEncoding = 'ISO8601';
         this.__decodeISO8601 = true;
-        this.__serviceURL = serviceUrl;
-        this.__isCrossSite = false;
+        this.__serviceURL = this._baseServiceUrl1 + serviceUrl;
 
         var urlParts = this.__serviceURL.match(/^(\w+:)\/\/([^\/]+?)(?::(\d+))?(?:$|\/)/);
-
-        if (urlParts) {
-            this.__isCrossSite = (location.protocol != urlParts[1] || document.domain != urlParts[2] || location.port != (urlParts[3] || ""));
-        }
-
-        //Set other default options
-        var providedMethodList;
 
         if (options instanceof Object) {
             if (options.user != undefined)
@@ -77,7 +69,7 @@ var CORSRpc = (function () {
                 this.__decodeISO8601 = !!options.decodeISO8601;
         }
     }
-    CORSRpc.prototype.callMethod = function (methodName, params) {
+    CORS.prototype.callMethod = function (methodName, params, appKey) {
         this.requestCount++;
         var err;
         try  {
@@ -86,12 +78,14 @@ var CORSRpc = (function () {
             //Prepare the CORS RPC request
             var request, postData;
             request = {
-                version: "2.0",
+                version: '2.0',
                 method: methodName,
                 id: this.requestCount
             };
             if (params)
                 request.params = params;
+            if (appKey)
+                request.appKey = appKey;
 
             postData = this.__toJSON(request);
 
@@ -107,7 +101,7 @@ else if (window.ActiveXObject) {
             }
 
             xhr.open('POST', this.__serviceURL, false, this.__authUsername, this.__authPassword);
-            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.setRequestHeader('Accept', 'application/json');
 
@@ -122,7 +116,7 @@ else if (window.ActiveXObject) {
             response = this.__evalJSON(xhr.responseText);
 
             if (response.error)
-                throw Error('Unable to call "' + methodName + '". Server returned error (code ' + response.error.code + '): ' + response.error.message);
+                throw Error('Unable to call ' + methodName + ' Server returned error (code ' + response.error.code + '): ' + response.error.message);
 
             this.__upgradeValuesFromJSON(response);
             return response.result;
@@ -135,7 +129,7 @@ else if (window.ActiveXObject) {
         return null;
     };
 
-    CORSRpc.prototype.__toJSON = function (value) {
+    CORS.prototype.__toJSON = function (value) {
         var err;
         try  {
             return JSON.stringify(value);
@@ -146,10 +140,10 @@ else if (window.ActiveXObject) {
         throw new Error('Unable to convert to JSON.' + err + value);
     };
 
-    CORSRpc.prototype.__evalJSON = function (json) {
+    CORS.prototype.__evalJSON = function (json) {
         //Remove security comment delimiters
         //console.log(json)
-        json = json.replace(/^\/\*-secure-([\s\S]*)\*\/\s*$/, "$1");
+        json = json.replace(/^\/\*-secure-([\s\S]*)\*\/\s*$/, '$1');
 
         //console.log(json)
         var err;
@@ -158,12 +152,12 @@ else if (window.ActiveXObject) {
         } catch (e) {
             err = e;
         }
-        throw new SyntaxError('Badly formed JSON string: ' + json + " ... " + (err ? err.message : ''));
+        throw new SyntaxError('Badly formed JSON string: ' + json + ' ... ' + (err ? err.message : ''));
     };
 
     //This function iterates over the properties of the passed object and converts them
     //   into more appropriate data types, i.e. ISO8601 strings are converted to Date objects.
-    CORSRpc.prototype.__upgradeValuesFromJSON = function (obj) {
+    CORS.prototype.__upgradeValuesFromJSON = function (obj) {
         var matches, useHasOwn = {}.hasOwnProperty ? true : false;
         for (var key in obj) {
             if (!useHasOwn || obj.hasOwnProperty(key)) {
@@ -207,13 +201,13 @@ else
     * @param date
     * @returns {string}
     */
-    CORSRpc.prototype.dateToISO8601 = function (date) {
-        //var jsonDate = date.toJSON();
-        //return jsonDate.substring(1, jsonDate.length-1); //strip double quotes
+    CORS.prototype.dateToISO8601 = function (date) {
+        //var jsonDate = date.toJSON()
+        //return jsonDate.substring(1, jsonDate.length-1) //strip double quotes
         return date.getUTCFullYear() + '-' + this.zeroPad(date.getUTCMonth() + 1) + '-' + this.zeroPad(date.getUTCDate()) + 'T' + this.zeroPad(date.getUTCHours()) + ':' + this.zeroPad(date.getUTCMinutes()) + ':' + this.zeroPad(date.getUTCSeconds()) + '.' + this.zeroPad(date.getUTCMilliseconds(), 3);
     };
 
-    CORSRpc.prototype.zeroPad = function (value, width) {
+    CORS.prototype.zeroPad = function (value, width) {
         if (!width)
             width = 2;
         value = (value == undefined ? '' : String(value));
@@ -221,6 +215,6 @@ else
             value = '0' + value;
         return value;
     };
-    return CORSRpc;
+    return CORS;
 })();
-//# sourceMappingURL=CORSRpc.js.map
+//# sourceMappingURL=CORS.js.map

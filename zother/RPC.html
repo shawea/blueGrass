@@ -5,18 +5,19 @@
 </head>
 <body>
 
-<script src='/latest/more/extra/CORSRpc.js'></script>
-<script>
+<script src='/latest/more/extra/CORS.js'></script>
+<script src='/latest/cloudAPI2.js'></script>
 
-    var obj = new Object()
+<script>//"http://scdn.primus.netdna-cdn.com/latest/more/extra/CORS.js"
+
+var obj = new Object()
     obj.f='vic'
     obj.l='cvc'
 
-    //"http://scdn.primus.netdna-cdn.com/latest/more/extra/CORSRpc.js"
-    var cors = new CORSRpc("http://localhost:8080/service/CORS")  //http://primusAPI.net/service/CORS", {
+var cloudAPI = new CloudAPI('123')
 
-     var result = cors.callMethod('insert', obj);
-     console.log(result)
+var pk = cloudAPI.insert('bla',obj)
+console.log(pk)
 
 </script>
 </body>
