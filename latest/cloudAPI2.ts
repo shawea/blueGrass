@@ -1,7 +1,7 @@
 declare var CORS;
 class CloudAPI {
 
-    static PK:string ='id_';
+    static PK:string ='_id';
 
     _secret_app_key:string;
     _auth_token:string;
@@ -167,9 +167,8 @@ class CloudAPI {
      * @param obj new values
      */
    update( table_name:string, pk:string, obj:Object):void {
-        var obj = new Object()
         obj.table=table_name
-        obj.id_ = pk
+        obj._id = pk
         var result = this._crud.callMethod('update', obj, this._secret_app_key);
     }//()
 
@@ -181,7 +180,7 @@ class CloudAPI {
     del( table_name:string, pk:string):void {
         var obj = new Object()
         obj.table=table_name
-        obj.id_ = pk
+        obj._id = pk
         var result = this._crud.callMethod('del', obj, this._secret_app_key);
     }//()
 
@@ -193,7 +192,7 @@ class CloudAPI {
     insert( table_name:string, obj:Object):string {
         obj.table=table_name
         var result = this._crud.callMethod('insert', obj, this._secret_app_key)
-        return result
+        return result._id;
     }//()
 
     /**
@@ -204,7 +203,7 @@ class CloudAPI {
     select( table_name:string, obj:Object):Array {
         obj.table=table_name
         var result = this._crud.callMethod('select', obj, this._secret_app_key)
-        return result
+        return result.array_
     }//()
 
     /**

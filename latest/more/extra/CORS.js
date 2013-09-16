@@ -73,8 +73,6 @@ var CORS = (function () {
         this.requestCount++;
         var err;
         try  {
-            console.log('v1');
-
             //Prepare the CORS RPC request
             var request, postData;
             request = {
@@ -110,10 +108,9 @@ else if (window.ActiveXObject) {
             xhr.send(postData);
 
             //resp
-            var response;
-
-            //console.log(xhr.responseText)
-            response = this.__evalJSON(xhr.responseText);
+            var responseRaw = xhr.responseText;
+            console.log(responseRaw);
+            var response = this.__evalJSON(responseRaw);
 
             if (response.error)
                 throw Error('Unable to call ' + methodName + ' Server returned error (code ' + response.error.code + '): ' + response.error.message);
@@ -124,6 +121,7 @@ else if (window.ActiveXObject) {
             //err.locationCode = PRE-REQUEST client
             console.log(e);
             err = e;
+            console.log(err);
         }
         throw new Error(err);
         return null;
@@ -151,6 +149,7 @@ else if (window.ActiveXObject) {
             return eval('(' + json + ')');
         } catch (e) {
             err = e;
+            console.log(json);
         }
         throw new SyntaxError('Badly formed JSON string: ' + json + ' ... ' + (err ? err.message : ''));
     };

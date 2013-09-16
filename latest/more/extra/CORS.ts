@@ -80,7 +80,6 @@ class CORS  {
         this.requestCount++
         var err
         try {
-            console.log('v1')
             //Prepare the CORS RPC request
             var request, postData
             request = {
@@ -116,9 +115,9 @@ class CORS  {
             xhr.send(postData)
 
             //resp
-            var response
-            //console.log(xhr.responseText)
-            response = this.__evalJSON(xhr.responseText)
+            var responseRaw=xhr.responseText
+            console.log(responseRaw)
+            var response = this.__evalJSON(responseRaw)
 
             //Note that this error must be caught with a try/catch block instead of by passing a onException callback
             if (response.error)
@@ -159,6 +158,7 @@ class CORS  {
         }
         catch(e) {
             err = e
+            console.log(json)
         }
         throw new SyntaxError('Badly formed JSON string: ' + json + ' ... ' + (err ? err.message : ''))
     }

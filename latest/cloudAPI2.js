@@ -155,9 +155,8 @@ else
     * @param obj new values
     */
     CloudAPI.prototype.update = function (table_name, pk, obj) {
-        var obj = new Object();
         obj.table = table_name;
-        obj.id_ = pk;
+        obj._id = pk;
         var result = this._crud.callMethod('update', obj, this._secret_app_key);
     };
 
@@ -168,7 +167,7 @@ else
     CloudAPI.prototype.del = function (table_name, pk) {
         var obj = new Object();
         obj.table = table_name;
-        obj.id_ = pk;
+        obj._id = pk;
         var result = this._crud.callMethod('del', obj, this._secret_app_key);
     };
 
@@ -180,7 +179,7 @@ else
     CloudAPI.prototype.insert = function (table_name, obj) {
         obj.table = table_name;
         var result = this._crud.callMethod('insert', obj, this._secret_app_key);
-        return result;
+        return result._id;
     };
 
     /**
@@ -191,7 +190,7 @@ else
     CloudAPI.prototype.select = function (table_name, obj) {
         obj.table = table_name;
         var result = this._crud.callMethod('select', obj, this._secret_app_key);
-        return result;
+        return result.array_;
     };
 
     /**
@@ -241,7 +240,7 @@ else
 
         this._call('prevRows', msg, cb_, h);
     };
-    CloudAPI.PK = 'id_';
+    CloudAPI.PK = '_id';
     return CloudAPI;
 })();
 //# sourceMappingURL=cloudAPI2.js.map

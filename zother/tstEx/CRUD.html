@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+<script src='/latest/more/extra/CORS.js'></script>
+<script src='/latest/cloudAPI2.js'></script>
+
+<script>//"http://scdn.primus.netdna-cdn.com/latest/more/extra/CORS.js"
+
+var obj = new Object()
+obj.f='vic'
+obj.L='cvc'
+
+var tab = 'MY_TABLE'
+
+var cloudAPI = new CloudAPI('123')
+
+//C
+console.log('c')
+var pk = cloudAPI.insert(tab,obj)
+console.log(pk)
+//R
+console.log('')
+console.log('r')
+var sel = new Object()
+sel.f='vic'
+var res = cloudAPI.select(tab,sel)
+//console.log(res)
+console.log(JSON.stringify(res))
+//U
+console.log('')
+console.log('u ' + pk)
+obj.L='GOREGOREGOREGORE'
+cloudAPI.update(tab,pk,obj)
+var sel = new Object()
+sel.f='vic'
+var res = cloudAPI.select(tab,sel)
+//console.log(res)
+console.log(JSON.stringify(res))
+//D
+console.log('')
+console.log('d ' + pk)
+cloudAPI.del(tab,pk)
+var res = cloudAPI.select(tab,sel)
+//console.log(res)
+console.log(JSON.stringify(res))
+
+</script>
+</body>
+</html>
