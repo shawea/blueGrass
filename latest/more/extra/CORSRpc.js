@@ -42,6 +42,14 @@ var fb = new FBfbAuth();
 
 /*********************/
 var CORSRpc = (function () {
+    //__isCrossSite ;
+    //__isResponseSanitized;
+    //This acts as a lookup table for the response callback to execute the user-defined
+    //   callbacks and to clean up after a request
+    //pendingRequests = {};
+    //Ad hoc cross-site callback functions keyed by request ID; when a cross-site request
+    //   is made, a function is created
+    //callbacks = {};
     /**
     *
     * @param serviceUrl
@@ -50,17 +58,10 @@ var CORSRpc = (function () {
     function CORSRpc(serviceUrl, options) {
         this.version = "1.0.0.1";
         this.requestCount = 0;
-        this.__isAsynchronous = true;
         this.__authUsername = null;
         this.__authPassword = null;
         this.__dateEncoding = 'ISO8601';
         this.__decodeISO8601 = true;
-        //This acts as a lookup table for the response callback to execute the user-defined
-        //   callbacks and to clean up after a request
-        this.pendingRequests = {};
-        //Ad hoc cross-site callback functions keyed by request ID; when a cross-site request
-        //   is made, a function is created
-        this.callbacks = {};
         this.__serviceURL = serviceUrl;
         this.__isCrossSite = false;
 
@@ -74,9 +75,6 @@ var CORSRpc = (function () {
         var providedMethodList;
 
         if (options instanceof Object) {
-            if (options.asynchronous !== undefined) {
-                this.__isAsynchronous = !!options.asynchronous;
-            }
             if (options.user != undefined)
                 this.__authUsername = options.user;
             if (options.password != undefined)
@@ -85,79 +83,15 @@ var CORSRpc = (function () {
                 this.__dateEncoding = options.dateEncoding;
             if (options.decodeISO8601 != undefined)
                 this.__decodeISO8601 = !!options.decodeISO8601;
-            providedMethodList = options.methods;
-        }
-
-        if (providedMethodList) {
-            this.__methodList = providedMethodList;
-        } else {
-            var async = this.__isAsynchronous;
-            this.__isAsynchronous = false;
-            this.__methodList = this.__callMethod("system.listMethods", []);
-            this.__isAsynchronous = async;
-        }
-        this.__methodList.push("system.listMethods");
-
-        for (var methodName, i = 0; methodName = this.__methodList[i]; i++) {
-            //Make available the received methods in the form of chained property lists (eg. "parent.child.methodName")
-            var methodObject = this;
-            var propChain = methodName.split(/\./);
-            for (var j = 0; j + 1 < propChain.length; j++) {
-                if (!methodObject[propChain[j]])
-                    methodObject[propChain[j]] = {};
-                methodObject = methodObject[propChain[j]];
-            }
-
-            var thiz = this;
-
-            //Create a wrapper to this.__callMethod with this instance and this methodName bound
-            var wrapper = (function (instance, methodName) {
-                var call = { instance: instance, methodName: methodName };
-                return function () {
-                    if (call.instance.__isAsynchronous) {
-                        if (arguments.length == 1 && arguments[0] instanceof Object) {
-                            call.instance.__callMethod(call.methodName, arguments[0].params, arguments[0].onSuccess, arguments[0].onException, arguments[0].onComplete);
-                        } else {
-                            call.instance.__callMethod(call.methodName, arguments[0], arguments[1], arguments[2], arguments[3]);
-                        }
-                        return undefined;
-                    } else
-                        return call.instance.__callMethod(call.methodName, thiz.toArray(arguments));
-                };
-            })(this, methodName);
-            methodObject[propChain[propChain.length - 1]] = wrapper;
         }
     }
-    CORSRpc.prototype.setAsynchronous = function (isAsynchronous) {
-        this.__isAsynchronous = isAsynchronous;
-    };
-
-    CORSRpc.prototype.__callMethod = function (methodName, params, successHandler, exceptionHandler, completeHandler) {
+    CORSRpc.prototype.callMethod = function (methodName, params) {
         this.requestCount++;
-
-        if (this.__isAsynchronous) {
-            if (successHandler && typeof successHandler != 'function')
-                throw Error('The asynchronous onSuccess handler callback function you provided is invalid; the value you provided (' + successHandler.toString() + ') is of type "' + typeof (successHandler) + '".');
-            if (exceptionHandler && typeof exceptionHandler != 'function')
-                throw Error('The asynchronous onException handler callback function you provided is invalid; the value you provided (' + exceptionHandler.toString() + ') is of type "' + typeof (exceptionHandler) + '".');
-            if (completeHandler && typeof completeHandler != 'function')
-                throw Error('The asynchronous onComplete handler callback function you provided is invalid; the value you provided (' + completeHandler.toString() + ') is of type "' + typeof (completeHandler) + '".');
-        }
-
+        var err;
         try  {
-            if (this.__isAsynchronous) {
-                this.pendingRequests[String(this.requestCount)] = {
-                    //method:methodName,
-                    onSuccess: successHandler,
-                    onException: exceptionHandler,
-                    onComplete: completeHandler
-                };
-            }
+            console.log('v1');
 
-            if (params && (!(params instanceof Object) || params instanceof Date))
-                throw Error('When making asynchronous calls, the parameters for the method must be passed as an array (or a hash); the value you supplied (' + String(params) + ') is of type "' + typeof (params) + '".');
-
-            //Prepare the XML-RPC request
+            //Prepare the CORS RPC request
             var request, postData;
             request = {
                 version: "2.0",
@@ -166,9 +100,8 @@ var CORSRpc = (function () {
             };
             if (params)
                 request.params = params;
-            postData = this.__toJSON(request);
 
-            console.log(postData);
+            postData = this.__toJSON(request);
 
             var xhr;
             if (window.XMLHttpRequest)
@@ -181,225 +114,46 @@ else if (window.ActiveXObject) {
                 }
             }
 
-            xhr.open('POST', this.__serviceURL, this.__isAsynchronous, this.__authUsername, this.__authPassword);
+            xhr.open('POST', this.__serviceURL, false, this.__authUsername, this.__authPassword);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.setRequestHeader('Accept', 'application/json');
 
-            if (this.__isAsynchronous) {
-                //Send the request
-                xhr.send(postData);
+            //Send the request
+            console.log(postData);
+            xhr.send(postData);
 
-                //Handle the response
-                var instance = this;
-                var requestInfo = { id: this.requestCount };
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == 4) {
-                        //XML-RPC
-                        console.log(xhr.response);
+            //resp
+            var response;
+            console.log(xhr.responseText);
+            response = this.__evalJSON(xhr.responseText);
 
-                        var response = instance.__evalJSON(xhr.responseText, instance.__isResponseSanitized);
-                        if (!response.id)
-                            response.id = requestInfo.id;
-                        instance.__doCallback(response);
-                    }
-                };
+            if (response.error)
+                throw Error('Unable to call "' + methodName + '". Server responsed with error (code ' + response.error.code + '): ' + response.error.message);
 
-                return undefined;
-            } else {
-                //Send the request
-                xhr.send(postData);
-                var response;
-
-                console.log(xhr.responseText);
-
-                response = this.__evalJSON(xhr.responseText, this.__isResponseSanitized);
-
-                if (response.error)
-                    throw Error('Unable to call "' + methodName + '". Server responsed with error (code ' + response.error.code + '): ' + response.error.message);
-
-                this.__upgradeValuesFromJSON(response);
-                return response.result;
-            }
-        } catch (err) {
+            this.__upgradeValuesFromJSON(response);
+            return response.result;
+        } catch (e) {
             //err.locationCode = PRE-REQUEST client
-            var isCaught = false;
-            if (exceptionHandler)
-                isCaught = exceptionHandler(err);
-            if (completeHandler)
-                completeHandler();
-
-            if (!isCaught)
-                throw err;
+            console.log(e);
+            err = e;
         }
-
+        throw new Error(err);
         return null;
     };
 
-    //Called by asynchronous calls when their responses have loaded
-    CORSRpc.prototype.__doCallback = function (response) {
-        if (typeof response != 'object')
-            throw Error('The server did not respond with a response object.');
-        if (!response.id)
-            throw Error('The server did not respond with the required response id for asynchronous calls.');
-
-        if (!this.pendingRequests[response.id])
-            throw Error('Fatal error with RPC code: no ID "' + response.id + '" found in pendingRequests.');
-
-        if (this.pendingRequests[response.id].scriptElement) {
-            var script = this.pendingRequests[response.id].scriptElement;
-            script.parentNode.removeChild(script);
-        }
-
-        if (this.callbacks[response.id])
-            delete this.callbacks['r' + response.id];
-
-        var uncaughtExceptions = [];
-
-        if (response.error !== undefined) {
-            var err = new Error(response.error.message);
-            err.code = response.error.code;
-
-            if (this.pendingRequests[response.id].onException) {
-                try  {
-                    if (!this.pendingRequests[response.id].onException(err))
-                        uncaughtExceptions.push(err);
-                } catch (err2) {
-                    uncaughtExceptions.push(err);
-                    uncaughtExceptions.push(err2);
-                }
-            } else
-                uncaughtExceptions.push(err);
-        } else if (response.result !== undefined) {
-            //iterate over all values and substitute date strings with Date objects
-            //Note that response.result is not passed because the values contained
-            //  need to be modified by reference, and the only way to do so is
-            //  but accessing an object's properties. Thus an extra level of
-            //  abstraction allows for accessing all of the results members by reference.
-            this.__upgradeValuesFromJSON(response);
-
-            if (this.pendingRequests[response.id].onSuccess) {
-                try  {
-                    this.pendingRequests[response.id].onSuccess(response.result);
-                } catch (err) {
-                    if (this.pendingRequests[response.id].onException) {
-                        try  {
-                            if (!this.pendingRequests[response.id].onException(err))
-                                uncaughtExceptions.push(err);
-                        } catch (err2) {
-                            uncaughtExceptions.push(err);
-                            uncaughtExceptions.push(err2);
-                        }
-                    } else
-                        uncaughtExceptions.push(err);
-                }
-            }
-        }
-
-        try  {
-            if (this.pendingRequests[response.id].onComplete)
-                this.pendingRequests[response.id].onComplete(response);
-        } catch (err) {
-            if (this.pendingRequests[response.id].onException) {
-                try  {
-                    if (!this.pendingRequests[response.id].onException(err))
-                        uncaughtExceptions.push(err);
-                } catch (err2) {
-                    uncaughtExceptions.push(err);
-                    uncaughtExceptions.push(err2);
-                }
-            } else
-                uncaughtExceptions.push(err);
-        }
-
-        delete this.pendingRequests[response.id];
-
-        if (uncaughtExceptions.length) {
-            var code;
-            var message = 'There ' + (uncaughtExceptions.length == 1 ? 'was 1 uncaught exception' : 'were ' + uncaughtExceptions.length + ' uncaught exceptions') + ': ';
-            for (var i = 0; i < uncaughtExceptions.length; i++) {
-                if (i)
-                    message += "; ";
-                message += uncaughtExceptions[i].message;
-                if (uncaughtExceptions[i].code)
-                    code = uncaughtExceptions[i].code;
-            }
-            var err = new Error(message);
-            err.code = code;
-            throw err;
-        }
-    };
-
     CORSRpc.prototype.__toJSON = function (value) {
-        switch (typeof value) {
-            case 'number':
-                return isFinite(value) ? value.toString() : 'null';
-            case 'boolean':
-                return value.toString();
-            case 'string':
-                //Taken from Ext JSON.js
-                var specialChars = {
-                    "\b": '\\b',
-                    "\t": '\\t',
-                    "\n": '\\n',
-                    "\f": '\\f',
-                    "\r": '\\r',
-                    '"': '\\"',
-                    "\\": '\\\\',
-                    "/": '\/'
-                };
-                return '"' + value.replace(/([\x00-\x1f\\"])/g, function (a, b) {
-                    var c = specialChars[b];
-                    if (c)
-                        return c;
-                    c = b.charCodeAt();
-
-                    //return "\\u00" + Math.floor(c / 16).toString(16) + (c % 16).toString(16);
-                    return '\\u00' + this.zeroPad(c.toString(16));
-                }) + '"';
-            case 'object':
-                if (value === null)
-                    return 'null';
-else if (value instanceof Array) {
-                    var json = ['['];
-                    for (var i = 0; i < value.length; i++) {
-                        if (i)
-                            json.push(',');
-                        json.push(this.__toJSON(value[i]));
-                    }
-                    json.push(']');
-                    return json.join('');
-                } else if (value instanceof Date) {
-                    switch (this.__dateEncoding) {
-                        case 'classHinting':
-                            return '{"__jsonclass__":["Date",[' + value.valueOf() + ']]}';
-                        case '@timestamp@':
-                        case '@ticks@':
-                            return '"@' + value.valueOf() + '@"';
-                        case 'ASP.NET':
-                            return '"\\/Date(' + value.valueOf() + ')\\/"';
-                        default:
-                            return '"' + this.dateToISO8601(value) + '"';
-                    }
-                } else if (value instanceof Number || value instanceof String || value instanceof Boolean)
-                    return this.__toJSON(value.valueOf());
-else {
-                    var useHasOwn = {}.hasOwnProperty ? true : false;
-                    var json = ['{'];
-                    for (var key in value) {
-                        if (!useHasOwn || value.hasOwnProperty(key)) {
-                            if (json.length > 1)
-                                json.push(',');
-                            json.push(this.__toJSON(key) + ':' + this.__toJSON(value[key]));
-                        }
-                    }
-                    json.push('}');
-                    return json.join('');
-                }
+        var err;
+        try  {
+            return JSON.stringify(value);
+        } catch (e) {
+            console.log(e);
+            err = e;
         }
-        throw new TypeError('Unable to convert the value of type "' + typeof (value) + '" to JSON.');
+        throw new Error('Unable to convert to JSON.' + err + value);
     };
 
-    CORSRpc.prototype.__evalJSON = function (json, sanitize) {
+    CORSRpc.prototype.__evalJSON = function (json) {
         //Remove security comment delimiters
         console.log(json);
         json = json.replace(/^\/\*-secure-([\s\S]*)\*\/\s*$/, "$1");
@@ -456,7 +210,7 @@ else
 
     //Takes an array or hash and coverts it into a query string, converting dates to ISO8601
     //   and throwing an exception if nested hashes or nested arrays appear.
-    CORSRpc.prototype.toQueryString = function (params) {
+    CORSRpc.prototype.toQueryString2 = function (params) {
         if (!(params instanceof Object || params instanceof Array) || params instanceof Date)
             throw Error('You must supply either an array or object type to convert into a query string. You supplied: ' + params.constructor);
 
@@ -494,7 +248,7 @@ else
     };
 
     //Converts an iterateable value into an array; similar to Prototype's $A function
-    CORSRpc.prototype.toArray = function (value) {
+    CORSRpc.prototype.toArray2 = function (value) {
         if (value instanceof Array)
             return value;
         var array = [];

@@ -5,32 +5,17 @@
 </head>
 <body>
 
-
 <script src='/latest/more/extra/CORSRpc.js'></script>
 <script>
+
+    var obj = new Object()
+    obj.f='vic'
+    obj.l='cvc'
+
     //"http://scdn.primus.netdna-cdn.com/latest/more/extra/CORSRpc.js"
+    var cors = new CORSRpc("http://localhost:8080/service/CORS")  //http://primusAPI.net/service/CORS", {
 
-    var coarsService = new CORSRpc("http://primusAPI.net/service2/calc", {
-        asynchronous: true,
-        methods: ['calc.add']
-    });
-
-    // access it asynchronously
-    coarsService.setAsynchronous( true);
-    coarsService.calc.add({
-        params:[1, 7],
-        onSuccess: function(result) {
-            console.log( result);
-        },
-        onException: function(e) {
-            console.log(e)
-        }
-    });
-
-    // access it synchronously
-    coarsService.setAsynchronous( false);
-
-     var result = coarsService.calc.add(1, 7);
+     var result = cors.callMethod('insert', obj);
      console.log(result)
 
 </script>
