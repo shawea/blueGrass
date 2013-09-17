@@ -13,7 +13,7 @@ var CloudAPI = (function () {
     */
     CloudAPI.prototype.setAppKey = function (key) {
         this._secret_app_key = key;
-        console.log('cloudAPI ready v2.915 ');
+        console.log('cloudAPI ready v2.917a ');
     };
 
     CloudAPI.prototype.showSpinner = function (status) {
