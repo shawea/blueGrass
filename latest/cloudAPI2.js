@@ -13,7 +13,7 @@ var CloudAPI = (function () {
     */
     CloudAPI.prototype.setAppKey = function (key) {
         this._secret_app_key = key;
-        console.log('cloudAPI ready v2.916 ');
+        console.log('cloudAPI ready v2.915 ');
     };
 
     CloudAPI.prototype.showSpinner = function (status) {
@@ -188,6 +188,8 @@ else
     * @returns Array [] ie, a list or rows
     */
     CloudAPI.prototype.select = function (table_name, obj, cb) {
+        if (!obj)
+            var obj = new Object();
         obj.table = table_name;
         this._crud.callMethod('select', cb, obj, this._secret_app_key);
         //return result.array_

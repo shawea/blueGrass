@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href='//scdn-primus.netdna-ssl.com/latest/topcoat-mobile-light.css' rel='stylesheet'>
+</head>
+<body>
+This is a simple form that shows how to insert and list inserted records.
+The binding for the list is done via jQuery Transparency plugin.</p>
+
+<form>
+    First Name<input type='text' id='firstname'><br/>
+    Last Name<input type='text' id='lastname'  ><br/>
+    <button id='insert' onclick='return false' >Insert Name</button>
+    <button id='listAll'onclick='return false' >List all</button>
+</form>
+
+<!-- code -->
+<script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
+<!--binding lib 3rd party: -->
+<script src='//scdn-primus.netdna-ssl.com/latest/transparency.min.js'></script>
+<!--cloud API for C.R.U.D service: -->
+<script src='/latest/cloudAPI2.js'></script>
+<script>
+
+cAPI=new CloudAPI('fiasqrx5mli') // *** ***
+
+$('#insert').click(function(){
+    var ename =new Object()
+    var firstname = $('#firstname').val()
+    var lastname = $('#lastname').val()
+    ename.firstname=firstname
+    ename.lastname=lastname
+    console.log('clicked ' + firstname +', ' + lastname)
+    cAPI.insert('nameapp',ename, onPK) // **** ****
+})
+function onPK(data){
+    console.log('back')
+    console.log(data)
+}
+
+$('#listAll').click(function(){
+    console.log('clicked list')
+    cAPI.select('nameapp', null, onList) // **** ****
+})
+function onList(data){
+    console.log(data.array_)
+}
+
+</script></body></html>

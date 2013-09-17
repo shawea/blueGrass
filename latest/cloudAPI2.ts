@@ -21,7 +21,7 @@ class CloudAPI {
      */
     setAppKey(key:string) {
         this._secret_app_key = key
-        console.log('cloudAPI ready v2.916 ' )
+        console.log('cloudAPI ready v2.915 ' )
     }
 
     showSpinner(status){
@@ -200,6 +200,7 @@ class CloudAPI {
      * @returns Array [] ie, a list or rows
      */
     select( table_name:string, obj:Object, cb:Function):Array {
+        if(!obj) var obj = new Object()
         obj.table=table_name
         this._crud.callMethod('select', cb, obj, this._secret_app_key)
         //return result.array_
