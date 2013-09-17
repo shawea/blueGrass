@@ -139,7 +139,6 @@ class CloudAPI {
     }
 
 
-
     /**
      * A helper function that uses 'name' to get an object of form data
      * @param id
@@ -166,10 +165,10 @@ class CloudAPI {
      * @param pk
      * @param obj new values
      */
-   update( table_name:string, pk:string, obj:Object):void {
+   update( table_name:string, pk:string, obj:Object, cb:Function):void {
         obj.table=table_name
         obj._id = pk
-        var result = this._crud.callMethod('update', obj, this._secret_app_key);
+        this._crud.callMethod('update', cb, obj, this._secret_app_key);
     }//()
 
 
@@ -177,11 +176,11 @@ class CloudAPI {
      * @param table_name
      * @param pk
      */
-    del( table_name:string, pk:string):void {
+    del( table_name:string, pk:string, cb:Function):void {
         var obj = new Object()
         obj.table=table_name
         obj._id = pk
-        var result = this._crud.callMethod('del', obj, this._secret_app_key);
+        this._crud.callMethod('del', cb, obj, this._secret_app_key);
     }//()
 
     /**
@@ -189,10 +188,10 @@ class CloudAPI {
      * @param object/cols ex: obj.first_name = 'Tom'
      * @returns pk
      */
-    insert( table_name:string, obj:Object):string {
+    insert( table_name:string, obj:Object, cb:Function):string {
         obj.table=table_name
-        var result = this._crud.callMethod('insert', obj, this._secret_app_key)
-        return result._id;
+        this._crud.callMethod('insert', cb, obj, this._secret_app_key)
+        //return result._id;
     }//()
 
     /**
@@ -200,10 +199,10 @@ class CloudAPI {
      * @param obj
      * @returns Array [] ie, a list or rows
      */
-    select( table_name:string, obj:Object):Array {
+    select( table_name:string, obj:Object, cb:Function):Array {
         obj.table=table_name
-        var result = this._crud.callMethod('select', obj, this._secret_app_key)
-        return result.array_
+        this._crud.callMethod('select', cb, obj, this._secret_app_key)
+        //return result.array_
     }//()
 
     /**

@@ -154,21 +154,21 @@ else
     * @param pk
     * @param obj new values
     */
-    CloudAPI.prototype.update = function (table_name, pk, obj) {
+    CloudAPI.prototype.update = function (table_name, pk, obj, cb) {
         obj.table = table_name;
         obj._id = pk;
-        var result = this._crud.callMethod('update', obj, this._secret_app_key);
+        this._crud.callMethod('update', cb, obj, this._secret_app_key);
     };
 
     /**
     * @param table_name
     * @param pk
     */
-    CloudAPI.prototype.del = function (table_name, pk) {
+    CloudAPI.prototype.del = function (table_name, pk, cb) {
         var obj = new Object();
         obj.table = table_name;
         obj._id = pk;
-        var result = this._crud.callMethod('del', obj, this._secret_app_key);
+        this._crud.callMethod('del', cb, obj, this._secret_app_key);
     };
 
     /**
@@ -176,10 +176,10 @@ else
     * @param object/cols ex: obj.first_name = 'Tom'
     * @returns pk
     */
-    CloudAPI.prototype.insert = function (table_name, obj) {
+    CloudAPI.prototype.insert = function (table_name, obj, cb) {
         obj.table = table_name;
-        var result = this._crud.callMethod('insert', obj, this._secret_app_key);
-        return result._id;
+        this._crud.callMethod('insert', cb, obj, this._secret_app_key);
+        //return result._id;
     };
 
     /**
@@ -187,10 +187,10 @@ else
     * @param obj
     * @returns Array [] ie, a list or rows
     */
-    CloudAPI.prototype.select = function (table_name, obj) {
+    CloudAPI.prototype.select = function (table_name, obj, cb) {
         obj.table = table_name;
-        var result = this._crud.callMethod('select', obj, this._secret_app_key);
-        return result.array_;
+        this._crud.callMethod('select', cb, obj, this._secret_app_key);
+        //return result.array_
     };
 
     /**
