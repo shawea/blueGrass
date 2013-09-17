@@ -2,6 +2,8 @@
  blueGrass is a library w/ a few function that could help you create stunning & magical UI w/ interactions,
     cross platform, mobile-first, SPA (Single Page Applications) for interactive and creative HTML5.
 
+It is based on jQuery and is DOM centric(vs .js centric) with easy to teach setup
+
 These patterns are licensed under Attribution Assurance License ( details are here http://opensource.org/licenses/AAL )
 So, in your index.html or similar in view source you must indicate that your designs are derived from http://raw.github.com/shawea/blueGrass to comply w/ our offered license.
 If you can't agree to the license then go away, or maybe write us a large check for a commercial license.
@@ -42,7 +44,7 @@ Recommended but not required :
 * There are other libs used, check under cdn folder.
 
 Recipe:
-- Download the 'ROOT' folder to get the start structure and edit. Copy 'latest' folder into aCDN/libs.
+- Download the 'www' folder to get the start structure and edit. Copy 'latest' folder into aCDN/libs.
 - Start with a prototype layout, recommend starting w/ CSS Framework
 - Remove sections(div) and save in 'CDN/views' or similar
 - Load view using provided open() or forward(). On open: animate as needed, using greenSock.
