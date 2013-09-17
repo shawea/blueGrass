@@ -1,9 +1,6 @@
 head.ready(function () {
     viewDir = 'view/';
     console.log('0.01');
-
-    //console.log(getBrowserInfo())
-    new FastClick(document.body);
     new App();
 });
 
