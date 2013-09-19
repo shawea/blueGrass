@@ -14,7 +14,7 @@ Here are example of the type of application you can/should build with this.
 
 For example, we can animate a div/section after loading. But the key to blueGrass is that it is hard to do nice UI in .js views, here the views are HTML DOM, not .js emitted.
 
-Since you are here, you agree to the A.A. license, here you go: http://scdn.primus.netdna-cdn.com/latest2/blueGrass.js
+Since you are here, you agree to the A.A. license, here you go: http://scdn.primus.netdna-cdn.com/latest/blueGrass.js
 Yes this is all the functions we have to make patterns work. You do have to learn how to use them.
 
 We load views, ie:

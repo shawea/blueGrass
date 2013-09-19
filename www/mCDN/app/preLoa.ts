@@ -13,7 +13,7 @@ window.onload = function() {
             ,'http://scdn.primus.netdna-cdn.com/latestO/fastclick.js'
             ,'http://scdn.primus.netdna-cdn.com/latestO/more/moment.min.js'
             ,'/latestO/blueGrass.js'
-            ,'http://scdn.primus.netdna-cdn.com/latestO/cloudAPI.js'
+            ,'http://scdn.primus.netdna-cdn.com/latestO/cloudAPIO.js'
             ,'http://scdn.primus.netdna-cdn.com/latestO/CSSPlugin.min.js'
             // app
             ,'aCDN/app/Pres.js'
