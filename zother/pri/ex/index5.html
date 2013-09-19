@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href='//scdn-primus.netdna-ssl.com/latestO/topcoat-mobile-light.css' rel='stylesheet'>
+    <style>
+        ul {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+This is a simple form that shows how to insert and list inserted records with the Cloud API(tm).
+The binding for the list is done via jQuery's Transparency plugin.<p/>
+If you know a bit of jQuery, you can view source and show browser's console (@Alt-J). There are 3 interesting lines of code, marked with '****',
+ the rest of the code is standard jQuery. If you want to know more about the API used, check out PirmusAPI.com.
+</p>
+
+<form>
+    First Name<input type='text' id='firstname'><br/>
+    Last Name<input type='text' id='lastname'  ><br/>
+    <button id='insert' onclick='return false' >Insert Name</button>
+    <button id='listAll'onclick='return false' >List all</button>
+</form>
+
+<!-- binding by 3rd party lib -->
+<ul id='bindingL' >
+    <li ><span><div data-bind='lastname'></div><div data-bind='firstname'></div>
+    </span></li>
+</ul>
+
+<script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
+<!--binding 3rd party lib: -->
+<script src='//scdn-primus.netdna-ssl.com/latestO/transparency.min.js'></script>
+<!--cloud API for C.R.U.D service: -->
+<script src='//scdn-primus.netdna-ssl.com/latest/cloudAPI.js'></script>
+<script>
+//code:
+
+cAPI=new CloudAPI('fiasqrx5mli') // *** C ***
+
+$('#insert').click(function(){
+    var ename =new Object()
+    var firstname = $('#firstname').val()
+    var lastname = $('#lastname').val()
+    ename.firstname=firstname
+    ename.lastname=lastname
+    console.log('clicked ' + firstname +', ' + lastname)
+    cAPI.insert('nameapp',ename, onPK) // **** I ****
+})
+function onPK(data){
+    console.log('back')
+    console.log(data)
+}
+
+$('#listAll').click(function(){
+    console.log('clicked list')
+    cAPI.select('nameapp', null, onList) // **** S ****
+
+})
+function onList(data){
+    console.log(data.array_)
+    $('#bindingL').render(data.array_)//jQuery plugin http://github.com/leonidas/transparency
+}
+
+</script></body></html>

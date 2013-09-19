@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PGUAuth</title>
+</head>
+<body>
+<script id="primusAPI" data-app_key="fim843ffv77" src="http://ca_1.primusapi.com/acdn/libs/cloudAPI.js" ></script>
+
+<script>
+c = new CloudAPI()
+
+//c.mail("vic@primusAPI.com", "hi2", "hey vic"); // no 2 args
+
+
+// pre req: CRUD, dataview, make an app
+//happy path:
+var d="Hi, it's _CODE_ "
+//c.signUp("cekvenich.vic@gmail.com","bla", 3,"vic", d, "admin", null, onRet) // returns match code to email
+// code from above comes via email but not self
+//c.matchValidateCode('cekvenich.vic@gmail.com', "y7m", onRet)
+c.login("cekvenich.vic@gmail.com","bla", onRet) // returns token you'll need for a secure app's tables
+
+
+function onRet(data_) {
+    console.log(data_)
+    console.log(JSON.stringify(data_));
+}
+
+</script>
+</body>
+</html>
