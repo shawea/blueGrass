@@ -4,7 +4,7 @@ var CloudAPI = (function () {
     * @param key
     */
     function CloudAPI(key) {
-        this._baseServiceUrl1 = 'http://primusapi.net/service/';
+        this._baseServiceUrl1 = 'http://primusapi.net/service0/';
         this._sec = 0;
         this.setAppKey(key);
     }
