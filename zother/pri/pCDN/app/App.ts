@@ -2,7 +2,7 @@ declare var TweenLite;
 
 head.ready(function() {
     viewDir = 'view/'
-    console.log('0.01')
+    console.log('0.02')
     new App()
 })
 
