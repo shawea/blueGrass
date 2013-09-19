@@ -33,7 +33,7 @@ var Vid = (function () {
     };
     Vid.prototype.onLoaded = function () {
         $('#ytplayer').width($(document).width());
-        $('#ytplayer').height($(document).height() - 80);
+        $('#ytplayer').height($(document).height() - 90);
         TweenLite.to($('#ytplayer'), .25, { opacity: 1, delay: .3 });
     };
     Vid.prototype.onView = function (view) {
@@ -65,6 +65,8 @@ var About = (function () {
     }
     About.prototype.transition = function () {
         forward('About', 'about');
+    };
+    About.prototype.onLoaded = function () {
     };
     About.prototype.onView = function (view) {
         if ('about' == view)

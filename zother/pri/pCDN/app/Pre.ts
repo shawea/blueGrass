@@ -41,7 +41,7 @@ class Vid implements IPresenter{
     }
     private onLoaded() {
         $('#ytplayer').width($(document).width())
-        $('#ytplayer').height($(document).height()-80)
+        $('#ytplayer').height($(document).height()-90)
         TweenLite.to($('#ytplayer'),.25, {opacity:1, delay:.3})
     }
     private onView(view:string){
@@ -73,6 +73,9 @@ class About implements IPresenter{
     }
     private transition():any {
         forward('About','about')
+    }
+    onLoaded() {
+
     }
     private onView(view:string){
         if('about'==view)
