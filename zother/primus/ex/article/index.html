@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        section {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+            margin-left: 1rem;
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .txtBr {
+            margin-bottom: 1rem;
+        }
+        .txt {
+        }
+        .step{
+            font-weight: bold;
+            display: inline-block;
+            font-size: 1.25rem;
+            font-style:italic;
+            color: #00008b;
+            }
+        .code{
+            font-weight: bold;
+            color: #00008b;
+            font-size:1.2rem
+        }
+        .screen{
+            margin-left:auto;
+            margin-right:auto;
+            display: block;
+            border:1px solid #00008b;
+        }
+        a {
+           font-size: 1.2rem;
+           font-weight: bold;
+           font-style:italic
+        }
+    </style>
+</head>
+<body>
+<section class='txtBr'>
+This article will show you how how to write a pure HTML5 application that does database updates without you, the front end developer / HTML designer having to learn, setup or use any back end system. So no ASP, JSP, PHP, Ruby or Python needed to do HTML forms or data lists that C.R.U.D (create read update delete).  You can turn your prototypes into real apps ready to deploy (it can run on any plain HTTP server and even CDN if you wish low latency. Note that CDN's don't support any back end, including PHP, they do just pure HTML assets only).
+</section>
+<section>
+    <div class='txtBr'>
+    <div class='step'>Step 0:</div> We will use jQuery and a local HTTP server for develop so we need to setup first. You may already have a local http server running, if you do, ship to next step.
+    To install a local HTTP server, python has a module, there are many others. You can google on how to run a local HTTP server. Assuming you are using NPM ( a software package manager popular for HTML5 development) you install it like so: npm -g install simplehttpserver
+    Then you can go to the folder where you develop and type in 'simplehttpserver' at the console, or you can just put your development file where you have your server running. For example, some people have the Apache HTTP server running.
+    </div>
+    <div class='txt'>
+    To test out that you server is running, use a text editor (Sublime 3 is one text editor you can use to edit) to create an index.html file like this one:
+    </div>
+    <div class='code'><xmp>
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title></title>
+        </head>
+        <body>
+        Oh hi.<br/>
+        <form>
+            We will put our form here.
+        </form>
+
+        <script>
+            console.log('hello world')
+        </script>
+        </body>
+        </html>
+    </xmp></div>
+    <div class='txt'>
+    You can now go to browser (like Chrome) and browser to localhost + port number where your http server is running like http://localhost:8000 .  Also you should always open the development console on your browser. It should look like this:
+    <p/>
+    <img class='screen' src='0.png'>
+    If you can see 'hello world' in your browser's development console, you are done with step 1. Now that was the hard part, running a local HTTP server, editing a local HTML file in the local server and being able to browse it with the browser's development console working. This seems like a lot to do to get going, but this is needed for *any* HTML development and something that you need to know how to setup. Once it's setup you don't need to change it. Use google if you need to, this step could take a few hours, nothing can be done about it.
+    </div>
+</section>
+<section>
+    <div class='txt'>
+    <div class='step'>Step 1:</div> We will use jQuery to listen to 'clicked' event, for example when we save a form. Paste this code in, but make sure you understand each line (contact the authors or webmaster if you don't).
+    <div class='code'><xmp>
+        <!DOCTYPE html>
+        <html>
+        <head>
+
+        </head>
+        <body>
+
+        <form>
+            First Name<input type='text' id='firstname'><br/>
+            Last Name<input type='text' id='lastname'  ><br/>
+            <button id='insert' onclick='return false' >Insert Name</button>
+            <button id='listAll'onclick='return false' >List all</button>
+        </form>
+
+        <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
+
+        <script>
+            //code:
+
+            $('#insert').click(function(){
+                var ename =new Object()
+                var firstname = $('#firstname').val()
+                var lastname = $('#lastname').val()
+                ename.firstname=firstname
+                ename.lastname=lastname
+                console.log('clicked ' + firstname +', ' + lastname)
+            })
+
+            $('#listAll').click(function(){
+                console.log('clicked list')
+
+            })
+
+        </script>
+        </body>
+        </html>
+    </xmp></div>
+    <div class='txt'>
+    When you click 'List all' button, you should see the 'clicked list' message on the console.
+    When you click 'Insert' button, you should see the 'clicked' message on the console, plus the contents of first and last name fields. If you do see the messages shown, the you are done with step 2. This is not an ideal form, but you will learn things.
+    </div>
+    </div>
+</section>
+<section>
+    <div class='txt'>
+        <div class='step'>Step 2:</div> We will now insert data into a cloud DB as promised, and see it.
+        First, go to <a href='http://PrimusAPI.com'>PrimusAPI.com</a> and click sign up to the an 'application key'. Your application key is visible in the Primus API account screen. I will use 'XXX' to show where you will need to type in app. key.  Paste in this code:
+        <div class='code'><xmp>
+        <!DOCTYPE html><html><head>
+        </head><body>
+
+        <form>
+            First Name<input type='text' id='firstname'><br/>
+            Last Name<input type='text' id='lastname'  ><br/>
+            <button id='insert' onclick='return false' >Insert Name</button>
+            <button id='listAll'onclick='return false' >List all</button>
+        </form>
+
+        <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
+        <!-- we use PrimusAPI's Cloud API #14-->
+        <script src='//scdn-primus.netdna-ssl.com/latest/cloudAPI.js'></script>
+
+        <script>
+
+            cAPI=new CloudAPI('XXX') // #18 create the CloudAPI, use your app key. We call it in the insert(...) function
+
+            $('#insert').click(function(){
+                var ename =new Object()
+                var firstname = $('#firstname').val()
+                var lastname = $('#lastname').val()
+                ename.firstname=firstname
+                ename.lastname=lastname
+                console.log('clicked ' + firstname +', ' + lastname)
+                // we use Cloud API's insert method that takes 3 arguments: first is table name, third is a callback; meaning after it inserts. Second argument is columns, to be explained later, but you can guess.
+                cAPI.insert('nameapp',ename, onPK) // #28 **** I ****
+
+            })
+            function onPK(data){
+                console.log('back')
+                console.log(data) //#31
+            }
+
+            $('#listAll').click(function(){
+                console.log('clicked list')
+
+            })
+
+        </script></body></html>
+    </xmp></div>
+    </div>
+    <div class='txt'>
+    Before we run the code note the 4 changes:
+    <ol> <li>: ~ line 14 we load script called CloudAPI from Primus API, just like we load jQuery.
+    </li><li>: ~ line 18 we make an instance of the CloudAPI, cAPI = new CloudAPI(...). This is where you type in your app key that you got from PrimusAPI signup.
+    </li><li>: ~ line 28 we call the insert(...) function, on click. We pass it the table name, the columns and a call back.
+    </li><li>: ~ line 31is the callback, it displays in the console the new primary key of the row just inserted.
+    </li></ol>
+    </div>
+    <div class='txt'>
+    Now browse this file, enter first name and last name and click the insert button; and look at the display console. It should output something like this:
+    <img class='screen' src='3.png'>
+    </div>
+</section>
+<section>
+    <div class='txtBr'>
+    <div class='step'>Step 3: </div> Lets verify that we inserted the data into the cloud. Go to PrimusAPI.com account page, you will see the 'Data View' button. Click it and log in.<br/>
+    You should see your app name. Click it.<br/>
+    You should see the table name ('namepp'). Click it.<br/>
+    That should show you the name you just inserted.
+    Go ahead an insert another name using the local html file and bowser and go back to 'Primus Data View' to see all the records you are inserting.
+    </div>
+</section>
+<section>
+    <div class='txtBr'>
+    <div class='step'>Step 4a: </div> Lets list/select all the rows|records we inserted using one of jQuery's plugins. We got the cloud API to insert.
+    (But before you go on to this step, maybe a little coffee break before coming back to step 5)
+    <br/>Paste this in:
+    <div class='code'><xmp>
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <style>
+                ul {
+                    list-style: none;
+                }
+            </style>
+        </head>
+        <body>
+        <form>
+            First Name<input type='text' id='firstname'><br/>
+            Last Name<input type='text' id='lastname'  ><br/>
+            <button id='insert' onclick='return false' >Insert Name</button>
+            <button id='listAll'onclick='return false' >List all</button>
+        </form>
+
+        <!-- #20 binding by 3rd party lib -->
+        <ul id='bindingL' >
+            <li ><span><div data-bind='lastname'></div><div data-bind='firstname'></div>
+        </span></li>
+        </ul>
+
+        <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
+        <!-- #26 binding 3rd party lib: jQuery plugin http://github.com/leonidas/transparency -->
+        <script src='//scdn-primus.netdna-ssl.com/latestO/transparency.min.js'></script>
+        <!--cloud API for C.R.U.D service: -->
+        <script src='//scdn-primus.netdna-ssl.com/latest/cloudAPI.js'></script>
+        <script>
+            //code:
+
+            cAPI=new CloudAPI('fiasqrx5mli')
+
+            $('#insert').click(function(){
+                var ename =new Object()
+                var firstname = $('#firstname').val()
+                var lastname = $('#lastname').val()
+                ename.firstname=firstname
+                ename.lastname=lastname
+                console.log('clicked ' + firstname +', ' + lastname)
+                cAPI.insert('nameapp',ename, onPK)
+            })
+            function onPK(data){
+                console.log('back')
+                console.log(data)
+            }
+
+            $('#listAll').click(function(){
+                console.log('clicked list')
+                cAPI.select('nameapp', null, onList) // #50 **** S ****
+
+            })
+            function onList(data){
+                console.log(data.array_) //#54
+                // **** we did not issue the binding yet it will go here
+
+            }
+
+        </script>
+        </body>
+        </html>
+    </xmp></div>
+    When you click the 'List' button, you should see a list of the names you inserted. Lets review the code:
+    <ul><li>~ line 26 we load a jQuery binding library. There are many, this is one of them.
+    </li><li>~ it will bind (in the next step) to line ~ 20. That is the mark up in how it will display, you can change that.
+    </li><li>~ line 50 we call the select API, pass it null. It means that there is no 'where' clause, give us all the records. You could create an object and set column to something.
+    </li><li>~ line 54 is where you show the returned rows to the development console.
+    </li></ul>
+    Note so far, we did not use any back end resources. PHP. ASP. JSP. Ruby. Python. 0!
+    </div>
+</section>
+<section>
+    <div class='txtBr'>
+    <div class='step'>Step 4b: </div> Lets use the binding call now that we loaded in 5a.
+    On line ~55 when we have the data, add:<div class='code'><xmp>
+        $('#bindingL').render(data.array_)//jQuery plugin http://github.com/leonidas/transparency
+    </xmp></div>
+    </div>
+</section>
+
+<section>
+<div class='txtBr'>
+<div class='step'>Done! </div> CRUD w/o back end resource, just pure HTML5 (internally based
+    on HTML5 feature <a href='http://caniuse.com/#feat=cors'>caniuse.com/#feat=cors</a> – much better than old AJAX and JSONP )
+</div>
+</section>
+
+</body>
+</html>
