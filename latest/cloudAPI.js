@@ -16,13 +16,6 @@ var CloudAPI = (function () {
         console.log('cloudAPI ready v2.917a ');
     };
 
-    CloudAPI.prototype.showSpinner = function (status) {
-        if (status)
-            document.body.style.cursor = 'wait';
-else
-            document.body.style.cursor = 'default';
-    };
-
     CloudAPI.prototype.setAuthToken = function (tok) {
         this._auth_token = tok;
     };

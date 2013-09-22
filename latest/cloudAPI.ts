@@ -24,13 +24,6 @@ class CloudAPI {
         console.log('cloudAPI ready v2.917a ' )
     }
 
-    showSpinner(status){
-        if (status)
-            document.body.style.cursor = 'wait';
-        else
-            document.body.style.cursor = 'default';
-    }
-
     setAuthToken(tok:string) {
         this._auth_token = tok
     }
