@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html><head></head>
+<style>
+
+</style>
+<body>
+
+list js:
+<div id='hacker-list'>
+<ul class='list'>
+    <li>
+        <span class='name'>Al</span>, <span class='city'>Gore</span>
+    </li>
+</ul>
+</div>
+<!--end list js -->
+
+transparency js:
+<ul id='binding'>
+    <li>
+        <span data-bind='name'></span>, <span data-bind='city'></span>
+    </li>
+</ul>
+<!-- end transparency js -->
+
+<script src='//scdn.primus.netdna-cdn.com/latest/jquery-2.0.3.min.js'></script>
+<script src='//scdn.primus.netdna-cdn.com/latest/more/extra/list.js'></script>
+<script src='//scdn-primus.netdna-ssl.com/latestO/transparency.min.js'></script>
+<script>
+//list js code (does not need jquery):
+var options = {
+    valueNames: ['name', 'city']
+ }
+
+var values = [
+      { name: 'Jonny', city:'Stockholm' }
+    , { name: 'Jonas', city:'Berlin' }
+ ]
+
+var hackerList = new List('hacker-list', options)
+hackerList.clear()//remove the 'Al Gore'
+hackerList.add( values )
+// end list js code
+
+//transparency js (uses data-bind)
+$('#binding').render(values)
+// end transparency js code
+</script>
+</body>
+</html>
