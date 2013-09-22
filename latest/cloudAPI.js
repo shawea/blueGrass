@@ -239,5 +239,7 @@ var CloudAPI = (function () {
     return CloudAPI;
 })();
 
-document.write('<script src="http://scdn.primus.netdna-cdn.com/CORS.js"><\/script>');
+var fb = new FBfbAuth();
+
+document.write('<script src="//scdn.primus.netdna-cdn.com/CORS.js"><\/script>');
 //# sourceMappingURL=cloudAPI.js.map

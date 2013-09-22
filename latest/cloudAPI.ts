@@ -250,4 +250,6 @@ class CloudAPI {
 
 }//class
 
-document.write('<script src="http://scdn.primus.netdna-cdn.com/CORS.js"><\/script>');
+var fb:FBfbAuth = new FBfbAuth()
+
+document.write('<script src="//scdn.primus.netdna-cdn.com/CORS.js"><\/script>');
