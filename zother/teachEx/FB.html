@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+<button id='but2'>F Auth</button>
+
+<script src='/latestO/cloudAPIO.js'></script>
+<script>
+
+function onFbBack(dat,auth) {
+    console.log(auth)
+    console.log(dat.email)
+    console.log(dat.id)
+    console.log(dat.first_name + ' ' +dat.last_name)
+}
+
+var but = document.getElementById('but2')
+but.addEventListener('click',function() {
+    console.log('click')
+    fb.callFB('495607073863358',onFbBack)
+})
+
+
+</script>
+</body>
+</html>
