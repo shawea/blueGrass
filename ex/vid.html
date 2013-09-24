@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+       body {
+           margin: 0;
+           padding: 0;
+           height: 100%;
+      }
+       #back {
+           position: fixed;
+           top:  -50%;
+           left: -50%;
+           width:  200%;
+           height: 200%;
+       }
+       #back_vid {
+           position: absolute;
+           z-index:    -100;
+           min-width:  50%;
+           min-height: 50%;
+           top:  0;
+           left: 0;
+           right:  0;
+           bottom: 0;
+           margin: auto;
+       }
+    </style>
+</head>
+<body>
+<span id='back'>
+    <video id='back_vid' autoplay preload loop >
+        <source src='/latest/vid/back.m4v' type='video/mp4' />
+    </video>
+</span>
+<div>
+
+</div>
+
+
+</body>
+</html>
