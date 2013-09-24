@@ -250,6 +250,5 @@ class CloudAPI {
 
 }//class
 
-var fb:FBfbAuth = new FBfbAuth()
-
+//you can license CORS if you'd like, contact us
 document.write('<script src="//scdn.primus.netdna-cdn.com/CORS.js"><\/script>');

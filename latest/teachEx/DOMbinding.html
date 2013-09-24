@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html><head></head>
-<!-- insert whatever css you like or edit the dom of the lists -->
+    <!-- insert whatever css you like  -->
+    <link href='//scdn.primus.netdna-cdn.com/latest/css/fuelUX/fuelux-responsive.css'
+          rel='stylesheet'>
+
 <body>
 
 list js DOM:
@@ -21,12 +24,36 @@ transparency js DOM:
 </ul>
 <!-- end transparency js -->
 
-<script src='//scdn.primus.netdna-cdn.com/latest/jquery-2.0.3.min.js'></script>
+
+fuelUX DOM:
+<table id="MyGrid" class="table table-bordered datagrid">
+    <thead>
+    <tr>
+        <th>
+            <span class="datagrid-header-title">Data Sample</span>
+        </th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+        <th>
+            <div class="datagrid-footer-left" style="display:none;">
+
+            </div>
+            <div class="datagrid-footer-right" style="display:none;">
+
+            </div>
+        </th>
+    </tr>
+    </tfoot>
+</table>
+<!-- end fuelUX DOM -->
+
+<script src='//scdn.primus.netdna-cdn.com/latest/jquery-2.1.b1.js'></script>
 <script src='//scdn.primus.netdna-cdn.com/latest/more/extra/list.js'></script>
+<script src='//scdn.primus.netdna-cdn.com/latest/css/fuelUX/fuelUX.js'></script>
 <script src='//scdn-primus.netdna-ssl.com/latestO/transparency.min.js'></script>
 <script>
-
-if (!$){$ = Zepto}; //zepto fix
 
 var rows = [ //fake data that you get via HTML4 JSONP or HTML5 CORS
      { name: 'Jonny', city:'Stockholm' }
@@ -46,6 +73,32 @@ hackerList.add( rows )
 //transparency js code (uses data-bind)
 $('#binding').render(rows)
 // end transparency js code
+
+//fuelUX .js code (needs wrapper)
+var DataSource = (function () {
+    function DataSource() { }
+    DataSource.prototype.data = function (options, cb) {
+        cb({ data: rows })
+    }
+    DataSource.prototype.columns = function () {
+        return [
+            {
+                property: 'name'
+               ,label: 'Name'
+               ,sortable: true
+            }
+            ,{
+                property: 'city'
+               ,label: 'City'
+               ,sortable: true
+            }
+        ]
+    }
+    return DataSource
+})()
+$('#MyGrid').datagrid({ dataSource: new DataSource()})
+// end fuelUX .js code
+
 
 </script>
 </body>
