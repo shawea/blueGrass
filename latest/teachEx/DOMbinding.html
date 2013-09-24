@@ -25,6 +25,9 @@ transparency js DOM:
 <script src='//scdn.primus.netdna-cdn.com/latest/more/extra/list.js'></script>
 <script src='//scdn-primus.netdna-ssl.com/latestO/transparency.min.js'></script>
 <script>
+
+if (!$){$ = Zepto}; //zepto fix
+
 var rows = [ //fake data that you get via HTML4 JSONP or HTML5 CORS
      { name: 'Jonny', city:'Stockholm' }
     ,{ name: 'Jonas', city:'Berlin' }

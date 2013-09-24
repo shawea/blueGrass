@@ -1,0 +1,409 @@
+{
+	"description": "Schema for locally set configuration",
+	"additionalProperties": false,
+	"type": "object",
+	"properties": {
+		"profile": {
+			"type": "string",
+			"title": "Profile",
+			"description": "Active profile to use for building your app.",
+			"required": false,
+			"blank": false,
+			"_order": 1
+		},
+
+		"general": {
+			"required": false,
+			"type": "object",
+			"title": "General",
+			"additionalProperties": false,
+			"properties": {
+				"reload": {
+					"required": false,
+					"type": "object",
+					"additionalProperties": false,
+					"title": "Reload",
+					"description": "Settings related to reload functionality.",
+					"properties": {
+						"external": {
+							"type": "boolean",
+							"required": false,
+							"title": "External",
+							"description": "Use an external content delivery network to serve reload updates."
+						}
+					}
+				}
+			},
+			"_order": 2
+		},
+
+		"ios": {
+			"required": false,
+			"type": "object",
+			"additionalProperties": false,
+			"title": "iOS",
+			"properties": {
+				"device": {
+					"type": "string",
+					"blank": false,
+					"required": false,
+					"title": "Device",
+					"description": "Either 'simulator', 'device' or a specific device ID.",
+					"_order": 1
+				},
+				"simulatorsdk": {
+					"type": "string",
+					"required": false,
+					"title": "Simulator Version",
+					"description": "If launching using the iOS simulator this allows you to set a simulator SDK version to use.",
+					"enum": ["6.1", "6.0", "5.1", "5.0"],
+					"_order": 2
+				},
+				"simulatorfamily": {
+					"type": "string",
+					"required": false,
+					"title": "Simulator Family",
+					"description": "If launching using the iOS simulator this allows you to set a simulator device family to use.",
+					"enum": ["iphone", "ipad"],
+					"_order": 3
+				},
+				"profiles": {
+					"required": true,
+					"type": "object",
+					"properties": {
+						"DEFAULT": {
+							"_comment": "Fixed default profile to hold us over until we allow dynamic add/remove of profiles",
+							"type": "object",
+							"required": true,
+							"properties": {
+								"provisioning_profile": {
+									"type": "string",
+									"blank": false,
+									"required": false,
+									"_filepicker": true,
+									"title": "Provisioning Profile",
+									"description": "Path to the location of the provisioning profile to embed into your iOS application. This is necessary to be able to install the app on devices.",
+									"_order": 1
+								},
+								"developer_certificate": {
+									"type": "string",
+									"blank": false,
+									"required": false,
+									"title": "Certificate",
+									"description": "<i>OS X Only.</i> Name of the certificate to use to sign your iOS app with. See our docs for more details on how to manage certificates.",
+									"_order": 2
+								},
+								"developer_certificate_path": {
+									"type": "string",
+									"blank": false,
+									"required": false,
+									"_filepicker": true,
+									"title": "Certificate Path",
+									"description": "<i>Not required for OS X.</i> Path to p12 or pfx certificate file, see our docs for more details on how to manage certificates.",
+									"_order": 3
+								},
+								"developer_certificate_password": {
+									"type": "string",
+									"blank": false,
+									"required": false,
+									"_password": true,
+									"title": "Certificate Password",
+									"description": "<i>Not required for OS X.</i> Password for above certificate file.",
+									"_order": 4
+ 								}
+							}
+						}
+					},
+					"additionalProperties": {
+						"type": "object",
+						"properties": {
+							"provisioning_profile": {
+								"type": "string",
+								"blank": false,
+								"required": false,
+								"_filepicker": true,
+								"title": "Provisioning Profile",
+								"description": "Path to the location of the provisioning profile to embed into your iOS application. This is necessary to be able to install the app on devices.",
+								"_order": 1
+							},
+							"developer_certificate": {
+								"type": "string",
+								"blank": false,
+								"required": false,
+								"title": "Certificate",
+								"description": "<i>OS X Only.</i> Name of the certificate to use to sign your iOS app with. See our docs for more details on how to manage certificates.",
+								"_order": 2
+							},
+							"developer_certificate_path": {
+								"type": "string",
+								"blank": false,
+								"required": false,
+								"_filepicker": true,
+								"title": "Certificate Path",
+								"description": "<i>Not required for OS X.</i> Path to p12 or pfx certificate file, see our docs for more details on how to manage certificates.",
+								"_order": 3
+							},
+							"developer_certificate_password": {
+								"type": "string",
+								"blank": false,
+								"required": false,
+								"_password": true,
+								"title": "Certificate Password",
+								"description": "<i>Not required for OS X.</i> Password for above certificate file.",
+								"_order": 4
+							}
+						},
+						"_order": 4
+					}
+				}
+			}
+		},
+
+		"android": {
+			"required": false,
+			"type": "object",
+			"additionalProperties": false,
+			"title": "Android",
+			"properties": {
+				"device": {
+					"type": "string",
+					"blank": false,
+					"required": false,
+					"title": "Device",
+					"description": "Either 'simulator', 'device' or a specific device ID",
+					"_order": 1
+				},
+				"sdk": {
+					"type": "string",
+					"required": false,
+					"_dirpicker": true,
+					"title": "Android SDK",
+					"description": "Path to the location of the Android SDK on your local filesystem.",
+					"_order": 2
+				},
+				"purge": {
+					"type": "boolean",
+					"required": false,
+					"_order": 3,
+					"title": "Purge",
+					"description": "Remove the app (and all related settings/data) before installing and running new version."
+				},
+				"profiles": {
+					"required": true,
+					"type": "object",
+					"properties": {
+						"DEFAULT": {
+							"_comment": "Fixed default profile to hold us over until we allow dynamic add/remove of profiles",
+							"type": "object",
+							"required": true,
+							"properties": {
+								"keystore": {
+									"type": "string",
+									"blank": false,
+									"required": false,
+									"filepicker": true,
+									"title": "Key Store",
+									"description": "Path to the keystore you wish to use to sign packaged Android apps."
+								},
+								"keyalias": {
+									"type": "string",
+									"blank": false,
+									"required": false,
+									"title": "Key Alias",
+									"description": "Alias given to your key in the keystore"
+								},
+								"storepass": {
+									"type": "string",
+									"blank": false,
+									"required": false,
+									"_password": true,
+									"title": "Store Password",
+									"description": "Password for your keystore"
+								},
+								"keypass": {
+									"type": "string",
+									"blank": false,
+									"required": false,
+									"_password": true,
+									"title": "Key Password",
+									"description": "Password for your key"
+								}								
+							}
+						}
+					},
+					"additionalProperties": {
+						"type": "object",
+						"properties": {
+							"keystore": {
+								"type": "string",
+								"blank": false,
+								"required": false,
+								"filepicker": true,
+								"title": "Key Store",
+								"description": "Path to the keystore you wish to use to sign packaged Android apps."
+							},
+							"keyalias": {
+								"type": "string",
+								"blank": false,
+								"required": false,
+								"title": "Key Alias",
+								"description": "Alias given to your key in the keystore"
+							},
+							"storepass": {
+								"type": "string",
+								"blank": false,
+								"required": false,
+								"_password": true,
+								"title": "Store Password",
+								"description": "Password for your keystore"
+							},
+							"keypass": {
+								"type": "string",
+								"blank": false,
+								"required": false,
+								"_password": true,
+								"title": "Key Password",
+								"description": "Password for your key"
+							}
+						}
+					},
+					"_order": 4
+				}
+			}
+		},
+
+		"web": {
+			"required": false,
+			"type": "object",
+			"additionalProperties": false,
+			"title": "Web",
+			"properties": {
+				"node_path": {
+					"type": "string",
+					"blank": false,
+					"required": false,
+					"_dirpicker": true,
+					"title": "Node Path",
+					"description": "The path to your node installation",
+					"_order": 1
+				},
+				"profiles": {
+					"required": true,
+					"type": "object",
+					"_order": 2,
+					"properties": {
+						"DEFAULT": {
+							"_comment": "Fixed default profile to hold us over until we allow dynamic add/remove of profiles",
+							"type": "object",
+							"required": true,
+							"properties": {
+								"heroku_api_key": {
+									"type": "string",
+									"blank": false,
+									"required": false,
+									"title": "Heroku API Key"
+								},
+								"heroku_app_name": {
+									"type": "string",
+									"blank": false,
+									"required": false,
+									"title": "Heroku App Name"
+								}								
+							}
+						}
+					},
+					"additionalProperties": {
+						"type": "object",
+						"properties": {
+							"heroku_api_key": {
+								"type": "string",
+								"blank": false,
+								"required": false,
+								"title": "Heroku API Key"
+							},
+							"heroku_app_name": {
+								"type": "string",
+								"blank": false,
+								"required": false,
+								"title": "Heroku App Name"
+							}
+						}
+					}
+				}
+			}
+		},
+
+		"ie": {
+			"required": false,
+			"type": "object",
+			"additionalProperties": false,
+			"title": "Internet Explorer",
+			"properties": {
+				"profiles": {
+					"required": true,
+					"type": "object",
+					"properties": {
+						"DEFAULT": {
+							"_comment": "Fixed default profile to hold us over until we allow dynamic add/remove of profiles",
+							"type": "object",
+							"required": true,
+							"properties": {
+								"developer_certificate": {
+									"type": "string",
+									"blank": false,
+									"required": false,
+									"title": "Certificate",
+									"description": "Name of the p12 or pfx certificate file used to sign your IE extension with."
+								},
+								"developer_certificate_path": {
+									"type": "string",
+									"blank": false,
+									"required": false,
+									"_filepicker": true,
+									"title": "Certificate Path",
+									"description": "Path to the p12 or pfx certificate file used to sign your IE extension with."
+								},
+								"developer_certificate_password": {
+									"type": "string",
+									"blank": false,
+									"required": false,
+									"_password": true,
+									"title": "Certificate Password",
+									"description": "Password for the p12 of pfx certificate file."
+								}
+							}
+						}
+					},
+					"additionalProperties": {
+						"type": "object",
+						"properties": {
+							"developer_certificate": {
+								"type": "string",
+								"blank": false,
+								"required": false,
+								"title": "Certificate",
+								"description": "Name of the p12 or pfx certificate file used to sign your IE extension with."
+							},
+							"developer_certificate_path": {
+								"type": "string",
+								"blank": false,
+								"required": false,
+								"_filepicker": true,
+								"title": "Certificate Path",
+								"description": "Path to the p12 or pfx certificate file used to sign your IE extension with."
+							},
+							"developer_certificate_password": {
+								"type": "string",
+								"blank": false,
+								"required": false,
+								"_password": true,
+								"title": "Certificate Password",
+								"description": "Password for the p12 of pfx certificate file."
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

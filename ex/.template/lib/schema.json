@@ -1,0 +1,243 @@
+{
+	"description": "Forge app generation configuration",
+	"type": "object",
+	"additionalProperties": false,
+	"properties": {
+		"config_version": {
+			"required": true,
+			"type": "string",
+			"title": "Config Version",
+			"description": "An internal reference to the version of the layout of this config file, you should not need to change this manually",
+			"_hide": true
+		},
+		"name": {
+			"required": true,
+			"type": "string",
+			"title": "Name",
+			"description": "The display name of your app as it will be seen by the user.",
+			"_order": 1
+		},
+		"author": {
+			"required": true,
+			"type": "string",
+			"title": "Author",
+			"_order": 3
+		},
+		"description": {
+			"required": false,
+			"type": "string",
+			"title": "Description",
+			"_order": 2
+		},
+		"platform_version": {
+			"required": true, 
+			"type": "string", 
+			"title": "Platform Version",
+			"description": "The Forge platform level this application should be built against, most of the time you will not need to manually change this option.",
+			"_order": 6
+		},
+		"version": {
+			"required": true,
+			"type": "string",
+			"title": "App Version",
+			"description": "The version number for your app, consisting of up to 3 . separated integers, i.e. \"1.3.32\".",
+			"pattern": "^\\d{,5}(\\.\\d{,5})?(\\.\\d{,5})?$",
+			"_order": 4
+		},
+		"homepage": {
+			"required": false,
+			"type": "string",
+			"title": "Homepage",
+			"description": "Your website, or location of more information about this app.",
+			"_order": 5
+		},
+		"core": {
+			"description": "Configuration for core functionality of your Trigger.io app.",
+			"required": false,
+			"type": "object",
+			"properties": {
+				"general": {
+					"description": "General options that can affect all platforms.",
+					"required": false,
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"reload": {
+							"description": "Enable reload functionality.",
+							"type": "boolean",
+							"required": false
+						},
+						"trusted_urls": {
+							"description": "Trusted remote URLs that can access Forge APIs.",
+							"type": "array",
+							"required": false,
+							"items": {
+								"type": "string"
+							}
+						},
+						"logging": {
+							"type": "object",
+							"required": false,
+							"properties": {
+                                "level": {
+                                    "required": true,
+                                    "description": "How verbose logging output should be",
+                                    "type": "string",
+                                    "enum": ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
+                                }
+                            }
+						}
+					}
+				},
+				"ios": {
+					"required": false,
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"minimum_version": {
+							"required": false,
+							"type": "string",
+							"description": "Minimum allowed iOS version for your app",
+							"enum": ["4.3","5.0","5.1","6.0"]
+						},
+						"device_family": {
+							"required": false,
+							"type": "string",
+							"description": "Limit types of devices this app can run on.",
+							"enum": ["any", "ipad", "iphone"]
+						},
+						"package_name": {
+							"type": "string",
+							"required": false
+						}
+					}
+				},
+				"android": {
+					"required": false,
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"minimum_version": {
+							"required": false,
+							"type": "string",
+							"description": "Minimum allowed Android API level for your app",
+							"enum": ["5","6","7","8","9","10","11","12","13","14","15"]
+						},
+						"disable_ics_acceleration": {
+							"required": false,
+							"type": "boolean",
+							"description": "Disable hardware acceleration on Android 4.0 (ICS) as there are known rendering issues with this version of Android."
+						},
+						"package_name": {
+							"type": "string",
+							"required": false
+						}
+					}
+				},
+				"safari": {
+					"required": false,
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"package_name": {
+							"type": "string",
+							"required": false
+						}
+					}
+				},
+				"chrome": {
+					"required": false,
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"content_security_policy": {
+							"required": false,
+							"type": "string"
+						},
+						"web_accessible_resources": {
+							"required": false,
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"firefox": {
+					"required": false,
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"package_name": {
+							"type": "string",
+							"required": false
+						}
+					}
+				},
+				"osx": {
+					"required": false,
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"package_name": {
+							"type": "string",
+							"required": false
+						}
+					}
+				},
+				"ie": {
+					"required": false,
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"package_name": {
+							"type": "string",
+							"required": false
+						}
+					}
+				}
+			},
+			"additionalProperties": false,
+			"_order": 6
+		},
+		"modules": {
+			"_hide": true,
+			"type": "object",
+			"required": false,
+			"additionalProperties": {
+				"type": "object",
+				"properties": {
+					"version": {
+						"type": "string",
+						"required": true
+					},
+					"config": {
+						"type": "object",
+						"required": false
+					},
+					"disabled": {
+						"type": "boolean",
+						"required": false
+					}
+				},
+				"additionalProperties": false
+			},
+			"properties": {
+				"parameters": {
+					"required": false
+				}
+			}
+		},
+		"uuid": {
+			"_hide": true
+		},
+		"config_hash": {
+			"_hide": true,	
+			"required": false
+		},
+		"trigger_domain": {
+			"_hide": true,
+			"required": false
+		}
+	}
+}
