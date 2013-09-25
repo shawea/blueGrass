@@ -4,7 +4,7 @@
 @gray:                  #95a5a6;
 @gray-light:            #b4bcc2;
 @gray-lighter:          #ecf0f1;
-@body-bg:               #fff;
+@body-bg:               @gray-lighter;
 
 @brand-primary:         #2C3E50;
 @brand-success:         #18BC9C;
@@ -47,8 +47,8 @@
 
 @font-family-sans-serif: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-@line-height-base:        1rem;
-@border-radius-base:      4px;
+@line-height:        1rem;
+@border-radius:      4px;
 
 @navbar-height:           60px;
 
@@ -58,16 +58,37 @@ body {
   height: 100% ;
   font-family: @font-family-sans-serif;
   color: @brand-success;
-
+  -webkit-font-smoothing: antialiased;
+  font-size: 1.5rem;
+  text-shadow: 0 .5px 0 white;
 }
 
 .navbar {
   border-radius: 0;
   background-color: @brand-primary;
-  color: @brand-success;
   height: @navbar-height;
   position: fixed;
   width: 100%;
+  border-bottom: 1px solid black;
+  color: white !important;
+  font-size: 2rem;
+}
+
+.navbar-header {
+  float: right;
+}
+#slider, .leftSideNav { //left nav
+background: @gray;
+  color: black;
+  padding-left: 1rem;
+  padding-top: .5rem;
+  font-size: 2rem;
+  position: fixed;
+  height: 100%;
+  width:400px;
+  left:-409px;
+  top:@navbar-height;
+  border-right: 1px solid black;
 }
 
 .jumbotron {
