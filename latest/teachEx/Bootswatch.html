@@ -2,58 +2,43 @@
 <html><head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Flat UI+Slider</title>
+    <title>Bootswatch+Slider</title>
 
     <link href='//scdn.primus.netdna-cdn.com/latest/css/bootswatch/bootswatch.css'
-          rel='stylesheet'></head>
-    <link href='//scdn.primus.netdna-cdn.com/latest/css/bootswatch/bootswatch-theme.css'
-          rel='stylesheet'></head>
+          rel='stylesheet'>
+
     <style>
-        body {
-            background: #34495e;
-            color: #1abc9c;
-        }
-        .navbar {
-            border-radius: 0;
-        }
-        .navbar-brand{
-            margin-left: .5rem !important;
-        }
-        .navbar-header {
-            float: right;
-            margin-top: .85rem;
-            margin-left: .5rem;
-        }
-        .back {
-            background: #34495e;
-        }
-        .text-center { text-align: center; }
+
     </style>
 <body>
  <!--
     Slider
   <-->
-<header><nav class='navbar navbar-default' role='navigation'>
-    <a class='navbar-brand' href='#'>Flat UI+Slider</a>
+<header>
+<div class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle"
+                    data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 
-    <span id='hamburger' class='navbar-header'>
-        <button type='button' class='navbar-toggle'>
-            <span class='icon-bar'></span>
-            <span class='icon-bar'></span>
-            <span class='icon-bar'></span>
-        </button>
-    </span>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <span class='collapse navbar-collapse navbar-ex1-collapse' -->
-          <ul class='nav navbar-nav navbar-right'>
-             <li><a href='#'>About</a></li>
-             <li><a href='#'>More</a></li>
-             <li><a href='#'>Blog</a></li>
-         </ul>
-    </span><!-- /.navbar-collapse -->
+            <a class="navbar-brand" href="#">Brand</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Link</a></li>
+
+            </ul>
+        </div><!-- /.nav-collapse -->
+    </div><!-- /.container -->
+</div><!-- /.navbar -->
 
 
-</nav></header>
+</header>
 
 <div class='jumbotron back text-center'>
     <h1>Flat UI+Slider</h1>
@@ -64,9 +49,9 @@
 <script src='//scdn.primus.netdna-cdn.com/latest/css/bootstrap.js'></script>
 <script>
 var hamBut= document.getElementById('hamburger')
-hamBut.addEventListener('click',function() {
-    console.log('ham')
-})
+//hamBut.addEventListener('click',function() {
+  //  console.log('ham')
+//})
 
 </script>
 </body></html>
