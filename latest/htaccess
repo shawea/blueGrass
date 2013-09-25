@@ -1,0 +1,3 @@
+AddType font/opentype .otf
+AddType application/font-woff .woff
+
