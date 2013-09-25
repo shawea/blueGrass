@@ -1,0 +1,47 @@
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(//scdn.primus.netdna-cdn.com/latest/css/lato/lato-regular-webfont.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lato Bold'), local('Lato-Bold'), url(//scdn.primus.netdna-cdn.com/latest/css/lato/lato-bold-webfont.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Lato Black'), local('Lato-Black'), url(//scdn.primus.netdna-cdn.com/latest/css/lato/lato-black-webfont.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Lato Italic'), local('Lato-Italic'), url(//scdn.primus.netdna-cdn.com/latest/css/lato/lato-italic-webfont.woff) format('woff');
+}
+body {
+  background-color: #ffffff;
+  height: 100% ;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #18bc9c;
+}
+.navbar {
+  border-radius: 0;
+  background-color: #2c3e50;
+  color: #18bc9c;
+  height: 60px;
+}
+.jumbotron {
+  background-color: #ffffff;
+}
+@media (max-width: 767px) {
+  .jumbotron h1 {
+    font-size: 31px;
+  }
+}
+.text-center {
+  text-align: center;
+}
