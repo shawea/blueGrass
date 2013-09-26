@@ -52,7 +52,6 @@
 
 @navbar-height:           60px;
 
-
 body {
   background-color: @body-bg;
   height: 100% ;
@@ -60,25 +59,36 @@ body {
   color: @brand-success;
   -webkit-font-smoothing: antialiased;
   font-size: 1.5rem;
-  text-shadow: 0 .5px 0 white;
+  text-shadow: 0 -.5px 0 white;
 }
 
+// nav
 .navbar {
   border-radius: 0;
-  background-color: @brand-primary;
+  background-color: @gray-light;
   height: @navbar-height;
   position: fixed;
   width: 100%;
   border-bottom: 1px solid black;
-  color: white !important;
+  //color: white !important;
   font-size: 2rem;
 }
-
 .navbar-header {
   float: right;
 }
+.navbar-brand {
+  color: white !important;
+  font-size: 3rem;
+}
+.navTxt {
+  color: white !important;
+  font-size: 2rem;
+}
+.navbar-toggle {
+  margin-left: 1rem ;
+}
 #slider, .leftSideNav { //left nav
-background: @gray;
+  background: @gray;
   color: black;
   padding-left: 1rem;
   padding-top: .5rem;
@@ -91,13 +101,14 @@ background: @gray;
   border-right: 1px solid black;
 }
 
+
 .jumbotron {
   background-color: @body-bg;
 }
 
 @media(max-width:767px) {
   .jumbotron h1 {
-    font-size: 31px;
+    font-size: 2rem;
   }
 }
 

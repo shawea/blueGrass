@@ -29,20 +29,30 @@ body {
   color: #18bc9c;
   -webkit-font-smoothing: antialiased;
   font-size: 1.5rem;
-  text-shadow: 0 .5px 0 white;
+  text-shadow: 0 -0.5px 0 #ffffff;
 }
 .navbar {
   border-radius: 0;
-  background-color: #2c3e50;
+  background-color: #b4bcc2;
   height: 60px;
   position: fixed;
   width: 100%;
   border-bottom: 1px solid black;
-  color: white !important;
   font-size: 2rem;
 }
 .navbar-header {
   float: right;
+}
+.navbar-brand {
+  color: white !important;
+  font-size: 3rem;
+}
+.navTxt {
+  color: white !important;
+  font-size: 2rem;
+}
+.navbar-toggle {
+  margin-left: 1rem ;
 }
 #slider,
 .leftSideNav {
@@ -63,7 +73,7 @@ body {
 }
 @media (max-width: 767px) {
   .jumbotron h1 {
-    font-size: 31px;
+    font-size: 2rem;
   }
 }
 img {

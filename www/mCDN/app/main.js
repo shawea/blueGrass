@@ -3,10 +3,11 @@ document.body.style.cursor = 'wait';
 require([
     '//scdn.primus.netdna-cdn.com/latest/jquery-2.1.b1.js',
     '//scdn.primus.netdna-cdn.com/latest/fastclick.js',
-    '//scdn.primus.netdna-cdn.com/latest/TweenLite.min.js'
+    '//scdn.primus.netdna-cdn.com/latest/TweenLite.min.js',
+    '//scdn.primus.netdna-cdn.com/latest/blueGrass.js'
 ], function () {
     require([
-        '//scdn.primus.netdna-cdn.com/latest/css/bootstrap.js',
+        ,
         '//scdn.primus.netdna-cdn.com/latest/CSSPlugin.min.js',
         '//scdn.primus.netdna-cdn.com/latest/more/parallax.js'
     ], function () {
@@ -17,13 +18,11 @@ require([
     });
 });
 
-// loader code END///////////////////////////////
 // nav code ////////////////////////////////////
 var hamBut = document.getElementById('hamburger');
 hamBut.addEventListener('click', function () {
     toggleSideNav();
 });
-
 var navFlag;
 function toggleSideNav() {
     console.log('slider');
@@ -35,5 +34,13 @@ function toggleSideNav() {
         TweenLite.to('#kontainer', .2, { x: 0 });
     }
     navFlag = !navFlag;
+}
+
+var aboutBut = document.getElementById('about');
+aboutBut.addEventListener('click', function () {
+    loadAbout();
+});
+function loadAbout() {
+    console.log('about');
 }
 //# sourceMappingURL=main.js.map
