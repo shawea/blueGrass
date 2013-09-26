@@ -21,7 +21,7 @@ class CloudAPI {
      */
     setAppKey(key:string) {
         this._secret_app_key = key
-        console.log('cloudAPI ready v2.917a ' )
+        console.log('cloudAPI ready v2.917b ' )
     }
 
     setAuthToken(tok:string) {
